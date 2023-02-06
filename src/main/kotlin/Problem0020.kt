@@ -16,11 +16,7 @@ fun main() {
                     }
 
                     else -> {
-                        if (stack.isEmpty()) {
-                            return false
-                        }
-
-                        if (stack.pop() != left) {
+                        if (stack.isEmpty() || stack.pop() != left) {
                             return false
                         }
                     }

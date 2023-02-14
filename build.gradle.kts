@@ -9,3 +9,10 @@ repositories {
     mavenCentral()
 }
 
+tasks {
+    processResources {
+        from("src/main/kotlin") {
+            include("**/*.txt")
+        }
+    }
+}

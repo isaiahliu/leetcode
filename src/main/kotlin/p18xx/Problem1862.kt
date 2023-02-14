@@ -1,6 +1,5 @@
 package p18xx
 
-import util.input
 import kotlin.system.measureTimeMillis
 
 fun main() {
@@ -45,10 +44,8 @@ fun main() {
         }
     }
 
-
     measureTimeMillis {
-        val nums = input.first().split(",").map { it.toInt() }.toIntArray()
-        println(Solution().sumOfFlooredPairs(nums))
+        println(Solution().sumOfFlooredPairs(intArrayOf(1, 2, 3, 4, 5)))
     }.also { println("Time cost: ${it}ms") }
 }
 

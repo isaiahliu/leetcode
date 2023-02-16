@@ -17,7 +17,10 @@ fun main() {
                         nums[leftIndex] = 0
 
                         leftIndex++
-                        cursor++
+
+                        if (cursor < leftIndex) {
+                            cursor = leftIndex
+                        }
                     }
 
                     2 -> {

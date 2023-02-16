@@ -1,10 +1,8 @@
 package p00xx
 
-fun main() {
-    class ListNode(var `val`: Int) {
-        var next: ListNode? = null
-    }
+import util.ListNode
 
+fun main() {
     class Solution {
         fun removeNthFromEnd(head: ListNode?, n: Int): ListNode? {
             val root = ListNode(Int.MAX_VALUE).also { it.next = head }

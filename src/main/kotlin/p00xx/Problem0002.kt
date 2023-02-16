@@ -1,10 +1,8 @@
 package p00xx
 
-fun main() {
-    class ListNode(var `val`: Int) {
-        var next: ListNode? = null
-    }
+import util.ListNode
 
+fun main() {
     class Solution {
         fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
             var t1 = l1

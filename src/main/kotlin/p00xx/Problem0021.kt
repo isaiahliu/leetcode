@@ -1,10 +1,8 @@
 package p00xx
 
-fun main() {
-    class ListNode(var `val`: Int) {
-        var next: ListNode? = null
-    }
+import util.ListNode
 
+fun main() {
     class Solution {
         fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
             val root = ListNode(Int.MAX_VALUE)

@@ -1,12 +1,9 @@
 package p00xx
 
+import util.ListNode
 import kotlin.system.measureTimeMillis
 
 fun main() {
-    class ListNode(var `val`: Int) {
-        var next: ListNode? = null
-    }
-
     class Solution {
         fun deleteDuplicates(head: ListNode?): ListNode? {
             var t = head

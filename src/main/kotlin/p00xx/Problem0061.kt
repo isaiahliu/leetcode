@@ -1,13 +1,10 @@
 package p00xx
 
+import util.ListNode
 import java.util.*
 import kotlin.system.measureTimeMillis
 
 fun main() {
-    class ListNode(var `val`: Int) {
-        var next: ListNode? = null
-    }
-
     class Solution {
         fun rotateRight(head: ListNode?, k: Int): ListNode? {
             if (head == null || k == 0) {

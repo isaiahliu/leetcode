@@ -1,19 +1,8 @@
 package p00xx
 
-fun main() {
-    class ListNode(var `val`: Int) {
-        var next: ListNode? = null
-    }
+import util.ListNode
 
-    /**
-     * Example:
-     * var li = ListNode(5)
-     * var v = li.`val`
-     * Definition for singly-linked list.
-     * class ListNode(var `val`: Int) {
-     *     var next: ListNode? = null
-     * }
-     */
+fun main() {
     class Solution {
         fun swapPairs(head: ListNode?): ListNode? {
             return head?.next?.let {

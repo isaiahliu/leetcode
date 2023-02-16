@@ -5,9 +5,25 @@ fun main() {
         fun numberOfPairs(nums: IntArray): IntArray {
             val counts = IntArray(101)
 
-            nums.forEach { counts[it]++ }
+            var pairCount = 0
+            var singleCount = 0
 
-            return intArrayOf(counts.sumOf { it / 2 }, counts.sumOf { it % 2 })
+            nums.forEach {
+                when (counts[it]) {
+                    0 -> {
+                        counts[it]++
+                        singleCount++
+                    }
+
+                    1 -> {
+                        counts[it]--
+                        pairCount++
+                        singleCount--
+                    }
+                }
+            }
+
+            return intArrayOf(pairCount, singleCount)
         }
     }
 

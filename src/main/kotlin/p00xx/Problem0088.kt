@@ -9,13 +9,13 @@ fun main() {
             var num1Index = m - 1
             var num2Index = n - 1
 
-            while (writeIndex >= 0) {
+            while (num2Index >= 0) {
                 var max = Int.MIN_VALUE
                 if (num1Index >= 0) {
                     max = nums1[num1Index]
                 }
 
-                if (num2Index >= 0 && nums2[num2Index] > max) {
+                if (nums2[num2Index] > max) {
                     max = nums2[num2Index]
                     num2Index--
                 } else {

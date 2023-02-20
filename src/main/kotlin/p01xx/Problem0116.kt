@@ -13,18 +13,30 @@ fun main() {
     class Solution {
         fun connect(root: Node?): Node? {
             val nodes = LinkedList<Node>()
-            root?.let { nodes.add(it) }
 
-            while (nodes.isNotEmpty()) {
+            var size = 0
+            root?.let {
+                nodes.add(it)
+                size++
+            }
+
+
+            while (size > 0) {
                 var pre: Node? = null
-                repeat(nodes.size) {
+                repeat(size.also { size = 0 }) {
                     val top = nodes.pop()
 
                     pre?.next = top
                     pre = top
 
-                    top.left?.also { nodes.add(it) }
-                    top.right?.also { nodes.add(it) }
+                    top.left?.also {
+                        nodes.add(it)
+                        size++
+                    }
+                    top.right?.also {
+                        nodes.add(it)
+                        size++
+                    }
                 }
             }
 

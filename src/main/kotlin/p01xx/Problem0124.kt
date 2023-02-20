@@ -9,16 +9,8 @@ fun main() {
             var result = root?.`val` ?: 0
 
             fun TreeNode.walk(): Int {
-                var leftValue = 0
-                var rightValue = 0
-
-                left?.walk()?.also {
-                    leftValue = it.coerceAtLeast(0)
-                }
-
-                right?.walk()?.also {
-                    rightValue = it.coerceAtLeast(0)
-                }
+                val leftValue = left?.walk()?.takeIf { it > 0 } ?: 0
+                val rightValue = right?.walk()?.takeIf { it > 0 } ?: 0
 
                 result = result.coerceAtLeast(leftValue + rightValue + `val`)
 

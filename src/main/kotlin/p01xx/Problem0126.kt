@@ -5,19 +5,8 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun findLadders(beginWord: String, endWord: String, wordList: List<String>): List<List<String>> {
-            val cache = hashMapOf<Pair<String, String>, Boolean>()
-
             fun String.similar(target: String): Boolean {
-                if (this to target in cache) {
-                    return cache[this to target] ?: false
-                }
-
-                val result = this.filterIndexed { index, c -> c != target[index] }.length == 1
-
-                cache[this to target] = result
-                cache[target to this] = result
-
-                return result
+                return this.filterIndexed { index, c -> c != target[index] }.length == 1
             }
 
             val allWords = wordList.toMutableList()

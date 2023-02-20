@@ -39,6 +39,8 @@ fun main() {
                 }
             }
 
+            cache[s] = result
+            
             return result
         }
     }

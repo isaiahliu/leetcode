@@ -7,16 +7,23 @@ fun main() {
     class Solution {
         fun singleNumber(nums: IntArray): Int {
             infix fun Long.xor3(target: Long): Long {
-                val from = this.toString(3).padStart(20, '0')
-                val to = target.toString(3).padStart(20, '0')
+                var result = 0L
 
-                if (from.isEmpty() && to.isEmpty()) {
-                    return 0
+                var left = this
+                var right = target
+
+                var base = 1
+                while (left > 0 || right > 0) {
+                    val d = (left % 3 + right % 3) % 3
+
+                    result += d * base
+
+                    base *= 3
+                    left /= 3
+                    right /= 3
                 }
 
-                return String(CharArray(20) {
-                    '0' + ((from[it] - '0') + (to[it] - '0')) % 3
-                }).toLong(3)
+                return result
             }
 
             var sign = 0

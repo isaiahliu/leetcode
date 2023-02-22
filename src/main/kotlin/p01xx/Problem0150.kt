@@ -8,8 +8,6 @@ fun main() {
         fun evalRPN(tokens: Array<String>): Int {
             val stack = LinkedList<Int>()
             tokens.forEach {
-                val num = it.toIntOrNull()
-
                 val calculator: (Int, Int) -> Int = when (it) {
                     "+" -> {
                         { b, a -> a + b }

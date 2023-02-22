@@ -20,12 +20,11 @@ fun main() {
                 val midIndex = leftIndex + (rightIndex - leftIndex) / 2
 
                 min = min.coerceAtMost(nums[midIndex])
-                if (nums[midIndex] < nums[0]) {
+                if (nums[midIndex] <= nums[0]) {
                     findMinIndex(leftIndex, midIndex - 1)
-                } else if (nums[midIndex] > nums[0]) {
-                    findMinIndex(midIndex + 1, rightIndex)
-                } else {
-                    findMinIndex(leftIndex, midIndex - 1)
+                }
+
+                if (nums[midIndex] >= nums[0]) {
                     findMinIndex(midIndex + 1, rightIndex)
                 }
             }

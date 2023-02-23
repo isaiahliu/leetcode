@@ -3,10 +3,6 @@ package p02xx
 fun main() {
     class Solution {
         fun countPrimes(n: Int): Int {
-            if (n < 3) {
-                return 0
-            }
-
             val flags = BooleanArray(n)
 
             var result = 0

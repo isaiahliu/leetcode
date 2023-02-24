@@ -7,36 +7,28 @@ fun main() {
     class Solution {
         fun lowestCommonAncestor(root: TreeNode?, p: TreeNode?, q: TreeNode?): TreeNode? {
             root ?: return null
-            p ?: return null
-            q ?: return null
+            val pValue = p?.`val` ?: return null
+            val qValue = q?.`val` ?: return null
 
             var result: TreeNode? = null
 
-            fun TreeNode.walk(target: TreeNode): Boolean {
-                if (result != null) {
-                    return false
-                }
+            fun TreeNode.walk() {
+                when {
+                    pValue > `val` && qValue > `val` -> {
+                        right?.walk()
+                    }
 
-                var found = this == target
+                    pValue < `val` && qValue < `val` -> {
+                        left?.walk()
+                    }
 
-                if (!found) {
-                    found = left?.walk(target) ?: false
-                }
-
-                if (!found) {
-                    found = right?.walk(target) ?: false
-                }
-
-                if (found) {
-                    if (target == p && walk(q)) {
+                    else -> {
                         result = this
                     }
                 }
-
-                return found
             }
 
-            root.walk(p)
+            root.walk()
 
             return result
         }

@@ -1,5 +1,6 @@
 package p02xx
 
+import java.math.BigInteger
 import kotlin.system.measureTimeMillis
 
 fun main() {
@@ -8,20 +9,21 @@ fun main() {
             if (n < 1) {
                 return false
             }
-            var t = n
-            while (t % 2 == 0) {
-                t /= 2
+
+            var t = n.toBigInteger()
+            val target = 30.toBigInteger()
+
+            while (true) {
+                val gcd = t.gcd(target)
+
+                if (gcd > BigInteger.ONE) {
+                    t /= gcd
+                } else {
+                    break
+                }
             }
 
-            while (t % 3 == 0) {
-                t /= 3
-            }
-
-            while (t % 5 == 0) {
-                t /= 5
-            }
-
-            return t == 1
+            return t == BigInteger.ONE
         }
     }
 

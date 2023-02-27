@@ -6,7 +6,6 @@ fun main() {
     class Solution {
         fun nthUglyNumber(n: Int): Int {
             val uglyNums = sortedSetOf(1L)
-            uglyNums.first()
 
             var current = 1L
             repeat(n) {

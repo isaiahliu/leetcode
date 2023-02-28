@@ -4,14 +4,29 @@ import kotlin.system.measureTimeMillis
 
 fun main() {
     class NumArray(private val nums: IntArray) {
-        init {
-            for (i in 1 until nums.size) {
-                nums[i] += nums[i - 1]
+        val sumCache = IntArray(nums.size) { Int.MIN_VALUE }
+
+        private fun sumBefore(index: Int): Int {
+            if (index < 0) {
+                return 0
             }
+
+            if (sumCache[index] > Int.MIN_VALUE) {
+                return sumCache[index]
+            }
+
+            var result = nums[index]
+            if (index > 0) {
+                result += sumBefore(index - 1)
+            }
+
+            sumCache[index] = result
+
+            return result
         }
 
         fun sumRange(left: Int, right: Int): Int {
-            return nums[right] - nums.getOrElse(left - 1) { 0 }
+            return sumBefore(right) - sumBefore(left - 1)
         }
     }
 

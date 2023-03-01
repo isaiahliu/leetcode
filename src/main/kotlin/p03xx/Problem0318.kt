@@ -17,7 +17,7 @@ fun main() {
 
             val sortedWords = words.map { it.toCharMap() to it.length }.groupingBy { it.first }.fold(0) { a, b ->
                 a.coerceAtLeast(b.second)
-            }.entries.toList().sortedByDescending { it.value }
+            }.entries.sortedByDescending { it.value }
 
             var result = 0
             for (i in sortedWords.indices) {

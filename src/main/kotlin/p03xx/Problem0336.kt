@@ -32,40 +32,23 @@ fun main() {
 
             words.forEachIndexed { index, s ->
                 repeat(s.length) {
-                    s.requiredStrAt(it, true)?.takeIf { it.first != s }?.also { (target, left) ->
-                        wordIndices[target]?.also {
-                            if (target.isEmpty()) {
-                                result.add(listOf(it, index))
-                                result.add(listOf(index, it))
-                            } else {
-                                result.add(
-                                    if (left) {
-                                        listOf(it, index)
-                                    } else {
-                                        listOf(index, it)
-                                    }
-                                )
+                    arrayOf(s.requiredStrAt(it, true), s.requiredStrAt(it, false)).filterNotNull()
+                        .filter { it.first != s }.forEach { (target, left) ->
+                            wordIndices[target]?.also {
+                                if (target.isEmpty()) {
+                                    result.add(listOf(it, index))
+                                    result.add(listOf(index, it))
+                                } else {
+                                    result.add(
+                                        if (left) {
+                                            listOf(it, index)
+                                        } else {
+                                            listOf(index, it)
+                                        }
+                                    )
+                                }
                             }
                         }
-                    }
-
-                    s.requiredStrAt(it, false)?.takeIf { it.first != s }?.also { (target, left) ->
-                        wordIndices[target]?.also {
-                            if (target.isEmpty()) {
-                                result.add(listOf(it, index))
-                                result.add(listOf(index, it))
-                            } else {
-                                result.add(
-                                    if (left) {
-                                        listOf(it, index)
-                                    } else {
-                                        listOf(index, it)
-                                    }
-                                )
-                            }
-                        }
-                    }
-
                 }
             }
 

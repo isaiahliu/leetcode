@@ -9,18 +9,17 @@ fun main() {
                 return 1
             }
 
-            var t = 9.toBigInteger()
+            var t = 9
 
-            var result = 9.toBigInteger()
+            var result = 9
 
             repeat(n - 1) {
-                result *= t
-                t--
+                result *= t--
             }
 
-            result += countNumbersWithUniqueDigits(n - 1).toBigInteger()
+            result += countNumbersWithUniqueDigits(n - 1)
 
-            return result.toInt()
+            return result
         }
     }
 

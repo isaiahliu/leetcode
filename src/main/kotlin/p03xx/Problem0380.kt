@@ -4,33 +4,44 @@ import kotlin.random.Random
 import kotlin.system.measureTimeMillis
 
 fun main() {
-    class RandomizedSet {
+    class RandomizedCollection {
         private val array = IntArray(200001)
         private var lastIndex = -1
 
-        private val map = hashMapOf<Int, Int>()
+        private val map = hashMapOf<Int, MutableSet<Int>>()
 
         fun insert(`val`: Int): Boolean {
-            if (`val` in map) {
-                return false
-            }
+            val valIndices = map.computeIfAbsent(`val`) { hashSetOf() }
 
             lastIndex++
             array[lastIndex] = `val`
 
-            map[`val`] = lastIndex
+            valIndices.add(lastIndex)
 
-            return true
+            return valIndices.size == 1
         }
 
         fun remove(`val`: Int): Boolean {
-            val valueIndex = map[`val`] ?: return false
+            val valueIndices = map[`val`] ?: return false
 
-            array[valueIndex] = array[lastIndex]
+            if (lastIndex in valueIndices) {
+                valueIndices.remove(lastIndex)
+            } else {
+                val removeIndex = valueIndices.first()
 
-            map[array[valueIndex]] = valueIndex
+                array[removeIndex] = array[lastIndex]
 
-            map.remove(`val`)
+                map[array[removeIndex]]?.also {
+                    it.remove(lastIndex)
+                    it.add(removeIndex)
+                }
+
+                valueIndices.remove(removeIndex)
+            }
+
+            if (valueIndices.isEmpty()) {
+                map.remove(`val`)
+            }
 
             lastIndex--
 
@@ -43,9 +54,18 @@ fun main() {
     }
 
     measureTimeMillis {
-        RandomizedSet().insert(
-            1
-        ).also { println(it) }
+        val r = RandomizedCollection()
+        r.insert(0)
+        r.remove(0)
+
+        r.insert(-1)
+        r.remove(0)
+
+        r.getRandom().also { println(it) }
+        r.getRandom().also { println(it) }
+        r.getRandom().also { println(it) }
+        r.getRandom().also { println(it) }
+        r.getRandom().also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

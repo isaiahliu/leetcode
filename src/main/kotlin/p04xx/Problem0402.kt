@@ -7,25 +7,22 @@ fun main() {
         fun removeKdigits(num: String, k: Int): String {
             val list = num.toMutableList()
 
-            var allInc = false
-            repeat(k) {
-                if (allInc) {
-                    list.removeAt(list.size - 1)
-                } else {
-                    allInc = true
-                    var index = 0
-                    while (index < list.size - 1) {
-                        if (list[index] > list[index + 1]) {
-                            allInc = false
-                            break
-                        }
-                        index++
+            var t = k
+
+            loop@ while (t > 0) {
+                var index = 0
+                while (index < list.size - 1) {
+                    if (list[index] > list[index + 1]) {
+                        t--
+                        list.removeAt(index)
+                        continue@loop
                     }
-                    list.removeAt(index)
+                    index++
                 }
+                break@loop
             }
 
-            return list.joinToString("").trimStart('0').ifEmpty { "0" }
+            return list.dropLast(t).joinToString("").trimStart('0').ifEmpty { "0" }
         }
     }
 

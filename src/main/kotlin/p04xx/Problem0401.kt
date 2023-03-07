@@ -5,16 +5,11 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun readBinaryWatch(turnedOn: Int): List<String> {
-            val result = arrayListOf<String>()
-            repeat(12) { h ->
-                repeat(60) { m ->
-                    if (Integer.bitCount(h) + Integer.bitCount(m) == turnedOn) {
-                        result += "$h:${m.toString().padStart(2, '0')}"
-                    }
-                }
-            }
-
-            return result
+            return (0 until 12).map { h ->
+                (0 until 12).filter { m ->
+                    Integer.bitCount(h) + Integer.bitCount(m) == turnedOn
+                }.map { m -> "$h:${m.toString().padStart(2, '0')}" }
+            }.flatten()
         }
     }
 

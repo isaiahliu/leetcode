@@ -5,12 +5,15 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun findTheDifference(s: String, t: String): Char {
-            val counts = IntArray(26)
+            var sum = 0
+            t.forEach {
+                sum += it - 'a'
+            }
+            s.forEach {
+                sum -= it - 'a'
+            }
 
-            t.forEach { counts[it - 'a']++ }
-            s.forEach { counts[it - 'a']-- }
-
-            return 'a' + counts.indexOfFirst { it > 0 }
+            return 'a' + sum
         }
     }
 

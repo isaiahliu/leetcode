@@ -9,12 +9,13 @@ fun main() {
 
             var t = k
 
+            var index = 0
             loop@ while (t > 0) {
-                var index = 0
                 while (index < list.size - 1) {
-                    if (list[index] > list[index + 1]) {
+                    if (index >= 0 && list[index] > list[index + 1]) {
                         t--
                         list.removeAt(index)
+                        index--
                         continue@loop
                     }
                     index++

@@ -15,22 +15,18 @@ fun main() {
                     return
                 }
 
-                var found = true
                 for (c in subStr) {
                     if (subStr.count { it == c } < k) {
-                        found = false
 
                         subStr.split(c).forEach {
                             process(it)
                         }
 
-                        break
+                        return
                     }
                 }
 
-                if (found) {
-                    result = subStr.length
-                }
+                result = subStr.length
             }
 
             process(s)

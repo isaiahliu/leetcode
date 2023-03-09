@@ -6,17 +6,11 @@ fun main() {
     class Solution {
         fun minimumRecolors(blocks: String, k: Int): Int {
             var count = 0
-            repeat(k) {
-                if (blocks[it] == 'B') {
-                    count++
-                }
-            }
+            var max = 0
 
-            var max = count
-
-            var index = 1
+            var index = 1 - k
             while (index + k - 1 < blocks.length) {
-                if (blocks[index - 1] == 'B') {
+                if (blocks.getOrNull(index - 1) == 'B') {
                     count--
                 }
 

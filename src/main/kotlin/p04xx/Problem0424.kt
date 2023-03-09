@@ -64,9 +64,6 @@ fun main() {
             "AAAAABBBBCBB",
             4
         ).also { println(it) }
-//        Solution().characterReplacement(
-//            input.first(), 3371
-//        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

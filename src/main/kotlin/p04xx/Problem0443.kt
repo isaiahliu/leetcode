@@ -9,7 +9,7 @@ fun main() {
 
             var lastChar = chars[0] - 1
             var count = 0
-            chars.forEachIndexed { index, c ->
+            chars.forEach { c ->
                 if (c == lastChar) {
                     count++
                 } else {

@@ -27,12 +27,7 @@ fun main() {
                     val num = i + 1
 
                     if (status and p == 0) {
-                        if (sum + num >= desiredTotal) {
-                            result = true
-                            break
-                        }
-
-                        if (sum + num < desiredTotal && !canWin(status + p, sum + num)) {
+                        if (sum + num >= desiredTotal || !canWin(status + p, sum + num)) {
                             result = true
                             break
                         }

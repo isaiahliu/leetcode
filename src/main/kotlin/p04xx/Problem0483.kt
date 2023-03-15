@@ -58,7 +58,6 @@ fun main() {
         }
     }
 
-    println("231".toInt(5))
     measureTimeMillis {
         Solution().smallestGoodBase(
             "1000000000000000000"

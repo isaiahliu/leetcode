@@ -8,22 +8,22 @@ fun main() {
             var deltaR = -1
             var deltaC = 1
 
-            var r = 1
-            var c = -1
-            return IntArray(mat.size * mat[0].size) {
-                r += deltaR
-                c += deltaC
+            var r = 0
+            var c = 0
 
-                mat.getOrNull(r)?.getOrNull(c) ?: run {
+            fun inRange(): Boolean = r in mat.indices && c in mat[0].indices
+
+            return IntArray(mat.size * mat[0].size) {
+                if (!inRange()) {
                     if (deltaR < 0) {
                         r++
-                        if (mat.getOrNull(r)?.getOrNull(c) == null) {
+                        if (!inRange()) {
                             r++
                             c--
                         }
                     } else {
                         c++
-                        if (mat.getOrNull(r)?.getOrNull(c) == null) {
+                        if (!inRange()) {
                             r--
                             c++
                         }
@@ -31,7 +31,11 @@ fun main() {
 
                     deltaR *= -1
                     deltaC *= -1
-                    mat[r][c]
+                }
+
+                mat[r][c].also {
+                    r += deltaR
+                    c += deltaC
                 }
             }
         }

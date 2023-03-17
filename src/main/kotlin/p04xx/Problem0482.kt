@@ -7,7 +7,7 @@ fun main() {
         fun licenseKeyFormatting(s: String, k: Int): String {
             val str = StringBuilder()
 
-            for (i in s.length - 1 downTo 0) {
+            for (i in s.lastIndex downTo 0) {
                 val c = s[i]
                 if (c == '-') {
                     continue

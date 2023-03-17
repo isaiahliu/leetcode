@@ -30,7 +30,7 @@ fun main() {
                 return result
             }
 
-            val bestScore = dfs(0, nums.size - 1, totalScore)
+            val bestScore = dfs(0, nums.lastIndex, totalScore)
 
             return bestScore * 2 >= totalScore
         }

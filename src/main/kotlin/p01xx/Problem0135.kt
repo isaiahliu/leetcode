@@ -27,7 +27,7 @@ fun main() {
 
             var sum = 0
 
-            for (i in ratings.size - 1 downTo 0) {
+            for (i in ratings.lastIndex downTo 0) {
                 val r = ratings[i]
 
                 if (r > current) {

@@ -6,7 +6,7 @@ fun main() {
     class Solution {
         fun sortColors(nums: IntArray): Unit {
             var leftIndex = 0
-            var rightIndex = nums.size - 1
+            var rightIndex = nums.lastIndex
 
             var cursor = 0
             while (cursor <= rightIndex) {

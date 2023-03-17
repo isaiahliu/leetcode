@@ -10,7 +10,7 @@ fun main() {
             val vowels = setOf('A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u')
 
             var leftIndex = 0
-            var rightIndex = charArray.size - 1
+            var rightIndex = charArray.lastIndex
 
             while (leftIndex < rightIndex) {
                 when {

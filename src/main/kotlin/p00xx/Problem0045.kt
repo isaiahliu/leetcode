@@ -9,7 +9,7 @@ fun main() {
             var startIndex = 0
             var endIndex = 0
 
-            while (endIndex < nums.size - 1) {
+            while (endIndex < nums.lastIndex) {
                 val nextStart = endIndex + 1
                 for (i in startIndex..endIndex) {
                     endIndex = endIndex.coerceAtLeast(i + nums[i])

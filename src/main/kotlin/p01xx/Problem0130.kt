@@ -11,7 +11,7 @@ fun main() {
             board.forEachIndexed { r, row ->
                 row.forEachIndexed { c, ch ->
                     if (ch == 'O') {
-                        if (r in 1 until board.size - 1 && c in 1 until row.size - 1) {
+                        if (r in 1 until board.lastIndex && c in 1 until row.lastIndex) {
                             innerO
                         } else {
                             outerO

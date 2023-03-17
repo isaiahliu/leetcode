@@ -30,7 +30,7 @@ fun main() {
                 }
             }
 
-            return dp[dp.size - 1].min()
+            return dp[dp.lastIndex].min()
         }
     }
 

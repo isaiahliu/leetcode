@@ -12,7 +12,7 @@ fun main() {
                 reverseA.getOrNull(it)?.let { it - '0' } ?: 0
             }
 
-            for (i in 0 until bits.size - 1) {
+            for (i in 0 until bits.lastIndex) {
                 val sum = bits[i] + (reverseB.getOrNull(i)?.let { it - '0' } ?: 0)
 
                 bits[i] = sum % 2

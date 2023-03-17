@@ -7,8 +7,8 @@ fun main() {
         fun numDecodings(s: String): Int {
             val dp = IntArray(s.length)
 
-            if (s[s.length - 1] > '0') {
-                dp[s.length - 1] = 1
+            if (s[s.lastIndex] > '0') {
+                dp[s.lastIndex] = 1
             }
 
             for (i in dp.size - 2 downTo 0) {

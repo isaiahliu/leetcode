@@ -56,7 +56,7 @@ fun main() {
                 }
             }
 
-            return context[context.size - 1][context[0].size - 1].keys.min() + 1
+            return context[context.lastIndex][context[0].lastIndex].keys.min() + 1
         }
     }
 

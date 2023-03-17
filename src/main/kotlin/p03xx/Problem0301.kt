@@ -79,7 +79,7 @@ fun main() {
                 }
             }
 
-            loop@ for (i in counts.size - 1 downTo 1) {
+            loop@ for (i in counts.lastIndex downTo 1) {
                 when (val count = counts[i]) {
                     0, Int.MAX_VALUE -> {}
                     else -> {

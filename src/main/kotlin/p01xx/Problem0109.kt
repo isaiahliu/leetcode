@@ -22,7 +22,7 @@ fun main() {
                 return root
             }
 
-            return build(0, nums.size - 1)
+            return build(0, nums.lastIndex)
         }
 
         fun sortedListToBST(head: ListNode?): TreeNode? {

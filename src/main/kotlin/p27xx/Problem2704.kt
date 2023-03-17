@@ -25,7 +25,7 @@ fun main() {
                 }
             }
 
-            return grid[grid.size - 1][grid[0].size - 1]
+            return grid[grid.lastIndex][grid[0].lastIndex]
         }
     }
 

@@ -11,7 +11,7 @@ fun main() {
                 return false
             }
 
-            val target = stones[stones.size - 1].toLong()
+            val target = stones[stones.lastIndex].toLong()
 
             val visited = hashSetOf<Pair<Long, Int>>()
 

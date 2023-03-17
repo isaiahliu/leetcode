@@ -32,7 +32,7 @@ fun main() {
                 }
             }
 
-            return dp[s.length - 1][t.length]
+            return dp[s.lastIndex][t.length]
         }
     }
 

@@ -55,7 +55,7 @@ fun main() {
                 }
             }
 
-            return findMaxNumIndex(0, nums.size - 1)
+            return findMaxNumIndex(0, nums.lastIndex)
         }
     }
 

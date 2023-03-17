@@ -6,7 +6,7 @@ fun main() {
     class Solution {
         fun findSubstringInWraproundString(s: String): Int {
             val dp = IntArray(26)
-            dp[s[s.length - 1] - 'a'] = 1
+            dp[s[s.lastIndex] - 'a'] = 1
 
             var t = 1
             for (i in s.length - 2 downTo 0) {

@@ -48,7 +48,7 @@ fun main() {
                 }
             }
 
-            for (i in words.size - 1 downTo 0) {
+            for (i in words.lastIndex downTo 0) {
                 walk(words[i], emptySet())
             }
 

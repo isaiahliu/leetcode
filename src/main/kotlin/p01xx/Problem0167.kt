@@ -35,7 +35,7 @@ fun main() {
                     continue
                 }
 
-                val rightIndex = binarySearch(leftIndex + 1, numbers.size - 1, target - numbers[leftIndex])
+                val rightIndex = binarySearch(leftIndex + 1, numbers.lastIndex, target - numbers[leftIndex])
 
                 if (rightIndex > -1) {
                     return intArrayOf(leftIndex + 1, rightIndex + 1)

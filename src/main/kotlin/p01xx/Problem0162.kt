@@ -6,7 +6,7 @@ fun main() {
     class Solution {
         fun findPeakElement(nums: IntArray): Int {
             var leftIndex = 0
-            var rightIndex = nums.size - 1
+            var rightIndex = nums.lastIndex
 
             while (leftIndex < rightIndex) {
                 val midIndex = leftIndex + (rightIndex - leftIndex) / 2

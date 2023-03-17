@@ -13,7 +13,7 @@ fun main() {
                 nums[i] = nums[i - 1].coerceAtLeast(nums[i - 2] + nums[i])
             }
 
-            return nums[nums.size - 1]
+            return nums[nums.lastIndex]
         }
     }
     println(

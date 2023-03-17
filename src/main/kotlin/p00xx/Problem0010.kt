@@ -25,7 +25,7 @@ fun main() {
             }
 
             found@ while (true) {
-                loop@ for (i in 0 until matchNodes.size - 1) {
+                loop@ for (i in 0 until matchNodes.lastIndex) {
                     val left = matchNodes[i]
                     val right = matchNodes[i + 1]
                     if (left.multiMatch && right.multiMatch) {

@@ -13,7 +13,7 @@ fun main() {
             }
 
             var pre = max
-            repeat(nums.size - 1) {
+            repeat(nums.lastIndex) {
                 pre += sum
                 pre -= nums[nums.size - it - 1] * nums.size
 

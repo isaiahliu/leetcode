@@ -6,7 +6,7 @@ fun main() {
     class Solution {
         fun findMin(nums: IntArray): Int {
             var min = nums[0]
-            if (min <= nums[nums.size - 1]) {
+            if (min <= nums[nums.lastIndex]) {
                 return min
             } else {
                 fun findMinIndex(leftIndex: Int, rightIndex: Int) {
@@ -29,7 +29,7 @@ fun main() {
                     }
                 }
 
-                findMinIndex(0, nums.size - 1)
+                findMinIndex(0, nums.lastIndex)
 
                 return min
             }

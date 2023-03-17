@@ -5,7 +5,7 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun searchMatrix(matrix: Array<IntArray>, target: Int): Boolean {
-            var rightIndex = matrix[0].size - 1
+            var rightIndex = matrix[0].lastIndex
 
             fun IntArray.binarySearch(startIndex: Int, endIndex: Int): Boolean {
                 if (startIndex > endIndex) {

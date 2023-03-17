@@ -18,9 +18,9 @@ fun main() {
             var columnIndex = 0
 
             var minRowIndex = 0
-            var maxRowIndex = matrix.size - 1
+            var maxRowIndex = matrix.lastIndex
             var minColumnIndex = 0
-            var maxColumnIndex = matrix[0].size - 1
+            var maxColumnIndex = matrix[0].lastIndex
 
             val result = arrayListOf(matrix[0][0])
             var direction = right

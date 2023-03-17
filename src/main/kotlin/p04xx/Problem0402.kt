@@ -11,7 +11,7 @@ fun main() {
 
             var index = 0
             loop@ while (t > 0) {
-                while (index < list.size - 1) {
+                while (index < list.lastIndex) {
                     if (index >= 0 && list[index] > list[index + 1]) {
                         t--
                         list.removeAt(index)

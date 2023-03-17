@@ -57,8 +57,8 @@ fun main() {
                 }
             }
 
-            if (nums.isNotEmpty() && target in nums[0]..nums[nums.size - 1]) {
-                findBoth(0, nums.size - 1)
+            if (nums.isNotEmpty() && target in nums[0]..nums[nums.lastIndex]) {
+                findBoth(0, nums.lastIndex)
             }
             return result
         }

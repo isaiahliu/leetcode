@@ -47,7 +47,7 @@ fun main() {
                         match = true
                     }
 
-                    if (suffixStart + i == chars.size - 1 && counts[i] >= counts[suffixStart + i]) {
+                    if (suffixStart + i == chars.lastIndex && counts[i] >= counts[suffixStart + i]) {
                         match = true
                     }
 

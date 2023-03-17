@@ -12,13 +12,13 @@ fun main() {
             val str = n.toString()
 
             var t = 1
-            repeat(str.length - 1) {
+            repeat(str.lastIndex) {
                 t *= 10
             }
 
             val highest = n / t
 
-            val total = t / 10 * (str.length - 1)
+            val total = t / 10 * (str.lastIndex)
 
             repeat(highest) {
                 sum += if (it == 1) {

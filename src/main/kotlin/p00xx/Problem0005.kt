@@ -8,7 +8,7 @@ fun main() {
 
             var maxLength = 1
 
-            for (index in 0 until s.length - 1) {
+            for (index in 0 until s.lastIndex) {
                 var spreadLength = 0
                 while (true) {
                     val left = s.getOrNull(index - spreadLength - 1) ?: break

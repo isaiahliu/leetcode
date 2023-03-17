@@ -14,12 +14,12 @@ fun main() {
 
             heights.indices.forEach {
                 pacificSide.add(it to 0)
-                atlanticSide.add(it to heights[it].size - 1)
+                atlanticSide.add(it to heights[it].lastIndex)
             }
 
             heights[0].indices.forEach {
                 pacificSide.add(0 to it)
-                atlanticSide.add(heights.size - 1 to it)
+                atlanticSide.add(heights.lastIndex to it)
             }
 
             fun walk(set: Set<Pair<Int, Int>>, flag: Int) {

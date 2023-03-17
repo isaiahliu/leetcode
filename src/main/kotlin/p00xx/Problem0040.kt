@@ -33,7 +33,7 @@ fun main() {
 
             val result = arrayListOf<List<Int>>()
 
-            if (binarySearch(0, candidates.size - 1, target) >= 0) {
+            if (binarySearch(0, candidates.lastIndex, target) >= 0) {
                 result.add(listOf(target))
             }
 
@@ -52,7 +52,7 @@ fun main() {
                     if (remaining < num) {
                         break
                     } else {
-                        if (binarySearch(i + 1, candidates.size - 1, remaining) >= 0) {
+                        if (binarySearch(i + 1, candidates.lastIndex, remaining) >= 0) {
                             result.add(route + num + remaining)
                         }
 

@@ -35,7 +35,7 @@ fun main() {
                 } else {
                     line.forEachIndexed { wordIndex, word ->
                         if (wordIndex > 0) {
-                            str.append(" ".repeat((space / (line.size - 1)) + if (wordIndex <= space % (line.size - 1)) 1 else 0))
+                            str.append(" ".repeat((space / (line.lastIndex)) + if (wordIndex <= space % (line.lastIndex)) 1 else 0))
                         }
 
                         str.append(word)

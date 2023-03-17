@@ -11,7 +11,7 @@ fun main() {
 
             val max = nums.max()
             val min = nums.min()
-            val bucketSize = ((max - min) / (nums.size - 1)).coerceAtLeast(1)
+            val bucketSize = ((max - min) / (nums.lastIndex)).coerceAtLeast(1)
 
             val bucket = Array((max - min) / bucketSize + 1) {
                 intArrayOf(-1, -1)

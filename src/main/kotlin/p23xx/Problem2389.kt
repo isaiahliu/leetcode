@@ -35,7 +35,7 @@ fun main() {
             }
 
             return IntArray(queries.size) {
-                binarySearch(0, nums.size - 1, queries[it]) + 1
+                binarySearch(0, nums.lastIndex, queries[it]) + 1
             }
         }
     }

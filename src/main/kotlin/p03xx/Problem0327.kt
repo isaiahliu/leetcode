@@ -78,7 +78,7 @@ fun main() {
                 }
             }
 
-            reduceSort(0, sums.size - 1)
+            reduceSort(0, sums.lastIndex)
 
             return result
         }

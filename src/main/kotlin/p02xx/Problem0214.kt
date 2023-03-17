@@ -9,7 +9,7 @@ fun main() {
                 return s
             }
 
-            var l = s.length - 1
+            var l = s.lastIndex
 
             while (true) {
                 if (s.substring(0, l) == reverseS.substring(s.length - l)) {

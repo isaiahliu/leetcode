@@ -22,8 +22,8 @@ fun main() {
             var result = 0
 
             maxDiff = 0
-            var max = prices[prices.size - 1]
-            for (i in dp.size - 1 downTo 0) {
+            var max = prices[prices.lastIndex]
+            for (i in dp.lastIndex downTo 0) {
                 if (prices[i] > max) {
                     max = prices[i]
                 } else {

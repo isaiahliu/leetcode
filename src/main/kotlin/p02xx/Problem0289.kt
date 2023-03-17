@@ -44,7 +44,7 @@ fun main() {
                 }
             }
 
-            board[board.size - 1].also {
+            board[board.lastIndex].also {
                 it.forEachIndexed { cIndex, n ->
                     it[cIndex] = n shr 1
                 }

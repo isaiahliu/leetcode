@@ -5,8 +5,8 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun plusOne(digits: IntArray): IntArray {
-            digits[digits.size - 1]++
-            for (i in digits.size - 1 downTo 1) {
+            digits[digits.lastIndex]++
+            for (i in digits.lastIndex downTo 1) {
                 if (digits[i] > 9) {
                     digits[i] %= 10
                     digits[i - 1]++

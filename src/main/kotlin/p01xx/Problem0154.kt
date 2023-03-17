@@ -29,7 +29,7 @@ fun main() {
                 }
             }
 
-            findMinIndex(0, nums.size - 1)
+            findMinIndex(0, nums.lastIndex)
 
             return min
         }

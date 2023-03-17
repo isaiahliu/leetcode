@@ -20,7 +20,7 @@ fun main() {
                 }
             }
 
-            return binarySearch(0, nums.size - 1)
+            return binarySearch(0, nums.lastIndex)
         }
     }
 

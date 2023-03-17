@@ -9,8 +9,8 @@ fun main() {
                 return if (nums[0] == target) 0 else -1
             }
 
-            if (nums[0] < nums[nums.size - 1]) {
-                return binarySearch(nums, 0, nums.size - 1, target)
+            if (nums[0] < nums[nums.lastIndex]) {
+                return binarySearch(nums, 0, nums.lastIndex, target)
             } else {
                 fun findMinIndex(leftIndex: Int, rightIndex: Int): Int {
                     if (leftIndex > rightIndex) {
@@ -30,10 +30,10 @@ fun main() {
                     }
                 }
 
-                val minIndex = findMinIndex(0, nums.size - 1)
+                val minIndex = findMinIndex(0, nums.lastIndex)
 
                 return if (target < nums[0]) {
-                    binarySearch(nums, minIndex, nums.size - 1, target)
+                    binarySearch(nums, minIndex, nums.lastIndex, target)
                 } else {
                     binarySearch(nums, 0, minIndex - 1, target)
                 }

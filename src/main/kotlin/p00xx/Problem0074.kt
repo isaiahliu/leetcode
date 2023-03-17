@@ -5,7 +5,7 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun searchMatrix(matrix: Array<IntArray>, target: Int): Boolean {
-            if (target < matrix[0][0] || target > matrix[matrix.size - 1][matrix[matrix.size - 1].size - 1]) {
+            if (target < matrix[0][0] || target > matrix[matrix.lastIndex][matrix[matrix.lastIndex].lastIndex]) {
                 return false
             }
 

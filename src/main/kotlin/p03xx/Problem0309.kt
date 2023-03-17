@@ -6,7 +6,7 @@ fun main() {
     class Solution {
         fun maxProfit(prices: IntArray): Int {
             if (prices.size <= 2) {
-                return (prices[prices.size - 1] - prices[0]).coerceAtLeast(0)
+                return (prices[prices.lastIndex] - prices[0]).coerceAtLeast(0)
             }
 
             val dp = Array(prices.size) {
@@ -29,7 +29,7 @@ fun main() {
                 dp[i][1] = dm1Keep.coerceAtLeast(dm2Stay - prices[i])
             }
 
-            return dp[dp.size - 1][0]
+            return dp[dp.lastIndex][0]
         }
     }
 

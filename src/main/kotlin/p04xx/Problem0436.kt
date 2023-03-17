@@ -31,7 +31,7 @@ fun main() {
             }
 
             sortedRange.forEachIndexed { i, pair ->
-                binarySearch(i, sortedRange.size - 1, pair.second)?.also {
+                binarySearch(i, sortedRange.lastIndex, pair.second)?.also {
                     val ind1 = rangeMap[pair]!!
                     val ind2 = rangeMap[sortedRange[it]]!!
                     result[ind1] = ind2

@@ -64,7 +64,7 @@ fun main() {
                 }
             }
 
-            return dp[washedPrices.size - 1][k][1]
+            return dp[washedPrices.lastIndex][k][1]
         }
     }
 

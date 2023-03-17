@@ -17,9 +17,9 @@ fun main() {
                 sum += piles[index]
 
                 for (m in 1 until piles.size) {
-                    for (c in index + 1..(index + m * 2).coerceAtMost(dp.size - 1)) {
+                    for (c in index + 1..(index + m * 2).coerceAtMost(dp.lastIndex)) {
                         dp[index][m] = dp[index][m].coerceAtLeast(
-                            sum - dp[c][m.coerceAtLeast(c - index).coerceAtMost(piles.size - 1)]
+                            sum - dp[c][m.coerceAtLeast(c - index).coerceAtMost(piles.lastIndex)]
                         )
                     }
                 }

@@ -1,34 +1,35 @@
 package p05xx
 
+import util.TreeNode
 import kotlin.system.measureTimeMillis
 
 fun main() {
     class Solution {
-        fun checkPerfectNumber(num: Int): Boolean {
-            if (num == 1) {
-                return false
+        fun findFrequentTreeSum(root: TreeNode?): IntArray {
+            val resultMap = hashMapOf<Int, Int>()
+
+            fun TreeNode.dfs(): Int {
+                var sum = `val`
+
+                left?.dfs()?.also { sum += it }
+                right?.dfs()?.also { sum += it }
+
+                resultMap[sum] = (resultMap[sum] ?: 0) + 1
+
+                return sum
             }
 
-            val factors = hashSetOf(1)
+            root?.dfs()
 
-            var factor = 2
+            val max = resultMap.values.max()
 
-            while (factor * factor <= num) {
-                if (num % factor == 0) {
-                    factors.add(factor)
-                    factors.add(num / factor)
-                }
-
-                factor++
-            }
-
-            return factors.sum() == num
+            return resultMap.filterValues { it == max }.keys.toIntArray()
         }
     }
 
     measureTimeMillis {
-        Solution().checkPerfectNumber(
-            28
+        Solution().findFrequentTreeSum(
+            null
         ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

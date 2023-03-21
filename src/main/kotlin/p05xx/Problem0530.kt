@@ -8,23 +8,22 @@ fun main() {
         fun getMinimumDifference(root: TreeNode?): Int {
             var result = Int.MAX_VALUE
 
-            fun TreeNode.dfs(): Pair<Int, Int> {
-                var leftPair = `val` to `val`
-                var rightPair = `val` to `val`
+            fun TreeNode.dfs(): Array<TreeNode> {
+                val nodePair = arrayOf(this, this)
 
-                left?.also {
-                    leftPair = it.dfs()
+                left?.dfs()?.also { (min, max) ->
+                    nodePair[0] = min
 
-                    result = result.coerceAtMost(`val` - leftPair.second)
+                    result = result.coerceAtMost(`val` - max.`val`)
                 }
 
-                right?.also {
-                    rightPair = it.dfs()
+                right?.dfs()?.also { (min, max) ->
+                    nodePair[1] = max
 
-                    result = result.coerceAtMost(rightPair.first - `val`)
+                    result = result.coerceAtMost(min.`val` - `val`)
                 }
 
-                return leftPair.first to rightPair.second
+                return nodePair
             }
 
             root?.dfs()

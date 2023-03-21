@@ -26,6 +26,6 @@ fun main() {
     }
 
     measureTimeMillis {
-        Solution().findPairs(intArrayOf(), 1).also { println(it) }
+        Solution().findPairs(intArrayOf(1, 1, 1, 2, 2, 2), 0).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

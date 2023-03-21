@@ -7,12 +7,6 @@ fun main() {
         fun complexNumberMultiply(num1: String, num2: String): String {
             class Plural(val realNum: Int, val unrealNum: Int) {
                 operator fun times(target: Plural): Plural {
-                    var newReal = 0
-                    var newUnreal = 0
-
-                    newReal += this.realNum * target.realNum
-                    newReal += this.unrealNum * target.unrealNum
-
                     return Plural(
                         this.realNum * target.realNum - this.unrealNum * target.unrealNum,
                         this.realNum * target.unrealNum + target.realNum * this.unrealNum

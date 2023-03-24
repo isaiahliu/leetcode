@@ -22,24 +22,16 @@ fun main() {
     }
 
     class StreamChecker(words: Array<String>) {
-        val root = DicNode()
+        val root = DicNode().also {
+            words.forEach { word -> it.fill(word) }
+        }
 
         var dics = listOf<DicNode>()
 
-        init {
-            words.forEach { root.fill(it) }
-        }
-
         fun query(letter: Char): Boolean {
-            val charIndex = letter - 'a'
+            dics = (dics + root).mapNotNull { it.children.getOrNull(letter - 'a') }
 
-            var result = false
-
-            dics = (dics.toList() + root).mapNotNull {
-                it.children.getOrNull(charIndex)?.also { result = result || it.match }
-            }
-
-            return result
+            return dics.any { it.match }
         }
     }
 

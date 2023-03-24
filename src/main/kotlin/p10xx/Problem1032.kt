@@ -24,7 +24,7 @@ fun main() {
     class StreamChecker(words: Array<String>) {
         val root = DicNode()
 
-        val dics = arrayListOf<DicNode>()
+        var dics = listOf<DicNode>()
 
         init {
             words.forEach { root.fill(it) }
@@ -33,15 +33,10 @@ fun main() {
         fun query(letter: Char): Boolean {
             val charIndex = letter - 'a'
 
-            val current = dics.toList() + root
-            dics.clear()
-
             var result = false
-            current.forEach {
-                it.children.getOrNull(charIndex)?.also {
-                    result = result || it.match
-                    dics.add(it)
-                }
+
+            dics = (dics.toList() + root).mapNotNull {
+                it.children.getOrNull(charIndex)?.also { result = result || it.match }
             }
 
             return result

@@ -24,13 +24,13 @@ fun main() {
 
                     dp[0] = 1
 
-                    repeat(n - 1) { n ->
+                    repeat(n - 1) { num ->
                         for (i in 1 until dp.size) {
                             dp[i] = (dp[i] + dp[i - 1]) % m
                         }
 
                         dp = LongArray(k + 1) {
-                            (dp[it] - (dp.getOrNull(it - n - 2) ?: 0) + m) % m
+                            (dp[it] - (dp.getOrNull(it - num - 2) ?: 0) + m) % m
                         }
                     }
 

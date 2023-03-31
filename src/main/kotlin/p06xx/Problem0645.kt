@@ -36,10 +36,7 @@ fun main() {
 
     measureTimeMillis {
         Solution().findErrorNums(
-            intArrayOf(8, 8, 2, 5, 3, 6, 1, 4)
-        ).toList().also { println(it) }
-        Solution().findErrorNums(
-            intArrayOf(8, 7, 3, 5, 3, 6, 1, 4)
+            intArrayOf(1, 2, 2, 3, 4, 5, 6)
         ).toList().also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

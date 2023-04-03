@@ -11,10 +11,10 @@ fun main() {
                 }
                 val mid = (left + right) / 2
 
-                var count = 0
+                var count = mid / m * m
 
-                for (r in 1..n) {
-                    val countInRow = (mid / r).coerceAtMost(m)
+                for (r in mid / m + 1..n) {
+                    val countInRow = mid / r
 
                     if (countInRow == 0) {
                         break

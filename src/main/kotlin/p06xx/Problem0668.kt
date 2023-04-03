@@ -13,14 +13,8 @@ fun main() {
 
                 var count = mid / m * m
 
-                for (r in mid / m + 1..n) {
-                    val countInRow = mid / r
-
-                    if (countInRow == 0) {
-                        break
-                    }
-
-                    count += countInRow
+                for (r in mid / m + 1..n.coerceAtMost(mid + 1)) {
+                    count += mid / r
                 }
 
                 return when {

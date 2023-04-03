@@ -9,16 +9,12 @@ fun main() {
 
             val t = "1".repeat(n.coerceAtMost(5)).toInt(2)
 
-            fun addTask(s: Int) {
-                tasks.add(s and t)
-            }
-
             repeat(presses.coerceAtMost(8)) {
                 tasks.toSet().also { tasks.clear() }.forEach {
-                    addTask(it xor 0b11111)
-                    addTask(it xor 0b10101)
-                    addTask(it xor 0b01010)
-                    addTask(it xor 0b01001)
+                    tasks.add(it xor 0b11111 and t)
+                    tasks.add(it xor 0b10101 and t)
+                    tasks.add(it xor 0b01010 and t)
+                    tasks.add(it xor 0b01001 and t)
                 }
             }
 

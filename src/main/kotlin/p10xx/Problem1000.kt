@@ -9,47 +9,46 @@ fun main() {
                 return first + target.first to second + target.second
             }
 
-            fun min(p1: Pair<Int, Int>, p2: Pair<Int, Int>): Pair<Int, Int> {
-                return if (p1.first + p1.second <= p2.first + p2.second) {
-                    p1
+            fun Pair<Int, Int>.lessThan(target: Pair<Int, Int>?): Boolean {
+                target ?: return true
+
+                return first + second < target.first + target.second
+            }
+
+            fun Pair<Int, Int>.add(part: Int): Pair<Int, Int> {
+                return if (part == k) {
+                    first to first + second
                 } else {
-                    p2
+                    this
                 }
             }
 
-            val MAX = 99999999 to 99999999
-            val cache = hashMapOf<Pair<Pair<Int, Int>, Int>, Pair<Int, Int>>()
-            fun calculate(startIndex: Int, endIndex: Int, part: Int): Pair<Int, Int> {
+            val cache = hashMapOf<Pair<Pair<Int, Int>, Int>, Pair<Int, Int>?>()
+            fun calculate(startIndex: Int, endIndex: Int, part: Int): Pair<Int, Int>? {
                 return when {
                     startIndex == endIndex -> {
                         stones[startIndex] to -stones[startIndex]
                     }
 
                     part == k && (endIndex - startIndex) % (k - 1) != 0 -> {
-                        MAX
+                        null
                     }
 
                     else -> {
-                        var min = MAX
+                        var min: Pair<Int, Int>? = null
 
                         val cacheKey = startIndex to endIndex to part
                         if (cacheKey in cache) {
-                            return cache[cacheKey] ?: MAX
+                            return cache[cacheKey]
                         }
 
                         for (i in startIndex until endIndex) {
-                            val otherPart = (part - 1).takeIf { it > 1 } ?: k
-                            arrayOf(
-                                calculate(startIndex, i, k) + calculate(i + 1, endIndex, otherPart),
-                                calculate(startIndex, i, otherPart) + calculate(i + 1, endIndex, k)
-                            ).map {
-                                if (k == part) {
-                                    it.first to it.first + it.second
-                                } else {
-                                    it
+                            calculate(startIndex, i, k)?.add(part)?.takeIf { it.lessThan(min) }?.let { l ->
+                                calculate(i + 1, endIndex, (part - 1).takeIf { it > 1 } ?: k)?.add(part)?.let { r ->
+                                    l + r
                                 }
-                            }.forEach {
-                                min = min(min, it)
+                            }?.takeIf { it.lessThan(min) }?.let {
+                                min = it
                             }
                         }
 
@@ -59,7 +58,7 @@ fun main() {
                 }
             }
 
-            return calculate(0, stones.lastIndex, k).let { it.first + it.second }.takeIf { it < MAX.first } ?: -1
+            return calculate(0, stones.lastIndex, k)?.let { it.first + it.second } ?: -1
         }
     }
 

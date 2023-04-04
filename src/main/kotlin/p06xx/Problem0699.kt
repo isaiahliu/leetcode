@@ -12,12 +12,12 @@ fun main() {
 
             var max = 0
             return positions.map { (left, size) ->
-                val (leftBorder, arr) = map.lowerEntry(left)
+                map.lowerEntry(left)?.also { (leftBorder, arr) ->
+                    if (leftBorder + arr[0] > left) {
+                        map[left] = intArrayOf(leftBorder + arr[0] - left, arr[1])
 
-                if (leftBorder + arr[0] > left) {
-                    map[left] = intArrayOf(leftBorder + arr[0] - (left - leftBorder), arr[1])
-
-                    arr[0] = left - leftBorder
+                        arr[0] = left - leftBorder
+                    }
                 }
 
                 var height = 0

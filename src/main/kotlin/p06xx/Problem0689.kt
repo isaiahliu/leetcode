@@ -1,5 +1,6 @@
 package p06xx
 
+import java.util.*
 import kotlin.system.measureTimeMillis
 
 fun main() {
@@ -9,75 +10,51 @@ fun main() {
                 nums[i] += nums[i - 1]
             }
 
-            val cache1 = hashMapOf<Int, Pair<Int, Int>>()
-            fun find1(startIndex: Int): Pair<Int, Int>? {
-                if (startIndex >= nums.size) {
-                    return null
+            val map1 = TreeMap<Int, Int>()
+
+            for (i in 0..nums.size - k) {
+                val num = nums[i + k - 1] - (nums.getOrNull(i - 1) ?: 0)
+
+                while (true) {
+                    map1.lowerEntry(i)?.takeIf { it.value < num }?.key?.also {
+                        map1.remove(it)
+                    } ?: break
                 }
 
-                if (startIndex in cache1) {
-                    return cache1[startIndex]
-                }
-
-                var max = nums[startIndex] - (nums.getOrNull(startIndex - k) ?: 0)
-                var idx = startIndex - k + 1
-
-                find1(startIndex + 1)?.also { (s, i) ->
-                    if (s > max) {
-                        max = s
-                        idx = i
-                    }
-                }
-
-                cache1[startIndex] = max to idx
-
-                return max to idx
+                map1[i] = num
             }
 
-            val cache2 = hashMapOf<Int, Pair<Int, Pair<Int, Int>>>()
-            fun find2(startIndex: Int): Pair<Int, Pair<Int, Int>>? {
-                if (startIndex >= nums.size) {
-                    return null
+            val map2 = TreeMap<Int, Pair<Int, Int>>()
+
+            for (i in 0..nums.size - k * 2) {
+                val next = map1.higherEntry(i + k - 1) ?: break
+                val num = nums[i + k - 1] - (nums.getOrNull(i - 1) ?: 0) + next.value
+
+                while (true) {
+                    map2.lowerEntry(i)?.takeIf { it.value.first < num }?.key?.also {
+                        map2.remove(it)
+                    } ?: break
                 }
 
-                if (startIndex in cache2) {
-                    return cache2[startIndex]
-                }
-
-                val (nextMax, nextIdx) = find1(startIndex + k) ?: return null
-                var max = nums[startIndex] - (nums.getOrNull(startIndex - k) ?: 0) + nextMax
-                var idx = startIndex - k + 1 to nextIdx
-
-                find2(startIndex + 1)?.also { (s, i) ->
-                    if (s > max) {
-                        max = s
-                        idx = i
-                    }
-                }
-
-                cache2[startIndex] = max to idx
-
-                return max to idx
+                map2[i] = num to next.key
             }
 
-            val (c, p) = find2(k * 2 - 1)!!
-            var max = nums[k - 1] + c
-            val idx = intArrayOf(0, p.first, p.second)
+            var max = 0
+            val result = intArrayOf(0, 0, 0)
 
-            for (i in k until nums.size) {
-                val firstSum = nums[i] - nums[i - k]
+            for (i in 0..nums.size - k * 3) {
+                val next = map2.higherEntry(i + k - 1) ?: break
+                val num = nums[i + k - 1] - (nums.getOrNull(i - 1) ?: 0) + next.value.first
 
-                val (count, second) = find2(i + k) ?: continue
-
-                if (firstSum + count > max) {
-                    max = firstSum + count
-                    idx[0] = i - k + 1
-                    idx[1] = second.first
-                    idx[2] = second.second
+                if (num > max) {
+                    max = num
+                    result[0] = i
+                    result[1] = next.key
+                    result[2] = next.value.second
                 }
             }
 
-            return idx
+            return result
         }
     }
 

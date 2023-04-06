@@ -19,9 +19,7 @@ fun main() {
         }
 
         fun pick(): Int {
-            val num = Random.nextInt(validCount)
-
-            return num + (blackMap.lowerEntry(num + 1)?.value ?: 0)
+            return Random.nextInt(validCount).let { it + (blackMap.lowerEntry(it + 1)?.value ?: 0) }
         }
     }
 

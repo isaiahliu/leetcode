@@ -7,16 +7,14 @@ fun main() {
         fun baseNeg2(n: Int): String {
             val result = StringBuilder()
 
-            var sign = 1
             var t = n
             while (t != 0) {
-                (t % 2).also {
+                (t % 2).let { it * it }.also {
                     result.insert(0, it)
-                    t -= it * sign
+                    t -= it
                 }
 
-                t /= 2
-                sign = -sign
+                t /= -2
             }
 
             return result.toString().ifEmpty { "0" }
@@ -25,7 +23,7 @@ fun main() {
 
     measureTimeMillis {
         Solution().baseNeg2(
-            9
+            3
         ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

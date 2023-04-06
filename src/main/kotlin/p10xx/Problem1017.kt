@@ -5,27 +5,21 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun baseNeg2(n: Int): String {
-            if (n == 0) {
-                return "0"
+            val result = StringBuilder()
+
+            var sign = 1
+            var t = n
+            while (t != 0) {
+                (t % 2).also {
+                    result.insert(0, it)
+                    t -= it * sign
+                }
+
+                t /= 2
+                sign = -sign
             }
 
-            var digitCount = 1
-            var bit = 1
-
-            if (n < 0) {
-                bit *= -2
-                digitCount++
-            }
-
-            var sum = bit
-
-            while (n > 0 && sum < n || n < 0 && sum > n) {
-                digitCount += 2
-                bit *= 4
-                sum += bit
-            }
-
-            return "1" + baseNeg2(n - bit).trimStart('0').padStart(digitCount - 1, '0')
+            return result.toString().ifEmpty { "0" }
         }
     }
 

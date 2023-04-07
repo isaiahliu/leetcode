@@ -44,9 +44,7 @@ fun main() {
                 return result
             }
 
-            return count(0, s.lastIndex).toInt().also {
-                val a = 1
-            }
+            return count(0, s.lastIndex).toInt()
         }
     }
 

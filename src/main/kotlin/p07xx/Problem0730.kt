@@ -33,15 +33,15 @@ fun main() {
                         var result = 0L
 
                         indices.forEach {
-                            val charStart = it.higher(startIndex - 1) ?: return@forEach
-                            val charEnd = it.lower(endIndex + 1) ?: return@forEach
+                            val charStart = it.higher(startIndex - 1)?.takeIf { it <= endIndex } ?: return@forEach
+                            val charEnd = it.lower(endIndex + 1)?.takeIf { it >= startIndex } ?: return@forEach
 
-                            when {
-                                charStart == charEnd -> {
+                            when (charStart) {
+                                charEnd -> {
                                     result += 1
                                 }
 
-                                charStart < charEnd -> {
+                                else -> {
                                     result += count(charStart + 1, charEnd - 1) + 2
                                 }
                             }
@@ -54,7 +54,6 @@ fun main() {
                         return result
                     }
                 }
-
             }
 
             return count(0, s.lastIndex).toInt()

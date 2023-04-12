@@ -9,7 +9,7 @@ fun main() {
             val queue = LinkedList<Pair<Int, Int>>()
 
             arr.forEach { num ->
-                var last = queue.peekLast()?.second?.coerceAtLeast(num) ?: num
+                val last = queue.peekLast()?.second?.coerceAtLeast(num) ?: num
                 while (queue.isNotEmpty() && queue.peekLast().second > num) {
                     queue.pollLast()
                 }

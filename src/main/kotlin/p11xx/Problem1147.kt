@@ -5,40 +5,34 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun longestDecomposition(text: String): Int {
-            val cache = hashMapOf<Pair<Int, Int>, Int>()
+            var result = 0
 
-            fun find(startIndex: Int, endIndex: Int): Int {
-                if (startIndex > endIndex) {
-                    return 0
+            var s = 0
+            var r = text.lastIndex
+
+            val left = StringBuilder()
+            val right = StringBuilder()
+
+            while (s < r) {
+                left.append(text[s++])
+                right.insert(0, text[r--])
+
+                if (left.length == 1) {
+                    result++
                 }
 
-                val cacheKey = startIndex to endIndex
-                if (cacheKey in cache) {
-                    return cache[cacheKey] ?: 0
+                if (left.toString() == right.toString()) {
+                    result++
+                    left.clear()
+                    right.clear()
                 }
-
-                var s = startIndex
-                var r = endIndex
-
-                val left = StringBuilder()
-                val right = StringBuilder()
-
-                var max = 1
-
-                while (s < r) {
-                    left.append(text[s++])
-                    right.insert(0, text[r--])
-
-                    if (left.toString() == right.toString()) {
-                        max = max.coerceAtLeast(2 + find(s, r))
-                    }
-                }
-
-                cache[cacheKey] = max
-                return max
             }
 
-            return find(0, text.lastIndex)
+            if (s == r && left.isEmpty()) {
+                result++
+            }
+
+            return result
         }
     }
 

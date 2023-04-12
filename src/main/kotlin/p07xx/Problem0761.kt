@@ -5,18 +5,6 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun makeLargestSpecial(s: String): String {
-            fun String.findSpecial(startIndex: Int): Set<Int> {
-                var index = startIndex
-
-                val result = hashSetOf<Int>()
-                while (index < this.length) {
-
-                    index++
-                }
-
-                return result
-            }
-
             var t = s
 
             nextStr@ while (true) {

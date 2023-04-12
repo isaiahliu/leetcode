@@ -25,7 +25,7 @@ fun main() {
                 }
             }
 
-            "$expression ".forEach {
+            "$expression$".forEach {
                 when (it) {
                     ' ' -> {
                         pushNum()
@@ -58,13 +58,16 @@ fun main() {
                         operators.push(it)
                     }
 
+                    '$' -> {
+                        pushNum()
+                        queue.addAll(operators.map { it.toString() })
+                    }
+
                     else -> {
                         str.append(it)
                     }
                 }
             }
-
-            queue.addAll(operators.map { it.toString() })
 
             class Multinomial(exp: String) {
                 val exps = hashMapOf<String, Int>()

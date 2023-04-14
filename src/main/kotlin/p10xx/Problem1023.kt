@@ -9,27 +9,21 @@ fun main() {
                 var l = 0
                 var r = 0
 
-                while (l < it.length && r < pattern.length) {
-                    if (it[l] == pattern[r]) {
-                        r++
-                    } else if (it[l] !in 'a'..'z') {
-                        return@map false
+                while (l < it.length) {
+                    when {
+                        it[l] == pattern.getOrNull(r) -> {
+                            r++
+                        }
+
+                        it[l] !in 'a'..'z' -> {
+                            return@map false
+                        }
                     }
 
                     l++
                 }
 
-                if (r < pattern.length) {
-                    return@map false
-                }
-
-                for (i in l until it.length) {
-                    if (it[i] !in 'a'..'z') {
-                        return@map false
-                    }
-                }
-
-                true
+                r == pattern.length
             }
         }
     }

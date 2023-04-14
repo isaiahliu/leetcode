@@ -9,7 +9,7 @@ fun main() {
 
             val froms = Array(graph.size) { hashSetOf<Int>() }
 
-            val graphMap = graph.mapIndexed { index, tos ->
+            val graphTos = graph.mapIndexed { index, tos ->
                 if (tos.isEmpty()) {
                     terminals.add(index)
                 }
@@ -18,27 +18,24 @@ fun main() {
                     froms[it].add(index)
                 }
 
-                tos.toMutableSet()
-            }
+                tos.size
+            }.toIntArray()
 
-            val result = arrayListOf<Int>()
+            val result = sortedSetOf<Int>()
 
             while (terminals.isNotEmpty()) {
                 terminals.toSet().also { terminals.clear() }.forEach { t ->
                     result += t
 
                     froms[t].forEach { from ->
-                        graphMap[from].also {
-                            it.remove(t)
-
-                            if (it.isEmpty()) {
-                                terminals.add(from)
-                            }
+                        graphTos[from]--
+                        if (graphTos[from] == 0) {
+                            terminals.add(from)
                         }
                     }
                 }
             }
-            return result.sorted()
+            return result.toList()
         }
     }
 

@@ -6,21 +6,18 @@ fun main() {
     class Solution {
         fun camelMatch(queries: Array<String>, pattern: String): List<Boolean> {
             return queries.map {
-                var l = 0
                 var r = 0
 
-                while (l < it.length) {
-                    when {
-                        it[l] == pattern.getOrNull(r) -> {
+                it.forEach {
+                    when (it) {
+                        pattern.getOrNull(r) -> {
                             r++
                         }
 
-                        it[l] !in 'a'..'z' -> {
+                        !in 'a'..'z' -> {
                             return@map false
                         }
                     }
-
-                    l++
                 }
 
                 r == pattern.length

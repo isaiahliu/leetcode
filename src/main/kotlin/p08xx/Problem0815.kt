@@ -16,18 +16,19 @@ fun main() {
 
             val routeSet = routes.map { it.toSet() }.toMutableSet()
 
-            var found = true
-            while (found && routeSet.isNotEmpty()) {
-                found = false
+            while (routeSet.isNotEmpty()) {
                 val current = stops.toSet()
-                routeSet.toSet().forEach { r ->
-                    if (r.any { it in current }) {
-                        found = true
-                        routeSet.remove(r)
-                        stops.addAll(r)
-                    }
+
+                val newRoutes = routeSet.filter { r ->
+                    r.any { it in current }
+                }.toSet().onEach {
+                    routeSet.remove(it)
+                    stops.addAll(it)
                 }
 
+                if (newRoutes.isEmpty()) {
+                    return -1
+                }
 
                 if (target in stops) {
                     return result

@@ -1,43 +1,72 @@
 package p08xx
 
+import java.util.*
 import kotlin.system.measureTimeMillis
 
 fun main() {
     class Solution {
-        fun findReplaceString(s: String, indices: IntArray, sources: Array<String>, targets: Array<String>): String {
-            var strIndex = 0
-            var idxIndex = 0
+        fun sumOfDistancesInTree(n: Int, edges: Array<IntArray>): IntArray {
+            val connected = Array(n) { hashSetOf<Int>() }
 
-            val dics =
-                indices.mapIndexed { index, i -> i to (sources[index] to targets[index]) }.sortedBy { it.first }
+            val childrenCount = IntArray(n)
+            val result = IntArray(n)
 
-            val result = StringBuilder()
-            while (strIndex < s.length && idxIndex < dics.size) {
-                val (i, p) = dics[idxIndex]
-                if (strIndex == i) {
-                    val (source, target) = p
-                    if (source == s.substring(strIndex until (strIndex + source.length).coerceAtMost(s.length))) {
-                        result.append(target)
-                        strIndex += source.length
-                    } else {
-                        result.append(s[strIndex++])
-                    }
+            val leaves = hashSetOf<Int>()
 
-                    idxIndex++
-                } else {
-                    result.append(s[strIndex++])
+            fun add(from: Int, to: Int) {
+                connected[from].add(to)
+
+                when (connected[from].size) {
+                    1 -> leaves.add(from)
+                    2 -> leaves.remove(from)
                 }
             }
 
-            result.append(s.substring(strIndex))
+            fun remove(leaf: Int, parent: Int) {
+                connected[parent].remove(leaf)
 
-            return result.toString()
+                if (connected[parent].size == 1) {
+                    leaves.add(parent)
+                }
+            }
+
+            edges.forEach { (from, to) ->
+                add(from, to)
+                add(to, from)
+            }
+
+            val stack = LinkedList<Pair<Int, Int>>()
+            loop@ while (leaves.isNotEmpty()) {
+                for (leaf in leaves.toSet().also { leaves.clear() }) {
+                    val parent = connected[leaf].firstOrNull() ?: break@loop
+
+                    remove(leaf, parent)
+
+                    childrenCount[parent] += childrenCount[leaf] + 1
+                    result[parent] += result[leaf] + childrenCount[leaf] + 1
+
+                    stack.push(leaf to parent)
+                }
+            }
+
+            while (stack.isNotEmpty()) {
+                val (leaf, parent) = stack.poll()
+
+                result[leaf] += result[parent] - childrenCount[leaf] - 1 - result[leaf] + n - childrenCount[leaf] - 1
+            }
+
+            return result
         }
     }
 
     measureTimeMillis {
-        Solution().findReplaceString(
-            "", intArrayOf(), arrayOf(), arrayOf()
-        ).also { println(it) }
+        Solution().sumOfDistancesInTree(
+            5, arrayOf(
+                intArrayOf(0, 1),
+                intArrayOf(1, 2),
+                intArrayOf(2, 3),
+                intArrayOf(3, 4),
+            )
+        ).toList().also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

@@ -60,26 +60,22 @@ fun main() {
                         target.xContains(this) || target.yContains(this) -> return target.breakIntoPieces(this)
                         target.x1 < x1 && target.y1 < y1 -> {
                             result.add(Grid(target.x1, y1, x1, target.y2))
-                            result.add(Grid(target.x1, target.y1, x1, y1))
-                            result.add(Grid(x1, target.y1, target.x2, y1))
+                            result.add(Grid(target.x1, target.y1, target.x2, y1))
                         }
 
                         target.x1 < x1 && target.y2 > y2 -> {
                             result.add(Grid(target.x1, target.y1, x1, y2))
-                            result.add(Grid(target.x1, y2, x1, target.y2))
-                            result.add(Grid(x1, y2, target.x2, target.y2))
+                            result.add(Grid(target.x1, y2, target.x2, target.y2))
                         }
 
                         target.x1 > x1 && target.y1 < y1 -> {
                             result.add(Grid(target.x1, target.y1, x2, y1))
-                            result.add(Grid(x2, target.y1, target.x2, y1))
-                            result.add(Grid(x2, y1, target.x2, target.y2))
+                            result.add(Grid(x2, target.y1, target.x2, target.y2))
                         }
 
                         target.x1 > x1 && target.y2 > y2 -> {
                             result.add(Grid(target.x1, y2, x2, target.y2))
-                            result.add(Grid(x2, y2, target.x2, target.y2))
-                            result.add(Grid(x2, target.y1, target.x2, y2))
+                            result.add(Grid(x2, target.y1, target.x2, target.y2))
                         }
                     }
 

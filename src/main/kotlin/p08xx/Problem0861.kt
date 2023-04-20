@@ -13,22 +13,21 @@ fun main() {
                 }
             }
 
-            var bitPos = grid[0].lastIndex
-            var result = grid.size * (1 shl (bitPos--))
-
-            for (i in 1 until grid[0].size) {
-                val count = grid.map { it[i] }.groupingBy { it }.eachCount().values.max()
-
-                result += count * (1 shl (bitPos--))
+            for (i in 1 until grid.size) {
+                for (j in grid[i].indices) {
+                    grid[i][j] += grid[i - 1][j]
+                }
             }
 
-            return result
+            return grid[grid.lastIndex].mapIndexed { index, i ->
+                i.coerceAtLeast(grid.size - i) * (1 shl (grid[0].lastIndex - index))
+            }.sum()
         }
     }
 
     measureTimeMillis {
         Solution().matrixScore(
-            arrayOf()
+            arrayOf(intArrayOf(0))
         ).also { println(it) }
 
     }.also { println("Time cost: ${it}ms") }

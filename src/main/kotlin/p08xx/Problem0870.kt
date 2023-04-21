@@ -12,9 +12,11 @@ fun main() {
 
             nums1.sorted().forEach {
                 if (it > nums2[sortedTarget.peek()]) {
-                    result[sortedTarget.pollFirst()] = it
+                    sortedTarget.pollFirst()
                 } else {
-                    result[sortedTarget.pollLast()] = it
+                    sortedTarget.pollLast()
+                }.also { index ->
+                    result[index] = it
                 }
             }
 

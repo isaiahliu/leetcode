@@ -5,7 +5,7 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun smallestEvenMultiple(n: Int): Int {
-            return n * (1 + n % 2)
+            return n shl (n % 2)
         }
     }
 

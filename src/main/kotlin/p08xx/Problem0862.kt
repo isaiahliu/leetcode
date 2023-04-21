@@ -7,28 +7,35 @@ fun main() {
     class Solution {
         fun shortestSubarray(nums: IntArray, k: Int): Int {
             var result = Int.MAX_VALUE
-            val map = TreeMap<Long, Int>()
-            map[0] = -1
+
+            val sumRange = LinkedList<Pair<Long, Int>>()
+            sumRange += 0L to -1
 
             var sum = 0L
-            for (i in nums.indices) {
-                if (nums[i] >= k) {
-                    return 1
-                }
+            repeat(nums.size) { index ->
+                sum += nums[index]
 
-                sum += nums[i]
+                while (true) {
+                    val (preSum, preIndex) = sumRange.peekFirst() ?: break
 
-                val target = sum - k
-                map.lowerEntry(target + 1)?.also { (_, value) ->
-                    result = result.coerceAtMost(i - value)
+                    if (preSum + k <= sum) {
+                        result = result.coerceAtMost(index - sumRange.pollFirst().second)
+                    } else if (index - preIndex >= result) {
+                        sumRange.pollFirst()
+                    } else {
+                        break
+                    }
                 }
 
                 while (true) {
-                    val key = map.higherKey(sum - 1) ?: break
-                    map.remove(key)
+                    sumRange.peekLast()?.takeIf { it.first >= sum } ?: break
+
+                    sumRange.pollLast()
                 }
-                map[sum] = i
+
+                sumRange.add(sum to index)
             }
+
             return result.takeIf { it < Int.MAX_VALUE } ?: -1
         }
     }
@@ -36,8 +43,8 @@ fun main() {
     measureTimeMillis {
         Solution().shortestSubarray(
             intArrayOf(
-                3, -12, -50, 51, 100, -47, 99, 34, 14, -13, 89, 31, -14, -44, 23, -38, 6
-            ), 151
+                1, 2
+            ), 4
         ).also { println(it) }
 
     }.also { println("Time cost: ${it}ms") }

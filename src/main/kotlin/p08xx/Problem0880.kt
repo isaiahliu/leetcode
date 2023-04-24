@@ -43,7 +43,7 @@ fun main() {
 
     measureTimeMillis {
         Solution().decodeAtIndex(
-            "ha22", 5
+            "a2b3c4d5", 5
         ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

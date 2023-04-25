@@ -13,49 +13,34 @@ fun main() {
                 edgeMap.computeIfAbsent(to) { hashMapOf() }[from] = nodeCount
             }
 
-            val nodePos = hashMapOf(0 to 0)
-            val tasks = TreeMap<Int, MutableSet<Int>>()
-            tasks[0] = hashSetOf(0)
+            val nodePos = IntArray(n) { Int.MAX_VALUE }
+            nodePos[0] = 0
+            val tasks = PriorityQueue<Int>(compareBy { nodePos[it] })
+            tasks.add(0)
 
             val resultMap = hashMapOf<Pair<Int, Int>, Int>()
 
             var result = 0
-            while (tasks.isNotEmpty()) {
-                val (moveSteps, currents) = tasks.pollFirstEntry()
+            while (true) {
+                val it = tasks.poll() ?: break
+                val moveSteps = nodePos[it]
+                result++
+                edgeMap[it]?.forEach { (target, n) ->
+                    val nextStep = moveSteps + n + 1
+                    if (nextStep <= maxMoves) {
+                        resultMap[it to target] = n
 
-                currents.forEach {
-                    result++
-                    edgeMap[it]?.forEach { (target, n) ->
-                        val nextStep = moveSteps + n + 1
-                        if (nextStep <= maxMoves) {
-                            if (nodePos[target]?.takeIf { it < moveSteps } == null) {
-                                resultMap[it to target] = n
-
-                                nodePos[target]?.also { existingStep ->
-                                    if (existingStep > nextStep) {
-                                        tasks[existingStep]?.also {
-                                            it.remove(target)
-                                            if (it.isEmpty()) {
-                                                tasks.remove(existingStep)
-                                            }
-                                        }
-
-                                        nodePos[target] = nextStep
-                                        tasks.computeIfAbsent(nextStep) { hashSetOf() }.add(target)
-                                    }
-                                } ?: run {
-                                    nodePos[target] = nextStep
-                                    tasks.computeIfAbsent(nextStep) { hashSetOf() }.add(target)
-                                }
-                            }
-                        } else {
-                            resultMap[it to target] = maxMoves - moveSteps
+                        if (nodePos[target] > nextStep) {
+                            tasks.remove(target)
+                            nodePos[target] = nextStep
+                            tasks.add(target)
                         }
+                    } else {
+                        resultMap[it to target] = maxMoves - moveSteps
                     }
                 }
             }
 
-            println(resultMap)
             while (resultMap.isNotEmpty()) {
                 val (key, nodes) = resultMap.entries.first()
                 resultMap.remove(key)
@@ -74,11 +59,18 @@ fun main() {
     measureTimeMillis {
         Solution().reachableNodes(
             arrayOf(
+                intArrayOf(0, 3, 8),
                 intArrayOf(0, 1, 4),
-                intArrayOf(1, 2, 6),
-                intArrayOf(0, 2, 8),
-                intArrayOf(1, 3, 1),
-            ), 10, 4
+                intArrayOf(2, 4, 3),
+                intArrayOf(1, 2, 0),
+                intArrayOf(1, 3, 9),
+                intArrayOf(0, 4, 7),
+                intArrayOf(3, 4, 9),
+                intArrayOf(1, 4, 4),
+                intArrayOf(0, 2, 7),
+                intArrayOf(2, 3, 1)
+            ), 8,
+            5
         ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

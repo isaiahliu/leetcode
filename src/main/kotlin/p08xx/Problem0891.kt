@@ -10,13 +10,13 @@ fun main() {
             nums.sort()
 
             var result = 0L
-            var base = 1L
+            var base = 2L
 
             for (i in 1 until nums.size) {
-                result += (nums[i] - nums[nums.lastIndex - i]) * base
+                result += (nums[i] - nums[nums.lastIndex - i]) * (base - 1)
                 result %= m
 
-                base = ((base + 1) * 2 - 1) % m
+                base = base * 2 % m
             }
 
             return result.toInt()

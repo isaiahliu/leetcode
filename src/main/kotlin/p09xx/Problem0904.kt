@@ -5,29 +5,34 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun totalFruit(fruits: IntArray): Int {
-            var pre = fruits[0]
+            var current = fruits[0]
             var count = 0
 
-            val list = arrayListOf<Pair<Int, Int>>()
+            var pre = -1
+            var pre2 = -1
+            var lastCount = 0
             var sum = 0
             var result = 0
             fun calculate() {
-                if (list.size >= 2 && pre != list[list.lastIndex - 1].first) {
-                    sum = list[list.lastIndex].second
+                if (pre2 >= 0 && current != pre2) {
+                    sum = lastCount
                 }
 
-                list.add(pre to count)
-                sum += count
+                lastCount = count
+                pre2 = pre
+                pre = current
+                lastCount = count
+                sum += lastCount
                 result = result.coerceAtLeast(sum)
             }
 
             fruits.forEach {
-                if (pre == it) {
+                if (current == it) {
                     count++
                 } else {
                     calculate()
                     count = 1
-                    pre = it
+                    current = it
                 }
             }
 

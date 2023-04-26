@@ -1,28 +1,33 @@
 package p09xx
 
+import java.util.*
 import kotlin.system.measureTimeMillis
 
 fun main() {
-    class RLEIterator(val encoding: IntArray) {
-        var index = 0
-        fun next(n: Int): Int {
-            var t = n
-            while ((encoding.getOrNull(index) ?: return -1) < t) {
-                t -= encoding[index]
-                index += 2
+    class StockSpanner {
+        val list = LinkedList<Pair<Int, Int>>()
+
+        fun next(price: Int): Int {
+            var result = 1
+
+            while (list.peek()?.takeIf { it.first <= price } != null) {
+                result += list.poll().second
             }
 
-            encoding[index] -= t
+            list.push(price to result)
 
-            return encoding[index + 1]
+            return result
         }
     }
 
     measureTimeMillis {
-        val rle = RLEIterator(intArrayOf(3, 8, 0, 9, 2, 5))
-        rle.next(2).also { println(it) }
-        rle.next(1).also { println(it) }
-        rle.next(1).also { println(it) }
-        rle.next(2).also { println(it) }
+        val ss = StockSpanner()
+        ss.next(100).also { println(it) }
+        ss.next(80).also { println(it) }
+        ss.next(60).also { println(it) }
+        ss.next(70).also { println(it) }
+        ss.next(60).also { println(it) }
+        ss.next(75).also { println(it) }
+        ss.next(85).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

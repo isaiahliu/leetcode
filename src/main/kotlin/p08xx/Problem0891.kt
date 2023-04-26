@@ -1,24 +1,22 @@
 package p08xx
 
-import java.math.BigInteger
 import kotlin.system.measureTimeMillis
 
 fun main() {
     class Solution {
         fun sumSubseqWidths(nums: IntArray): Int {
-            val m = 1000000007.toBigInteger()
+            val m = 1000000007
 
             nums.sort()
 
-            var result = BigInteger.ZERO
-            val two = 2.toBigInteger()
+            var result = 0L
+            var base = 1L
 
             for (i in 1 until nums.size) {
-                val modPow = two.modPow(i.toBigInteger(), m) - BigInteger.ONE
-                result -= nums[nums.lastIndex - i].toBigInteger() * modPow
-                result += nums[i].toBigInteger() * modPow
+                result += (nums[i] - nums[nums.lastIndex - i]) * base
+                result %= m
 
-                result = result.mod(m)
+                base = ((base + 1) * 2 - 1) % m
             }
 
             return result.toInt()

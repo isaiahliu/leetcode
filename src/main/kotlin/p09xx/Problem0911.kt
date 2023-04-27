@@ -12,7 +12,7 @@ fun main() {
             val map = hashMapOf<Int, LinkedHashSet<Int>>()
             var maxVote = 0
 
-            persons.indices.sortedWith(compareBy<Int> { times[it] }.thenBy { it }).forEach {
+            persons.indices.forEach {
                 val person = persons[it]
                 val time = times[it]
 

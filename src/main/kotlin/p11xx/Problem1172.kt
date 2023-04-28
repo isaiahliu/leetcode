@@ -5,92 +5,53 @@ import kotlin.system.measureTimeMillis
 
 fun main() {
     class DinnerPlates(val capacity: Int) {
-        val emptyStacks = TreeMap<Int, LinkedList<Int>>()
-        val availableStacks = TreeMap<Int, LinkedList<Int>>()
-        val fullStacks = TreeMap<Int, LinkedList<Int>>()
+        val stacks = hashMapOf<Int, LinkedList<Int>>()
+        var maxIndex = 0
+
+        val hasSpaceIndices = TreeSet<Int>()
+        val hasItemIndices = TreeSet<Int>(compareByDescending { it })
+
+        private fun ensureStack(index: Int? = null): Pair<Int, LinkedList<Int>> {
+            return if (index == null) {
+                ensureStack(maxIndex++)
+            } else {
+                index to stacks.computeIfAbsent(index) { LinkedList<Int>() }.also {
+                    hasSpaceIndices.add(index)
+
+                }
+            }
+        }
 
         fun push(`val`: Int) {
-            val firstEmpty = emptyStacks.firstEntry()
-            val firstAvailable = availableStacks.firstEntry()
+            val (index, stack) = ensureStack(hasSpaceIndices.firstOrNull())
+            stack.push(`val`)
 
-            when {
-                firstEmpty == null && firstAvailable == null -> {
-                    val lastFull = fullStacks.lastEntry()?.key?.let { it + 1 } ?: 0
+            hasItemIndices.add(index)
 
-                    val list = LinkedList<Int>()
-                    list.push(`val`)
-
-                    if (list.size == capacity) {
-                        fullStacks[lastFull] = list
-                    } else {
-                        availableStacks[lastFull] = list
-                    }
-                }
-
-                firstEmpty == null || firstAvailable != null && firstAvailable.key < firstEmpty.key -> {
-                    firstAvailable.value.push(`val`)
-
-                    if (firstAvailable.value.size == capacity) {
-                        fullStacks[firstAvailable.key] = firstAvailable.value
-                        availableStacks.remove(firstAvailable.key)
-                    }
-                }
-
-                else -> {
-                    firstEmpty.value.push(`val`)
-                    emptyStacks.remove(firstEmpty.key)
-
-                    if (firstEmpty.value.size == capacity) {
-                        fullStacks[firstEmpty.key] = firstEmpty.value
-                    } else {
-                        availableStacks[firstEmpty.key] = firstEmpty.value
-                    }
-                }
+            if (stack.size == capacity) {
+                hasSpaceIndices.remove(index)
             }
         }
 
         fun pop(): Int {
-            var index = -1
-            availableStacks.lastEntry()?.key?.also {
-                index = index.coerceAtLeast(it)
-            }
-            fullStacks.lastEntry()?.key?.also {
-                index = index.coerceAtLeast(it)
-            }
-
-            return popAtStack(index)
+            return hasItemIndices.firstOrNull()?.let { popAtStack(it) } ?: -1
         }
 
         fun popAtStack(index: Int): Int {
-            if (index < 0) {
+            if (index !in hasItemIndices) {
                 return -1
             }
 
-            availableStacks[index]?.also {
-                val top = it.poll()
+            val stack = ensureStack(index).second
 
-                if (it.isEmpty()) {
-                    availableStacks.remove(index)
-                    emptyStacks[index] = it
-                }
+            hasSpaceIndices.add(index)
 
-                return top
+            if (stack.size == 1) {
+                hasItemIndices.remove(index)
+                stacks.remove(index)
             }
 
-            fullStacks[index]?.also {
-                val top = it.poll()
-                fullStacks.remove(index)
-
-                if (it.isEmpty()) {
-                    emptyStacks[index] = it
-                } else {
-                    availableStacks[index] = it
-                }
-
-                return top
-            }
-
-            return -1
+            return stack.poll()
         }
     }
 

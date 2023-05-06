@@ -1,70 +1,69 @@
 package p14xx
 
-import java.util.*
 import kotlin.system.measureTimeMillis
 
 fun main() {
     class Solution {
         fun minNumberOfFrogs(croakOfFrogs: String): Int {
-            class Frog
+            var frogCount = 0
+            var finishedCount = 0
 
-            val frogPool = LinkedList<Frog>()
-            val result = hashSetOf<Frog>()
-
-            val counts = hashMapOf<Int, MutableSet<Frog>>()
+            val counts = IntArray(4)
 
             croakOfFrogs.forEach {
                 when (it) {
                     'c' -> {
-                        val newFrog = frogPool.poll() ?: Frog()
-                        counts.computeIfAbsent(0) { hashSetOf() }.add(newFrog)
+                        if (finishedCount > 0) {
+                            finishedCount--
+                        } else {
+                            frogCount++
+                        }
+
+                        counts[0]++
                     }
 
                     'r' -> {
-                        counts.computeIfAbsent(0) { hashSetOf() }.also { frogs ->
-                            frogs.firstOrNull()?.also {
-                                frogs.remove(it)
-                                counts.computeIfAbsent(1) { hashSetOf() }.add(it)
-                            } ?: return -1
+                        if (counts[0] > 0) {
+                            counts[0]--
+                            counts[1]++
+                        } else {
+                            return -1
                         }
                     }
 
                     'o' -> {
-                        counts.computeIfAbsent(1) { hashSetOf() }.also { frogs ->
-                            frogs.firstOrNull()?.also {
-                                frogs.remove(it)
-                                counts.computeIfAbsent(2) { hashSetOf() }.add(it)
-                            } ?: return -1
+                        if (counts[1] > 0) {
+                            counts[1]--
+                            counts[2]++
+                        } else {
+                            return -1
                         }
                     }
 
                     'a' -> {
-                        counts.computeIfAbsent(2) { hashSetOf() }.also { frogs ->
-                            frogs.firstOrNull()?.also {
-                                frogs.remove(it)
-                                counts.computeIfAbsent(3) { hashSetOf() }.add(it)
-                            } ?: return -1
+                        if (counts[2] > 0) {
+                            counts[2]--
+                            counts[3]++
+                        } else {
+                            return -1
                         }
                     }
 
                     'k' -> {
-                        counts.computeIfAbsent(3) { hashSetOf() }.also { frogs ->
-                            frogs.firstOrNull()?.also {
-                                frogs.remove(it)
-                                frogPool.add(it)
-                                result.add(it)
-                            } ?: return -1
+                        if (counts[3] > 0) {
+                            counts[3]--
+                            finishedCount++
+                        } else {
+                            return -1
                         }
                     }
                 }
             }
 
-            return if (counts.any {
-                    it.value.isNotEmpty()
-                }) {
-                -1
+            return if (finishedCount == frogCount) {
+                frogCount
             } else {
-                result.size
+                -1
             }
         }
     }

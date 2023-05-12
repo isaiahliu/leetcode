@@ -5,17 +5,13 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun maxValueAfterReverse(nums: IntArray): Int {
-            if (nums.size == 1) {
-                return 0
-            }
-
             fun diff(num1: Int, num2: Int): Int {
                 return if (num1 < num2) num2 - num1 else num1 - num2
             }
 
             val last = nums[nums.lastIndex]
 
-            var sum = diff(nums[0], nums[1])
+            var sum = diff(nums[0], nums.getOrNull(1) ?: return 0)
             var edgeMax = 0
             var pairMin = nums[0].coerceAtLeast(nums[1])
             var pairMax = nums[0].coerceAtMost(nums[1])

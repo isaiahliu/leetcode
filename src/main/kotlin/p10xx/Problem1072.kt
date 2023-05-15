@@ -6,19 +6,18 @@ fun main() {
     class Solution {
         fun maxEqualRowsAfterFlips(matrix: Array<IntArray>): Int {
             val map = hashMapOf<String, Int>()
+            var result = 0
             matrix.forEach { arr ->
                 arr.joinToString("") {
-                    if (arr[0] == 0) {
-                        it
-                    } else {
-                        1 - it
-                    }.toString()
+                    (it xor arr[0]).toString()
                 }.also {
-                    map[it] = (map[it] ?: 0) + 1
+                    map[it] = ((map[it] ?: 0) + 1).also {
+                        result = result.coerceAtLeast(it)
+                    }
                 }
             }
 
-            return map.values.max()
+            return result
         }
     }
 

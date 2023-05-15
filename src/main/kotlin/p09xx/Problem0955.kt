@@ -7,33 +7,24 @@ fun main() {
         fun minDeletionSize(strs: Array<String>): Int {
             var result = 0
 
-            val comparison = IntArray(strs.size - 1) { 0 }
+            val indices = (0 until strs.lastIndex).toMutableSet()
 
-            loop@ for (pos in strs[0].indices) {
+            var pos = 0
+            loop@ while (pos < strs[0].length && indices.isNotEmpty()) {
                 val processedIndices = hashSetOf<Int>()
-                var hasEqual = false
-                for (i in 0 until strs.lastIndex) {
-                    if (comparison[i] == 0) {
-                        val l = strs[i][pos]
-                        val r = strs[i + 1][pos]
-                        if (l > r) {
-                            result++
-                            continue@loop
-                        } else if (l == r) {
-                            hasEqual = true
-                        } else {
-                            processedIndices.add(i)
-                        }
+                for (i in indices) {
+                    val l = strs[i][pos]
+                    val r = strs[i + 1][pos]
+                    if (l > r) {
+                        result++
+                        pos++
+                        continue@loop
+                    } else if (l < r) {
+                        processedIndices.add(i)
                     }
                 }
-
-                if (!hasEqual) {
-                    break
-                } else {
-                    processedIndices.forEach {
-                        comparison[it] = 1
-                    }
-                }
+                pos++
+                indices.removeAll(processedIndices)
             }
 
             return result
@@ -42,7 +33,7 @@ fun main() {
 
     measureTimeMillis {
         Solution().minDeletionSize(
-            arrayOf()
+            arrayOf("abx", "agz", "bgc", "bfc")
         ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

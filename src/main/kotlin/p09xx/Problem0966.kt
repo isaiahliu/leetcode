@@ -5,7 +5,13 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun spellchecker(wordlist: Array<String>, queries: Array<String>): Array<String> {
-            val words = wordlist.distinct()
+            val words = hashMapOf<Int, MutableList<String>>()
+            val visited = hashSetOf<String>()
+            wordlist.forEach {
+                if (visited.add(it)) {
+                    words.computeIfAbsent(it.length) { arrayListOf() }.add(it)
+                }
+            }
             val vowels = setOf('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
             val EXACT = 0
             val CASE = 1
@@ -39,7 +45,7 @@ fun main() {
             return queries.map {
                 var problem = MISMATCH
                 var match = ""
-                for (word in words) {
+                for (word in words[it.length].orEmpty()) {
                     val m = word.match(it)
                     if (m < problem) {
                         problem = m

@@ -44,7 +44,7 @@ fun main() {
 
                     for (repeatLength in 1..repeating.length / 2) {
                         if (repeating.length % repeatLength == 0 && repeating.take(repeatLength)
-                                .repeat(repeating.length % repeatLength) == repeating
+                                .repeat(repeating.length / repeatLength) == repeating
                         ) {
                             repeating = repeating.take(repeatLength)
 

@@ -20,25 +20,15 @@ fun main() {
                 val num = arr[i]
 
                 var r = 0
-                map[num]?.also {
-                    if (dp[it] and JUMP_UP > 0) {
-                        r += JUMP_DOWN
-                    }
-
+                map.higherEntry(num - 1)?.value?.also {
                     if (dp[it] and JUMP_DOWN > 0) {
                         r += JUMP_UP
                     }
-                } ?: run {
-                    map.higherEntry(num)?.value?.also {
-                        if (dp[it] and JUMP_DOWN > 0) {
-                            r += JUMP_UP
-                        }
-                    }
+                }
 
-                    map.lowerEntry(num)?.value?.also {
-                        if (dp[it] and JUMP_UP > 0) {
-                            r += JUMP_DOWN
-                        }
+                map.lowerEntry(num + 1)?.value?.also {
+                    if (dp[it] and JUMP_UP > 0) {
+                        r += JUMP_DOWN
                     }
                 }
 

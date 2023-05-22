@@ -42,16 +42,10 @@ fun main() {
                         repeating = repeating.takeLast(1) + repeating.dropLast(1)
                     }
 
-                    loop@ for (repeatLength in 1..repeating.length / 2) {
-                        if (repeating.length % repeatLength == 0) {
-                            for (times in 1 until repeating.length / repeatLength) {
-                                for (index in 0 until repeatLength) {
-                                    if (repeating[index] != repeating[repeatLength * times + index]) {
-                                        continue@loop
-                                    }
-                                }
-                            }
-
+                    for (repeatLength in 1..repeating.length / 2) {
+                        if (repeating.length % repeatLength == 0 && repeating.take(repeatLength)
+                                .repeat(repeating.length % repeatLength) == repeating
+                        ) {
                             repeating = repeating.take(repeatLength)
 
                             break
@@ -86,7 +80,7 @@ fun main() {
                 }
             }
 
-            return Num(s).also { println(it) }.sameAs(Num(t).also { println(it) })
+            return Num(s).sameAs(Num(t))
         }
     }
 

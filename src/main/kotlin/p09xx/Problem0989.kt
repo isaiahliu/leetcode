@@ -20,8 +20,11 @@ fun main() {
                 t /= 10
             }
 
-            if (n > 0) {
-                result.push(n)
+            n += t
+
+            while (n > 0) {
+                result.push(n % 10)
+                n /= 10
             }
 
             return result

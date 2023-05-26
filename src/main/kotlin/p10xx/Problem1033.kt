@@ -8,15 +8,13 @@ fun main() {
             val (x, y, z) = arrayOf(a, b, c).sorted()
 
             var min = 0
-            var max = 0
+            val max = z - x - 2
 
             if (z - x > 2) {
                 min = 1
                 if (y - x > 2 && z - y > 2) {
                     min++
                 }
-
-                max = z - x - 2
             }
 
             return intArrayOf(min, max)

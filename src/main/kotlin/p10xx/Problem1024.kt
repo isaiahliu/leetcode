@@ -7,7 +7,7 @@ fun main() {
         fun videoStitching(clips: Array<IntArray>, time: Int): Int {
             clips.sortBy { it[0] }
 
-            var currentMax = -1
+            var currentMax = 0
             var index = 0
 
             var result = 0

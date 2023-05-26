@@ -8,8 +8,6 @@ fun main() {
             val originalColor = grid[row][col]
 
             if (originalColor != color) {
-                grid[row][col] = color
-
                 val visited = hashSetOf(row to col)
                 val edges = hashSetOf<Pair<Int, Int>>()
                 val tasks = hashSetOf(row to col)

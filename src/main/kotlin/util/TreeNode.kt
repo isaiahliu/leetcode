@@ -4,37 +4,27 @@ import java.util.*
 
 class TreeNode(var `val`: Int, var left: TreeNode? = null, var right: TreeNode? = null) {
     override fun toString(): String {
-        val stack = LinkedList<TreeNode>()
+        val queue = LinkedList<TreeNode?>()
 
         val result = arrayListOf<Int?>()
 
-        var t: TreeNode? = this
-        loop@ while (true) {
-            t?.`val`?.also { result.add(it) }
+        queue.add(this)
 
-            t = when {
-                t?.left != null -> {
-                    stack.push(t)
+        while (queue.isNotEmpty()) {
+            val size = queue.size
 
-                    t.left
-                }
+            repeat(size) {
+                val next = queue.poll()
 
-                t?.right != null -> {
-                    result.add(null)
+                result.add(next?.`val`)
 
-                    t.right
-                }
-
-                stack.isNotEmpty() -> {
-                    stack.pop().right
-                }
-
-                else -> {
-                    break@loop
+                if (next?.left != null || next?.right != null) {
+                    queue.add(next.left)
+                    queue.add(next.right)
                 }
             }
         }
 
-        return "[${result.joinToString()}]"
+        return "[${result.joinToString(",")}]"
     }
 }

@@ -5,13 +5,13 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun maxRepOpt1(text: String): Int {
-            fun process(str: String): Int {
+            var result = 1
 
+            fun process(str: String) {
                 val counts = IntArray(26)
 
                 str.forEach { counts[it - 'a']++ }
 
-                var result = 1
 
                 for (i in 0 until str.lastIndex) {
                     val c = str[i]
@@ -36,11 +36,12 @@ fun main() {
 
                     result = result.coerceAtLeast(count)
                 }
-
-                return result
             }
 
-            return process(text).coerceAtLeast(process(text.reversed()))
+            process(text)
+            process(text.reversed())
+
+            return result
         }
     }
 

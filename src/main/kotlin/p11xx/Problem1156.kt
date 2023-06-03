@@ -12,7 +12,6 @@ fun main() {
 
                 str.forEach { counts[it - 'a']++ }
 
-
                 for (i in 0 until str.lastIndex) {
                     val c = str[i]
 

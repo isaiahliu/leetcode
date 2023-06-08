@@ -35,15 +35,15 @@ fun main() {
 
                         var t = tilingRectangle(left, height - left) + tilingRectangle(right, height - right)
 
-                        var leftTopWidth = left + 1
-                        while (leftTopWidth <= width) {
+                        var topLeftWidth = left + 1
+                        while (topLeftWidth <= width) {
                             t = t.coerceAtMost(
-                                tilingRectangle(leftTopWidth, height - left) + tilingRectangle(
-                                    width - leftTopWidth, height - right
-                                ) + tilingRectangle(leftTopWidth - left, left - right)
+                                tilingRectangle(topLeftWidth, height - left) + tilingRectangle(
+                                    width - topLeftWidth, height - right
+                                ) + tilingRectangle(topLeftWidth - left, left - right)
                             )
 
-                            leftTopWidth++
+                            topLeftWidth++
                         }
 
                         result = result.coerceAtMost(2 + t)

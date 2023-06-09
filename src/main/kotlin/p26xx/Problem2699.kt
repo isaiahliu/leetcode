@@ -3,6 +3,8 @@ package p26xx
 import kotlin.system.measureTimeMillis
 
 fun main() {
+    //Not done
+
     class Solution {
         fun modifiedGraphEdges(
             n: Int,
@@ -15,18 +17,18 @@ fun main() {
                 mutableMapOf(it to 0)
             }
 
-            val possibles = Array(n) { hashSetOf<Int>() }
+            val possibles = Array(n) { hashSetOf<Pair<Int, Int>>() }
 
             val tasks = hashSetOf<Pair<Int, Int>>()
-            edges.forEach { (from, to, d) ->
+            edges.forEachIndexed { index, (from, to, d) ->
                 if (d > 0) {
                     fixedDistances[from][to] = d
                     fixedDistances[to][from] = d
 
                     tasks.add(from to to)
                 } else {
-                    possibles[from].add(to)
-                    possibles[to].add(from)
+                    possibles[from].add(to to index)
+                    possibles[to].add(from to index)
                 }
             }
 
@@ -60,19 +62,73 @@ fun main() {
                 }
             }
 
-            fixedDistances[source][destination]?.also {
-                when {
-                    it == target -> {
-                        edges.forEach {
-                            if (it[2] == -1) {
-                                it[2] = target
+            val distance = fixedDistances[source][destination]
+            when {
+                distance == null || distance > target -> {
+                    val distances = Array(n) { Int.MAX_VALUE to emptyList<Int>() }
+                    distances[source] = 0 to emptyList()
+
+                    fun find(current: Int, sumDistance: Int, route: List<Int>) {
+                        if (current == destination) {
+                            return
+                        }
+
+                        possibles[current].forEach { (to, edgeIndex) ->
+                            val d = sumDistance + 1
+
+                            if (distances[to].first >= d) {
+                                distances[to] = d to route + edgeIndex
+                                find(to, d, route + edgeIndex)
+                            }
+                        }
+
+                        fixedDistances[current].forEach { (to, dis) ->
+                            if (dis > 0) {
+                                val d = sumDistance + dis
+
+                                if (distances[to].first > d) {
+                                    distances[to] = d to route
+                                    find(to, d, route)
+                                }
                             }
                         }
                     }
 
-                    it < target -> {
+                    find(source, 0, emptyList())
+
+                    val (targetDistance, targetRoute) = distances[destination]
+                    if (targetDistance == Int.MAX_VALUE) {
                         return emptyArray()
+                    } else if (targetDistance > target) {
+                        return emptyArray()
+                    } else {
+                        var remaining = target - targetDistance
+
+                        targetRoute.reversed().forEach {
+                            val edge = edges[it]
+                            edge[2] = 1
+                            if (remaining > 0) {
+                                edge[2] += remaining.coerceAtMost(
+                                    (fixedDistances[edge[0]][edge[1]] ?: Int.MAX_VALUE) - 1
+                                )
+
+                                remaining -= edge[2] - 1
+                            }
+                        }
+
+                        if (remaining > 0) {
+                            return emptyArray()
+                        }
                     }
+                }
+
+                distance < target -> {
+                    return emptyArray()
+                }
+            }
+            edges.forEach {
+                if (it[2] == -1) {
+                    it[2] = target
                 }
             }
 
@@ -82,13 +138,18 @@ fun main() {
 
     measureTimeMillis {
         Solution().modifiedGraphEdges(
-            4, arrayOf(
-                intArrayOf(1, 0, 4),
-                intArrayOf(1, 2, 3),
-                intArrayOf(2, 3, 5),
-                intArrayOf(0, 3, -1)
-            ), 0, 2, 6
-        ).also {
+            4,
+            arrayOf(
+                intArrayOf(3, 0, -1),
+                intArrayOf(1, 2, -1),
+                intArrayOf(2, 3, -1),
+                intArrayOf(1, 3, 9),
+                intArrayOf(2, 0, 5)
+            ),
+            0,
+            1,
+            7
+        ).map { it.toList() }.also {
             println(it)
         }
     }.also { println("Time cost: ${it}ms") }

@@ -5,12 +5,15 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun numTimesAllBlue(flips: IntArray): Int {
-            return flips.foldIndexed(intArrayOf(0, 0)) { index, result, num ->
-                result[0] = result[0].coerceAtLeast(num)
-                result[1] += (index + 1) / result[0]
+            var max = 0
+            var result = 0
 
-                result
-            }[1]
+            flips.forEachIndexed { index, num ->
+                max = max.coerceAtLeast(num)
+                result += (index + 1) / max
+            }
+
+            return result
         }
     }
 

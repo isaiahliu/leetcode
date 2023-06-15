@@ -5,14 +5,14 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun canMakePaliQueries(s: String, queries: Array<IntArray>): List<Boolean> {
-            var count = 0L
-            val counts = LongArray(s.length) {
-                count = count xor (1L shl (s[it] - 'a'))
+            var count = 0
+            val counts = IntArray(s.length) {
+                count = count xor (1 shl (s[it] - 'a'))
 
                 count
             }
             return queries.map { (from, to, replace) ->
-                val fromCount = counts.getOrNull(from - 1) ?: 0L
+                val fromCount = counts.getOrNull(from - 1) ?: 0
                 val toCount = counts[to]
 
                 val oddCount = (fromCount xor toCount).countOneBits()

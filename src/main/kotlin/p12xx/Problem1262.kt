@@ -6,6 +6,25 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun maxSumDivThree(nums: IntArray): Int {
+            val dp = Array(nums.size) { intArrayOf(0, Int.MIN_VALUE, Int.MIN_VALUE) }
+
+            for (i in nums.indices) {
+                val num = nums[i]
+                dp[i][num % 3] = num
+
+                dp.getOrNull(i - 1)?.also { lastDp ->
+                    dp[i].forEachIndexed { index, d ->
+                        dp[i][index] =
+                            d.coerceAtLeast(lastDp[(3 + index - (num % 3)) % 3] + num).coerceAtLeast(lastDp[index])
+
+                    }
+                }
+            }
+
+            return dp[dp.lastIndex][0]
+        }
+
+        fun maxSumDivThree2(nums: IntArray): Int {
             val result = nums.sum()
             val m = result % 3
 
@@ -63,7 +82,7 @@ fun main() {
     measureTimeMillis {
         Solution().maxSumDivThree(
             intArrayOf(
-                2, 3, 36, 8, 32, 38, 3, 30, 13, 40
+                3, 6, 5, 1, 8
             )
         ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }

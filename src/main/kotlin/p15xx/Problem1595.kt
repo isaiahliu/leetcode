@@ -25,12 +25,10 @@ fun main() {
 
             dp[0].also { dp0 ->
                 for (status in 1 until dp0.size) {
-                    var sum = 0
+                    dp0[status] = 0
                     status.forEachBit {
-                        sum += cost[0][it]
+                        dp0[status] += cost[0][it]
                     }
-
-                    dp0[status] = sum
                 }
             }
 
@@ -44,7 +42,7 @@ fun main() {
                         val num = cost[dpIndex][it]
 
                         current[status] = current[status].coerceAtMost(
-                            num + minOf(current[status - p], pre[status], pre[status - p])
+                            num + minOf(current[status - p], pre[status - p], pre[status])
                         )
                     }
                 }

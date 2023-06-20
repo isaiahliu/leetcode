@@ -30,20 +30,18 @@ fun main() {
                 }
             }
 
-            for (dpIndex in 1 until dp.size) {
-                val current = dp[dpIndex]
-                val pre = dp[dpIndex - 1]
-
+            dp.reduceIndexed { index, pre, current ->
                 for (status in 1 until current.size) {
                     status.forEachBit {
                         val p = 1 shl it
-                        val num = cost[dpIndex][it]
 
                         current[status] = current[status].coerceAtMost(
-                            num + minOf(current[status - p], pre[status - p], pre[status])
+                            cost[index][it] + minOf(current[status - p], pre[status - p], pre[status])
                         )
                     }
                 }
+
+                current
             }
 
             return dp.last().last()

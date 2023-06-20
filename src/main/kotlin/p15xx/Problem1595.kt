@@ -39,17 +39,14 @@ fun main() {
                 val pre = dp[dpIndex - 1]
 
                 for (status in 1 until current.size) {
-                    var min = Int.MAX_VALUE
                     status.forEachBit {
                         val p = 1 shl it
                         val num = cost[dpIndex][it]
 
-                        min = min.coerceAtMost(
-                            num + pre[status].coerceAtMost(current[status - p]).coerceAtMost(pre[status - p])
+                        current[status] = current[status].coerceAtMost(
+                            num + minOf(current[status - p], pre[status], pre[status - p])
                         )
                     }
-
-                    current[status] = min
                 }
             }
 

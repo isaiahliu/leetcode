@@ -5,7 +5,6 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun connectTwoGroups(cost: List<List<Int>>): Int {
-            val MAX = 9999999
             fun Int.forEachBit(consumer: (Int) -> Unit) {
                 var t = this
 
@@ -21,25 +20,22 @@ fun main() {
             }
 
             val dp = Array(cost.size) {
-                IntArray(1 shl cost[0].size)
+                IntArray(1 shl cost[0].size) { Int.MAX_VALUE }
             }
 
             dp[0].also { dp0 ->
-                repeat(dp0.size) {
+                for (status in 1 until dp0.size) {
                     var sum = 0
-                    it.forEachBit {
+                    status.forEachBit {
                         sum += cost[0][it]
                     }
 
-                    dp0[it] = sum
+                    dp0[status] = sum
                 }
             }
 
-            dp[0][0] = MAX
-
             for (dpIndex in 1 until dp.size) {
                 val sums = dp[dpIndex]
-                sums[0] = MAX
                 val sumsPre = dp[dpIndex - 1]
 
                 for (status in 1 until sums.size) {

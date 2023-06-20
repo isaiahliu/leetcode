@@ -23,12 +23,10 @@ fun main() {
                 IntArray(1 shl cost[0].size) { Int.MAX_VALUE }
             }
 
-            dp[0].also { dp0 ->
-                for (status in 1 until dp0.size) {
-                    dp0[status] = 0
-                    status.forEachBit {
-                        dp0[status] += cost[0][it]
-                    }
+            for (status in 1 until dp[0].size) {
+                dp[0][status] = 0
+                status.forEachBit {
+                    dp[0][status] += cost[0][it]
                 }
             }
 

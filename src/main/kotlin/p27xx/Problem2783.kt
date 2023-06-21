@@ -9,12 +9,25 @@ fun main() {
             val WHITE = 'O'
             val EMPTY = '.'
 
+            val around = arrayOf(
+                -1 to -1,
+                -1 to 0,
+                -1 to 1,
+                0 to -1,
+                0 to 1,
+                1 to -1,
+                1 to 0,
+                1 to 1
+            )
+
             val initStatus = chessboard.joinToString("")
+
+            val initialWhiteCount = initStatus.count { it == WHITE }
 
             val rowSize = chessboard[0].length
 
             operator fun String.get(rowIndex: Int, columnIndex: Int): Char? {
-                return if (columnIndex >= rowSize) {
+                return if (rowIndex !in chessboard.indices || columnIndex !in 0 until rowSize) {
                     null
                 } else {
                     this.getOrNull(rowIndex * rowSize + columnIndex)
@@ -31,20 +44,12 @@ fun main() {
                 return String(chars)
             }
 
-            fun String.process(rowIndex: Int, columnIndex: Int): Pair<String, Int> {
+            fun String.process(rowIndex: Int, columnIndex: Int): String {
                 var status = this.flip(rowIndex to columnIndex)
 
                 val replacedNodes = hashSetOf<Pair<Int, Int>>()
-                arrayOf(
-                    -1 to -1,
-                    -1 to 0,
-                    -1 to 1,
-                    0 to -1,
-                    0 to 1,
-                    1 to -1,
-                    1 to 0,
-                    1 to 1
-                ).forEach { (deltaR, deltaC) ->
+
+                around.forEach { (deltaR, deltaC) ->
                     val temp = hashSetOf<Pair<Int, Int>>()
 
                     var r = rowIndex + deltaR
@@ -69,45 +74,41 @@ fun main() {
                     }
                 }
 
-                var result = replacedNodes.size
-
                 status = status.flip(*replacedNodes.toTypedArray())
 
                 replacedNodes.forEach {
-                    status.process(it.first, it.second).also {
-                        status = it.first
-                        result += it.second
-                    }
+                    status = status.process(it.first, it.second)
                 }
 
-                return status to result
+                return status
             }
 
-            var result = 0
+            val nodes = hashSetOf<Pair<Int, Int>>()
             chessboard.forEachIndexed { rowIndex, row ->
                 row.forEachIndexed { columnIndex, ch ->
-                    if (ch == EMPTY) {
-                        val p = initStatus.process(rowIndex, columnIndex)
-                        result = result.coerceAtLeast(p.second)
+                    if (ch == WHITE) {
+                        around.filter { (deltaR, deltaC) ->
+                            initStatus[rowIndex + deltaR, columnIndex + deltaC] == EMPTY
+                        }.forEach { (deltaR, deltaC) ->
+                            nodes.add(rowIndex + deltaR to columnIndex + deltaC)
+                        }
                     }
                 }
             }
 
-            return result
+            var result = initialWhiteCount
+            nodes.forEach {
+                result = result.coerceAtMost(initStatus.process(it.first, it.second).count { it == WHITE })
+            }
+
+            return initialWhiteCount - result
         }
     }
 
     measureTimeMillis {
         Solution().flipChess(
             arrayOf(
-                ".....",
-                ".....",
-                "X....",
-                "OX...",
-                "OOOOX",
-                "OOO..",
-                ".OO..",
-                "X..X."
+                "....X.", "....X.", "XOOO..", "......", "......"
             )
         ).also { println(it) }
     }

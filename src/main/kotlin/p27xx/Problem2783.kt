@@ -22,6 +22,8 @@ fun main() {
 
             val initStatus = chessboard.joinToString("")
 
+            val initialBlackCount = initStatus.count { it == BLACK }
+
             val rowSize = chessboard[0].length
 
             operator fun String.get(rowIndex: Int, columnIndex: Int): Char? {
@@ -42,7 +44,7 @@ fun main() {
                 return String(chars)
             }
 
-            fun String.process(rowIndex: Int, columnIndex: Int): Pair<String, Int> {
+            fun String.process(rowIndex: Int, columnIndex: Int): String {
                 var status = this.flip(rowIndex to columnIndex)
 
                 val replacedNodes = hashSetOf<Pair<Int, Int>>()
@@ -72,21 +74,14 @@ fun main() {
                     }
                 }
 
-                var result = replacedNodes.size
-
                 status = status.flip(*replacedNodes.toTypedArray())
 
                 replacedNodes.forEach {
-                    status.process(it.first, it.second).also {
-                        status = it.first
-                        result += it.second
-                    }
+                    status = status.process(it.first, it.second)
                 }
 
-                return status to result
+                return status
             }
-
-            var result = 0
 
             val nodes = hashSetOf<Pair<Int, Int>>()
             chessboard.forEachIndexed { rowIndex, row ->
@@ -101,11 +96,12 @@ fun main() {
                 }
             }
 
+            var result = initialBlackCount
             nodes.forEach {
-                result = result.coerceAtLeast(initStatus.process(it.first, it.second).second)
+                result = result.coerceAtLeast(initStatus.process(it.first, it.second).count { it == BLACK })
             }
 
-            return result
+            return result - initialBlackCount
         }
     }
 

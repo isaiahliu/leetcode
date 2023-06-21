@@ -22,7 +22,7 @@ fun main() {
 
             val initStatus = chessboard.joinToString("")
 
-            val initialBlackCount = initStatus.count { it == BLACK }
+            val initialWhiteCount = initStatus.count { it == WHITE }
 
             val rowSize = chessboard[0].length
 
@@ -96,26 +96,19 @@ fun main() {
                 }
             }
 
-            var result = initialBlackCount
+            var result = initialWhiteCount
             nodes.forEach {
-                result = result.coerceAtLeast(initStatus.process(it.first, it.second).count { it == BLACK })
+                result = result.coerceAtMost(initStatus.process(it.first, it.second).count { it == WHITE })
             }
 
-            return result - initialBlackCount
+            return initialWhiteCount - result
         }
     }
 
     measureTimeMillis {
         Solution().flipChess(
             arrayOf(
-                ".....",
-                ".....",
-                "X....",
-                "OX...",
-                "OOOOX",
-                "OOO..",
-                ".OO..",
-                "X..X."
+                "....X.", "....X.", "XOOO..", "......", "......"
             )
         ).also { println(it) }
     }

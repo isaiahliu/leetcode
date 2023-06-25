@@ -5,62 +5,101 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun getMaxGridHappiness(m: Int, n: Int, introvertsCount: Int, extrovertsCount: Int): Int {
-            val score = arrayOf(intArrayOf(0, 0, 0), intArrayOf(0, -60, -10), intArrayOf(0, -10, 40))
+            val INTRO = 1
+            val EXTRO = 2
+            val EMPTY = 0
 
             var t = 1
-            val p = IntArray(5) {
+            val bits3 = IntArray(n + 1) {
                 t.also { t *= 3 }
             }
 
-            val cache: Array<Array<Array<IntArray>>> = Array(25) {
-                Array(243) {
-                    Array(7) {
-                        IntArray(7) { -1 }
-                    }
-                }
+            fun Int.bit3At(pos: Int): Int {
+                return this / bits3[pos] % 3
             }
 
-            fun dfs(pos: Int, status: Int, iv: Int, ev: Int): Int {
-                if (pos == n * m || iv == 0 && ev == 0) {
+            fun Int.replaceBit3At(pos: Int, num: Int): Int {
+                val left = this / bits3[pos + 1]
+                val right = this % bits3[pos]
+
+                return left * bits3[pos + 1] + num * bits3[pos] + right
+            }
+
+            val cache: MutableMap<Pair<Pair<Int, Int>, Pair<Int, Int>>, Int> = hashMapOf()
+            fun dfs(pos: Int, status: Int, introCount: Int, extroCount: Int): Int {
+                if (pos == m * n || introCount == introvertsCount && extroCount == extrovertsCount) {
                     return 0
                 }
-                var res = cache[pos][status][iv][ev]
-                if (res != -1) {
-                    return res
+
+                val cacheKey = (pos to status) to (introCount to extroCount)
+
+                if (cacheKey in cache) {
+                    return cache[cacheKey] ?: 0
                 }
-                res = 0
-                val up = status / p[n - 1]
-                var left = status % 3
-                if (pos % n == 0) {
-                    left = 0
+
+                val column = pos % n
+
+                val neighbors = arrayListOf<Int>()
+
+                status.bit3At(column).takeIf { it > 0 }?.also {
+                    neighbors.add(it)
                 }
-                for (i in 0..2) {
-                    if (i == 1 && iv == 0 || i == 2 && ev == 0) {
-                        continue
+
+                (column - 1).takeIf { it >= 0 }?.let { status.bit3At(it) }?.takeIf { it > 0 }?.also {
+                    neighbors.add(it)
+                }
+
+                var result = dfs(pos + 1, status.replaceBit3At(column, EMPTY), introCount, extroCount)
+
+                var extraScore = 0
+                neighbors.forEach {
+                    when (it) {
+                        INTRO -> {
+                            extraScore -= 30
+                        }
+
+                        EXTRO -> {
+                            extraScore += 20
+                        }
                     }
-                    val nextMask = status % p[n - 1] * 3 + i
-                    var scoreSum = (dfs(pos + 1, nextMask, iv - if (i == 1) 1 else 0, ev - if (i == 2) 1 else 0)
-                            + score[up][i] + score[left][i])
-                    if (i == 1) {
-                        scoreSum += 120
-                    } else if (i == 2) {
-                        scoreSum += 40
-                    }
-                    res = res.coerceAtLeast(scoreSum)
                 }
-                cache[pos][status][iv][ev] = res
-                return res
+
+                if (introCount < introvertsCount) {
+                    result = result.coerceAtLeast(
+                        120 - neighbors.size * 30 + extraScore + dfs(
+                            pos + 1,
+                            status.replaceBit3At(column, INTRO),
+                            introCount + 1,
+                            extroCount
+                        )
+                    )
+                }
+
+                if (extroCount < extrovertsCount) {
+                    result = result.coerceAtLeast(
+                        40 + neighbors.size * 20 + extraScore + dfs(
+                            pos + 1,
+                            status.replaceBit3At(column, EXTRO),
+                            introCount,
+                            extroCount + 1
+                        )
+                    )
+                }
+
+                cache[cacheKey] = result
+                return result
             }
-            return dfs(0, 0, introvertsCount, extrovertsCount)
+
+            return dfs(0, 0, 0, 0)
         }
     }
 
     measureTimeMillis {
         Solution().getMaxGridHappiness(
-            5,
-            5,
+            2,
             3,
-            6
+            1,
+            2
         ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

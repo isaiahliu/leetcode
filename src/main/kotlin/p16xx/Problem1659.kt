@@ -90,16 +90,18 @@ fun main() {
                 return result
             }
 
-            return dfs(0, 0, 0, 0)
+            return dfs(0, 0, 0, 0).also {
+                println()
+            }
         }
     }
 
     measureTimeMillis {
         Solution().getMaxGridHappiness(
-            2,
+            5,
+            5,
             3,
-            1,
-            2
+            6
         ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

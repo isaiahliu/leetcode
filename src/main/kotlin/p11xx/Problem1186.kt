@@ -5,21 +5,13 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun maximumSum(arr: IntArray): Int {
-            val dp = Array(arr.size) { intArrayOf(arr[it], Int.MIN_VALUE) }
-
+            var sum1 = arr[0]
+            var sum2 = 0
             var result = arr[0]
-
-            dp[0][0] = arr[0]
-
             for (i in 1 until arr.size) {
-                dp[i][0] = dp[i - 1][0].coerceAtLeast(0) + arr[i]
-                dp.getOrNull(i - 2)?.get(0)?.also {
-                    dp[i - 1][1].coerceAtLeast(it).takeIf { it > 0 }?.also {
-                        dp[i][1] = arr[i] + it
-                    }
-                }
-
-                result = result.coerceAtLeast(dp[i][0]).coerceAtLeast(dp[i][1])
+                sum2 = sum1.coerceAtLeast(sum2 + arr[i])
+                sum1 = sum1.coerceAtLeast(0) + arr[i]
+                result = result.coerceAtLeast(sum1).coerceAtLeast(sum2)
             }
 
             return result

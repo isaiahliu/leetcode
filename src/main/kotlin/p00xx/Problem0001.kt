@@ -3,12 +3,12 @@ package p00xx
 fun main() {
     class Solution {
         fun twoSum(nums: IntArray, target: Int): IntArray {
-            for (i in nums.indices) {
-                for (j in i + 1 until nums.size) {
-                    if (nums[i] + nums[j] == target) {
-                        return intArrayOf(i, j)
-                    }
-                }
+            val map = hashMapOf<Int, Int>()
+
+            nums.forEachIndexed { index, num ->
+                map[target - num]?.also {
+                    return intArrayOf(index, it)
+                } ?: run { map[num] = index }
             }
 
             return intArrayOf()

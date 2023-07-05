@@ -8,7 +8,8 @@ fun main() {
             var result = 0
 
             var r = k
-            for ((count, num) in arrayOf(numOnes to 1, numZeros to 0, numNegOnes to -1)) {
+            var num = 1
+            for (count in arrayOf(numOnes, numZeros, numNegOnes)) {
                 if (r == 0) {
                     break
                 }
@@ -17,6 +18,8 @@ fun main() {
                     result += num * it
                     r -= it
                 }
+
+                num--
             }
 
             return result

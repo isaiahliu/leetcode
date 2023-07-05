@@ -16,7 +16,6 @@ fun main() {
             fun dijkstra(source: Int, destination: Int, adjMatrix: Array<IntArray>): Long {
                 // 朴素的 dijkstra 算法
                 // adjMatrix 是一个邻接矩阵
-                val n = adjMatrix.size
                 val dist = LongArray(n)
                 Arrays.fill(dist, (Int.MAX_VALUE / 2).toLong())
                 val used = BooleanArray(n)
@@ -40,7 +39,7 @@ fun main() {
 
             fun construct(n: Int, edges: Array<IntArray>, idx: Long, target: Int): Array<IntArray> {
                 // 需要构造出第 idx 种不同的边权情况，返回一个邻接矩阵
-                var idx = idx
+                var index = idx
                 val adjMatrix = Array(n) { IntArray(n) }
                 for (i in 0 until n) {
                     Arrays.fill(adjMatrix[i], -1)
@@ -53,14 +52,14 @@ fun main() {
                         adjMatrix[v][u] = w
                         adjMatrix[u][v] = adjMatrix[v][u]
                     } else {
-                        if (idx >= target - 1) {
+                        if (index >= target - 1) {
                             adjMatrix[v][u] = target
                             adjMatrix[u][v] = adjMatrix[v][u]
-                            idx -= (target - 1).toLong()
+                            index -= (target - 1).toLong()
                         } else {
-                            adjMatrix[v][u] = (1 + idx).toInt()
+                            adjMatrix[v][u] = (1 + index).toInt()
                             adjMatrix[u][v] = adjMatrix[v][u]
-                            idx = 0
+                            index = 0
                         }
                     }
                 }

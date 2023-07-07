@@ -6,11 +6,13 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun findCrossingTime(n: Int, k: Int, time: Array<IntArray>): Int {
+            // staff to side
             val idle = PriorityQueue(
                 compareBy<Pair<Int, Int>> { (_, side) -> side }
                     .thenByDescending { (staff, _) -> time[staff][0] + time[staff][2] }
                     .thenByDescending { (staff, _) -> staff })
 
+            // staff to action to nextTime
             val events = PriorityQueue(
                 compareBy<Pair<Int, Pair<Int, Int>>> { (_, actions) -> actions.second }
                     .thenBy { (_, actions) -> actions.first })
@@ -32,32 +34,6 @@ fun main() {
             val MOVE_LEFT_TO_RIGHT = 3
             val MOVE_RIGHT_TO_LEFT = 4
 
-            val debug = true
-
-            fun pass() {
-                if (bridgeBusy) {
-                    return
-                }
-
-                idle.poll()?.also { (staff, side) ->
-                    when (side) {
-                        LEFT -> {
-                            if (remainingBoxes > 0) {
-                                events.offer(staff to (MOVE_LEFT_TO_RIGHT to result + time[staff][0]))
-
-                                remainingBoxes--
-                                leftStaffCount--
-                                bridgeBusy = true
-                            }
-                        }
-
-                        RIGHT -> {
-                            events.offer(staff to (MOVE_RIGHT_TO_LEFT to result + time[staff][2]))
-                            bridgeBusy = true
-                        }
-                    }
-                }
-            }
 
             while (leftStaffCount < k || remainingBoxes > 0) {
                 events.poll()?.also { (staff, p) ->
@@ -87,7 +63,24 @@ fun main() {
                     result = nextTime
                 }
 
-                pass()
+                if (!bridgeBusy && (remainingBoxes > 0 || idle.peek()?.second == RIGHT)) {
+                    idle.poll()?.also { (staff, side) ->
+                        when (side) {
+                            LEFT -> {
+                                events.offer(staff to (MOVE_LEFT_TO_RIGHT to result + time[staff][0]))
+
+                                remainingBoxes--
+                                leftStaffCount--
+                            }
+
+                            RIGHT -> {
+                                events.offer(staff to (MOVE_RIGHT_TO_LEFT to result + time[staff][2]))
+                            }
+                        }
+
+                        bridgeBusy = true
+                    }
+                }
             }
 
             return result

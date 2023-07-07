@@ -23,7 +23,6 @@ fun main() {
             var currentTime = 0
 
             val NO_ACTION = 0
-            val MOVE_RIGHT_TO_LEFT = 1
             val PASS_BRIDGE = 1
             val CARRY_OLD = 2
             val PUT_NEW = 3

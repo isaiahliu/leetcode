@@ -6,131 +6,88 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun findCrossingTime(n: Int, k: Int, time: Array<IntArray>): Int {
-            val waitingLeft =
-                PriorityQueue(compareByDescending<Int> { time[it][0] + time[it][2] }.thenByDescending { it })
-            val pickOld = PriorityQueue<Pair<Int, Int>>(compareBy { it.first })
-            val putNew = PriorityQueue<Pair<Int, Int>>(compareBy { it.first })
-            var passBridge: Pair<Int, Pair<Int, Boolean>>? = null
-            val waitingRight =
-                PriorityQueue(compareByDescending<Int> { time[it][0] + time[it][2] }.thenByDescending { it })
+            val idle = PriorityQueue(
+                compareBy<Pair<Int, Int>> { (_, side) -> side }
+                    .thenByDescending { (staff, _) -> time[staff][0] + time[staff][2] }
+                    .thenByDescending { (staff, _) -> staff })
 
+            val events = PriorityQueue(
+                compareBy<Pair<Int, Pair<Int, Int>>> { (_, actions) -> actions.second }
+                    .thenBy { (_, actions) -> actions.first })
+            var bridgeBusy = false
+            var leftStaffCount = k
             var remainingBoxes = n
 
+            val RIGHT = 0
+            val LEFT = 1
+
             repeat(k) {
-                waitingLeft.add(it)
+                idle.offer(it to LEFT)
             }
 
             var result = 0
 
-            val NO_ACTION = 0
-            val PASS_BRIDGE = 1
-            val PICK_OLD = 2
-            val PUT_NEW = 3
+            val PICK_OLD = 1
+            val PUT_NEW = 2
+            val MOVE_LEFT_TO_RIGHT = 3
+            val MOVE_RIGHT_TO_LEFT = 4
 
-            val debug = false
+            val debug = true
 
             fun pass() {
-                when {
-                    passBridge != null -> {
+                if (bridgeBusy) {
+                    return
+                }
 
-                    }
+                idle.poll()?.also { (staff, side) ->
+                    when (side) {
+                        LEFT -> {
+                            if (remainingBoxes > 0) {
+                                events.offer(staff to (MOVE_LEFT_TO_RIGHT to result + time[staff][0]))
 
-                    waitingRight.isNotEmpty() -> {
-                        val staff = waitingRight.poll()
-
-                        passBridge = (result + time[staff][2]) to (staff to false)
-
-                        if (debug) {
-                            println("$result to ${result + time[staff][2]}: Staff $staff moving right to left")
+                                remainingBoxes--
+                                leftStaffCount--
+                                bridgeBusy = true
+                            }
                         }
-                    }
 
-                    waitingLeft.isNotEmpty() && remainingBoxes > 0 -> {
-                        val staff = waitingLeft.poll()
-
-                        passBridge = (result + time[staff][0]) to (staff to true)
-
-                        remainingBoxes--
-
-                        if (debug) {
-                            println("$result to ${result + time[staff][0]}: Staff $staff moving left to right")
+                        RIGHT -> {
+                            events.offer(staff to (MOVE_RIGHT_TO_LEFT to result + time[staff][2]))
+                            bridgeBusy = true
                         }
                     }
                 }
             }
 
-            loop@ while (true) {
-                var nextAction = NO_ACTION
-                var nextTime = Int.MAX_VALUE
+            while (leftStaffCount < k || remainingBoxes > 0) {
+                events.poll()?.also { (staff, p) ->
+                    val (nextAction, nextTime) = p
 
-                pickOld.peek()?.first?.also {
-                    if (it < nextTime) {
-                        nextAction = PICK_OLD
-                        nextTime = it
-                    }
-                }
+                    when (nextAction) {
+                        PICK_OLD -> {
+                            idle.offer(staff to RIGHT)
+                        }
 
-                putNew.peek()?.first?.also {
-                    if (it < nextTime) {
-                        nextAction = PUT_NEW
-                        nextTime = it
-                    }
-                }
+                        PUT_NEW -> {
+                            idle.offer(staff to LEFT)
+                        }
 
-                passBridge?.first?.also {
-                    if (it < nextTime) {
-                        nextAction = PASS_BRIDGE
-                        nextTime = it
-                    }
-                }
+                        MOVE_LEFT_TO_RIGHT -> {
+                            events.offer(staff to (PICK_OLD to nextTime + time[staff][1]))
+                            bridgeBusy = false
+                        }
 
-                when (nextAction) {
-                    NO_ACTION -> {
-                        nextTime = result
-                    }
-
-                    PICK_OLD -> {
-                        pickOld.poll()?.second?.also {
-                            waitingRight.add(it)
+                        MOVE_RIGHT_TO_LEFT -> {
+                            events.offer(staff to (PUT_NEW to nextTime + time[staff][3]))
+                            bridgeBusy = false
+                            leftStaffCount++
                         }
                     }
 
-                    PUT_NEW -> {
-                        putNew.poll()?.second?.also {
-                            waitingLeft.add(it)
-                        }
-                    }
-
-                    PASS_BRIDGE -> {
-                        passBridge?.also { (next, p) ->
-                            val (staff, direction) = p
-
-                            if (direction) {
-                                pickOld.add(next + time[staff][1] to staff)
-
-                                if (debug) {
-                                    println("$next to ${next + time[staff][1]}: Staff $staff pick old")
-                                }
-                            } else {
-                                putNew.add(next + time[staff][3] to staff)
-
-                                if (debug) {
-                                    println("$next to ${next + time[staff][3]}: Staff $staff put new")
-                                }
-                            }
-                        }
-
-                        passBridge = null
-                    }
+                    result = nextTime
                 }
-
-                result = nextTime
 
                 pass()
-
-                if (waitingLeft.size + putNew.size == k && remainingBoxes == 0) {
-                    break
-                }
             }
 
             return result
@@ -139,14 +96,14 @@ fun main() {
 
     measureTimeMillis {
         Solution().findCrossingTime(
-            9, 6,
-            arrayOf(
-                intArrayOf(2, 6, 9, 4),
-                intArrayOf(4, 8, 7, 5),
-                intArrayOf(4, 6, 7, 6),
-                intArrayOf(2, 3, 3, 7),
-                intArrayOf(9, 3, 6, 8),
-                intArrayOf(2, 8, 8, 4)
+            8, 7, arrayOf(
+                intArrayOf(6, 7, 5, 3),
+                intArrayOf(5, 6, 10, 2),
+                intArrayOf(10, 7, 4, 7),
+                intArrayOf(9, 10, 6, 2),
+                intArrayOf(8, 6, 3, 7),
+                intArrayOf(8, 6, 9, 5),
+                intArrayOf(3, 6, 9, 2)
             )
         ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }

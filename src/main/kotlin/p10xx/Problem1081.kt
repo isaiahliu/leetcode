@@ -52,7 +52,7 @@ fun main() {
 
     measureTimeMillis {
         Solution().smallestSubsequence(
-            "DB"
+            "cbabc"
         ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

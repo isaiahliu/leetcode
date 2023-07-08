@@ -37,7 +37,7 @@ fun main() {
                                     hasLower = true
                                     false
                                 } else {
-                                    previousHigher || t > c && lastIndices[t - 'a'] < index
+                                    previousHigher || lastIndices[t - 'a'] < index
                                 }
                             }
                         }

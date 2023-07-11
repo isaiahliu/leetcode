@@ -10,7 +10,6 @@ fun main() {
         init {
             val sums = hashMapOf<Int, Int>()
 
-
             arr.forEachIndexed { index, num ->
                 ((sums[num] ?: 0) + 1).also {
                     sums[num] = it

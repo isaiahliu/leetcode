@@ -5,21 +5,11 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun countCharacters(words: Array<String>, chars: String): Int {
-            val dic = chars.toCharArray().also { it.sort() }
-
-            fun String.match(): Boolean {
-                var dicIndex = 0
-                for (c in this.toCharArray().also { it.sort() }) {
-                    while ((dic.getOrNull(dicIndex++) ?: return false) != c) {
-                    }
-                }
-
-                return true
-            }
+            val dic = chars.groupingBy { it }.eachCount()
 
             var result = 0
             words.forEach {
-                if (it.match()) {
+                if (it.groupingBy { it }.eachCount().all { (c, count) -> (dic[c] ?: 0) >= count }) {
                     result += it.length
                 }
             }

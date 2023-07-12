@@ -9,8 +9,7 @@ fun main() {
             var result = 0
 
             while (t > 0) {
-                result *= -1
-                result += t % 10
+                result = t % 10 - result
 
                 t /= 10
             }

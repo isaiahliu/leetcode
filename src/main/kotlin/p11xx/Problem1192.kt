@@ -44,7 +44,12 @@ fun main() {
 
     measureTimeMillis {
         Solution().criticalConnections(
-            3, emptyList()
+            4, listOf(
+                listOf(0, 1),
+                listOf(0, 2),
+                listOf(1, 2),
+                listOf(1, 3),
+            )
         ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

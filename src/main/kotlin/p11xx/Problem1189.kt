@@ -1,64 +1,20 @@
 package p11xx
 
-import java.util.*
 import kotlin.system.measureTimeMillis
 
 fun main() {
     class Solution {
-        fun reverseParentheses(s: String): String {
-            abstract class AbstractNode {
-                abstract val result: String
-            }
+        fun maxNumberOfBalloons(text: String): Int {
+            val counts = text.groupingBy { it }.eachCount()
 
-            class BuilderNode : AbstractNode() {
-                val builder: StringBuilder = StringBuilder()
-
-                override val result: String get() = builder.toString()
-            }
-
-            class ReversedNode : AbstractNode() {
-                val children = LinkedList<AbstractNode>()
-
-                fun append(c: Char) {
-                    ((children.peekLast() as? BuilderNode) ?: run {
-                        BuilderNode().also { children.add(it) }
-                    }).builder.append(c)
-                }
-
-                fun child(): ReversedNode {
-                    return ReversedNode().also { children.add(it) }
-                }
-
-                override val result: String
-                    get() = children.joinToString("") { it.result }.reversed()
-            }
-
-            val stack = LinkedList<ReversedNode>()
-            stack.push(ReversedNode())
-
-            s.forEach {
-                when (it) {
-                    '(' -> {
-                        stack.push(stack.peek().child())
-                    }
-
-                    ')' -> {
-                        stack.poll()
-                    }
-
-                    else -> {
-                        stack.peek().append(it)
-                    }
-                }
-            }
-
-            return stack.peekLast().result.reversed()
+            return (counts['b'] ?: 0).coerceAtMost(counts['a'] ?: 0).coerceAtMost((counts['l'] ?: 0) / 2)
+                .coerceAtMost((counts['o'] ?: 0) / 2).coerceAtMost(counts['n'] ?: 0)
         }
     }
 
     measureTimeMillis {
-        Solution().reverseParentheses(
-            "a(bcdefghijkl(mno)p)q"
+        Solution().maxNumberOfBalloons(
+            ""
         ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

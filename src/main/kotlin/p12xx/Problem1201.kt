@@ -1,5 +1,6 @@
 package p12xx
 
+import java.math.BigInteger
 import kotlin.system.measureTimeMillis
 
 fun main() {
@@ -9,38 +10,40 @@ fun main() {
                 return n
             }
 
+            val target = n.toBigInteger()
+
             val ai = a.toBigInteger()
             val bi = b.toBigInteger()
             val ci = c.toBigInteger()
-            val ab = (ai * bi / ai.gcd(bi)).toLong()
-            val bc = (bi * ci / bi.gcd(ci)).toLong()
-            val ac = (ai * ci / ai.gcd(ci)).toLong()
-            val abc = (ab.toBigInteger() * ci / ab.toBigInteger().gcd(ci)).toLong()
+            val ab = (ai * bi / ai.gcd(bi))
+            val bc = (bi * ci / bi.gcd(ci))
+            val ac = (ai * ci / ai.gcd(ci))
+            val abc = (ab * ci / ab.gcd(ci))
 
-            fun binarySearch(start: Long, end: Long): Long {
+            fun binarySearch(start: BigInteger, end: BigInteger): Int {
                 if (start > end) {
-                    return Long.MAX_VALUE
+                    return Int.MAX_VALUE
                 }
 
-                val mid = start + (end - start) / 2
+                val mid = (end + start) / 2.toBigInteger()
 
-                var r = 0L
-                r += mid / a
-                r += mid / b
-                r += mid / c
+                var r = BigInteger.ZERO
+                r += mid / ai
+                r += mid / bi
+                r += mid / ci
                 r -= mid / ab
                 r -= mid / bc
                 r -= mid / ac
                 r += mid / abc
 
                 return when {
-                    r < n -> binarySearch(mid + 1, end)
-                    r > n -> binarySearch(start, mid - 1)
-                    else -> mid.coerceAtMost(binarySearch(start, mid - 1))
+                    r < target -> binarySearch(mid + BigInteger.ONE, end)
+                    r > target -> binarySearch(start, mid - BigInteger.ONE)
+                    else -> mid.toInt().coerceAtMost(binarySearch(start, mid - BigInteger.ONE))
                 }
             }
 
-            return binarySearch(1L, Int.MAX_VALUE.toLong()).toInt()
+            return binarySearch(BigInteger.ONE, Int.MAX_VALUE.toBigInteger())
         }
     }
 

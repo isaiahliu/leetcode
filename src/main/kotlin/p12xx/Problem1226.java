@@ -12,21 +12,15 @@ class Problem1226 {
     }
 
     class DiningPhilosophers {
-        private final Semaphore[] semaphores = new Semaphore[]{
+        private final Semaphore[] semaphores = {
                 new Semaphore(1),
                 new Semaphore(1),
                 new Semaphore(1),
                 new Semaphore(1),
-                new Semaphore(1),
+                new Semaphore(1)
         };
 
-        private final int[][] requires = new int[][]{
-                new int[]{0, 1},
-                new int[]{2, 1},
-                new int[]{2, 3},
-                new int[]{3, 4},
-                new int[]{0, 4},
-        };
+        private final int[][] requires = {{0, 1}, {2, 1}, {2, 3}, {3, 4}, {0, 4}};
 
         public DiningPhilosophers() {
         }

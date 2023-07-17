@@ -48,9 +48,7 @@ fun main() {
     measureTimeMillis {
         Solution().findBestValue(
             intArrayOf(2, 3, 5), 11
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

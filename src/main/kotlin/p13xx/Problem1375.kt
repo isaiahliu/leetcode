@@ -20,9 +20,7 @@ fun main() {
     measureTimeMillis {
         Solution().numTimesAllBlue(
             intArrayOf(3, 2, 4, 1, 5)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

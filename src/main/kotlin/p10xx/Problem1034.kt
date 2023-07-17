@@ -40,8 +40,6 @@ fun main() {
     measureTimeMillis {
         Solution().colorBorder(
             arrayOf(), 1, 2, 3
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

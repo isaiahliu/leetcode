@@ -47,9 +47,7 @@ fun main() {
     measureTimeMillis {
         Solution().maximumGap(
             intArrayOf(1, 1, 1, 1)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

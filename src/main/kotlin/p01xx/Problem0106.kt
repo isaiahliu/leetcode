@@ -38,9 +38,7 @@ fun main() {
     measureTimeMillis {
         Solution().buildTree(
             intArrayOf(9, 3, 15, 20, 7), intArrayOf(9, 15, 7, 20, 3)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

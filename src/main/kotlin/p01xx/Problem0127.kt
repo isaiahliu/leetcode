@@ -41,9 +41,7 @@ fun main() {
     measureTimeMillis {
         Solution().ladderLength(
             "sand", "acne", input
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

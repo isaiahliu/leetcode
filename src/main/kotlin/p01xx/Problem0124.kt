@@ -24,9 +24,7 @@ fun main() {
     }
 
     measureTimeMillis {
-        Solution().maxPathSum(null).also {
-            println(it)
-        }
+        Solution().maxPathSum(null).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

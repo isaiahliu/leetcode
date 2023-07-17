@@ -39,9 +39,7 @@ fun main() {
     measureTimeMillis {
         Solution().restoreIpAddresses(
             ""
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

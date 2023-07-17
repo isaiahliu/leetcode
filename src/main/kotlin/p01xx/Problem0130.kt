@@ -43,9 +43,7 @@ fun main() {
                 charArrayOf('X', 'X', 'O', 'X'),
                 charArrayOf('X', 'O', 'X', 'X'),
             )
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

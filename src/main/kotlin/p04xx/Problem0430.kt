@@ -47,9 +47,7 @@ fun main() {
         n2.child = n3
         Solution().flatten(
             n1
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

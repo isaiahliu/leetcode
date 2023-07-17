@@ -29,8 +29,6 @@ fun main() {
     measureTimeMillis {
         Solution().miceAndCheese(
             intArrayOf(), intArrayOf(), 1
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

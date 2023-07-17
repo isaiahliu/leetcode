@@ -38,9 +38,7 @@ fun main() {
         n2.next = n1
         Solution().detectCycle(
             n1
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

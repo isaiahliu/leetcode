@@ -24,8 +24,6 @@ fun main() {
     measureTimeMillis {
         Solution().numMovesStones(
             1, 2, 5
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

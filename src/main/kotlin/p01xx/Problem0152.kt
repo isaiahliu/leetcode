@@ -51,9 +51,7 @@ fun main() {
     measureTimeMillis {
         Solution().maxProduct(
             intArrayOf(0, 2)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

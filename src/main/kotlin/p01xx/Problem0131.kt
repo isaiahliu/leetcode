@@ -40,7 +40,7 @@ fun main() {
             }
 
             cache[s] = result
-            
+
             return result
         }
     }
@@ -48,9 +48,7 @@ fun main() {
     measureTimeMillis {
         Solution().partition(
             "aab"
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

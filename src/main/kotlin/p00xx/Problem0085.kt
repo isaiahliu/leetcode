@@ -69,9 +69,7 @@ fun main() {
     }
 
     measureTimeMillis {
-        Solution().maximalRectangle(emptyArray()).also {
-            println(it)
-        }
+        Solution().maximalRectangle(emptyArray()).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

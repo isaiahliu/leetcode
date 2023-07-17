@@ -25,9 +25,7 @@ fun main() {
     }
 
     measureTimeMillis {
-        Solution().generate(3).also {
-            println(it)
-        }
+        Solution().generate(3).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

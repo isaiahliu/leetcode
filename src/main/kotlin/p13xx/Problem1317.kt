@@ -24,9 +24,7 @@ fun main() {
     measureTimeMillis {
         Solution().getNoZeroIntegers(
             1000
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

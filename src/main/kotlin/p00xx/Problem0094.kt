@@ -36,7 +36,7 @@ fun main() {
 
                     else -> {
                         t?.`val`?.also { result.add(it) }
-                        
+
                         break@loop
                     }
                 }
@@ -49,9 +49,7 @@ fun main() {
     measureTimeMillis {
         Solution().inorderTraversal(
             TreeNode(1)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

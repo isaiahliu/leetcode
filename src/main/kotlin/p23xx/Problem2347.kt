@@ -18,9 +18,7 @@ fun main() {
     measureTimeMillis {
         Solution().bestHand(
             intArrayOf(), charArrayOf()
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

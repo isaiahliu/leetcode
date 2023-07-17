@@ -26,9 +26,7 @@ fun main() {
     measureTimeMillis {
         Solution().maximum69Number(
             99
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

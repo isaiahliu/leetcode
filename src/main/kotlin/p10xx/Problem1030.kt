@@ -19,8 +19,6 @@ fun main() {
     measureTimeMillis {
         Solution().allCellsDistOrder(
             1, 2, 3, 4
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

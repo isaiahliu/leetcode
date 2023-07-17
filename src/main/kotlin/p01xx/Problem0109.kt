@@ -41,9 +41,7 @@ fun main() {
     measureTimeMillis {
         Solution().sortedListToBST(
             null
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

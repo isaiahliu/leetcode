@@ -21,8 +21,6 @@ fun main() {
                 intArrayOf(0, 1),
                 intArrayOf(1, 0),
             )
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

@@ -41,9 +41,7 @@ fun main() {
     measureTimeMillis {
         Solution().reverseBetween(
             ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5))))), 2, 4
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

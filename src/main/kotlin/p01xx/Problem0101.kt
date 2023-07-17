@@ -19,9 +19,7 @@ fun main() {
     measureTimeMillis {
         Solution().isSameTree(
             TreeNode(68), TreeNode(68)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

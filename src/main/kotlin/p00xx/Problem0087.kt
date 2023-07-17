@@ -86,9 +86,7 @@ fun main() {
         Solution().isScramble(
             "eebaacbcbcadaaedceaaacadccd",
             "eadcaacabaddaceacbceaabeccd"
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

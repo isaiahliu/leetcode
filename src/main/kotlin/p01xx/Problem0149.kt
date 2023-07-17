@@ -66,9 +66,7 @@ fun main() {
                 intArrayOf(1, 0),
                 intArrayOf(2, 0)
             )
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

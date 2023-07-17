@@ -50,9 +50,7 @@ fun main() {
                 intArrayOf(4, 5, 6),
                 intArrayOf(7, 8, 9),
             ), 1
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

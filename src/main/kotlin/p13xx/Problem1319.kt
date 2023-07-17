@@ -46,9 +46,7 @@ fun main() {
     measureTimeMillis {
         Solution().makeConnected(
             1, arrayOf()
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

@@ -51,9 +51,7 @@ fun main() {
     measureTimeMillis {
         Solution().recoverTree(
             TreeNode(68, TreeNode(41))
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

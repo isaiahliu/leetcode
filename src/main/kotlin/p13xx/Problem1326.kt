@@ -32,9 +32,7 @@ fun main() {
     measureTimeMillis {
         Solution().minTaps(
             5, intArrayOf(3, 4, 1, 1, 0, 0)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

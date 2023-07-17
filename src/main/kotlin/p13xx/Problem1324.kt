@@ -35,9 +35,7 @@ fun main() {
     measureTimeMillis {
         Solution().printVertically(
             "HOW ARE YOU"
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

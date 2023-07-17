@@ -23,9 +23,7 @@ fun main() {
     measureTimeMillis {
         Solution().decompressRLElist(
             intArrayOf()
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

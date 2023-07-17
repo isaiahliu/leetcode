@@ -25,9 +25,7 @@ fun main() {
     measureTimeMillis {
         Solution().hasCycle(
             null
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

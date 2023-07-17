@@ -29,9 +29,7 @@ fun main() {
     measureTimeMillis {
         Solution().isValidBST(
             TreeNode(5, TreeNode(4, TreeNode(6)))
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

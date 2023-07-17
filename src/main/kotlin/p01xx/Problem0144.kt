@@ -24,9 +24,7 @@ fun main() {
     measureTimeMillis {
         Solution().preorderTraversal(
             null
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

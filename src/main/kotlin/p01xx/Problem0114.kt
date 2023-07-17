@@ -32,9 +32,7 @@ fun main() {
     measureTimeMillis {
         Solution().flatten(
             null
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

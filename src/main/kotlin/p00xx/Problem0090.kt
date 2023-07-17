@@ -27,9 +27,7 @@ fun main() {
     measureTimeMillis {
         Solution().subsetsWithDup(
             intArrayOf(4)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

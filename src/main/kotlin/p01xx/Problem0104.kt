@@ -34,9 +34,7 @@ fun main() {
     measureTimeMillis {
         Solution().maxDepth(
             TreeNode(68)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

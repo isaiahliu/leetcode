@@ -65,8 +65,6 @@ fun main() {
     measureTimeMillis {
         Solution().removeZeroSumSublists(
             ListNode(1, ListNode(2, ListNode(3, ListNode(-3, ListNode(-2)))))
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

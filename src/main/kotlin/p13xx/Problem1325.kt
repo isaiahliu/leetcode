@@ -34,9 +34,7 @@ fun main() {
     measureTimeMillis {
         Solution().removeLeafNodes(
             null, 1
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

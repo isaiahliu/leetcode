@@ -37,9 +37,7 @@ fun main() {
     measureTimeMillis {
         Solution().longestConsecutive(
             intArrayOf()
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

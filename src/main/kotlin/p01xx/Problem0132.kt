@@ -40,9 +40,7 @@ fun main() {
     measureTimeMillis {
         Solution().minCut(
             "aa"
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

@@ -548,9 +548,7 @@ fun main() {
                 "aaawz",
                 "aaaaz"
             )
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

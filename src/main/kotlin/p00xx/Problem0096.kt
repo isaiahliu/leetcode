@@ -21,9 +21,7 @@ fun main() {
     measureTimeMillis {
         Solution().numTrees(
             3
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

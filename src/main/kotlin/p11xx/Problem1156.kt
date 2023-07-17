@@ -47,8 +47,6 @@ fun main() {
     measureTimeMillis {
         Solution().maxRepOpt1(
             "bbababaaaa"
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

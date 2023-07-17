@@ -27,9 +27,7 @@ fun main() {
     measureTimeMillis {
         LRUCache(1).get(
             1
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

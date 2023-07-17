@@ -31,8 +31,6 @@ fun main() {
     measureTimeMillis {
         Solution().longestArithSeqLength(
             intArrayOf(3, 6, 4, 9)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

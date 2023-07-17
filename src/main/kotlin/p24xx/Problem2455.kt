@@ -14,8 +14,6 @@ fun main() {
     measureTimeMillis {
         Solution().averageValue(
             intArrayOf(1, 2, 5)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

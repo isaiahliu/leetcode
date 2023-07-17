@@ -34,8 +34,6 @@ fun main() {
     }
 
     measureTimeMillis {
-        Solution().asteroidCollision(intArrayOf()).also {
-            println(it)
-        }
+        Solution().asteroidCollision(intArrayOf()).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

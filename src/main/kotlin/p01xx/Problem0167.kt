@@ -51,9 +51,7 @@ fun main() {
     measureTimeMillis {
         Solution().twoSum(
             intArrayOf(2, 7), 9
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

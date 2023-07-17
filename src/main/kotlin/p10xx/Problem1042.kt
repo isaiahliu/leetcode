@@ -3,7 +3,6 @@ package p10xx
 import java.util.*
 import kotlin.system.measureTimeMillis
 
-
 fun main() {
     class Solution {
         fun gardenNoAdj(n: Int, paths: Array<IntArray>): IntArray {
@@ -58,8 +57,6 @@ fun main() {
                 intArrayOf(2, 3),
                 intArrayOf(3, 1),
             )
-        ).toList().also {
-            println(it)
-        }
+        ).toList().also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

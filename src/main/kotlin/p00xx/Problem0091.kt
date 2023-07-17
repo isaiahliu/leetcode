@@ -31,9 +31,7 @@ fun main() {
     measureTimeMillis {
         Solution().numDecodings(
             "12"
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

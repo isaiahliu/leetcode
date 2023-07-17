@@ -20,9 +20,7 @@ fun main() {
     }
 
     measureTimeMillis {
-        Solution().getRow(5).also {
-            println(it)
-        }
+        Solution().getRow(5).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

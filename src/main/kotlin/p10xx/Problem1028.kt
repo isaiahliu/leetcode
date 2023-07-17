@@ -54,8 +54,6 @@ fun main() {
     measureTimeMillis {
         Solution().recoverFromPreorder(
             "1-2--3-5--6"
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

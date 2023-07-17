@@ -50,9 +50,7 @@ fun main() {
     measureTimeMillis {
         Solution().fractionToDecimal(
             Int.MIN_VALUE, -1
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

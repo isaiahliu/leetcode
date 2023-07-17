@@ -53,9 +53,7 @@ fun main() {
                     4, Node(3, null, Node(6)), Node(-1, null, Node(8))
                 ),
             )
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

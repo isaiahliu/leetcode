@@ -64,9 +64,7 @@ fun main() {
     measureTimeMillis {
         Solution().getAllElements(
             null, null
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

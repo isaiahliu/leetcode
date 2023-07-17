@@ -30,9 +30,7 @@ fun main() {
     measureTimeMillis {
         Solution().sumEvenGrandparent(
             null
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

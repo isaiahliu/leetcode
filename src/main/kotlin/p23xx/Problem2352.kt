@@ -34,8 +34,6 @@ fun main() {
     measureTimeMillis {
         Solution().equalPairs(
             arrayOf(intArrayOf(3, 2, 1))
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

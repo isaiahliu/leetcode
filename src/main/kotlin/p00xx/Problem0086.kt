@@ -33,9 +33,7 @@ fun main() {
     }
 
     measureTimeMillis {
-        Solution().partition(null, 0).also {
-            println(it)
-        }
+        Solution().partition(null, 0).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

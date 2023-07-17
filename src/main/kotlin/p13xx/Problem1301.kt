@@ -56,9 +56,7 @@ fun main() {
     measureTimeMillis {
         Solution().pathsWithMaxScore(
             listOf("E12", "1X1", "21S")
-        ).toList().also {
-            println(it)
-        }
+        ).toList().also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

@@ -18,9 +18,7 @@ fun main() {
     }
 
     measureTimeMillis {
-        Solution().maxProfit(intArrayOf()).also {
-            println(it)
-        }
+        Solution().maxProfit(intArrayOf()).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

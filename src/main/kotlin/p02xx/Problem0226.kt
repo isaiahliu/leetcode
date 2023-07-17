@@ -21,9 +21,7 @@ fun main() {
     measureTimeMillis {
         Solution().invertTree(
             null
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

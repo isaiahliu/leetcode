@@ -2,7 +2,6 @@ package p10xx
 
 import kotlin.system.measureTimeMillis
 
-
 fun main() {
     class Solution {
         fun minScoreTriangulation(values: IntArray): Int {
@@ -42,8 +41,6 @@ fun main() {
     measureTimeMillis {
         Solution().minScoreTriangulation(
             intArrayOf(1, 2, 3, 4)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

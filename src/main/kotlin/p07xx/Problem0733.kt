@@ -29,8 +29,6 @@ fun main() {
     }
 
     measureTimeMillis {
-        Solution().floodFill(arrayOf(), 1, 1, 1).also {
-            println(it)
-        }
+        Solution().floodFill(arrayOf(), 1, 1, 1).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

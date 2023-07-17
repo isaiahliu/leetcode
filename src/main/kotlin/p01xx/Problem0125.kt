@@ -13,9 +13,7 @@ fun main() {
     }
 
     measureTimeMillis {
-        Solution().isPalindrome("").also {
-            println(it)
-        }
+        Solution().isPalindrome("").also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

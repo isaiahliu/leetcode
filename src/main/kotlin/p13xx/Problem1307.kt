@@ -146,9 +146,7 @@ fun main() {
     measureTimeMillis {
         Solution().isSolvable(
             arrayOf("A", "B"), "A"
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

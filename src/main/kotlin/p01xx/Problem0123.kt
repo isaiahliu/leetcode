@@ -39,9 +39,7 @@ fun main() {
     }
 
     measureTimeMillis {
-        Solution().maxProfit(intArrayOf(0, 8, 5, 7, 4, 7)).also {
-            println(it)
-        }
+        Solution().maxProfit(intArrayOf(0, 8, 5, 7, 4, 7)).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

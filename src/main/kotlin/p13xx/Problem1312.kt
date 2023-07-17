@@ -35,9 +35,7 @@ fun main() {
     measureTimeMillis {
         Solution().minInsertions(
             "mbadm"
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

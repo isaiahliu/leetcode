@@ -46,9 +46,7 @@ fun main() {
     measureTimeMillis {
         Solution().singleNumber(
             intArrayOf(-2, -2, 1, 1, 4, 1, 4, 4, -4, -2)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

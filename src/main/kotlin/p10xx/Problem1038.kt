@@ -29,8 +29,6 @@ fun main() {
                 TreeNode(1),
                 TreeNode(20)
             )
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

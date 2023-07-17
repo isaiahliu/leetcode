@@ -29,9 +29,7 @@ fun main() {
     measureTimeMillis {
         Solution().cloneGraph(
             null
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

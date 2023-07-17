@@ -46,9 +46,7 @@ fun main() {
     measureTimeMillis {
         Solution().minimumDistance(
             "HAPPY"
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

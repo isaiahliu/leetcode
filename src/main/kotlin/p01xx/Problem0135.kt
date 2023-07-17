@@ -48,9 +48,7 @@ fun main() {
     measureTimeMillis {
         Solution().candy(
             intArrayOf(1, 2, 2)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

@@ -27,9 +27,7 @@ fun main() {
     }
 
     measureTimeMillis {
-        Solution().minimumTotal(emptyList()).also {
-            println(it)
-        }
+        Solution().minimumTotal(emptyList()).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

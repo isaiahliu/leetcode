@@ -36,9 +36,7 @@ fun main() {
     measureTimeMillis {
         Solution().canCompleteCircuit(
             intArrayOf(5, 1, 2, 3, 4), intArrayOf(4, 4, 1, 5, 1)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

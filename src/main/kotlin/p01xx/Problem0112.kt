@@ -40,9 +40,7 @@ fun main() {
     measureTimeMillis {
         Solution().hasPathSum(
             null, 1
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

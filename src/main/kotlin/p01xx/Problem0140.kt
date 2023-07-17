@@ -28,9 +28,7 @@ fun main() {
     measureTimeMillis {
         Solution().wordBreak(
             "catsanddog", listOf("cats", "dog", "sand", "and", "cat")
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

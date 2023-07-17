@@ -28,9 +28,7 @@ fun main() {
     measureTimeMillis {
         Solution().sortedArrayToBST(
             intArrayOf(1)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

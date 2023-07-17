@@ -30,8 +30,6 @@ fun main() {
     measureTimeMillis {
         Solution().maxUncrossedLines(
             intArrayOf(), intArrayOf()
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

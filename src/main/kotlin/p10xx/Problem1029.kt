@@ -23,8 +23,6 @@ fun main() {
     measureTimeMillis {
         Solution().twoCitySchedCost(
             arrayOf()
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

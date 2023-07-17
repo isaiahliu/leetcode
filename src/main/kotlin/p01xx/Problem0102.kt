@@ -41,9 +41,7 @@ fun main() {
     measureTimeMillis {
         Solution().levelOrder(
             TreeNode(68)
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

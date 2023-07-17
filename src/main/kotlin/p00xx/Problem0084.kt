@@ -49,9 +49,7 @@ fun main() {
     }
 
     measureTimeMillis {
-        Solution().largestRectangleArea(intArrayOf(4, 2, 0, 3, 2, 4, 3, 4)).also {
-            println(it)
-        }
+        Solution().largestRectangleArea(intArrayOf(4, 2, 0, 3, 2, 4, 3, 4)).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

@@ -36,9 +36,7 @@ fun main() {
     measureTimeMillis {
         Solution().distinctEchoSubstrings(
             "abcabcabc"
-        ).also {
-            println(it)
-        }
+        ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }
 

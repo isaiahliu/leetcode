@@ -22,10 +22,6 @@ fun main() {
                 val max = queue.poll()
                 sum -= max
 
-                if (sum == 1L) {
-                    return true
-                }
-
                 val secondMax = queue.peek()
 
                 (max - ((max - secondMax) / sum).coerceAtLeast(1) * sum).takeIf { it > 0 }?.also {
@@ -40,7 +36,7 @@ fun main() {
 
     measureTimeMillis {
         Solution().isPossible(
-            intArrayOf(2, 1000000000)
+            intArrayOf(1, 1000000000)
         ).also { println(it) }
     }.also { println("Time cost: ${it}ms") }
 }

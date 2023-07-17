@@ -14,9 +14,8 @@ fun main() {
             while (ta > 0 || tb > 0 || tc > 0) {
                 val lastA = ta and 1
                 val lastB = tb and 1
-                val lastC = tc and 1
 
-                when (lastC) {
+                when (tc and 1) {
                     lastA or lastB -> {}
 
                     1 -> {

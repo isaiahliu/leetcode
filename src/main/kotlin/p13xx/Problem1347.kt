@@ -8,10 +8,10 @@ fun main() {
             val counts = t.groupingBy { it }.eachCount()
             var result = 0
             s.groupingBy { it }.eachCount().forEach { (char, count) ->
-                val t = counts[char] ?: 0
+                val target = counts[char] ?: 0
 
-                if (count > t) {
-                    result += count - t
+                if (count > target) {
+                    result += count - target
                 }
             }
 

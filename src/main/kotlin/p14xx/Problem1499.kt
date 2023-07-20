@@ -11,13 +11,9 @@ fun main() {
             var result = Int.MIN_VALUE
             points.forEach { (x, y) ->
                 while (true) {
-                    val first = queue.peek()?.first ?: break
-
-                    if (x - first > k) {
+                    queue.peek()?.first?.takeIf { x - it > k }?.also {
                         queue.pollFirst()
-                    } else {
-                        break
-                    }
+                    } ?: break
                 }
 
                 queue.peek()?.also { (fx, fy) ->
@@ -25,13 +21,9 @@ fun main() {
                 }
 
                 while (true) {
-                    val (lx, ly) = queue.peekLast() ?: break
-
-                    if (y - ly >= x - lx) {
-                        queue.pollLast() ?: break
-                    } else {
-                        break
-                    }
+                    queue.peekLast()?.takeIf { (lx, ly) -> y - ly >= x - lx }?.also {
+                        queue.pollLast()
+                    } ?: break
                 }
 
                 queue.add(x to y)
@@ -40,6 +32,7 @@ fun main() {
             return result
         }
     }
+
     measureTimeMillis {
         Solution().findMaxValueOfEquation(
             arrayOf(

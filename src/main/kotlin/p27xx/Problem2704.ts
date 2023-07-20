@@ -4,9 +4,17 @@ type ToBeOrNotToBe = {
 };
 
 function expect(val: any): ToBeOrNotToBe {
+    const f = (predicate: boolean, error: string) => {
+        if(predicate){
+            return true
+        } else {
+            throw error
+        }
+    }
+
     return {
-        toBe : (t) => t === val,
-        notToBe : (t) => t !== val
+        toBe : (t) => f(t === val, "Not Equal"),
+        notToBe : (t) => f(t !== val, "Equal")
     }
 };
 

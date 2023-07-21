@@ -10,11 +10,9 @@ fun main() {
             val last = intArrayOf(-1, -1, -1)
 
             s.forEachIndexed { index, c ->
-                val pos = c - 'a'
+                last[c - 'a'] = index
 
-                result += last[(pos + 1) % 3].coerceAtMost(last[(pos + 2) % 3]) + 1
-
-                last[pos] = index
+                result += last.min() + 1
             }
 
             return result

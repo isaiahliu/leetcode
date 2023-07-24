@@ -1,5 +1,7 @@
 package p13xx
 
+import kotlin.system.measureTimeMillis
+
 fun main() {
     class Solution {
         fun frogPosition(n: Int, edges: Array<IntArray>, t: Int, target: Int): Double {
@@ -33,17 +35,10 @@ fun main() {
         }
     }
 
-    println(
+    measureTimeMillis {
         Solution().frogPosition(
-            7, arrayOf(
-                intArrayOf(1, 2),
-                intArrayOf(1, 3),
-                intArrayOf(1, 7),
-                intArrayOf(2, 4),
-                intArrayOf(2, 6),
-                intArrayOf(3, 5),
-            ), 2, 4
-        )
-    )
+            1, arrayOf(), 1, 1
+        ).also { println(it) }
+    }.also { println("Time cost: ${it}ms") }
 }
 

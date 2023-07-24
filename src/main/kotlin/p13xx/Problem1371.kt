@@ -11,13 +11,13 @@ fun main() {
             var result = 0
 
             s.forEachIndexed { index, c ->
-                status = when (c) {
-                    'a' -> status xor (1 shl 0)
-                    'e' -> status xor (1 shl 1)
-                    'i' -> status xor (1 shl 2)
-                    'o' -> status xor (1 shl 3)
-                    'u' -> status xor (1 shl 4)
-                    else -> status
+                status = status xor when (c) {
+                    'a' -> 1 shl 0
+                    'e' -> 1 shl 1
+                    'i' -> 1 shl 2
+                    'o' -> 1 shl 3
+                    'u' -> 1 shl 4
+                    else -> 0
                 }
 
                 map[status]?.also {

@@ -23,9 +23,9 @@ fun main() {
                 return result
             }
 
-            manager.indices.forEach { sendMessage(it) }
-
-            return cache.max()
+            return manager.indices.maxOf {
+                sendMessage(it)
+            }
         }
     }
 

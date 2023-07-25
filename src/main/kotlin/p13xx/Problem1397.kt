@@ -30,7 +30,6 @@ fun main() {
                             break
                         }
                     }
-
                 }
             }
 
@@ -98,11 +97,11 @@ fun main() {
                         (lower..higher).forEach { c ->
                             lastDp[lastStatus].forEachIndexed { lastEvilIndex, num ->
                                 if (num > 0) {
-                                    val evilIndex = (lastEvilIndex + 1) % evil.length
-                                    val p = (lastEvilPos[evilIndex][c] + evil.length) % evil.length
-                                    if ((lastEvilIndex + 1) % evil.length != evil.lastIndex || c != evil[evil.lastIndex] - 'a' || p != evil.lastIndex) {
-                                        evilDp[p] += num
-                                        evilDp[p] %= m
+                                    val evilIndex =
+                                        (lastEvilPos[(lastEvilIndex + 1) % evil.length][c] + evil.length) % evil.length
+                                    if ((lastEvilIndex + 1) % evil.length != evil.lastIndex || c != evil[evil.lastIndex] - 'a' || evilIndex != evil.lastIndex) {
+                                        evilDp[evilIndex] += num
+                                        evilDp[evilIndex] %= m
                                     }
                                 }
                             }

@@ -37,11 +37,16 @@ fun main() {
                         else -> {
                             if (nodeReversed) {
                                 nodeReversed = false
-                                children?.forEach { it.reverse() }
+                                children?.forEach {
+                                    it.reverse()
+                                }
                             }
+
                             sum = 0
 
-                            children?.forEach { it.reverse(from, to).also { sum += it } }
+                            children?.forEach {
+                                sum += it.reverse(from, to)
+                            }
                         }
                     }
 

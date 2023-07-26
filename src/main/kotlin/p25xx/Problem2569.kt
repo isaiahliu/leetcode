@@ -5,51 +5,48 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun handleQuery(nums1: IntArray, nums2: IntArray, queries: Array<IntArray>): LongArray {
-            class SegNode(val start: Int, val end: Int) {
+            class SegNode(private val start: Int, private val end: Int) {
                 var sum = 0
+
+                var nodeReversed = false
+
+                var children: List<SegNode>? = null
 
                 init {
                     if (start == end) {
                         sum = nums1[start]
                     } else {
-                        left = SegNode(start, (start + end) / 2).also {
+                        children = listOf(SegNode(start, (start + end) / 2).also {
                             sum += it.sum
-                        }
-
-                        right = SegNode((start + end) / 2 + 1, end).also {
+                        }, SegNode((start + end) / 2 + 1, end).also {
                             sum += it.sum
-                        }
+                        })
                     }
                 }
 
                 fun reverse(from: Int = start, to: Int = end): Int {
-                    if (from > end || to < start) {
-                        return sum
-                    } else if (from <= start && to >= end) {
-                        nodeReversed = !nodeReversed
-                        sum = end - start + 1 - sum
-
-                        return sum
-                    } else {
-                        sum = 0
-
-                        if (nodeReversed) {
-                            nodeReversed = false
-                            left?.reverse()
-                            right?.reverse()
+                    when {
+                        from > end || to < start -> {
                         }
 
-                        left?.reverse(from.coerceAtLeast(start), to.coerceAtMost(end))?.also { sum += it }
-                        right?.reverse(from.coerceAtLeast(start), to.coerceAtMost(end))?.also { sum += it }
+                        from <= start && to >= end -> {
+                            nodeReversed = !nodeReversed
+                            sum = end - start + 1 - sum
+                        }
 
-                        return sum
+                        else -> {
+                            if (nodeReversed) {
+                                nodeReversed = false
+                                children?.forEach { it.reverse() }
+                            }
+                            sum = 0
+
+                            children?.forEach { it.reverse(from, to).also { sum += it } }
+                        }
                     }
+
+                    return sum
                 }
-
-                var nodeReversed = false
-
-                var left: SegNode? = null
-                var right: SegNode? = null
             }
 
             val root = SegNode(0, nums1.lastIndex)

@@ -17,16 +17,11 @@ fun main() {
                 var idx = 0
                 var count = 2
 
-                when {
-                    array[0][0] != last -> {
-                    }
-
-                    array[1][1] > 0 -> {
+                if (array[0][0] == last) {
+                    if (array[1][1] > 0) {
                         idx++
                         count--
-                    }
-
-                    else -> {
+                    } else {
                         break
                     }
                 }

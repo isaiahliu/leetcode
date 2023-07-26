@@ -1,5 +1,7 @@
 package p14xx
 
+import kotlin.system.measureTimeMillis
+
 fun main() {
     class Solution {
         fun maxSatisfaction(satisfaction: IntArray): Int {
@@ -21,7 +23,10 @@ fun main() {
             return result
         }
     }
-    println(Solution().maxSatisfaction(intArrayOf(-1, -8, 0, 5, -7)))
-
+    measureTimeMillis {
+        Solution().maxSatisfaction(
+            intArrayOf()
+        ).also { println(it) }
+    }.also { println("Time cost: ${it}ms") }
 }
 

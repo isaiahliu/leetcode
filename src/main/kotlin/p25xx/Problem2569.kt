@@ -5,22 +5,20 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun handleQuery(nums1: IntArray, nums2: IntArray, queries: Array<IntArray>): LongArray {
+            for (i in 1 until nums1.size) {
+                nums1[i] += nums1[i - 1]
+            }
+
             class SegNode(private val start: Int, private val end: Int) {
-                var sum = 0
+                var sum = nums1[end] - (nums1.getOrNull(start - 1) ?: 0)
 
                 var nodeReversed = false
 
-                var children: List<SegNode>? = null
-
-                init {
-                    if (start == end) {
-                        sum = nums1[start]
+                val children: List<SegNode>? by lazy {
+                    if (start < end) {
+                        listOf(SegNode(start, (start + end) / 2), SegNode((start + end) / 2 + 1, end))
                     } else {
-                        children = listOf(SegNode(start, (start + end) / 2).also {
-                            sum += it.sum
-                        }, SegNode((start + end) / 2 + 1, end).also {
-                            sum += it.sum
-                        })
+                        null
                     }
                 }
 

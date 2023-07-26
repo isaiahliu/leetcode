@@ -7,80 +7,30 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun constrainedSubsetSum(nums: IntArray, k: Int): Int {
-            var max = Int.MIN_VALUE
+            nums.max().takeIf { it < 0 }?.also {
+                return it
+            }
 
-            val notNegDistance = IntArray(nums.size) { -1 }
+            var result = nums[0].coerceAtLeast(0)
 
-            var d = -1
+            val queue = PriorityQueue<Pair<Int, Int>>(compareByDescending { it.second })
+            queue.add(0 to result)
 
-            for (index in nums.indices) {
-                if (d >= 0) {
-                    d++
+            for (index in 1 until nums.size) {
+                while ((index - queue.peek().first > k)) {
+                    queue.poll()
                 }
 
-                when {
-                    nums[index] >= 0 -> {
-                        notNegDistance[index] = d
-                        d = 0
-                    }
-
-                    d >= 0 -> {
-                        notNegDistance[index] = d
-                        max = max.coerceAtLeast(nums[index])
-                    }
-
-                    else -> {
-                        max = max.coerceAtLeast(nums[index])
-                    }
-                }
-
-            }
-
-            if (notNegDistance[notNegDistance.lastIndex] < 0) {
-                return max
-            }
-
-            val dp = IntArray(nums.size)
-
-            if (nums[0] > 0) {
-                dp[0] = nums[0]
-            }
-
-            var result = dp[0]
-
-            val dpQueue = PriorityQueue<Int>(compareByDescending { dp[it] })
-            dpQueue.add(0)
-
-            for (index in 1 until dp.size) {
-                val distance = notNegDistance[index]
                 val num = nums[index]
-                when {
-                    distance < 0 -> {
-                        dp[index] = num.coerceAtLeast(0)
-                    }
+                var last = queue.peek().second
 
-                    distance < k -> {
-                        dp[index] = num + dp[index - distance]
-                    }
-
-                    else -> {
-                        while ((index - dpQueue.peek() > k)) {
-                            dpQueue.poll()
-                        }
-
-                        var last = dp[dpQueue.peek()]
-
-                        if (num >= 0) {
-                            last = last.coerceAtLeast(0)
-                        }
-
-                        dp[index] = last + num
-                    }
+                if (num >= 0) {
+                    last = last.coerceAtLeast(0)
                 }
 
-                dpQueue.add(index)
+                queue.add(index to last + num)
 
-                result = result.coerceAtLeast(dp[index])
+                result = result.coerceAtLeast(last + num)
             }
 
             return result

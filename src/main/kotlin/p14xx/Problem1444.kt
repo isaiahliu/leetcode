@@ -67,12 +67,9 @@ fun main() {
                         result.toInt()
                     }
                 }
-
             }
 
-            return dfs(0, 0, k).also {
-                println()
-            }
+            return dfs(0, 0, k)
         }
     }
 

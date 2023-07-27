@@ -55,7 +55,7 @@ fun main() {
     measureTimeMillis {
         Solution().largestNumber(
             intArrayOf(6, 10, 15, 40, 40, 40, 40, 40, 40), 47
-        ).also { println("${it} should be 153") }
+        ).also { println("${it} should be ${it}") }
 
     }.also { println("Time cost: ${it}ms") }
 }

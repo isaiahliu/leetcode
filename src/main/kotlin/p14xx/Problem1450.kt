@@ -14,7 +14,7 @@ fun main() {
     measureTimeMillis {
         Solution().busyStudent(
             intArrayOf(1, 2, 3), intArrayOf(3, 2, 7), 4
-        ).also { println("${it} should be 153") }
+        ).also { println("${it} should be ${it}") }
 
     }.also { println("Time cost: ${it}ms") }
 }

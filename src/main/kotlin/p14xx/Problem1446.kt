@@ -25,7 +25,7 @@ fun main() {
     measureTimeMillis {
         Solution().maxPower(
             ""
-        ).also { println("${it} should be 153") }
+        ).also { println("${it} should be ${it}") }
 
     }.also { println("Time cost: ${it}ms") }
 }

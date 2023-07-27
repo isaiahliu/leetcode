@@ -1,13 +1,22 @@
 package p14xx
 
+import java.util.*
 import kotlin.system.measureTimeMillis
 
 fun main() {
     class Solution {
         fun maxProduct(nums: IntArray): Int {
-            nums.sort()
+            val queue = PriorityQueue<Int>()
 
-            return ((nums[0] - 1) * (nums[1] - 1)).coerceAtLeast((nums[nums.lastIndex] - 1) * (nums[nums.lastIndex - 1] - 1))
+            nums.forEach {
+                queue.offer(it - 1)
+
+                if (queue.size > 2) {
+                    queue.poll()
+                }
+            }
+
+            return queue.poll() * queue.poll()
         }
     }
 

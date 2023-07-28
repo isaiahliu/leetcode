@@ -43,13 +43,12 @@ fun main() {
                 val groups = Array(n) { Group().also { it.size++ } }
 
                 var sumWeight = 0
-                val parents = hashSetOf<Group>()
 
-                parents.add(forcedIndex?.let { edges[it] }?.let { (from, to, weight) ->
+                forcedIndex?.let { edges[it] }?.let { (from, to, weight) ->
                     groups[from].join(groups[to])
                     sumWeight += weight
                     groups[from]
-                } ?: groups[0])
+                }
 
                 for ((edge, edgeIndex) in sortedEdges) {
                     if (edgeIndex == forbiddenIndex) {
@@ -64,10 +63,6 @@ fun main() {
                     if (fromGroup.parent != toGroup.parent) {
                         fromGroup.join(toGroup)
                         sumWeight += weight
-                    }
-
-                    if (parents.none { it.parent == fromGroup.parent }) {
-                        parents.add(fromGroup.parent)
                     }
 
                     if (fromGroup.parent.size == n) {

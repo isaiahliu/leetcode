@@ -27,7 +27,9 @@ fun main() {
                         val diff = d + baseDiff
                         val total = t + paintCost
 
-                        result[diff] = result[diff]?.takeIf { it < total } ?: total
+                        if (diff <= target) {
+                            result[diff] = result[diff]?.takeIf { it < total } ?: total
+                        }
                     }
                 }
                 if (houses[houseIndex] > 0) {

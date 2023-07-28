@@ -45,11 +45,9 @@ fun main() {
                 var sumWeight = 0
                 val parents = hashSetOf<Group>()
 
-                var size = 1
                 parents.add(forcedIndex?.let { edges[it] }?.let { (from, to, weight) ->
                     groups[from].join(groups[to])
                     sumWeight += weight
-                    size++
                     groups[from]
                 } ?: groups[0])
 
@@ -72,14 +70,12 @@ fun main() {
                         parents.add(fromGroup.parent)
                     }
 
-                    size = fromGroup.parent.size
-
-                    if (size == n) {
-                        break
+                    if (fromGroup.parent.size == n) {
+                        return sumWeight
                     }
                 }
 
-                return sumWeight.takeIf { size == n } ?: max
+                return max
             }
 
             val goodEdges = arrayListOf<Int>()

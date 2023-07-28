@@ -1,5 +1,7 @@
 package p15xx
 
+import util.Ints
+import util.get
 import kotlin.system.measureTimeMillis
 
 fun main() {
@@ -32,7 +34,7 @@ fun main() {
     measureTimeMillis {
         Solution().numSubmat(
             arrayOf(
-                intArrayOf(1, 1, 1, 1, 1, 1),
+                Ints[1, 1, 1, 1, 1, 1],
             )
         ).also { println(it) }
     }

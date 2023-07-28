@@ -47,7 +47,6 @@ fun main() {
                 forcedIndex?.let { edges[it] }?.let { (from, to, weight) ->
                     groups[from].join(groups[to])
                     sumWeight += weight
-                    groups[from]
                 }
 
                 for ((edge, edgeIndex) in sortedEdges) {

@@ -8,13 +8,15 @@ fun main() {
         fun minimumTime(n: Int, relations: Array<IntArray>, time: IntArray): Int {
             val start = IntArray(n)
             val parentCount = IntArray(n)
-            val children = Array(n) { hashSetOf<Int>() }
+            val children = hashMapOf<Int, MutableSet<Int>>()
 
             val roots = (0 until n).toMutableSet()
 
             relations.forEach { (prev, next) ->
                 roots.remove(next - 1)
-                children[prev - 1].add(next - 1)
+                children.computeIfAbsent(prev - 1) {
+                    hashSetOf()
+                }.add(next - 1)
                 parentCount[next - 1]++
             }
 
@@ -24,14 +26,15 @@ fun main() {
             while (true) {
                 val root = list.pollFirst() ?: break
                 val finishTime = start[root] + time[root]
-                result = result.coerceAtLeast(finishTime)
 
-                children[root].forEach {
+                children[root]?.forEach {
                     start[it] = start[it].coerceAtLeast(finishTime)
 
                     if (--parentCount[it] == 0) {
                         list.add(it)
                     }
+                } ?: run {
+                    result = result.coerceAtLeast(finishTime)
                 }
             }
 

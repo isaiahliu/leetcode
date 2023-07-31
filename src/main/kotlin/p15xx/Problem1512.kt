@@ -1,7 +1,5 @@
 package p15xx
 
-import util.Ints
-import util.get
 import kotlin.system.measureTimeMillis
 
 fun main() {
@@ -15,7 +13,7 @@ fun main() {
 
     measureTimeMillis {
         Solution().numIdenticalPairs(
-            Ints[1]
+            intArrayOf(1)
         ).also { println(it) }
     }
 }

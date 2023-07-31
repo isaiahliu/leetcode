@@ -1,7 +1,5 @@
 package p15xx
 
-import util.Ints
-import util.get
 import kotlin.system.measureTimeMillis
 
 fun main() {
@@ -34,7 +32,7 @@ fun main() {
 
     measureTimeMillis {
         Solution().rangeSum(
-            Ints[1, 2, 3, 4], 4, 1, 2
+            intArrayOf(1, 2, 3, 4), 4, 1, 2
         ).also { println(it) }
     }
 }

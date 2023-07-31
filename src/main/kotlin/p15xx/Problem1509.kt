@@ -1,7 +1,5 @@
 package p15xx
 
-import util.Ints
-import util.get
 import kotlin.system.measureTimeMillis
 
 fun main() {
@@ -21,7 +19,7 @@ fun main() {
 
     measureTimeMillis {
         Solution().minDifference(
-            Ints[1, 2, 3, 4, 5, 6, 7, 8, 9]
+            intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9)
         ).also { println(it) }
     }
 }

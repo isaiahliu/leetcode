@@ -5,12 +5,11 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun minSwaps(grid: Array<IntArray>): Int {
-            val sizes = IntArray(grid.size) { 0 }
-
-            grid.forEachIndexed { row, arr ->
-                for (i in arr.lastIndex downTo 1) {
-                    if (arr[i] == 0) {
-                        sizes[row]++
+            grid.forEach {
+                it[0] = 0
+                for (i in it.lastIndex downTo 1) {
+                    if (it[i] == 0) {
+                        it[0]++
                     } else {
                         break
                     }
@@ -19,11 +18,11 @@ fun main() {
 
             var result = 0
             loop@ for (size in grid.size - 1 downTo 1) {
-                for ((index, s) in sizes.withIndex()) {
-                    if (s >= size) {
-                        sizes[index] = -1
+                for (s in grid) {
+                    if (s[0] >= size) {
+                        s[0] = -1
                         continue@loop
-                    } else if (s >= 0) {
+                    } else if (s[0] >= 0) {
                         result++
                     }
                 }

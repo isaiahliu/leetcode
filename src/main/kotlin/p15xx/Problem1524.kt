@@ -6,21 +6,20 @@ fun main() {
     class Solution {
         fun numOfSubarrays(arr: IntArray): Int {
             val m = 1000000007
-            var oddCount = 0
-            var evenCount = 0
+            val counts = intArrayOf(0, 0)
+            var oddPos = 0
 
             var result = 0L
 
             arr.forEach {
                 if (it % 2 == 0) {
-                    evenCount++
+                    counts[1 - oddPos]++
                 } else {
-                    val t = oddCount
-                    oddCount = evenCount + 1
-                    evenCount = t
+                    oddPos = 1 - oddPos
+                    counts[oddPos]++
                 }
 
-                result += oddCount
+                result += counts[oddPos]
 
                 result %= m
             }

@@ -267,36 +267,42 @@ fun main() {
                 result.append("|")
 
                 row.forEachIndexed { c, ch ->
-                    if (r == lastPos?.first && c == lastPos.second) {
-                        result.append("[")
-                    } else if (r == lastPos?.first && c == lastPos.second + 1 && c % 3 != 0) {
-                        result.append("]")
-                    } else {
-                        result.append(" ")
+                    when {
+                        r == lastPos?.first && c == lastPos.second -> {
+                            result.append("[")
+                        }
+
+                        r == lastPos?.first && c == lastPos.second + 1 && c % 3 != 0 -> {
+                            result.append("]")
+                        }
+
+                        else -> {
+                            result.append(" ")
+                        }
                     }
 
                     result.append(ch)
 
                     if (c % 3 == 2) {
-                        if (r == lastPos?.first && c == lastPos.second) {
-                            result.append("]")
-                        } else {
-                            result.append(" ")
+                        when {
+                            r == lastPos?.first && c == lastPos.second -> {
+                                result.append("]")
+                            }
+
+                            else -> {
+                                result.append(" ")
+                            }
                         }
 
                         result.append("|")
                     }
                 }
-                result.appendLine()
-                if (r % 3 == 2) {
-                    if (r < 8) {
-                        result.appendLine("--------+-------+--------")
-                    } else {
-                        result.appendLine("-------------------------")
-                    }
-                }
-            }
 
+                result.appendLine()
+
+                if (r == 2 || r == 5) result.appendLine("--------+-------+--------")
+            }
+            result.appendLine("-------------------------")
             return result.toString()
         }
 

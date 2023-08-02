@@ -6,7 +6,7 @@ fun main() {
     val allNums = (1..9).toSet()
 
     abstract class AbstractGrid(val row: Int, val column: Int) {
-        abstract override fun toString(): String
+        override fun toString(): String = num?.toString() ?: " "
 
         abstract val num: Int?
 
@@ -20,6 +20,8 @@ fun main() {
     }
 
     abstract class AbstractGroup {
+        abstract val desc: String
+
         abstract operator fun contains(grid: AbstractGrid): Boolean
 
         abstract operator fun get(pos: Int): AbstractGrid
@@ -40,8 +42,9 @@ fun main() {
             val nums = hashSetOf<Int>()
 
             repeat(9) {
-                this[it].num?.also {
-                    if (!nums.add(it)) {
+                this[it].also {
+                    val num = it.num
+                    if (num != null && !nums.add(num) || num == null && it.inValidNums.size == 9) {
                         return false
                     }
                 }
@@ -91,8 +94,6 @@ fun main() {
             }
     }
 
-    abstract class AbstractLine : AbstractGroup()
-
     class Sodoku(init: Array<String>, val hints: Array<Pair<Pair<Int, Int>, Int>> = emptyArray()) {
         val gameBoard: Array<Array<AbstractGrid>> = Array(9) { r ->
             Array(9) { c ->
@@ -101,7 +102,6 @@ fun main() {
         }
 
         inner class NumGrid(row: Int, column: Int, override val num: Int) : AbstractGrid(row, column) {
-            override fun toString() = num.toString()
             override fun notifyAdd(num: Int) {}
             override fun notifyRemove(num: Int) {}
             override val inValidNums: Set<Int> = allNums
@@ -109,8 +109,6 @@ fun main() {
         }
 
         inner class EmptyGrid(row: Int, column: Int) : AbstractGrid(row, column) {
-            override fun toString() = " "
-
             override val num: Int? = null
 
             override val inValidNums = hashSetOf<Int>()
@@ -134,6 +132,8 @@ fun main() {
         }
 
         inner class Cube(val rowIndex: Int, val columnIndex: Int) : AbstractGroup() {
+            override val desc: String = "Cube (${rowIndex}, ${columnIndex})"
+
             override fun contains(grid: AbstractGrid): Boolean {
                 return rowIndex == grid.row / 3 && columnIndex == grid.column / 3
             }
@@ -143,7 +143,9 @@ fun main() {
             }
         }
 
-        inner class VerticalLine(val index: Int) : AbstractLine() {
+        inner class Column(val index: Int) : AbstractGroup() {
+            override val desc: String = "Column ${index}"
+
             override fun contains(grid: AbstractGrid): Boolean {
                 return index == grid.column
             }
@@ -153,7 +155,9 @@ fun main() {
             }
         }
 
-        inner class HorizontalLine(val index: Int) : AbstractLine() {
+        inner class Row(val index: Int) : AbstractGroup() {
+            override val desc: String = "Row ${index}"
+
             override fun contains(grid: AbstractGrid): Boolean {
                 return index == grid.row
             }
@@ -169,9 +173,11 @@ fun main() {
             }
         }
 
-        val verticalLines = Array(9) { VerticalLine(it) }
+        val columns = Array(9) { Column(it) }
 
-        val horizontalLines = Array(9) { HorizontalLine(it) }
+        val rows = Array(9) { Row(it) }
+
+        val allGroups = cubes.map { it.toList() }.flatten() + columns + rows
 
         val operations = LinkedList<Pair<Int, Int>>()
 
@@ -213,25 +219,7 @@ fun main() {
             val grid = NumGrid(rowIndex, columnIndex, num)
             gameBoard[rowIndex][columnIndex] = grid
 
-            cubes.forEach {
-                it.forEach { group ->
-                    if (grid in group) {
-                        repeat(9) {
-                            group[it].notifyAdd(num)
-                        }
-                    }
-                }
-            }
-
-            verticalLines.forEach { group ->
-                if (grid in group) {
-                    repeat(9) {
-                        group[it].notifyAdd(num)
-                    }
-                }
-            }
-
-            horizontalLines.forEach { group ->
+            allGroups.forEach { group ->
                 if (grid in group) {
                     repeat(9) {
                         group[it].notifyAdd(num)
@@ -241,17 +229,7 @@ fun main() {
         }
 
         fun notifyMustIn(grids: Set<AbstractGrid>, num: Int) {
-            cubes.forEach {
-                it.forEach {
-                    it.notifyMustIn(grids, num)
-                }
-            }
-
-            verticalLines.forEach {
-                it.notifyMustIn(grids, num)
-            }
-
-            horizontalLines.forEach {
+            allGroups.forEach {
                 it.notifyMustIn(grids, num)
             }
         }
@@ -261,35 +239,24 @@ fun main() {
                 gameBoard.forEach {
                     it.forEach { grid ->
                         grid.forceNum?.also {
+                            println("[${grid.row}, ${grid.column}] can be only ${it}")
                             return grid.row to grid.column to it
                         }
                     }
                 }
 
-                cubes.forEach {
-                    it.forEach {
-                        it.suggest?.also {
-                            return it
-                        }
-                    }
-                }
-
-                verticalLines.forEach {
-                    it.suggest?.also {
+                allGroups.forEach { group ->
+                    group.suggest?.also {
+                        println("Other cells in ${group.desc} can not be ${it.second} except for [${it.first.first}, ${it.first.second}] ")
                         return it
                     }
                 }
 
-                horizontalLines.forEach {
-                    it.suggest?.also {
-                        return it
-                    }
-                }
                 return null
             }
 
         fun valid(): Boolean {
-            return cubes.all { it.all { it.valid() } } && verticalLines.all { it.valid() } && horizontalLines.all { it.valid() }
+            return cubes.all { it.all { it.valid() } } && columns.all { it.valid() } && rows.all { it.valid() }
         }
 
         fun done(): Boolean {
@@ -339,23 +306,10 @@ fun main() {
         }
 
         fun deepSearch() {
-            val searches = arrayListOf<Pair<Set<AbstractGrid>, Int>>()
-
-            cubes.forEach {
-                it.forEach {
-                    searches += it.deepSearch()
-                }
-            }
-
-            verticalLines.forEach {
-                searches += it.deepSearch()
-            }
-
-            horizontalLines.forEach {
-                searches += it.deepSearch()
-            }
-
-            searches.forEach { (grids, num) ->
+            println("Deep Search")
+            allGroups.map {
+                it.deepSearch()
+            }.flatten().forEach { (grids, num) ->
                 notifyMustIn(grids, num)
             }
         }
@@ -367,6 +321,7 @@ fun main() {
 
             var step = 1
             while (!done()) {
+                println("Step ${step}:")
                 val (pos, num) = suggest ?: run {
                     deepSearch()
                     suggest
@@ -377,20 +332,25 @@ fun main() {
                 } ?: break
 
                 this[pos.first, pos.second] = num
-
-                println("Step ${step}:")
                 println(this)
+
                 val a = 1
                 step++
             }
 
-            println(done() && valid())
+            if (done()) {
+                println("Done")
+            } else if (valid()) {
+                println("Pending")
+            } else {
+                println("Failed")
+            }
         }
     }
 
     Sodoku(
         game1,
-//        arrayOf(0 to 2 to 7)
+        arrayOf(0 to 2 to 7)
     ).process()
 }
 

@@ -70,7 +70,7 @@ fun main() {
             return result
         }
 
-        val suggest: Pair<AbstractGrid, Int>?
+        val suggest: Pair<Pair<Int, Int>, Int>?
             get() {
                 val possibles = Array(10) { hashSetOf<AbstractGrid>() }
 
@@ -83,7 +83,7 @@ fun main() {
 
                 possibles.forEachIndexed { index, possibleGrids ->
                     if (possibleGrids.size == 1) {
-                        return possibleGrids.first() to index
+                        return possibleGrids.first().let { it.row to it.column } to index
                     }
                 }
 
@@ -93,7 +93,7 @@ fun main() {
 
     abstract class AbstractLine : AbstractGroup()
 
-    class Sodoku(init: Array<String>) {
+    class Sodoku(init: Array<String>, val hints: Array<Pair<Pair<Int, Int>, Int>> = emptyArray()) {
         val gameBoard: Array<Array<AbstractGrid>> = Array(9) { r ->
             Array(9) { c ->
                 EmptyGrid(r, c)
@@ -256,12 +256,12 @@ fun main() {
             }
         }
 
-        val suggest: Pair<AbstractGrid, Int>?
+        val suggest: Pair<Pair<Int, Int>, Int>?
             get() {
                 gameBoard.forEach {
                     it.forEach { grid ->
                         grid.forceNum?.also {
-                            return grid to it
+                            return grid.row to grid.column to it
                         }
                     }
                 }
@@ -361,16 +361,22 @@ fun main() {
         }
 
         fun process() {
+            var hintIndex = 0
+
             println(this)
 
             var step = 1
             while (!done()) {
-                val (grid, num) = suggest ?: run {
+                val (pos, num) = suggest ?: run {
                     deepSearch()
                     suggest
+                } ?: run {
+                    hints.getOrNull(hintIndex++)?.also { (pos, num) ->
+                        println("Use Hint [${pos.first}, ${pos.second}] set ${num}")
+                    }
                 } ?: break
 
-                this[grid.row, grid.column] = num
+                this[pos.first, pos.second] = num
 
                 println("Step ${step}:")
                 println(this)
@@ -378,11 +384,14 @@ fun main() {
                 step++
             }
 
-            println(valid())
+            println(done() && valid())
         }
     }
 
-    Sodoku(game3).process()
+    Sodoku(
+        game1,
+//        arrayOf(0 to 2 to 7)
+    ).process()
 }
 
 private val game1 = arrayOf(

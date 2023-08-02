@@ -359,30 +359,45 @@ fun main() {
                 notifyMustIn(grids, num)
             }
         }
+
+        fun process() {
+            println(this)
+
+            var step = 1
+            while (!done()) {
+                val (grid, num) = suggest ?: run {
+                    deepSearch()
+                    suggest
+                } ?: break
+
+                this[grid.row, grid.column] = num
+
+                println("Step ${step}:")
+                println(this)
+                val a = 1
+                step++
+            }
+
+            println(valid())
+        }
     }
 
-    val game = Sodoku(game1)
-    println(game)
-
-    var step = 1
-    while (!game.done()) {
-        val (grid, num) = game.suggest ?: run {
-            game.deepSearch()
-            game.suggest
-        } ?: break
-
-        game[grid.row, grid.column] = num
-
-        println("Step ${step}:")
-        println(game)
-        val a = 1
-        step++
-    }
-
-    println(game.valid())
+    Sodoku(game3).process()
 }
 
 private val game1 = arrayOf(
+    " 9   34  ",
+    "1 3 4 87 ",
+    "4 6 8    ",
+    "91    2  ",
+    "3 8    17",
+    "       9 ",
+    "7 4235   ",
+    "        2",
+    " 3 9     ",
+)
+
+private val game2 = arrayOf(
     "   9 5   ",
     "  1  2 54",
     "   3  1  ",
@@ -394,7 +409,7 @@ private val game1 = arrayOf(
     " 295   4 ",
 )
 
-private val game2 = arrayOf(
+private val game3 = arrayOf(
     "   4 25 3",
     " 4    9  ",
     "71      4",

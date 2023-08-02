@@ -10,9 +10,7 @@ fun main() {
 
         abstract val num: Int?
 
-        abstract fun notifyAdd(num: Int)
-
-        abstract fun notifyRemove(num: Int)
+        abstract fun notifyGroupMember(num: Int)
 
         abstract val inValidNumbers: Set<Int>
 
@@ -32,7 +30,7 @@ fun main() {
                     val grid = this[it]
 
                     if (grid !in grids) {
-                        grid.notifyAdd(num)
+                        grid.notifyGroupMember(num)
                     }
                 }
             }
@@ -104,8 +102,7 @@ fun main() {
         }
 
         inner class NumGrid(row: Int, column: Int, override val num: Int) : AbstractGrid(row, column) {
-            override fun notifyAdd(num: Int) {}
-            override fun notifyRemove(num: Int) {}
+            override fun notifyGroupMember(num: Int) {}
             override val inValidNumbers: Set<Int> = allNumbers
             override val forceNum: Int? = null
         }
@@ -115,12 +112,8 @@ fun main() {
 
             override val inValidNumbers = hashSetOf<Int>()
 
-            override fun notifyAdd(num: Int) {
+            override fun notifyGroupMember(num: Int) {
                 inValidNumbers.add(num)
-            }
-
-            override fun notifyRemove(num: Int) {
-                inValidNumbers.remove(num)
             }
 
             override val forceNum: Int?
@@ -224,7 +217,7 @@ fun main() {
             allGroups.forEach { group ->
                 if (grid in group) {
                     repeat(9) {
-                        group[it].notifyAdd(num)
+                        group[it].notifyGroupMember(num)
                     }
                 }
             }

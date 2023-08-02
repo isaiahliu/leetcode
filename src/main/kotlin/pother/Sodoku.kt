@@ -184,14 +184,20 @@ fun main() {
                 throw Exception("Invalid Input")
             }
 
+            val usedNums = IntArray(9)
+
             init.forEachIndexed { r, row ->
                 row.forEachIndexed { c, ch ->
                     when (ch) {
-                        in '1'..'9' -> this[r, c] = ch - '0'
+                        in '1'..'9' -> this[r, c] = (ch - '0').also { usedNums[it - 1]++ }
                         ' ' -> {}
                         else -> throw Exception("Invalid Input")
                     }
                 }
+            }
+
+            if (usedNums.any { it > 9 } || usedNums.count { it == 0 } > 1) {
+                throw Exception("Invalid Input")
             }
 
             operations.clear()
@@ -377,6 +383,18 @@ fun main() {
 }
 
 private val game1 = arrayOf(
+    "   9 5   ",
+    "  1  2 54",
+    "   3  1  ",
+    "96       ",
+    " 3    6  ",
+    "  8 6    ",
+    "  74    3",
+    " 85  3  6",
+    " 295   4 ",
+)
+
+private val game2 = arrayOf(
     "   4 25 3",
     " 4    9  ",
     "71      4",
@@ -387,4 +405,3 @@ private val game1 = arrayOf(
     "37   5   ",
     "68   1   ",
 )
-

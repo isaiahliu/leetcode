@@ -268,9 +268,9 @@ fun main() {
 
                 row.forEachIndexed { c, ch ->
                     if (r == lastPos?.first && c == lastPos.second) {
-                        result.append("(")
+                        result.append("[")
                     } else if (r == lastPos?.first && c == lastPos.second + 1 && c % 3 != 0) {
-                        result.append(")")
+                        result.append("]")
                     } else {
                         result.append(" ")
                     }
@@ -279,7 +279,7 @@ fun main() {
 
                     if (c % 3 == 2) {
                         if (r == lastPos?.first && c == lastPos.second) {
-                            result.append(")")
+                            result.append("]")
                         } else {
                             result.append(" ")
                         }
@@ -363,7 +363,7 @@ fun main() {
         }
     }
 
-    val game = Sudoku(game1, false)
+    val game = Sudoku(game3, false)
     game.process()
     println(game.log)
 }

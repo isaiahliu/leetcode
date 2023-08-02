@@ -38,9 +38,7 @@ fun main() {
                             val group = Group()
                             groups[r to c] = group
                             groups[r - 1 to c]?.join(group)
-                            groups[r + 1 to c]?.join(group)
                             groups[r to c - 1]?.join(group)
-                            groups[r to c + 1]?.join(group)
                         }
                     }
                 }

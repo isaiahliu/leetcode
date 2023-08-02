@@ -3,7 +3,7 @@ package pother
 import java.util.*
 
 fun main() {
-    val allNums = (1..9).toSet()
+    val allNumbers = (1..9).toSet()
 
     abstract class AbstractGrid(val row: Int, val column: Int) {
         override fun toString(): String = num?.toString() ?: " "
@@ -14,7 +14,7 @@ fun main() {
 
         abstract fun notifyRemove(num: Int)
 
-        abstract val inValidNums: Set<Int>
+        abstract val inValidNumbers: Set<Int>
 
         abstract val forceNum: Int?
     }
@@ -39,12 +39,12 @@ fun main() {
         }
 
         fun valid(): Boolean {
-            val nums = hashSetOf<Int>()
+            val numbers = hashSetOf<Int>()
 
             repeat(9) {
                 this[it].also {
                     val num = it.num
-                    if (num != null && !nums.add(num) || num == null && it.inValidNums.size == 9) {
+                    if (num != null && !numbers.add(num) || num == null && it.inValidNumbers.size == 9) {
                         return false
                     }
                 }
@@ -59,7 +59,7 @@ fun main() {
 
             repeat(9) {
                 val grid = this[it]
-                (allNums - grid.inValidNums).forEach {
+                (allNumbers - grid.inValidNumbers).forEach {
                     possibles[it].add(grid)
                 }
             }
@@ -79,7 +79,7 @@ fun main() {
 
                 repeat(9) {
                     val grid = this[it]
-                    (allNums - grid.inValidNums).forEach {
+                    (allNumbers - grid.inValidNumbers).forEach {
                         possibles[it].add(grid)
                     }
                 }
@@ -94,7 +94,9 @@ fun main() {
             }
     }
 
-    class Sodoku(init: Array<String>, val hints: Array<Pair<Pair<Int, Int>, Int>> = emptyArray()) {
+    class Sudoku(init: Array<String>, val guessForbidden: Boolean = false) {
+        val log = StringBuilder()
+
         val gameBoard: Array<Array<AbstractGrid>> = Array(9) { r ->
             Array(9) { c ->
                 EmptyGrid(r, c)
@@ -104,27 +106,27 @@ fun main() {
         inner class NumGrid(row: Int, column: Int, override val num: Int) : AbstractGrid(row, column) {
             override fun notifyAdd(num: Int) {}
             override fun notifyRemove(num: Int) {}
-            override val inValidNums: Set<Int> = allNums
+            override val inValidNumbers: Set<Int> = allNumbers
             override val forceNum: Int? = null
         }
 
         inner class EmptyGrid(row: Int, column: Int) : AbstractGrid(row, column) {
             override val num: Int? = null
 
-            override val inValidNums = hashSetOf<Int>()
+            override val inValidNumbers = hashSetOf<Int>()
 
             override fun notifyAdd(num: Int) {
-                inValidNums.add(num)
+                inValidNumbers.add(num)
             }
 
             override fun notifyRemove(num: Int) {
-                inValidNums.remove(num)
+                inValidNumbers.remove(num)
             }
 
             override val forceNum: Int?
                 get() {
-                    return if (inValidNums.size == 8) {
-                        (allNums - inValidNums).first()
+                    return if (inValidNumbers.size == 8) {
+                        (allNumbers - inValidNumbers).first()
                     } else {
                         null
                     }
@@ -139,31 +141,31 @@ fun main() {
             }
 
             override fun get(pos: Int): AbstractGrid {
-                return this@Sodoku[rowIndex * 3 + pos / 3, columnIndex * 3 + pos % 3]
+                return this@Sudoku[rowIndex * 3 + pos / 3, columnIndex * 3 + pos % 3]
             }
         }
 
         inner class Column(val index: Int) : AbstractGroup() {
-            override val desc: String = "Column ${index}"
+            override val desc: String = "Column $index"
 
             override fun contains(grid: AbstractGrid): Boolean {
                 return index == grid.column
             }
 
             override fun get(pos: Int): AbstractGrid {
-                return this@Sodoku[pos, index]
+                return this@Sudoku[pos, index]
             }
         }
 
         inner class Row(val index: Int) : AbstractGroup() {
-            override val desc: String = "Row ${index}"
+            override val desc: String = "Row $index"
 
             override fun contains(grid: AbstractGrid): Boolean {
                 return index == grid.row
             }
 
             override fun get(pos: Int): AbstractGrid {
-                return this@Sodoku[index, pos]
+                return this@Sudoku[index, pos]
             }
         }
 
@@ -190,19 +192,19 @@ fun main() {
                 throw Exception("Invalid Input")
             }
 
-            val usedNums = IntArray(9)
+            val usedNumbers = IntArray(9)
 
             init.forEachIndexed { r, row ->
                 row.forEachIndexed { c, ch ->
                     when (ch) {
-                        in '1'..'9' -> this[r, c] = (ch - '0').also { usedNums[it - 1]++ }
+                        in '1'..'9' -> this[r, c] = (ch - '0').also { usedNumbers[it - 1]++ }
                         ' ' -> {}
                         else -> throw Exception("Invalid Input")
                     }
                 }
             }
 
-            if (usedNums.any { it > 9 } || usedNums.count { it == 0 } > 1) {
+            if (usedNumbers.any { it > 9 } || usedNumbers.count { it == 0 } > 1) {
                 throw Exception("Invalid Input")
             }
 
@@ -239,7 +241,7 @@ fun main() {
                 gameBoard.forEach {
                     it.forEach { grid ->
                         grid.forceNum?.also {
-                            println("[${grid.row}, ${grid.column}] can be only ${it}")
+                            log.appendLine("[${grid.row}, ${grid.column}] can be only $it")
                             return grid.row to grid.column to it
                         }
                     }
@@ -247,7 +249,7 @@ fun main() {
 
                 allGroups.forEach { group ->
                     group.suggest?.also {
-                        println("Other cells in ${group.desc} can not be ${it.second} except for [${it.first.first}, ${it.first.second}] ")
+                        log.appendLine("Other cells in ${group.desc} can not be ${it.second} except for [${it.first.first}, ${it.first.second}] ")
                         return it
                     }
                 }
@@ -306,7 +308,7 @@ fun main() {
         }
 
         fun deepSearch() {
-            println("Deep Search")
+            log.appendLine("Deep Search")
             allGroups.map {
                 it.deepSearch()
             }.flatten().forEach { (grids, num) ->
@@ -314,44 +316,63 @@ fun main() {
             }
         }
 
-        fun process() {
-            var hintIndex = 0
+        fun clone(): Sudoku {
+            return Sudoku(gameBoard.map { it.joinToString("") }.toTypedArray())
+        }
 
-            println(this)
-
+        fun process(): Boolean {
+            log.appendLine(this)
             var step = 1
-            while (!done()) {
-                println("Step ${step}:")
+
+            while (!done() && valid()) {
+                log.appendLine("Step ${step}:")
                 val (pos, num) = suggest ?: run {
                     deepSearch()
                     suggest
                 } ?: run {
-                    hints.getOrNull(hintIndex++)?.also { (pos, num) ->
-                        println("Use Hint [${pos.first}, ${pos.second}] set ${num}")
+                    if (guessForbidden) {
+                        log.appendLine("Do not guess numbers")
+                        return@run null
                     }
+
+                    val guessCell =
+                        gameBoard.map { it.filter { it.inValidNumbers.size < 9 } }.flatten()
+                            .maxBy { it.inValidNumbers.size }
+
+                    var guessResult: Pair<Pair<Int, Int>, Int>? = null
+                    for (num in allNumbers - guessCell.inValidNumbers) {
+                        val newGame = clone()
+                        newGame[guessCell.row, guessCell.column] = num
+
+                        if (newGame.process()) {
+                            log.appendLine("Guess $num in [${guessCell.row}, ${guessCell.column}]")
+                            guessResult = guessCell.row to guessCell.column to num
+                            break
+                        }
+                    }
+
+                    guessResult
                 } ?: break
 
                 this[pos.first, pos.second] = num
-                println(this)
+                log.appendLine(this)
 
-                val a = 1
                 step++
             }
 
-            if (done()) {
-                println("Done")
-            } else if (valid()) {
-                println("Pending")
+            return if (done()) {
+                log.appendLine("Done")
+                true
             } else {
-                println("Failed")
+                log.appendLine("Failed")
+                false
             }
         }
     }
 
-    Sodoku(
-        game1,
-        arrayOf(0 to 2 to 7)
-    ).process()
+    val game = Sudoku(game1, false)
+    game.process()
+    println(game.log)
 }
 
 private val game1 = arrayOf(

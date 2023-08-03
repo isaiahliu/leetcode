@@ -5,15 +5,12 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun minimumOneBitOperations(n: Int): Int {
-            var t = Integer.highestOneBit(n)
+            var t = n
 
             var result = 0
 
-            var bit = 0
-
             while (t > 0) {
-                bit = bit xor if (n and t > 0) 1 else 0
-                result += bit * t
+                result = result xor t
                 t /= 2
             }
 

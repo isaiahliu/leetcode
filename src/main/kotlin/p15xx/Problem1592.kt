@@ -5,7 +5,7 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun reorderSpaces(text: String): String {
-            val stringBuilder = StringBuilder()
+            val word = StringBuilder()
             val words = arrayListOf<String>()
             var blankCount = 0
 
@@ -13,20 +13,20 @@ fun main() {
                 when (it) {
                     ' ' -> {
                         blankCount++
-                        if (stringBuilder.isNotEmpty()) {
-                            words.add(stringBuilder.toString())
+                        if (word.isNotEmpty()) {
+                            words.add(word.toString())
                         }
-                        stringBuilder.clear()
+                        word.clear()
                     }
 
                     else -> {
-                        stringBuilder.append(it)
+                        word.append(it)
                     }
                 }
             }
 
-            if (stringBuilder.isNotEmpty()) {
-                words.add(stringBuilder.toString())
+            if (word.isNotEmpty()) {
+                words.add(word.toString())
             }
 
             return if (words.size <= 1) {

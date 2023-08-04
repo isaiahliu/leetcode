@@ -5,9 +5,19 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun areConnected(n: Int, threshold: Int, queries: Array<IntArray>): List<Boolean> {
-            return when (threshold) {
-                0 -> {
+            return when {
+                threshold == 0 -> {
                     List(queries.size) { true }
+                }
+
+                threshold > n / 2 -> {
+                    List(queries.size) { false }
+                }
+
+                threshold > n / 3 -> {
+                    queries.map { (from, to) ->
+                        from > threshold && to > threshold && (from % to == 0 || to % from == 0)
+                    }
                 }
 
                 else -> {

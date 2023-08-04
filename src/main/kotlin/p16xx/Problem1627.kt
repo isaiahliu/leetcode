@@ -45,6 +45,11 @@ fun main() {
                         val group = groups[from - threshold - 1]
 
                         var t = from * 2
+
+                        if (t > n) {
+                            break
+                        }
+
                         while (t <= n) {
                             visited.add(t)
                             group.join(groups[t - threshold - 1])

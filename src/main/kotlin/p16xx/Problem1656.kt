@@ -1,22 +1,25 @@
 package p16xx
 
-import java.util.*
 import kotlin.system.measureTimeMillis
 
 fun main() {
     class OrderedStream(n: Int) {
         var ptr = 0
 
-        val indices = TreeMap<Int, String>()
+        var index = 0
+        val indices = arrayOfNulls<String>(n)
 
         fun insert(idKey: Int, value: String): List<String> {
             val result = arrayListOf<String>()
 
             indices[idKey - 1] = value
 
-            while (indices.isNotEmpty() && ptr == indices.firstKey()) {
-                result.add(indices.pollFirstEntry().value)
-                ptr++
+            while (true) {
+                indices.getOrNull(index)?.also {
+                    result.add(it)
+                    ptr++
+                    index++
+                } ?: break
             }
 
             return result

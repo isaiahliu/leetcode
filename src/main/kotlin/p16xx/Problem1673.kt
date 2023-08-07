@@ -19,7 +19,7 @@ fun main() {
             val decNodes = LinkedList<Node>()
 
             nums.forEachIndexed { index, num ->
-                val newNode = Node(nums[index]).also {
+                val newNode = Node(num).also {
                     it.prev = tail.prev
                     it.next = tail
                     tail.prev.next = it

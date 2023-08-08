@@ -39,8 +39,8 @@ fun main() {
 
             var result = 0
 
-            cubes.indices.forEach { c ->
-                result = result.coerceAtLeast(dfs(c))
+            cubes.indices.forEach {
+                result = result.coerceAtLeast(dfs(it))
             }
 
             return result

@@ -58,7 +58,7 @@ fun main() {
 
     measureTimeMillis {
         Solution().minMoves(
-            intArrayOf(1, 0, 0, 0, 0, 0, 1, 1), 3
+            intArrayOf(1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1), 3
         ).also { println("${it} should be ${it}") }
     }.also { println("Time cost: ${it}ms") }
 }

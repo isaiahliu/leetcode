@@ -21,7 +21,7 @@ fun main() {
                     queue.add(index)
 
                     if (queue.size == (k + 1) / 2) {
-                        preSums.add(cost)
+                        preSums.push(cost)
 
                         cost -= index - queue.poll() - queue.size
                     }
@@ -29,7 +29,7 @@ fun main() {
             }
 
             repeat(k / 2) {
-                preSums.pollLast()
+                preSums.poll()
             }
 
             queue.clear()
@@ -43,11 +43,10 @@ fun main() {
                     queue.add(index)
 
                     if (queue.size == k / 2 + 1) {
-                        result = result.coerceAtMost(cost + preSums.pollLast())
+                        preSums.poll()?.also {
+                            result = result.coerceAtMost(cost + it)
+                        } ?: break
 
-                        if (preSums.isEmpty()) {
-                            break
-                        }
                         cost -= queue.poll() - index - queue.size
                     }
                 }

@@ -1,32 +1,21 @@
 package p17xx
 
-import java.util.*
 import kotlin.system.measureTimeMillis
 
 fun main() {
     class Solution {
         fun countStudents(students: IntArray, sandwiches: IntArray): Int {
-            val studentsQueue = LinkedList(students.toList())
-            val sandwichQueue = LinkedList(sandwiches.toList())
+            val remain = students.count { it == 0 }.let { intArrayOf(it, students.size - it) }
 
-            var failCount = 0
-
-            while (failCount < studentsQueue.size) {
-                when (val student = studentsQueue.poll()) {
-                    sandwichQueue.peek() -> {
-                        sandwichQueue.poll()
-
-                        failCount = 0
-                    }
-
-                    else -> {
-                        studentsQueue.add(student)
-                        failCount++
-                    }
+            for (sandwich in sandwiches) {
+                if (remain[sandwich] > 0) {
+                    remain[sandwich]--
+                } else {
+                    break
                 }
             }
 
-            return studentsQueue.size
+            return remain[0] + remain[1]
         }
     }
 

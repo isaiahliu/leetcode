@@ -28,10 +28,14 @@ fun main() {
                 }
             }
 
+            repeat(k / 2) {
+                preSums.pollLast()
+            }
+
             queue.clear()
             cost = 0
 
-            val postSums = LinkedList<Int>()
+            var result = Int.MAX_VALUE
             for (index in nums.lastIndex downTo 0) {
                 if (nums[index] == 0) {
                     cost += queue.size
@@ -39,29 +43,23 @@ fun main() {
                     queue.add(index)
 
                     if (queue.size == k / 2 + 1) {
-                        postSums.push(cost)
+                        result = result.coerceAtMost(cost + preSums.pollLast())
 
+                        if (preSums.isEmpty()) {
+                            break
+                        }
                         cost -= queue.poll() - index - queue.size
                     }
                 }
             }
 
-            var result = Int.MAX_VALUE
-
-            repeat((k - 1) / 2) {
-                postSums.poll()
-            }
-
-            while (postSums.isNotEmpty()) {
-                result = result.coerceAtMost(preSums.poll() + postSums.poll())
-            }
             return result
         }
     }
 
     measureTimeMillis {
         Solution().minMoves(
-            intArrayOf(1, 1, 0, 1), 2
+            intArrayOf(1, 0, 0, 0, 0, 0, 1, 1), 3
         ).also { println("${it} should be ${it}") }
     }.also { println("Time cost: ${it}ms") }
 }

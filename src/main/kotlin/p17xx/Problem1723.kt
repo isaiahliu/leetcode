@@ -35,7 +35,6 @@ fun main() {
 
                 val mid = (start + end) / 2
 
-                //return max to status
                 fun dfs(status: Int, sum: Int, remain: Int): Boolean {
                     return when {
                         status == 0 -> {

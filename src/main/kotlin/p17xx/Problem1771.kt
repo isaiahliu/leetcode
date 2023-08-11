@@ -17,9 +17,8 @@ fun main() {
                 rightIndices[word2[index] - 'a'] = word2.lastIndex - index
             }
 
-            val cache = hashMapOf<Pair<Int, Int>, Int>()
+            val cache = Array(word.length) { IntArray(word.length) { -1 } }
             fun dfs(left: Int, right: Int): Int {
-                val cacheKey = left to right
                 return when {
                     left > right -> {
                         0
@@ -29,18 +28,18 @@ fun main() {
                         1
                     }
 
-                    word[left] == word[right] -> {
-                        dfs(left + 1, right - 1) + 2
-                    }
-
-                    cacheKey in cache -> {
-                        cache[cacheKey] ?: 0
+                    cache[left][right] >= 0 -> {
+                        cache[left][right]
                     }
 
                     else -> {
-                        val result = dfs(left + 1, right).coerceAtLeast(dfs(left, right - 1))
+                        val result = if (word[left] == word[right]) {
+                            dfs(left + 1, right - 1) + 2
+                        } else {
+                            dfs(left + 1, right).coerceAtLeast(dfs(left, right - 1))
+                        }
 
-                        cache[cacheKey] = result
+                        cache[left][right] = result
                         return result
                     }
                 }
@@ -55,11 +54,13 @@ fun main() {
 
             return result
         }
+
     }
 
     measureTimeMillis {
         Solution().longestPalindrome(
-            "cacb", "cbba"
+            "fwjltqemdtmlhadgwymcasllmdetyfggohqfoiphmaadfbhkkdnpeubislwgrkpejxjalpaytzhhbrvrjfpjrcgdfsakeqxexbgfhevhruhhwxsjqtnhxsemsvvxsyevfmmqevdsqergvfphpckbpeoeqyrmmdzafgtshitmibbpoucyynengtaaixahewgvpsiufqxgilmtazymycrxnjajdgpdluhvtftaummsbfureuiptxmedlxothitffouogmucgwznfobcbveengtmqdknzvzzysmjwgnbbykimpjckyzsebcbfpknxbodxpigmfnhxlmywdwptmkzuxxuvhbcixbsgngrtxgbcjuyctaqvzayvzeofbubuyhhgraohnhuelbqrlnbzlxahpsmgwpiflujdazsqrmrmtssudexfiulbyzjgmuucobevbeeofefsekshtdlidbfdbtywhbjerawvfobnadfcbzbkptozixprdqzvrzthhjyrnpajyswpogxvmefzfckgpwadkxzaqktvhzegtqlgxkfynowfmllyjigzldltvwfxseifqqishhuoguviviuvpkfljauaqtmynjwleevsdcsstcydfhlbhlnnyriomuzaxrvwlyyowsmclsudlojdnyjzvpnoegzltxgmeqkbfqdcutwgaupzkpnftkxhbyjcabavxohtkktkdejziuyzrctmkpukfsjbjznarrtgeyvdxrsoyikddlnxuonmbtrkadgmhwjpnvlmoonczsjpjpcevcdvuxqmyfylyfcnqahzynsfqcobglkdehuapfpjgsiztsiobjkcpopbloplalgwzeccjnnkivvqvidmhxcpzefrqrlhjcyyfolyzogmbjiakufyjytmjgjwylwpjvixougyggjmbzarudlmlyhvcxbhuqurxlznwkkrjbyiioumtsmybrtzvibqyvhibxmvgkoiyzmjdrqvyygzfq",
+            "oiaynrbkfkbgzynphprvucylwnfwsrvldkcgbdedgrktzeomjayyoelproupvxomxcbrrluekpnaldblhgvbxumjxqxmuvbebygwhsmxtklotlbzbdcxzscebazdanyksvhrqhgootomabyzjgjwhikissvzywlcirgnfsneshmakmcwnusdqphpcyfjsvwisklwvhrytmdjhwimrsozirggxfrghjuzccxihgslgeuemocqseggpoekbbzvgqwegzvsyetzyobskohgcmicalqwfkjppidojlqgncxyjyhyxnyidgsginlaaupkdlwhrwcddbnjbstblfkokauobwqquuuybmdznuvqzdvzlmndejmhmotuvxsumxrpnfduxvbhdbplfxhsuupswbynzolzsxsiwfgtphokgdyfxfbzdwnqdvgytztmhmcnloovrntdzwoawrvnbzbmvbuonkbstopivnvxpwzfsscekvcmhbhktjvgloxvgqgddinunuvjheziihadvzbyvkqedtvxotksicthjvnjffujhfehovplvaskmblxhkypaplqccyeboclwziheiqxulmpufpzkrxngismorycagltcbftptpmuhnplxohaqyfufofshdbmuqbwgkeswgvxesmcyeovixplrwrhwbfzlireqzxkcqpehhgxlhtztwkdwkxteqieolyimboxqintkbvyuzljzhxbxubqvguigdlpsydragglmdghtfzdohhsalalbfcpzgrjbivoathyfqenlsfyzupoktcydtystmbldgownnvgvbsmehlubxlkjgbkogjapbnblrjnjnqvibmugubxgddxbkxgjxnspbvykudcztsyazwlrlvybenfxdiywneagsnnjyknfyrwiwtdebbocwqrijtwrfphfawjridbsxfqalzurcttsstalqeqaqfnmyoanqccafzkqmjfwhaoaugyhqvesbctjgc"
         ).also { println("${it} should be $it") }
     }.also { println("Time cost: ${it}ms") }
 }

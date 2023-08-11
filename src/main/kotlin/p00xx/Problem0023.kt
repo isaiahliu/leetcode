@@ -1,6 +1,7 @@
 package p00xx
 
 import util.ListNode
+import java.util.*
 
 fun main() {
     class Solution {
@@ -8,22 +9,23 @@ fun main() {
             val root = ListNode(Int.MAX_VALUE)
             var current = root
 
-            val remainingIndices =
-                lists.mapIndexedNotNull { index, listNode -> index.takeIf { listNode != null } }.toMutableList()
+            val queue = PriorityQueue<ListNode>(compareBy { it.`val` })
+            lists.forEach {
+                it?.also {
+                    queue.offer(it)
+                }
+            }
 
-            while (remainingIndices.isNotEmpty()) {
-                val minIndex = remainingIndices.minBy { lists[it]?.`val` ?: Int.MAX_VALUE }
+            while (queue.isNotEmpty()) {
+                val min = queue.poll()
 
-                lists[minIndex]?.also {
-                    current.next = it
-                    current = it
+                current.next = min
+
+                min.next?.also {
+                    queue.offer(it)
                 }
 
-                lists[minIndex] = lists[minIndex]?.next
-
-                if (lists[minIndex] == null) {
-                    remainingIndices -= minIndex
-                }
+                current = min
             }
 
             return root.next

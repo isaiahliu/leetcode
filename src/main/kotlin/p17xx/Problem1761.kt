@@ -6,19 +6,19 @@ fun main() {
     class Solution {
         fun minTrioDegree(n: Int, edges: Array<IntArray>): Int {
             val adjacent = Array(n) { hashSetOf<Int>() }
-            val degress = IntArray(n)
+            val degrees = IntArray(n)
 
             edges.forEach { (from, to) ->
                 adjacent[(from - 1).coerceAtMost(to - 1)].add((from - 1).coerceAtLeast(to - 1))
-                degress[from - 1]++
-                degress[to - 1]++
+                degrees[from - 1]++
+                degrees[to - 1]++
             }
 
             var result = Int.MAX_VALUE
             for (i in 0 until n) {
                 adjacent[i].forEach { j ->
                     adjacent[j].intersect(adjacent[i]).forEach {
-                        result = result.coerceAtMost(degress[i] + degress[j] + degress[it] - 6)
+                        result = result.coerceAtMost(degrees[i] + degrees[j] + degrees[it] - 6)
                     }
                 }
             }

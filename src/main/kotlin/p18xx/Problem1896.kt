@@ -7,55 +7,46 @@ fun main() {
     class Solution {
         fun minOperationsToFlip(expression: String): Int {
             abstract class AbstractExp {
-                abstract val value: Boolean
+                abstract val value: Int
 
                 abstract val reverseCost: Int
             }
 
             class Or(val left: AbstractExp, val right: AbstractExp) : AbstractExp() {
-                override val value: Boolean = left.value || right.value
+                override val value: Int = left.value or right.value
 
                 override val reverseCost: Int
                     get() {
-                        return when {
-                            left.value && right.value -> {
-                                left.reverseCost.coerceAtMost(right.reverseCost) + 1
+                        return when (left.value xor right.value) {
+                            1 -> 1
+                            else -> {
+                                left.reverseCost.coerceAtMost(right.reverseCost) + (left.value and right.value)
                             }
-
-                            !left.value && !right.value -> {
-                                left.reverseCost.coerceAtMost(right.reverseCost)
-                            }
-
-                            else -> 1
                         }
                     }
             }
 
             class And(val left: AbstractExp, val right: AbstractExp) : AbstractExp() {
-                override val value: Boolean = left.value && right.value
+                override val value: Int = left.value and right.value
                 override val reverseCost: Int
                     get() {
-                        return when {
-                            left.value && right.value -> {
-                                left.reverseCost.coerceAtMost(right.reverseCost)
-                            }
+                        return when (left.value xor right.value) {
+                            1 -> 1
 
-                            !left.value && !right.value -> {
-                                left.reverseCost.coerceAtMost(right.reverseCost) + 1
+                            else -> {
+                                left.reverseCost.coerceAtMost(right.reverseCost) + ((left.value and right.value) xor 1)
                             }
-
-                            else -> 1
                         }
                     }
             }
 
             class One : AbstractExp() {
-                override val value: Boolean = true
+                override val value: Int = 1
                 override val reverseCost: Int = 1
             }
 
             class Zero : AbstractExp() {
-                override val value: Boolean = false
+                override val value: Int = 0
                 override val reverseCost: Int = 1
             }
 
@@ -83,29 +74,25 @@ fun main() {
                     }
                 }
 
-                loop@ while (true) {
-                    when (operators.peek()) {
+                while (operators.peek()?.takeIf { it != '(' } != null) {
+                    when (operators.poll()) {
                         '&' -> {
-                            operators.poll()
                             stack.push(And(stack.poll(), stack.poll()))
                         }
 
                         '|' -> {
-                            operators.poll()
                             stack.push(Or(stack.poll(), stack.poll()))
                         }
-
-                        else -> break@loop
                     }
                 }
             }
-            return stack.peekLast().reverseCost
+            return stack.peek().reverseCost
         }
     }
 
     measureTimeMillis {
         Solution().minOperationsToFlip(
-            "(0&0)&(0&0&0)"
+            "0|(1)|(0|(1)|0|0&1|(1))"
         ).also { println("${it} should be $it") }
     }.also { println("Time cost: ${it}ms") }
 }

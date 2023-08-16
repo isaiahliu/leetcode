@@ -7,24 +7,26 @@ fun main() {
         fun findRotation(mat: Array<IntArray>, target: Array<IntArray>): Boolean {
             val n = mat.lastIndex
 
-            loop@ for (numGetter in arrayOf<(Int, Int) -> Int>(
+            val rotates = hashSetOf<(Int, Int) -> Int>(
                 { r, c -> mat[r][c] },
                 { r, c -> mat[n - c][r] },
                 { r, c -> mat[n - r][n - c] },
                 { r, c -> mat[c][n - r] }
-            )) {
-                for ((rowIndex, row) in target.withIndex()) {
-                    for ((columnIndex, num) in row.withIndex()) {
-                        if (num != numGetter(rowIndex, columnIndex)) {
-                            continue@loop
-                        }
+            )
+
+            for ((rowIndex, row) in target.withIndex()) {
+                for ((columnIndex, num) in row.withIndex()) {
+                    rotates.retainAll {
+                        num == it(rowIndex, columnIndex)
+                    }
+
+                    if (rotates.isEmpty()) {
+                        return false
                     }
                 }
-
-                return true
             }
 
-            return false
+            return true
         }
     }
 

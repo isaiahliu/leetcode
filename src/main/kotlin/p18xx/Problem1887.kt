@@ -5,11 +5,18 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun reductionOperations(nums: IntArray): Int {
+            nums.sort()
+
             var result = 0
-            var c = 0
-            nums.toList().groupingBy { it }.eachCount().entries.sortedBy { it.key }.forEach { (num, count) ->
-                result += count * c
-                c++
+            var incCount = 0
+            var pre = nums[0]
+            for (num in nums) {
+                if (num > pre) {
+                    incCount++
+                }
+
+                pre = num
+                result += incCount
             }
 
             return result

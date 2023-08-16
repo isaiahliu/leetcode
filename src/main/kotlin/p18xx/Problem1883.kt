@@ -19,8 +19,8 @@ fun main() {
                 dp.toMap().also { dp.clear() }.forEach { (skipCount, cost) ->
                     var (hour, rem) = cost
 
-                    rem += road % speed
-                    hour += road / speed + rem / speed
+                    rem += road
+                    hour += rem / speed
                     rem %= speed
 
                     if (rem > 0) {

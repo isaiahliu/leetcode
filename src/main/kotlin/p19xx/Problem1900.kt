@@ -72,7 +72,7 @@ fun main() {
 
     measureTimeMillis {
         Solution().earliestAndLatest(
-            11, 2, 4
+            28, 1, 3
         ).toList().also { println("${it} should be $it") }
     }.also { println("Time cost: ${it}ms") }
 }

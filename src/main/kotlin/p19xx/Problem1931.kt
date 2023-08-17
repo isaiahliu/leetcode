@@ -70,13 +70,15 @@ fun main() {
                 return result.toInt()
             }
 
-            return dfs(0, 0, 0)
+            return dfs(0, 0, 0).also {
+                println()
+            }
         }
     }
 
     measureTimeMillis {
         Solution().colorTheGrid(
-            5, 5
+            5, 1000
         ).also { println("${it} should be $it") }
     }.also { println("Time cost: ${it}ms") }
 }

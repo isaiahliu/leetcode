@@ -17,7 +17,7 @@ fun main() {
 
                 val pathMap = hashMapOf<Long, MutableSet<Int>>()
 
-                val base = 65536.toBigInteger()
+                val base = 100001.toBigInteger()
                 val baseHigh = base.modPow((mid - 1).toBigInteger(), m)
 
                 paths.forEachIndexed { pathIndex, path ->

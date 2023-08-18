@@ -36,7 +36,7 @@ fun main() {
             fun MutableMap<Int, Int>.renew(size: Int, waste: Int) {
                 this[size] = (this[size] ?: Int.MAX_VALUE).coerceAtMost(waste)
             }
-            
+
             for (index in 1 until dp.size) {
                 val last = dp[index - 1]
                 val current = dp[index]
@@ -70,7 +70,7 @@ fun main() {
     measureTimeMillis {
         Solution().minSpaceWastedKResizing(
             intArrayOf(39, 41, 11, 35, 47, 16, 11, 30, 25, 18), 1
-        ).also { println("$it should be 15") }
+        ).also { println("$it should be 112") }
 
         Solution().minSpaceWastedKResizing(
             intArrayOf(10, 20, 15, 30, 20), 2

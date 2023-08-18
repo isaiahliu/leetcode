@@ -5,15 +5,13 @@ import kotlin.system.measureTimeMillis
 fun main() {
     class Solution {
         fun countSpecialSubsequences(nums: IntArray): Int {
-            val m = 1000000007
-
-            val possibilities = longArrayOf(1, 0, 0, 0)
+            val possibilities = intArrayOf(1, 0, 0, 0)
 
             nums.forEach {
-                possibilities[it + 1] = (possibilities[it + 1] * 2 + possibilities[it]) % m
+                possibilities[it + 1] = ((possibilities[it + 1] * 2L + possibilities[it]) % 1000000007).toInt()
             }
 
-            return possibilities[3].toInt()
+            return possibilities[3]
         }
     }
 

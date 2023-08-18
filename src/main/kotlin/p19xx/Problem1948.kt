@@ -1,20 +1,17 @@
 package p19xx
 
-import java.math.BigInteger
 import java.util.*
 import kotlin.system.measureTimeMillis
 
 fun main() {
     class Solution {
         fun deleteDuplicateFolder(paths: List<List<String>>): List<List<String>> {
-            val m = 9223372036854775807L.toBigInteger()
-
             class Node(val name: String) {
                 var delete = false
                 var parent: Node? = null
                 var degree = 0
 
-                var subFolderHash = 0L
+                var subFolderSerialize = ""
                 val children = hashMapOf<String, Node>()
 
                 fun init(folders: List<String>, index: Int = 0) {
@@ -29,29 +26,21 @@ fun main() {
                 }
             }
 
-            val nameHashes = hashMapOf<String, Long>()
             val leaves = hashMapOf<String, MutableSet<Node>>()
-            val map = hashMapOf<Long, Node>()
+            val map = hashMapOf<String, Node>()
 
             val queue = LinkedList<Node>()
-
-            var hashIndex = 1L
-
-            val hashBase = 256.toBigInteger()
 
             fun Node.mark() {
                 parent?.also { p ->
                     p.degree--
 
                     if (p.degree == 0) {
-                        p.subFolderHash = p.children.map {
-                            it.value.subFolderHash.toBigInteger() + (nameHashes[it.value.name]?.toBigInteger()
-                                ?: BigInteger.ZERO)
-                        }.sorted().fold(BigInteger.ZERO) { hash, subHash ->
-                            (hash * hashBase + subHash) % m
-                        }.toLong()
+                        p.subFolderSerialize = p.children.map {
+                            "${it.value.name}(${it.value.subFolderSerialize})"
+                        }.sorted().joinToString(",")
 
-                        map[p.subFolderHash]?.also {
+                        map[p.subFolderSerialize]?.also {
                             if (!it.delete) {
                                 it.delete = true
                                 queue.add(it)
@@ -59,17 +48,14 @@ fun main() {
                             p.delete = true
                             queue.add(p)
                         } ?: run {
-                            map[p.subFolderHash] = p
+                            map[p.subFolderSerialize] = p
                         }
                     }
                 }
             }
 
             fun Node.findLeaves() {
-                val hash = nameHashes.computeIfAbsent(name) { hashIndex++ }
-
                 if (children.isEmpty()) {
-                    subFolderHash = hash
                     leaves.computeIfAbsent(name) { hashSetOf() }.add(this)
                 } else {
                     children.forEach {
@@ -90,8 +76,6 @@ fun main() {
                         it.mark()
                     }
                 }
-
-                hashIndex++
             }
 
             while (queue.isNotEmpty()) {

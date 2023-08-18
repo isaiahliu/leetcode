@@ -7,7 +7,9 @@ fun main() {
         fun maxSizeSlices(slices: IntArray): Int {
             val size = slices.size
 
-            val cache = hashMapOf<Pair<Int, Int>, Int>()
+            val cache = Array(size) {
+                IntArray(size / 3)
+            }
 
             fun dfs(from: Int, rangeSize: Int): Int {
                 if (rangeSize == 0) {
@@ -18,10 +20,8 @@ fun main() {
                     return slices[(from + 1) % size]
                 }
 
-                val cacheKey = from to rangeSize
-
-                if (cacheKey in cache) {
-                    return cache[cacheKey] ?: 0
+                if (cache[from][rangeSize / 3 - 1] > 0) {
+                    return cache[from][rangeSize / 3 - 1]
                 }
 
                 var result = 0
@@ -35,7 +35,7 @@ fun main() {
                 leftPart = 0
                 while (leftPart < rangeSize) {
                     result = result.coerceAtLeast(
-                        slices[(from + leftPart + 1) % size] + dfs(from + 1, leftPart) + dfs(
+                        slices[(from + leftPart + 1) % size] + dfs((from + 1) % size, leftPart) + dfs(
                             (from + leftPart + 2) % size, rangeSize - leftPart - 3
                         )
                     )
@@ -43,14 +43,14 @@ fun main() {
                     leftPart += 3
                 }
 
-                cache[cacheKey] = result
+                cache[from][rangeSize / 3 - 1] = result
 
                 return result
             }
 
             var result = 0
             slices.indices.forEach {
-                result = result.coerceAtLeast(dfs(it, slices.size))
+                result = result.coerceAtLeast(dfs(it, size))
             }
 
             return result

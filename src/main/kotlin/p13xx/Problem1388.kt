@@ -9,35 +9,38 @@ fun main() {
 
             val cache = hashMapOf<Pair<Int, Int>, Int>()
 
-            fun dfs(from: Int, to: Int, total: Boolean = false): Int {
-                if (from == to && !total) {
+            fun dfs(from: Int, rangeSize: Int): Int {
+                if (rangeSize == 0) {
                     return 0
                 }
 
-                val cacheKey = from to to
+                if (rangeSize == 3) {
+                    return slices[(from + 1) % size]
+                }
+
+                val cacheKey = from to rangeSize
 
                 if (cacheKey in cache) {
                     return cache[cacheKey] ?: 0
                 }
 
-                val rangeFrom = (from + 1) % size
-                val rangeTo = (to + size - 1) % size
-                var split = rangeFrom
-                var result = slices[split] + dfs((split + 1) % size, rangeTo)
-
-                split = (split + 3) % size
-                while ((to + 1) % size != split) {
+                var result = 0
+                var leftPart = 3
+                while (leftPart < rangeSize) {
                     result =
-                        result.coerceAtLeast(slices[split] + dfs(rangeFrom, split) + dfs((split + 1) % size, rangeTo))
-
-                    split = (split + 3) % size
+                        result.coerceAtLeast(dfs(from, leftPart) + dfs((from + leftPart) % size, rangeSize - leftPart))
+                    leftPart += 3
                 }
 
-                split = (from + 3) % size
-                while (split != to) {
-                    result = result.coerceAtLeast(dfs(from, split) + dfs(split, to))
+                leftPart = 0
+                while (leftPart < rangeSize) {
+                    result = result.coerceAtLeast(
+                        slices[(from + leftPart + 1) % size] + dfs(from + 1, leftPart) + dfs(
+                            (from + leftPart + 2) % size, rangeSize - leftPart - 3
+                        )
+                    )
 
-                    split = (split + 3) % size
+                    leftPart += 3
                 }
 
                 cache[cacheKey] = result
@@ -47,7 +50,7 @@ fun main() {
 
             var result = 0
             slices.indices.forEach {
-                result = result.coerceAtLeast(dfs(it, it, true))
+                result = result.coerceAtLeast(dfs(it, slices.size))
             }
 
             return result

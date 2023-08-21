@@ -1,6 +1,6 @@
 package p04xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -42,9 +42,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findDisappearedNumbers(
             intArrayOf(4, 3, 2, 7, 8, 2, 3, 1)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

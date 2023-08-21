@@ -1,6 +1,6 @@
 package p09xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -31,9 +31,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().reorderLogFiles(
             arrayOf("dig1 8 1 5 1", "let1 art can", "dig2 3 6", "let2 own kit dig", "let3 art zero")
-        ).toList().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

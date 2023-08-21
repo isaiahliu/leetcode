@@ -1,7 +1,7 @@
 package p18xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -62,7 +62,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().closestRoom(
             arrayOf(
                 intArrayOf(2, 2),
@@ -73,7 +73,7 @@ fun main() {
                 intArrayOf(3, 3),
                 intArrayOf(5, 2),
             )
-        ).toList().also { println("${it} should be $it") }
+        ).toList()
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

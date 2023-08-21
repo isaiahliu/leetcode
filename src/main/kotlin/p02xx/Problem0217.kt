@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun containsDuplicate(nums: IntArray): Boolean {
@@ -15,10 +17,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().containsDuplicate(
             intArrayOf()
         )
-    )
+    }
 }
 

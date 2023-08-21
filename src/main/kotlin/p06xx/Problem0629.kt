@@ -1,6 +1,6 @@
 package p06xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -40,8 +40,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().kInversePairs(1000, 1000).also { println(it) }
+    expect {
+        Solution().kInversePairs(1000, 1000)
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

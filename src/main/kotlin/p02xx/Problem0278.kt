@@ -1,6 +1,6 @@
 package p02xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     abstract class VersionControl {
@@ -30,10 +30,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().firstBadVersion(
             1
-        ).also { println(it) }
+        )
     }
 }
 

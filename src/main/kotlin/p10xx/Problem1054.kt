@@ -1,7 +1,7 @@
 package p10xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -33,9 +33,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().rearrangeBarcodes(
             intArrayOf(1, 0, 1, 2, 1, 1, 7, 5)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun shortestPalindrome(s: String): String {
@@ -23,10 +25,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().shortestPalindrome(
             "abcd"
         )
-    )
+    }
 }
 

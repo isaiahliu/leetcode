@@ -1,7 +1,7 @@
 package p09xx
 
 import kotlin.math.sign
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -27,9 +27,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().maxTurbulenceSize(
             intArrayOf(9, 4, 2, 10, 7, 8, 8, 1, 9)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

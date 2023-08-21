@@ -1,6 +1,6 @@
 package p00xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -32,9 +32,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-//        println(Solution().searchInsert(intArrayOf(1, 3, 5, 6), 0))
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().isValidSudoku(arrayOf())
+    }
 }
 
 

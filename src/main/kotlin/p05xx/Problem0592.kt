@@ -1,7 +1,7 @@
 package p05xx
 
 import java.math.BigInteger
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -59,8 +59,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().fractionAddition("-1/2+22/4-33/5").also { println(it) }
+    expect {
+        Solution().fractionAddition("-1/2+22/4-33/5")
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

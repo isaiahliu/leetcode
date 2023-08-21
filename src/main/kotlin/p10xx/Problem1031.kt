@@ -1,6 +1,6 @@
 package p10xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -45,9 +45,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().maxSumTwoNoOverlap(
             intArrayOf(2, 1, 5, 6, 0, 9, 5, 0, 3, 8), 4, 3
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

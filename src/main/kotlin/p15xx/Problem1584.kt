@@ -2,7 +2,7 @@ package p15xx
 
 import java.util.*
 import kotlin.math.absoluteValue
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -63,12 +63,12 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minCostConnectPoints(
             arrayOf(
                 intArrayOf(1, 3, 2), intArrayOf(2, 3, 0), intArrayOf(1, 3, 0), intArrayOf(0, 2, 1)
             )
-        ).also { println(it) }
+        )
     }
 }
 

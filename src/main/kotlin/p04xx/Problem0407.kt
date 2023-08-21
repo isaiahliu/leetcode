@@ -1,6 +1,6 @@
 package p04xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -58,20 +58,20 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
 //        Solution().trapRainWater(
 //            input.map {
 //                it.split(",").map { it.toInt() }.toIntArray()
 //            }.toTypedArray()
-//        ).also { println(it) }
+//        )
         Solution().trapRainWater(
             arrayOf(
                 intArrayOf(1, 4, 3, 1, 3, 2),
                 intArrayOf(3, 2, 1, 3, 2, 4),
                 intArrayOf(2, 3, 3, 2, 3, 1),
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 
 

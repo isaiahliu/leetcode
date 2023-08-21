@@ -1,6 +1,6 @@
 package p23xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -25,10 +25,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().largestLocal(
             emptyArray()
-        ).also { println(it) }
+        )
     }
 }
 

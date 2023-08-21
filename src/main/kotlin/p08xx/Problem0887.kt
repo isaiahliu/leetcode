@@ -1,6 +1,6 @@
 package p08xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -72,11 +72,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().superEggDrop(3, 6).also { println(it) }
-        Solution().superEggDrop(2, 2).also { println(it) }
-        Solution().superEggDrop(2, 6).also { println(it) }
-        Solution().superEggDrop(2, 9).also { println(it) }
-        Solution().superEggDrop(3, 14).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().superEggDrop(3, 6)
+        Solution().superEggDrop(2, 2)
+        Solution().superEggDrop(2, 6)
+        Solution().superEggDrop(2, 9)
+        Solution().superEggDrop(3, 14)
+    }
 }

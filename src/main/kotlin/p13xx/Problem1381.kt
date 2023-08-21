@@ -1,7 +1,7 @@
 package p13xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class CustomStack(private val maxSize: Int) {
@@ -36,8 +36,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        CustomStack(5).push(1).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        CustomStack(5).push(1)
+    }
 }
 

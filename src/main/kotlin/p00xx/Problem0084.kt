@@ -1,7 +1,7 @@
 package p00xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -48,8 +48,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().largestRectangleArea(intArrayOf(4, 2, 0, 3, 2, 4, 3, 4)).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().largestRectangleArea(intArrayOf(4, 2, 0, 3, 2, 4, 3, 4))
+    }
 }
 

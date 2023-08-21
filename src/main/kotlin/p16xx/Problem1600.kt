@@ -1,6 +1,6 @@
 package p16xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Person(val name: String) {
@@ -63,10 +63,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         ThroneInheritance("").birth(
             "", ""
-        ).also { println("${it} should be ${it}") }
+        )
     }
 }
 

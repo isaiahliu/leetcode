@@ -1,6 +1,6 @@
 package p11xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -49,8 +49,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        println(Solution().longestWPI(intArrayOf(6, 6, 9)))
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().longestWPI(intArrayOf(6, 6, 9))
+    }
 }
 

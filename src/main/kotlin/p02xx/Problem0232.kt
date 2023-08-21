@@ -1,7 +1,7 @@
 package p02xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class MyQueue {
@@ -37,7 +37,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         MyQueue()
     }
 }

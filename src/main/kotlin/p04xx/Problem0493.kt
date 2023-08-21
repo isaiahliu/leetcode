@@ -1,6 +1,6 @@
 package p04xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -67,9 +67,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().reversePairs(
             intArrayOf(-2147483648, -1073741824)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

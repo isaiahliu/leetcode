@@ -2,7 +2,7 @@ package p17xx
 
 import java.math.BigInteger
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -57,7 +57,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().getCoprimes(
             intArrayOf(
                 18,
@@ -343,6 +343,6 @@ fun main() {
                 intArrayOf(140, 1),
                 intArrayOf(22, 140)
             )
-        ).toList().also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

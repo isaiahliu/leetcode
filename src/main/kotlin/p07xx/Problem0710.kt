@@ -2,7 +2,7 @@ package p07xx
 
 import java.util.*
 import kotlin.random.Random
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution(n: Int, blacklist: IntArray) {
@@ -23,12 +23,12 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val sol = Solution(4, intArrayOf(0, 1))
-        sol.pick().also { println(it) }
-        sol.pick().also { println(it) }
-        sol.pick().also { println(it) }
-        sol.pick().also { println(it) }
-        sol.pick().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        sol.pick()
+        sol.pick()
+        sol.pick()
+        sol.pick()
+        sol.pick()
+    }
 }

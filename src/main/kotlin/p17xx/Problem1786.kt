@@ -2,7 +2,7 @@ package p17xx
 
 import util.input
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -57,11 +57,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().countRestrictedPaths(
             20000, input.first().split("],[").map {
                 it.split(",").map { it.toInt() }.toIntArray()
             }.toTypedArray()
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

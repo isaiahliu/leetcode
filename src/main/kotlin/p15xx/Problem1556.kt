@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -23,10 +23,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().thousandSeparator(
             9466441
-        ).also { println(it) }
+        )
     }
 }
 

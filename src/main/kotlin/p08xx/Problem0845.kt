@@ -1,6 +1,6 @@
 package p08xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -41,9 +41,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().longestMountain(
             intArrayOf(2, 1, 4, 7, 3, 2, 5)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

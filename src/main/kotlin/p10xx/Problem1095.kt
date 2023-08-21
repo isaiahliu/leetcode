@@ -1,6 +1,6 @@
 package p10xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class MountainArray {
@@ -150,9 +150,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findInMountainArray(
             3, MountainArray()
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

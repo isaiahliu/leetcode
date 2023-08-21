@@ -1,7 +1,7 @@
 package p19xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -51,7 +51,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().countPaths(
             7, arrayOf(
                 intArrayOf(0, 6, 7),
@@ -65,7 +65,7 @@ fun main() {
                 intArrayOf(0, 4, 5),
                 intArrayOf(4, 6, 2)
             )
-        ).also { println("$it should be 4") }
+        )
 
         Solution().countPaths(
             200, arrayOf(
@@ -365,6 +365,6 @@ fun main() {
                 intArrayOf(197, 198, 977934872),
                 intArrayOf(198, 199, 434009290)
             )
-        ).also { println("$it should be 940420443") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -19,10 +19,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minFlips(
             "10111"
-        ).also { println(it) }
+        )
     }
 }
 

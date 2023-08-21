@@ -1,7 +1,7 @@
 package p09xx
 
 import kotlin.math.sqrt
-import kotlin.system.measureTimeMillis
+import util.expect
 
 
 fun main() {
@@ -36,7 +36,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minAreaFreeRect(
             arrayOf(
                 intArrayOf(1, 2),
@@ -44,6 +44,6 @@ fun main() {
                 intArrayOf(1, 0),
                 intArrayOf(0, 1),
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

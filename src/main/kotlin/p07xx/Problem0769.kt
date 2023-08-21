@@ -1,6 +1,6 @@
 package p07xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -20,9 +20,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().maxChunksToSorted(
             intArrayOf(1, 0, 2, 3, 4)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

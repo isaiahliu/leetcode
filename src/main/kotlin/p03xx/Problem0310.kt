@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -47,14 +47,14 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findMinHeightTrees(
             4, arrayOf(
                 intArrayOf(1, 0),
                 intArrayOf(1, 2),
                 intArrayOf(1, 3),
             )
-        ).also { println(it) }
+        )
     }
 }
 

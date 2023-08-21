@@ -1,7 +1,7 @@
 package p08xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -24,9 +24,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().maskPII(
             "1(234)567-8901"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

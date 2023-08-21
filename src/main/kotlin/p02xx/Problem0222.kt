@@ -1,6 +1,7 @@
 package p02xx
 
 import util.TreeNode
+import util.expect
 
 fun main() {
     class Solution {
@@ -49,7 +50,7 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().countNodes(
             TreeNode(
                 1, TreeNode(
@@ -62,6 +63,6 @@ fun main() {
                 )
             )
         )
-    )
+    }
 }
 

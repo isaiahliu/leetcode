@@ -1,6 +1,6 @@
 package p04xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -23,7 +23,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().eraseOverlapIntervals(
             arrayOf(
                 intArrayOf(1, 2),
@@ -31,8 +31,8 @@ fun main() {
                 intArrayOf(3, 4),
                 intArrayOf(1, 3),
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 
 

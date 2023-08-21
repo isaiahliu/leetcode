@@ -2,7 +2,7 @@ package p17xx
 
 import java.util.*
 import kotlin.math.absoluteValue
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -104,7 +104,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minAbsDifference(
             intArrayOf(
                 -9014298,
@@ -140,25 +140,25 @@ fun main() {
                 3721357,
                 -4412120
             ), 12592323
-        ).also { println("${it} should be $it") }
+        )
 
         Solution().minAbsDifference(
             intArrayOf(
                 1, 2, 3
             ), -7
-        ).also { println("${it} should be $it") }
+        )
 
         Solution().minAbsDifference(
             intArrayOf(
                 7, -9, 15, -2
             ), -5
-        ).also { println("${it} should be $it") }
+        )
 
         Solution().minAbsDifference(
             intArrayOf(
                 5, -7, 3, 5
             ), 6
-        ).also { println("${it} should be $it") }
+        )
 
         Solution().minAbsDifference(
             intArrayOf(
@@ -191,6 +191,6 @@ fun main() {
                 -9712711,
                 1639314
             ), 493409180
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

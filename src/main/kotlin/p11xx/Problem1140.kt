@@ -1,6 +1,6 @@
 package p11xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -29,7 +29,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        println(Solution().stoneGameII(intArrayOf(1)))
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().stoneGameII(intArrayOf(1))
+    }
 }

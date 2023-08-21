@@ -1,6 +1,6 @@
 package p00xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -9,7 +9,7 @@ fun main() {
                 return false
             }
 
-            val dp = Array(s1.length + 1) { r ->
+            val dp = Array(s1.length + 1) {
                 BooleanArray(s2.length + 1)
             }
 
@@ -38,10 +38,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().isInterleave(
             "aabcc", "dbbca", "aadbbcbcac"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

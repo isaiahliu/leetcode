@@ -1,6 +1,6 @@
 package p11xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -54,9 +54,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().numPrimeArrangements(
             5
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,6 +1,6 @@
 package p17xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -70,13 +70,13 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().maximizeXor(
             intArrayOf(5, 2, 4, 6, 6, 3), arrayOf(
                 intArrayOf(12, 4),
                 intArrayOf(8, 1),
                 intArrayOf(6, 3),
             )
-        ).toList().also { println("${it} should be ${it}") }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

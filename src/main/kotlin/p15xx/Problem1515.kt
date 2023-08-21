@@ -1,7 +1,7 @@
 package p15xx
 
 import kotlin.math.sqrt
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -48,10 +48,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().getMinDistSum(
             arrayOf()
-        ).also { println(it) }
+        )
     }
 }
 

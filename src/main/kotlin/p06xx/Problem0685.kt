@@ -1,7 +1,7 @@
 package p06xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -64,7 +64,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findRedundantDirectedConnection(
             arrayOf(
                 intArrayOf(1, 2),
@@ -73,6 +73,6 @@ fun main() {
                 intArrayOf(4, 1),
                 intArrayOf(1, 5),
             )
-        ).toList().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

@@ -1,7 +1,7 @@
 package p05xx
 
 import kotlin.random.Random
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution(val m: Int, val n: Int) {
@@ -19,7 +19,7 @@ fun main() {
             val result = map[numIndex] ?: numIndex
             map[numIndex] = map[size] ?: size
 
-            println(result)
+            result
 
             return intArrayOf(result / n, result % n)
         }
@@ -30,10 +30,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val sol = Solution(3, 1)
         repeat(3) {
-            sol.flip().toList().also { println(it) }
+            sol.flip().toList()
         }
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

@@ -1,7 +1,7 @@
 package p03xx
 
 import java.math.BigInteger
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -18,7 +18,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().superPow(
             78267, intArrayOf(
                 1,
@@ -1023,7 +1023,7 @@ fun main() {
                 2,
                 5
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

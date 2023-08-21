@@ -1,7 +1,7 @@
 package p07xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class MyCalendarThree {
@@ -30,32 +30,32 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val cal = MyCalendarThree()
         cal.book(10, 20).also {
-            println(cal.calendar)
-            println(it)
+            cal.calendar
+            it
         }
         cal.book(50, 60).also {
-            println(cal.calendar)
-            println(it)
+            cal.calendar
+            it
         }
         cal.book(10, 40).also {
-            println(cal.calendar)
-            println(it)
+            cal.calendar
+            it
         }
         cal.book(5, 15).also {
-            println(cal.calendar)
-            println(it)
+            cal.calendar
+            it
         }
         cal.book(5, 10).also {
-            println(cal.calendar)
-            println(it)
+            cal.calendar
+            it
         }
         cal.book(25, 55).also {
-            println(cal.calendar)
-            println(it)
+            cal.calendar
+            it
         }
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

@@ -1,6 +1,6 @@
 package p13xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -29,9 +29,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().maxValueAfterReverse(
             intArrayOf(5, -7, 9, -6, 8)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

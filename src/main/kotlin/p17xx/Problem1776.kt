@@ -1,7 +1,7 @@
 package p17xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -49,11 +49,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().getCollisionTimes(
             arrayOf(
                 intArrayOf(3, 4), intArrayOf(5, 4), intArrayOf(6, 3), intArrayOf(9, 1)
             )
-        ).toList().also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

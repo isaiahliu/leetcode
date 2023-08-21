@@ -1,7 +1,7 @@
 package p19xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class MovieRentingSystem(n: Int, val entries: Array<IntArray>) {
@@ -41,9 +41,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         MovieRentingSystem(1, arrayOf()).search(
             1
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -48,6 +48,6 @@ fun main() {
         }
     }
 
-    println(Solution().longestValidParentheses("()(()"))
+    Solution().longestValidParentheses("()(()")
 }
 

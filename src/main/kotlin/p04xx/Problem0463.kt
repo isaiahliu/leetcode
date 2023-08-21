@@ -1,6 +1,6 @@
 package p04xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -22,7 +22,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().islandPerimeter(
             arrayOf(
                 intArrayOf(0, 1, 0, 0),
@@ -30,6 +30,6 @@ fun main() {
                 intArrayOf(0, 1, 0, 0),
                 intArrayOf(1, 1, 0, 0),
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,7 +1,7 @@
 package p17xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -196,7 +196,7 @@ fun main() {
     }
 
 
-    measureTimeMillis {
+    expect {
         Solution().canMouseWin(
             arrayOf(
                 "####F",
@@ -205,10 +205,10 @@ fun main() {
             ),
             1,
             2
-        ).also { println("${it} should be true") }
+        )
 
 //        Solution().canMouseWin(
 //            arrayOf("M.C...F"), 1, 4
-//        ).also { println("${it} should be true") }
-    }.also { println("Time cost: ${it}ms") }
+//        )
+    }
 }

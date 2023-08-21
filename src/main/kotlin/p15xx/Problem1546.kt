@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -26,10 +26,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().maxNonOverlapping(
             intArrayOf(), 1
-        ).also { println(it) }
+        )
     }
 }
 

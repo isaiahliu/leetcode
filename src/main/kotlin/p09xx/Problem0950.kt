@@ -1,7 +1,7 @@
 package p09xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
 class Solution {
@@ -19,9 +19,9 @@ class Solution {
     }
 }
 
-    measureTimeMillis {
+    expect {
         Solution().deckRevealedIncreasing(
             intArrayOf(2, 4, 6, 0)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -371,7 +371,7 @@ fun main() {
 
     val game = Sudoku(game3, false)
     game.process()
-    println(game.log)
+    game.log
 }
 
 private val game1 = arrayOf(

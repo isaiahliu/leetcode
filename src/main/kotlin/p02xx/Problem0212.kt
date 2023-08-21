@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         val map = hashMapOf<Int, MutableList<Pair<Int, Int>>>()
@@ -98,7 +100,7 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().findWords(
             arrayOf(
                 charArrayOf('a', 'b', 'c'),
@@ -107,6 +109,6 @@ fun main() {
             ),
             arrayOf("abcdefg", "befa", "eaabcdgfa", "gfedcbaaa")
         )
-    )
+    }
 }
 

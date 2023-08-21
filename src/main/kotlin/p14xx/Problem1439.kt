@@ -1,7 +1,7 @@
 package p14xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -32,12 +32,12 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().kthSmallest(
             arrayOf(
                 intArrayOf(1, 3, 11),
                 intArrayOf(2, 4, 6)
             ), 9
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,6 +1,6 @@
 package p09xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -42,9 +42,9 @@ fun main() {
             return (dp[dp.lastIndex].sum() % m).toInt()
         }
     }
-    measureTimeMillis {
+    expect {
         Solution().knightDialer(
             1
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

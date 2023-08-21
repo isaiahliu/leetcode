@@ -1,5 +1,7 @@
 package p00xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun twoSum(nums: IntArray, target: Int): IntArray {
@@ -15,6 +17,8 @@ fun main() {
         }
     }
 
-    println(Solution().twoSum(intArrayOf(2, 7, 11, 15), 9).joinToString())
+    expect {
+        Solution().twoSum(intArrayOf(2, 7, 11, 15), 9).joinToString()
+    }
 }
 

@@ -1,7 +1,7 @@
 package p25xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -87,7 +87,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findCrossingTime(
             8, 7, arrayOf(
                 intArrayOf(6, 7, 5, 3),
@@ -98,6 +98,6 @@ fun main() {
                 intArrayOf(8, 6, 9, 5),
                 intArrayOf(3, 6, 9, 2)
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

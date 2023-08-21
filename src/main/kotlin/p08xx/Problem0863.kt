@@ -1,7 +1,7 @@
 package p08xx
 
 import util.TreeNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -20,7 +20,7 @@ fun main() {
 
             root?.findRoute()
 
-            println(route.map { it.`val` })
+            route.map { it.`val` }
             val result = arrayListOf<Int>()
 
             fun TreeNode.dfs(distance: Int) {
@@ -50,10 +50,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().distanceK(
             null, null, 0
-        ).also { println(it) }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

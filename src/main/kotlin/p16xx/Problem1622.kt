@@ -1,6 +1,6 @@
 package p16xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Fancy {
@@ -49,9 +49,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Fancy().append(
             1
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class RangeTreeNode(nums: IntArray, private val range: IntRange) {
@@ -71,9 +71,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val array = NumArray(intArrayOf(1, 3, 5))
-        array.sumRange(0, 2).also { println(it) }
+        array.sumRange(0, 2)
     }
 }
 

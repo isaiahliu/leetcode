@@ -1,6 +1,6 @@
 package poffer
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -27,8 +27,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().isStraight(intArrayOf(0, 0, 1, 2, 5)).also { println(it) }
+    expect {
+        Solution().isStraight(intArrayOf(0, 0, 1, 2, 5))
     }
 }
 

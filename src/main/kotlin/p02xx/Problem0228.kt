@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun summaryRanges(nums: IntArray): List<String> {
@@ -39,10 +41,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().summaryRanges(
             intArrayOf(0, 2, 3, 4, 6, 8, 9)
         )
-    )
+    }
 }
 

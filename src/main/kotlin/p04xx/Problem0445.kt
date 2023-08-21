@@ -2,7 +2,7 @@ package p04xx
 
 import util.ListNode
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -45,11 +45,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().addTwoNumbers(
             null, null
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 
 

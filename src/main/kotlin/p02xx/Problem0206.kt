@@ -1,6 +1,7 @@
 package p02xx
 
 import util.ListNode
+import util.expect
 
 fun main() {
     class Solution {
@@ -18,10 +19,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().reverseList(
             null
         )
-    )
+    }
 }
 

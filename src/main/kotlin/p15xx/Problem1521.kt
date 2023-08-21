@@ -1,7 +1,7 @@
 package p15xx
 
 import kotlin.math.absoluteValue
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -24,10 +24,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().closestToTarget(
             intArrayOf(9, 12, 3, 7, 15), 5
-        ).also { println(it) }
+        )
     }
 }
 

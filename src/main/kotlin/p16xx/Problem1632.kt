@@ -1,7 +1,7 @@
 package p16xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -79,7 +79,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().matrixRankTransform(
             arrayOf(
                 intArrayOf(-37, -26, -47, -40, -13),
@@ -88,6 +88,6 @@ fun main() {
                 intArrayOf(-16, 23, -6, -43, -20),
                 intArrayOf(47, 38, -27, -8, 43)
             )
-        ).map { it.toList() }.also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).map { it.toList() }
+    }
 }

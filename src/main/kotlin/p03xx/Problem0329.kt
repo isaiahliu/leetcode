@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -28,14 +28,14 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().longestIncreasingPath(
             arrayOf(
                 intArrayOf(9, 9, 4),
                 intArrayOf(6, 6, 8),
                 intArrayOf(2, 1, 1),
             )
-        ).also { println(it) }
+        )
     }
 }
 

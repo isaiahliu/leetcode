@@ -1,7 +1,7 @@
 package p16xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -24,9 +24,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().bestTeamScore(
             intArrayOf(4, 5, 6, 5), intArrayOf(2, 1, 2, 1)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

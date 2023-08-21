@@ -1,5 +1,7 @@
 package p00xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun myAtoi(s: String): Int {
@@ -65,6 +67,9 @@ fun main() {
             }
         }
     }
-    println(Solution().myAtoi("    1"))
+
+    expect {
+        Solution().myAtoi("    1")
+    }
 }
 

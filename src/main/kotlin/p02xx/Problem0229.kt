@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun majorityElement(nums: IntArray): List<Int> {
@@ -47,10 +49,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().majorityElement(
             intArrayOf(3, 2, 3)
         )
-    )
+    }
 }
 

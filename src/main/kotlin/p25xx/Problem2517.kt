@@ -1,6 +1,6 @@
 package p25xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -37,9 +37,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().maximumTastiness(
             intArrayOf(13, 5, 1, 8, 21, 2), 3
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

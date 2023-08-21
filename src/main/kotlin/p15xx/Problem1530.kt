@@ -2,7 +2,7 @@ package p15xx
 
 import util.TreeNode
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -45,14 +45,14 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().countPairs(
             TreeNode(
                 1,
                 TreeNode(2, TreeNode(4), TreeNode(5)),
                 TreeNode(3, TreeNode(6), TreeNode(7))
             ), 3
-        ).also { println(it) }
+        )
     }
 }
 

@@ -1,6 +1,6 @@
 package p14xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -50,7 +50,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().numberWays(
             listOf(
                 listOf(1, 2, 3, 4, 5, 12, 13, 16, 17, 18, 23, 24, 25, 26, 28, 30, 31, 33, 34, 38, 39, 40),
@@ -207,14 +207,14 @@ fun main() {
                     40
                 )
             )
-        ).also { println("${it} should be ${710386592}") }
+        )
 
         Solution().numberWays(
             listOf(
                 listOf(3, 5, 1),
                 listOf(3, 5),
             )
-        ).also { println("${it} should be ${4}") }
+        )
 
         Solution().numberWays(
             listOf(
@@ -223,7 +223,7 @@ fun main() {
                 listOf(1, 3),
                 listOf(1, 3, 4, 5),
             )
-        ).also { println("${it} should be ${7}") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

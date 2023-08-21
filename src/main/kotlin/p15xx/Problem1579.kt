@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -62,7 +62,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().maxNumEdgesToRemove(
             4, arrayOf(
                 intArrayOf(3, 1, 2),
@@ -72,7 +72,7 @@ fun main() {
                 intArrayOf(1, 1, 2),
                 intArrayOf(2, 3, 4),
             )
-        ).also { println(it) }
+        )
     }
 }
 

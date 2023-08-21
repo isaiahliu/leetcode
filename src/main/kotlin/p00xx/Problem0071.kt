@@ -1,7 +1,7 @@
 package p00xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -22,8 +22,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        println(Solution().simplifyPath(""))
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().simplifyPath("")
+    }
 }
 

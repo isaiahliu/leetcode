@@ -1,6 +1,6 @@
 package p04xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class FreqNode(val freq: Int) {
@@ -107,7 +107,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val t = AllOne()
         t.inc("a")
         t.inc("b")
@@ -119,9 +119,9 @@ fun main() {
         t.dec("b")
         t.dec("a")
 
-        t.getMinKey().also { println(it) }
-        t.getMaxKey().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        t.getMinKey()
+        t.getMaxKey()
+    }
 }
 
 

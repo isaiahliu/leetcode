@@ -1,6 +1,6 @@
 package p06xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Trie {
@@ -57,10 +57,10 @@ fun main() {
     }
 
 
-    measureTimeMillis {
+    expect {
         val dic = MagicDictionary()
         dic.buildDict(arrayOf("ha"))
 
-        dic.search("ha").also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        dic.search("ha")
+    }
 }

@@ -1,7 +1,7 @@
 package p09xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -40,9 +40,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().oddEvenJumps(
             intArrayOf(5, 1, 3, 4, 2)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

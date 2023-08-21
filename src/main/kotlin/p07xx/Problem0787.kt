@@ -1,7 +1,7 @@
 package p07xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -49,7 +49,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findCheapestPrice(
             5,
             arrayOf(
@@ -61,6 +61,6 @@ fun main() {
             4,
             3,
             7
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

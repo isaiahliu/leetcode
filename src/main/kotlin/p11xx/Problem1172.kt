@@ -1,7 +1,7 @@
 package p11xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class DinnerPlates(val capacity: Int) {
@@ -55,16 +55,16 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val dp = DinnerPlates(1)
 
-        dp.push(1).also { println(it) }
-        dp.push(2).also { println(it) }
-        dp.popAtStack(1).also { println(it) }
-        dp.pop().also { println(it) }
-        dp.push(1).also { println(it) }
-        dp.push(2).also { println(it) }
-        dp.pop().also { println(it) }
-        dp.pop().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        dp.push(1)
+        dp.push(2)
+        dp.popAtStack(1)
+        dp.pop()
+        dp.push(1)
+        dp.push(2)
+        dp.pop()
+        dp.pop()
+    }
 }

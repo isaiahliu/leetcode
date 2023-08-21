@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Node {
         var match: Boolean = false
@@ -52,9 +54,8 @@ fun main() {
         }
     }
 
-
-    println(
+    expect {
         WordDictionary().addWord("")
-    )
+    }
 }
 

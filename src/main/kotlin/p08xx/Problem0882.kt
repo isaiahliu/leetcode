@@ -1,7 +1,7 @@
 package p08xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -56,7 +56,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().reachableNodes(
             arrayOf(
                 intArrayOf(0, 3, 8),
@@ -71,6 +71,6 @@ fun main() {
                 intArrayOf(2, 3, 1)
             ), 8,
             5
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

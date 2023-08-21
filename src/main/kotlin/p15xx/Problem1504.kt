@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -29,12 +29,12 @@ fun main() {
             return result
         }
     }
-    measureTimeMillis {
+    expect {
         Solution().numSubmat(
             arrayOf(
                 intArrayOf(1, 1, 1, 1, 1, 1)
             )
-        ).also { println(it) }
+        )
     }
 }
 

@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -31,10 +31,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().wiggleMaxLength(
             intArrayOf(1, 7, 4, 9, 2, 5)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

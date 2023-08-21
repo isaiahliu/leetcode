@@ -1,6 +1,6 @@
 package p02xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -54,10 +54,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().diffWaysToCompute(
             "2-1-1"
-        ).also { println(it) }
+        )
     }
 }
 

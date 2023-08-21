@@ -1,7 +1,7 @@
 package p11xx
 
 import util.TreeNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -52,8 +52,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().btreeGameWinningMove(null, 1, 1).also { println(it) }
+    expect {
+        Solution().btreeGameWinningMove(null, 1, 1)
     }
 }
 

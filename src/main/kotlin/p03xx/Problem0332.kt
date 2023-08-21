@@ -1,7 +1,7 @@
 package p03xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -45,7 +45,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findItinerary(
             listOf(
                 listOf("EZE", "AXA"),
@@ -59,7 +59,7 @@ fun main() {
                 listOf("ANU", "TIA"),
                 listOf("JFK", "TIA")
             )
-        ).also { println(it) }
+        )
     }
 }
 

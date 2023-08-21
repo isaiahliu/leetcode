@@ -75,6 +75,6 @@ fun main() {
         }
     }
 
-    println(Solution().isMatch("abcabczzzde", "*abc???de*"))
+    Solution().isMatch("abcabczzzde", "*abc???de*")
 }
 

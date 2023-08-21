@@ -1,6 +1,6 @@
 package p13xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -33,10 +33,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().distinctEchoSubstrings(
             "abcabcabc"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

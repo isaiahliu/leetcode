@@ -1,6 +1,6 @@
 package p10xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -28,9 +28,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().largestValsFromLabels(
             intArrayOf(5, 4, 3, 2, 1), intArrayOf(1, 1, 2, 2, 3), 3, 1
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

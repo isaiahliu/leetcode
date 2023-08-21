@@ -2,7 +2,7 @@ package p00xx
 
 import util.ListNode
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -38,10 +38,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().reverseBetween(
             ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5))))), 2, 4
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

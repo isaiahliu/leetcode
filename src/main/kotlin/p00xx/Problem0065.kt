@@ -79,6 +79,6 @@ fun main() {
         }
     }
 
-    println(Solution().isNumber("2e0"))
+    Solution().isNumber("2e0")
 }
 

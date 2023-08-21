@@ -1,5 +1,7 @@
 package p00xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun convert(s: String, numRows: Int): String {
@@ -39,6 +41,8 @@ fun main() {
         }
     }
 
-    println(Solution().convert("PAYPALISHIRING", 3))
+    expect {
+        Solution().convert("PAYPALISHIRING", 3)
+    }
 }
 

@@ -1,6 +1,6 @@
 package p08xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -54,7 +54,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().numMagicSquaresInside(
             arrayOf(
                 intArrayOf(8, 0, 7, 6, 0, 9, 2),
@@ -65,6 +65,6 @@ fun main() {
                 intArrayOf(1, 8, 2, 5, 3, 5, 7),
                 intArrayOf(6, 2, 9, 0, 8, 1, 6)
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,6 +1,6 @@
 package plcp
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -105,12 +105,12 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().flipChess(
             arrayOf(
                 "....X.", "....X.", "XOOO..", "......", "......"
             )
-        ).also { println(it) }
+        )
     }
 }
 

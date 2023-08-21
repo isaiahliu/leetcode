@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -25,12 +25,12 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().coinChange(
             intArrayOf(
                 1, 2, 5
             ), 11
-        ).also { println(it) }
+        )
     }
 }
 

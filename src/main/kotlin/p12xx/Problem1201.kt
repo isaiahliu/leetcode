@@ -1,7 +1,7 @@
 package p12xx
 
 import java.math.BigInteger
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -47,9 +47,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().nthUglyNumber(
             1000000000, 2, 217983653, 336916467
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

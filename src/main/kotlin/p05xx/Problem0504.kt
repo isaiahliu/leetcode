@@ -1,6 +1,6 @@
 package p05xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -9,9 +9,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().convertToBase7(
             100
-        ).toList().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

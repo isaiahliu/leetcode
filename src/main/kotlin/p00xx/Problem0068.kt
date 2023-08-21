@@ -1,5 +1,7 @@
 package p00xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun fullJustify(words: Array<String>, maxWidth: Int): List<String> {
@@ -56,8 +58,7 @@ fun main() {
         }
     }
 
-
-    println(
+    expect {
         Solution().fullJustify(
             arrayOf(
                 "Science",
@@ -80,6 +81,6 @@ fun main() {
                 "do"
             ), 20
         ).joinToString("\n")
-    )
+    }
 }
 

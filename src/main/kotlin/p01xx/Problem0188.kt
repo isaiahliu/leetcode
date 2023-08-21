@@ -1,5 +1,7 @@
 package p01xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun maxProfit(k: Int, prices: IntArray): Int {
@@ -68,11 +70,11 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().maxProfit(
             3,
             intArrayOf(2, 6, 8, 7, 8, 7, 9, 4, 1, 2, 4, 5, 8)
         )
-    )
+    }
 }
 

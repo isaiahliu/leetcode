@@ -1,7 +1,7 @@
 package p04xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class FreqNode(val freq: Int) {
@@ -105,17 +105,17 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val cache = LFUCache(2)
         cache.put(1, 1)
         cache.put(2, 2)
-        cache.get(1).also { println(it) }
+        cache.get(1)
         cache.put(3, 3)
-        cache.get(2).also { println(it) }
-        cache.get(3).also { println(it) }
+        cache.get(2)
+        cache.get(3)
         cache.put(4, 4)
-        cache.get(1).also { println(it) }
-        cache.get(3).also { println(it) }
-        cache.get(4).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        cache.get(1)
+        cache.get(3)
+        cache.get(4)
+    }
 }

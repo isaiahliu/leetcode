@@ -1,5 +1,7 @@
 package p01xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun calculateMinimumHP(dungeon: Array<IntArray>): Int {
@@ -22,9 +24,6 @@ fun main() {
                     val c = i - r
 
                     val cost = dungeon[r].getOrNull(c) ?: continue
-
-                    val up = context.getOrNull(r - 1)?.getOrNull(c)
-                    val left = context.getOrNull(r)?.getOrNull(c - 1)
 
                     val possibilities = hashMapOf<Int, Int>()
 
@@ -60,7 +59,7 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().calculateMinimumHP(
             arrayOf(
                 intArrayOf(-2, -3, 3),
@@ -68,6 +67,6 @@ fun main() {
                 intArrayOf(10, 30, -5),
             )
         )
-    )
+    }
 }
 

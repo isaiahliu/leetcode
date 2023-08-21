@@ -1,6 +1,6 @@
 package p06xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -23,10 +23,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findDuplicate(
             arrayOf("root/a 1.txt(abcd) 2.txt(efgh)", "root/c 3.txt(abcd)", "root/c/d 4.txt(efgh)", "root 4.txt(efgh)")
-        ).also { println(it) }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

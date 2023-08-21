@@ -1,6 +1,6 @@
 package p08xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Master {
@@ -87,9 +87,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findSecretWord(
             arrayOf("acckzz", "ccbazz", "eiowzz", "abcczz"), Master()
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

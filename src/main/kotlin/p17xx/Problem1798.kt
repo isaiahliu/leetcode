@@ -1,6 +1,6 @@
 package p17xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -19,9 +19,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().getMaximumConsecutive(
             intArrayOf(1, 4, 10, 3, 1)
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

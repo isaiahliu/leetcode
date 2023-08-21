@@ -32,6 +32,6 @@ fun main() {
         }
     }
 
-    println(Solution().firstMissingPositive(intArrayOf(3, 3, 1, 4, 0)))
+    Solution().firstMissingPositive(intArrayOf(3, 3, 1, 4, 0))
 }
 

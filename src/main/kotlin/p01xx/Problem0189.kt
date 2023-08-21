@@ -1,5 +1,7 @@
 package p01xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun rotate(nums: IntArray, k: Int): Unit {
@@ -32,10 +34,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().rotate(
             intArrayOf(1, 2), 3
         )
-    )
+    }
 }
 

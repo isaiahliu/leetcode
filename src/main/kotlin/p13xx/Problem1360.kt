@@ -4,7 +4,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import kotlin.math.absoluteValue
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -14,10 +14,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().daysBetweenDates(
             "2019-06-29", "2020-06-29"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

@@ -1,7 +1,7 @@
 package p18xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -70,14 +70,14 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().getBiggestThree(
             arrayOf(
                 intArrayOf(1, 2, 3),
                 intArrayOf(4, 5, 6),
                 intArrayOf(7, 8, 9),
             )
-        ).toList().also { println("${it} should be $it") }
+        ).toList()
         Solution().getBiggestThree(
             arrayOf(
                 intArrayOf(3, 4, 5, 1, 3),
@@ -86,6 +86,6 @@ fun main() {
                 intArrayOf(1, 5, 5, 4, 1),
                 intArrayOf(4, 3, 2, 2, 5)
             )
-        ).toList().also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

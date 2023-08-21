@@ -1,6 +1,6 @@
 package p07xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -78,9 +78,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().evaluate(
             "(let x 2 (mult x (let x 3 y 4 (add x y))))"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

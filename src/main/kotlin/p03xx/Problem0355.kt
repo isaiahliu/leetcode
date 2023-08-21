@@ -1,7 +1,7 @@
 package p03xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Twitter {
@@ -49,22 +49,22 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val t = Twitter()
         t.postTweet(1, 5)
         t.follow(1, 2)
         t.follow(2, 1)
-        t.getNewsFeed(2).also { println(it) }
+        t.getNewsFeed(2)
         t.postTweet(2, 6)
-        t.getNewsFeed(1).also { println(it) }
-        t.getNewsFeed(2).also { println(it) }
+        t.getNewsFeed(1)
+        t.getNewsFeed(2)
         t.unfollow(2, 1)
-        t.getNewsFeed(1).also { println(it) }
-        t.getNewsFeed(2).also { println(it) }
+        t.getNewsFeed(1)
+        t.getNewsFeed(2)
         t.unfollow(1, 2)
-        t.getNewsFeed(1).also { println(it) }
-        t.getNewsFeed(2).also { println(it) }
+        t.getNewsFeed(1)
+        t.getNewsFeed(2)
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 

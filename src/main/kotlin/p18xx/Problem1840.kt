@@ -1,7 +1,7 @@
 package p18xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -44,7 +44,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().maxBuilding(
             100, arrayOf(
                 intArrayOf(68, 29),
@@ -147,7 +147,7 @@ fun main() {
                 intArrayOf(56, 24),
                 intArrayOf(80, 3)
             )
-        ).also { println("${it} should be $it") }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

@@ -1,7 +1,7 @@
 package p19xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -42,13 +42,13 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().smallestChair(
             arrayOf(
                 intArrayOf(3, 10),
                 intArrayOf(1, 5),
                 intArrayOf(2, 6),
             ), 0
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,6 +1,6 @@
 package p02xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -16,14 +16,14 @@ fun main() {
             while (tasks.isNotEmpty()) {
                 step++
                 for (task in tasks.toList().also { tasks.clear() }) {
-                    loop@ for (n in squares) {
+                    loop@ for (tn in squares) {
                         when {
-                            n > task -> {
+                            tn > task -> {
                                 break@loop
                             }
 
-                            n < task -> {
-                                (task - n).takeIf { visited.add(it) }?.also {
+                            tn < task -> {
+                                (task - tn).takeIf { visited.add(it) }?.also {
                                     tasks.add(it)
                                 }
                             }
@@ -40,10 +40,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().numSquares(
             12
-        ).also { println(it) }
+        )
     }
 }
 

@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -51,10 +51,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().stoneGameV(
             intArrayOf(6, 2, 3, 4, 5, 5)
-        ).also { println(it) }
+        )
     }
 }
 

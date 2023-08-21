@@ -1,6 +1,6 @@
 package p10xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -13,9 +13,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().heightChecker(
             intArrayOf(2, 7, 4, 1, 8, 1)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

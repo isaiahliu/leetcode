@@ -2,7 +2,7 @@ package p13xx
 
 import java.util.*
 import kotlin.math.absoluteValue
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -45,10 +45,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findBestValue(
             intArrayOf(2, 3, 5), 11
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

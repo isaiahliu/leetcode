@@ -1,6 +1,6 @@
 package p06xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Trie {
@@ -45,11 +45,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val dic = MapSum()
         dic.insert("apple", 3)
-        dic.sum("ap").also { println(it) }
+        dic.sum("ap")
         dic.insert("app", 2)
-        dic.sum("ap").also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        dic.sum("ap")
+    }
 }

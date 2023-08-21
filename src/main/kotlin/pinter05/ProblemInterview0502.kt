@@ -1,6 +1,6 @@
 package pinter05
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -35,8 +35,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().printBin(0.625).toList().also { println(it) }
+    expect {
+        Solution().printBin(0.625).toList()
     }
 }
 

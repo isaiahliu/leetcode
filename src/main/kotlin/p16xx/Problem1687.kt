@@ -1,7 +1,7 @@
 package p16xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -61,7 +61,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().boxDelivering(
             arrayOf(
                 intArrayOf(2, 4),//2
@@ -80,7 +80,7 @@ fun main() {
                 intArrayOf(5, 2)//14
 
             ), 5, 5, 7
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

@@ -1,7 +1,7 @@
 package p00xx
 
 import util.ListNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -32,8 +32,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().deleteDuplicates(null)
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 

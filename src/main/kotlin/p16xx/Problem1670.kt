@@ -1,7 +1,7 @@
 package p16xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class FrontMiddleBackQueue {
@@ -47,17 +47,17 @@ fun main() {
     }
 
 
-    measureTimeMillis {
+    expect {
         val queue = FrontMiddleBackQueue()
-        queue.pushFront(1).also { println("${it} should be $it") }
-        queue.pushBack(2).also { println("${it} should be $it") }
-        queue.pushMiddle(3).also { println("${it} should be $it") }
-        queue.pushMiddle(4).also { println("${it} should be $it") }
-        queue.popFront().also { println("${it} should be 1") }
-        queue.popMiddle().also { println("${it} should be 3") }
-        queue.popMiddle().also { println("${it} should be 4") }
-        queue.popBack().also { println("${it} should be 2") }
-        queue.popFront().also { println("${it} should be -1") }
-    }.also { println("Time cost: ${it}ms") }
+        queue.pushFront(1)
+        queue.pushBack(2)
+        queue.pushMiddle(3)
+        queue.pushMiddle(4)
+        queue.popFront()
+        queue.popMiddle()
+        queue.popMiddle()
+        queue.popBack()
+        queue.popFront()
+    }
 }
 

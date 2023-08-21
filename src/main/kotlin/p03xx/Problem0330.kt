@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -33,10 +33,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minPatches(
             intArrayOf(1, 2, 2), 5
-        ).also { println(it) }
+        )
     }
 }
 

@@ -3,7 +3,7 @@ package p14xx
 import java.math.BigInteger
 import java.math.RoundingMode
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -66,11 +66,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().getProbability(
             intArrayOf(6, 6, 6, 6, 6, 6, 6, 6)
-        ).also { println("${it} should be ${it}") }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 

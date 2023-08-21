@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun isIsomorphic(s: String, t: String): Boolean {
@@ -22,10 +24,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().isIsomorphic(
             "badd", "baba"
         )
-    )
+    }
 }
 

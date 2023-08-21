@@ -1,6 +1,6 @@
 package p02xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class PeekingIterator(private val iterator: Iterator<Int>) : Iterator<Int> {
@@ -21,8 +21,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        PeekingIterator(intArrayOf().iterator()).also { println(it) }
+    expect {
+        PeekingIterator(intArrayOf().iterator())
     }
 }
 

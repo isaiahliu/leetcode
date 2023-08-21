@@ -1,6 +1,6 @@
 package p19xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -15,9 +15,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().countSpecialSubsequences(
             intArrayOf(0, 1, 2, 0, 1, 2)
-        ).also { println("$it should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,7 +1,7 @@
 package p03xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class SummaryRanges {
@@ -55,12 +55,12 @@ fun main() {
 
         }
     }
-    measureTimeMillis {
+    expect {
         val t = SummaryRanges()
         t.addNum(1)
         t.addNum(3)
         t.addNum(2)
-        t.getIntervals().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        t.getIntervals()
+    }
 }
 

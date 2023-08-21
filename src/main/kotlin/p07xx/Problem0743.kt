@@ -1,7 +1,7 @@
 package p07xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -50,7 +50,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().networkDelayTime(
             arrayOf(
                 intArrayOf(2, 13, 18),
@@ -264,6 +264,6 @@ fun main() {
                 intArrayOf(10, 9, 17),
                 intArrayOf(15, 11, 48)
             ), 15, 2
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

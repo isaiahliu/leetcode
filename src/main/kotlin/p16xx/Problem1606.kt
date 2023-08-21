@@ -1,7 +1,7 @@
 package p16xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -47,10 +47,10 @@ fun main() {
             }
         }
     }
-    measureTimeMillis {
+    expect {
         Solution().busiestServers(
             3, intArrayOf(1, 2, 3, 4, 5), intArrayOf(5, 2, 3, 3, 3)
-        ).also { println("${it} should be ${it}") }
+        )
     }
 }
 

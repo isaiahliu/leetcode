@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -28,10 +28,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minOperations(
             arrayOf("")
-        ).also { println("${it} should be ${it}") }
+        )
     }
 }
 

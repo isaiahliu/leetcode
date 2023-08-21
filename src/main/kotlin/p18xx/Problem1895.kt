@@ -1,6 +1,6 @@
 package p18xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -66,13 +66,13 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().largestMagicSquare(
             arrayOf(
                 intArrayOf(2, 7, 6),
                 intArrayOf(9, 5, 1),
                 intArrayOf(4, 3, 8),
             )
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

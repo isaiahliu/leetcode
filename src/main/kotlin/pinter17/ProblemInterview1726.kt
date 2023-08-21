@@ -3,7 +3,7 @@ package pinter17
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -59,8 +59,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().intersectCount(intArrayOf(0, 0, 1, 2, 5), intArrayOf(0, 0, 1, 2, 5)).also { println(it) }
+    expect {
+        Solution().intersectCount(intArrayOf(0, 0, 1, 2, 5), intArrayOf(0, 0, 1, 2, 5))
     }
 }
 

@@ -1,7 +1,7 @@
 package p07xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -39,7 +39,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().numSubarrayProductLessThanK(intArrayOf(100, 2, 3, 4), 100).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().numSubarrayProductLessThanK(intArrayOf(100, 2, 3, 4), 100)
+    }
 }

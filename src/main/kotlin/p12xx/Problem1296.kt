@@ -1,7 +1,7 @@
 package p12xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -34,9 +34,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().isPossibleDivide(
             intArrayOf(1, 2, 2, 3, 3, 4, 4, 5), 4
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

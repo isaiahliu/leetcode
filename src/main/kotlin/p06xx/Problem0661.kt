@@ -1,6 +1,6 @@
 package p06xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -46,13 +46,13 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().imageSmoother(
             arrayOf(
                 intArrayOf(100, 200, 100),
                 intArrayOf(200, 50, 200),
                 intArrayOf(100, 200, 100)
             )
-        ).map { it.toList() }.also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).map { it.toList() }
+    }
 }

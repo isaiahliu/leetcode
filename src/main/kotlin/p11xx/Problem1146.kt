@@ -1,7 +1,7 @@
 package p11xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class SnapshotArray(length: Int) {
@@ -22,8 +22,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        SnapshotArray(1).snap().also { println(it) }
+    expect {
+        SnapshotArray(1).snap()
     }
 }
 

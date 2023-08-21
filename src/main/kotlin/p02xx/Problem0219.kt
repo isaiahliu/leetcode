@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun containsNearbyDuplicate(nums: IntArray, k: Int): Boolean {
@@ -29,10 +31,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().containsNearbyDuplicate(
             intArrayOf(1, 0, 1, 1), 1
         )
-    )
+    }
 }
 

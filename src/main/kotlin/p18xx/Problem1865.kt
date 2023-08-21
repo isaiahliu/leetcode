@@ -1,6 +1,6 @@
 package p18xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class FindSumPairs(nums1: IntArray, val nums2: IntArray) {
@@ -45,9 +45,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         FindSumPairs(intArrayOf(), intArrayOf()).count(
             0
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

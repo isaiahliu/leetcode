@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun isHappy(n: Int): Boolean {
@@ -28,10 +30,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().isHappy(
             1
         )
-    )
+    }
 }
 

@@ -1,7 +1,7 @@
 package p14xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class SubrectangleQueries(private val rectangle: Array<IntArray>) {
@@ -24,11 +24,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         SubrectangleQueries(arrayOf()).getValue(
             1, 2
-        ).also { println("${it} should be ${it}") }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 

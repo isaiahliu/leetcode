@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -44,7 +44,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().isRectangleCover(
             arrayOf(
                 intArrayOf(1, 1, 3, 3),
@@ -53,7 +53,7 @@ fun main() {
                 intArrayOf(1, 3, 2, 4),
                 intArrayOf(2, 3, 3, 4)
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

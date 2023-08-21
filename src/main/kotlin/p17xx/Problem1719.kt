@@ -1,7 +1,7 @@
 package p17xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -54,13 +54,13 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().checkWays(
             arrayOf(
                 intArrayOf(1, 2),
                 intArrayOf(2, 3),
             )
-        ).also { println("${it} should be $it") }
+        )
 
         Solution().checkWays(
             arrayOf(
@@ -68,7 +68,7 @@ fun main() {
                 intArrayOf(2, 3),
                 intArrayOf(1, 3),
             )
-        ).also { println("${it} should be $it") }
+        )
 
         Solution().checkWays(
             arrayOf(
@@ -77,6 +77,6 @@ fun main() {
                 intArrayOf(2, 4),
                 intArrayOf(1, 5)
             )
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

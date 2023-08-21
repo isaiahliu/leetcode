@@ -1,6 +1,6 @@
 package p00xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -71,17 +71,15 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        println(
-            Solution().spiralOrder(
-                arrayOf(
-                    intArrayOf(1, 2, 3, 4),
-                    intArrayOf(5, 6, 7, 8),
-                    intArrayOf(9, 10, 11, 12)
-                )
+    expect {
+        Solution().spiralOrder(
+            arrayOf(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(5, 6, 7, 8),
+                intArrayOf(9, 10, 11, 12)
             )
         )
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 
 

@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -30,10 +30,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().countGoodTriplets(
             intArrayOf(), 1, 3, 4
-        ).also { println(it) }
+        )
     }
 }
 

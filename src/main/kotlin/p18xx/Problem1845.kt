@@ -1,7 +1,7 @@
 package p18xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class SeatManager(n: Int) {
@@ -22,8 +22,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        SeatManager(1).reserve().also { println("${it} should be $it") }
+    expect {
+        SeatManager(1).reserve()
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

@@ -1,6 +1,6 @@
 package p04xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -25,9 +25,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().validIPAddress(
             "2001:0db8:85a3:0:0:8A2E:0370:7334"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

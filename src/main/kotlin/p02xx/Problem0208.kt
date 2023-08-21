@@ -61,7 +61,7 @@ fun main() {
 
     val trie = Trie()
     trie.insert("apple")
-    println(trie.search("app"))
-    println(trie.startsWith("app"))
+    trie.search("app")
+    trie.startsWith("app")
 }
 

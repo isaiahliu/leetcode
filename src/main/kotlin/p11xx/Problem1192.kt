@@ -1,6 +1,6 @@
 package p11xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -42,7 +42,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().criticalConnections(
             4, listOf(
                 listOf(0, 1),
@@ -50,6 +50,6 @@ fun main() {
                 listOf(1, 2),
                 listOf(1, 3),
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,7 +1,7 @@
 package p10xx
 
 import util.TreeNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -22,13 +22,13 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().bstToGst(
             TreeNode(
                 10,
                 TreeNode(1),
                 TreeNode(20)
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

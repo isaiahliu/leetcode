@@ -1,6 +1,6 @@
 package p06xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -34,12 +34,12 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().smallestRange(
             listOf(
                 listOf(4, 10, 15, 24, 26), listOf(0, 9, 12, 20), listOf(5, 18, 22, 30)
             )
-        ).toList().also { println(it) }
+        ).toList()
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

@@ -1,6 +1,6 @@
 package p07xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -27,9 +27,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().pivotIndex(
             intArrayOf(1, 7, 3, 6, 5, 6)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,5 +1,7 @@
 package p01xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun findRepeatedDnaSequences(s: String): List<String> {
@@ -14,10 +16,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().findRepeatedDnaSequences(
             "12345678901"
         )
-    )
+    }
 }
 

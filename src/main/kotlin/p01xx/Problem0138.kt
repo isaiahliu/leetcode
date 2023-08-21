@@ -1,6 +1,6 @@
 package p01xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Node(var `val`: Int) {
@@ -27,10 +27,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().copyRandomList(
             null
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

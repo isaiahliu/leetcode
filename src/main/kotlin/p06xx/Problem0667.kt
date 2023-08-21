@@ -1,7 +1,7 @@
 package p06xx
 
 import kotlin.math.sign
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -27,9 +27,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().constructArray(
             3, 2
-        ).toList().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

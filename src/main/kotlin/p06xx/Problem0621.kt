@@ -1,7 +1,7 @@
 package p06xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -52,10 +52,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().leastInterval(
             charArrayOf('A', 'B', 'A'), 2
-        ).also { println(it) }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

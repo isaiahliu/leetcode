@@ -1,5 +1,7 @@
 package p01xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun reverseBits(n: Int): Int {
@@ -20,10 +22,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().reverseBits(
             -3
         )
-    )
+    }
 }
 

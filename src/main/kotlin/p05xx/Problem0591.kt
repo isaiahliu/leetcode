@@ -1,7 +1,7 @@
 package p05xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -100,8 +100,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().isValid("<![CDATA[wahaha]]]><![CDATA[]> wahaha]]>").also { println(it) }
+    expect {
+        Solution().isValid("<![CDATA[wahaha]]]><![CDATA[]> wahaha]]>")
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

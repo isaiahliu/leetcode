@@ -25,6 +25,6 @@ fun main() {
         }
     }
 
-    println(Solution().generateParenthesis(3))
+    Solution().generateParenthesis(3)
 }
 

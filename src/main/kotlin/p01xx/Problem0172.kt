@@ -1,6 +1,6 @@
 package p01xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -17,8 +17,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().trailingZeroes(30).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().trailingZeroes(30)
+    }
 }
 

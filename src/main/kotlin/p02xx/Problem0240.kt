@@ -1,6 +1,6 @@
 package p02xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -46,7 +46,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().searchMatrix(
             arrayOf(
                 intArrayOf(1, 4, 7, 11, 15),
@@ -55,7 +55,7 @@ fun main() {
                 intArrayOf(10, 13, 14, 17, 24),
                 intArrayOf(18, 21, 23, 26, 30)
             ), 5
-        ).also { println(it) }
+        )
     }
 }
 

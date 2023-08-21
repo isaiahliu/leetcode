@@ -1,6 +1,6 @@
 package p06xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Employee {
@@ -33,9 +33,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().getImportance(
             listOf(), 1
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

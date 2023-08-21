@@ -2,7 +2,7 @@ package p04xx
 
 import util.TreeNode
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Codec {
@@ -67,9 +67,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Codec().serialize(
             null
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,5 +1,7 @@
 package p12xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun circularPermutation(n: Int, start: Int): List<Int> {
@@ -32,10 +34,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().circularPermutation(
             1, 2
         )
-    )
+    }
 }
 

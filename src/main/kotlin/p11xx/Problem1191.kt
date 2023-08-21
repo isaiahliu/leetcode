@@ -1,6 +1,6 @@
 package p11xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -40,9 +40,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().kConcatenationMaxSum(
             intArrayOf(-9, 13, 4, -16, -12, -16, 3, -7, 5, -16, 16, 8, -1, -13, 15, 3), 6
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

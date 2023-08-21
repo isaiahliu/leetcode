@@ -1,7 +1,7 @@
 package p19xx
 
 import util.TreeNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -101,13 +101,13 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().canMerge(
             listOf(
                 TreeNode(2, TreeNode(1), TreeNode(3)),
                 TreeNode(1),
                 TreeNode(3),
             )
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

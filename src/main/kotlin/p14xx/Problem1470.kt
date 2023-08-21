@@ -1,6 +1,6 @@
 package p14xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -11,11 +11,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().shuffle(
             intArrayOf(2, 5, 1, 3, 4, 7), 3
-        ).toList().also { println("${it} should be ${it}") }
+        ).toList()
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 

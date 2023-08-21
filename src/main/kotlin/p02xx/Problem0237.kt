@@ -1,7 +1,7 @@
 package p02xx
 
 import util.ListNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -11,8 +11,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().deleteNode(null).also { println(it) }
+    expect {
+        Solution().deleteNode(null)
     }
 }
 

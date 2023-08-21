@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -56,14 +56,14 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().maxSumSubmatrix(
             arrayOf(
                 intArrayOf(5, -4, -3, 4),
                 intArrayOf(-3, -4, 4, 5),
                 intArrayOf(5, 1, 5, -4),
             ), 3
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

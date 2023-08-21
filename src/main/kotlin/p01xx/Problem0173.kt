@@ -2,7 +2,7 @@ package p01xx
 
 import util.TreeNode
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class BSTIterator(root: TreeNode?) {
@@ -33,8 +33,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         BSTIterator(null)
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 

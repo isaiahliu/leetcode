@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun maximalSquare(matrix: Array<CharArray>): Int {
@@ -31,7 +33,7 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().maximalSquare(
             arrayOf(
                 charArrayOf('0', '0', '0', '1'),
@@ -41,6 +43,6 @@ fun main() {
                 charArrayOf('0', '1', '1', '1'),
             )
         )
-    )
+    }
 }
 

@@ -5,7 +5,7 @@ import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
 import kotlin.random.Random
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution(val radius: Double, val x_center: Double, val y_center: Double) {
@@ -19,12 +19,12 @@ fun main() {
             return doubleArrayOf(x_center + deltaX, y_center + deltaY)
         }
     }
-    measureTimeMillis {
+    expect {
         val sol = Solution(1.0, 0.0, 0.0)
         repeat(1000) {
             sol.randPoint().toList().also { (x, y) ->
-                println("${x},${y} -- ${sqrt(x * x + y * y)}")
+                "${x},${y} -- ${sqrt(x * x + y * y)}"
             }
         }
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

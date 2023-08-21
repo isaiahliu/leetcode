@@ -1,6 +1,6 @@
 package p08xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -74,12 +74,12 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minRefuelStops(
             100, 50, arrayOf(
                 intArrayOf(50, 50)
             )
-        ).also { println(it) }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

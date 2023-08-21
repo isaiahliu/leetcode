@@ -1,12 +1,12 @@
 package p16xx
 
 import java.math.BigInteger
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
         fun numberOfSets(n: Int, k: Int): Int {
-            println(5.toBigInteger().modInverse(3.toBigInteger()))
+            5.toBigInteger().modInverse(3.toBigInteger())
 
             val m = 1000000007
             val mi = m.toBigInteger()
@@ -28,9 +28,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().numberOfSets(
             633, 64
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

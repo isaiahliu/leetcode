@@ -1,6 +1,6 @@
 package p18xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -33,7 +33,6 @@ fun main() {
                 target[i - 1] = target[j]
                 target[j] = char1
                 reverse(i, target.lastIndex)
-//                println(String(target))
             }
 
             var result = 0
@@ -53,10 +52,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().getMinSwaps(
             "5489355142", 4
-        ).also { println("${it} should be $it") }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

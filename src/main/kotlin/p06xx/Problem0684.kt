@@ -1,6 +1,6 @@
 package p06xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -26,7 +26,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findRedundantConnection(
             arrayOf(
                 intArrayOf(9, 10),
@@ -40,6 +40,6 @@ fun main() {
                 intArrayOf(6, 8),
                 intArrayOf(7, 9)
             )
-        ).toList().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

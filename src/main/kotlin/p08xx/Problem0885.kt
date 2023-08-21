@@ -1,6 +1,6 @@
 package p08xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -48,9 +48,9 @@ fun main() {
             return result
         }
     }
-    measureTimeMillis {
+    expect {
         Solution().spiralMatrixIII(
             5, 6, 1, 4
-        ).map { it.toList() }.also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).map { it.toList() }
+    }
 }

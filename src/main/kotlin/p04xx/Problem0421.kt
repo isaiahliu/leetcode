@@ -1,6 +1,6 @@
 package p04xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -42,11 +42,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findMaximumXOR(
             intArrayOf(32, 18, 33, 42, 29, 20, 26, 36, 15, 46)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 
 

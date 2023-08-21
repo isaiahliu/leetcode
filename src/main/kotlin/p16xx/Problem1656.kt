@@ -1,6 +1,6 @@
 package p16xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class OrderedStream(n: Int) {
@@ -26,13 +26,13 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val os = OrderedStream(5)
-        os.insert(3, "ccccc").also { println(it) }
-        os.insert(1, "aaaaa").also { println(it) }
-        os.insert(2, "bbbbb").also { println(it) }
-        os.insert(5, "eeeee").also { println(it) }
-        os.insert(4, "ddddd").also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        os.insert(3, "ccccc")
+        os.insert(1, "aaaaa")
+        os.insert(2, "bbbbb")
+        os.insert(5, "eeeee")
+        os.insert(4, "ddddd")
+    }
 }
 

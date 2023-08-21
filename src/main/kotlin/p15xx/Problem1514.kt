@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -40,10 +40,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().maxProbability(
             5, arrayOf(intArrayOf(1)), doubleArrayOf(), 1, 1
-        ).also { println(it) }
+        )
     }
 }
 

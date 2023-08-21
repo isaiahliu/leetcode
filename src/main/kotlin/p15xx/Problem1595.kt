@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -48,15 +48,15 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().connectTwoGroups(
             listOf(
                 listOf(1, 3, 5),
                 listOf(4, 1, 1),
                 listOf(1, 5, 3),
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 
 

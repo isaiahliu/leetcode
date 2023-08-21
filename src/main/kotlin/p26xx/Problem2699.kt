@@ -1,7 +1,7 @@
 package p26xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -304,7 +304,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val result = Solution().modifiedGraphEdges(
             4,
             arrayOf(
@@ -319,9 +319,9 @@ fun main() {
             3,
             7,
         ).also {
-            println(it.map { it.toList() })
+            it.map { it.toList() }
         }
 
-        Solution().modifiedGraphEdges(20, result, 0, 1, 80).also { println(it.map { it.toList() }) }
-    }.also { println("Time cost: ${it}ms") }
+        Solution().modifiedGraphEdges(20, result, 0, 1, 80)
+    }
 }

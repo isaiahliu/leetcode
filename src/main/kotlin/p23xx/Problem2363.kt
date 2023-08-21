@@ -1,6 +1,6 @@
 package p23xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -16,8 +16,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().mergeSimilarItems(emptyArray(), emptyArray()).also { println(it) }
+    expect {
+        Solution().mergeSimilarItems(emptyArray(), emptyArray())
     }
 }
 

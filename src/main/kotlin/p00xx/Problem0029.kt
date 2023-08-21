@@ -36,7 +36,7 @@ fun main() {
 
                 else -> {
                     var shlCount = 0
-                    var sub = 0
+                    val sub: Int
                     if (dividend > 0) {
                         if (dividend < divisor) {
                             return 0
@@ -94,6 +94,6 @@ fun main() {
         }
     }
 
-    println(Solution().divide(1, Int.MIN_VALUE))
+    Solution().divide(1, Int.MIN_VALUE)
 }
 

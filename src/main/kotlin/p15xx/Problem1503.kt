@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -19,10 +19,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().getLastMoment(
             7, intArrayOf(0, 1, 2, 3, 4, 5, 6, 7), intArrayOf()
-        ).also { println(it) }
+        )
     }
 }
 

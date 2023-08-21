@@ -1,6 +1,6 @@
 package p00xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -21,9 +21,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        println(Solution().maxSubArray(intArrayOf(-2, 1, -3, 4, -1, 2, 1, -5, 4)))
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().maxSubArray(intArrayOf(-2, 1, -3, 4, -1, 2, 1, -5, 4))
+    }
 }
 
 

@@ -1,7 +1,7 @@
 package p02xx
 
 import util.TreeNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -42,8 +42,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().lowestCommonAncestor(null, null, null).also { println(it) }
+    expect {
+        Solution().lowestCommonAncestor(null, null, null)
     }
 }
 

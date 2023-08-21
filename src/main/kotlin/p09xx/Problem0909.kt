@@ -1,6 +1,6 @@
 package p09xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -55,7 +55,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().snakesAndLadders(
             arrayOf(
                 intArrayOf(-1, 11, 6, -1),
@@ -63,6 +63,6 @@ fun main() {
                 intArrayOf(-1, 7, -1, 8),
                 intArrayOf(-1, -1, -1, 8)
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

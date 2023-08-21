@@ -1,5 +1,7 @@
 package p00xx
 
+import util.expect
+
 fun main() {
     class Solution {
         val firstChar = Char(0)
@@ -40,7 +42,8 @@ fun main() {
         }
     }
 
-
-    println(Solution().lengthOfLongestSubstring(""))
+    expect {
+        Solution().lengthOfLongestSubstring("")
+    }
 }
 

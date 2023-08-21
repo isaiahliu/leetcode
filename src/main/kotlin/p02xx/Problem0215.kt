@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun findKthLargest(nums: IntArray, k: Int): Int {
@@ -16,8 +18,8 @@ fun main() {
                 }
             }
 
-            var foundIndex = 0
-            var walkedCount = 0
+            var foundIndex: Int
+            var walkedCount: Int
             if (k > nums.size / 2) {
                 foundIndex = maxIndex
                 walkedCount = counts[foundIndex]
@@ -38,10 +40,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().findKthLargest(
             intArrayOf(3, 2, 1, 5, 6, 4), 2
         )
-    )
+    }
 }
 

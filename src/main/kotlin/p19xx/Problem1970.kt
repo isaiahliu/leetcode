@@ -1,6 +1,6 @@
 package p19xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -66,7 +66,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().latestDayToCross(
             2, 2, arrayOf(
                 intArrayOf(1, 1),
@@ -74,6 +74,6 @@ fun main() {
                 intArrayOf(2, 1),
                 intArrayOf(2, 2),
             )
-        ).also { println("$it should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

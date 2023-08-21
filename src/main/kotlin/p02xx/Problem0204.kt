@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun countPrimes(n: Int): Int {
@@ -22,10 +24,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().countPrimes(
             10
         )
-    )
+    }
 }
 

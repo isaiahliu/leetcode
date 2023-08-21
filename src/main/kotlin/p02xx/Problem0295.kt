@@ -28,7 +28,7 @@ fun main() {
         it.addNum(2)
         it.addNum(3)
 
-        println(it.findMedian())
+        it.findMedian()
     }
 }
 

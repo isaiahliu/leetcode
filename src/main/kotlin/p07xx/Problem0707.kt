@@ -1,6 +1,6 @@
 package p07xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Node(val value: Int) {
@@ -95,11 +95,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val l = MyLinkedList()
 
         l.addAtIndex(1, 2)
 
-        l.get(0).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        l.get(0)
+    }
 }

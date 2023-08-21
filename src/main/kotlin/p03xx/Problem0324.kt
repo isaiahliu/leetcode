@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -23,7 +23,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val array = intArrayOf(
             1, 4, 3, 4, 1, 2, 1, 3, 1, 3, 2, 3, 3
         )
@@ -31,7 +31,7 @@ fun main() {
             array
         )
 
-        array.toList().also { println(it) }
+        array.toList()
     }
 }
 

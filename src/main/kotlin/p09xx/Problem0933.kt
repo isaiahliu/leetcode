@@ -1,7 +1,7 @@
 package p09xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class RecentCounter {
@@ -13,7 +13,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        RecentCounter().ping(5).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        RecentCounter().ping(5)
+    }
 }

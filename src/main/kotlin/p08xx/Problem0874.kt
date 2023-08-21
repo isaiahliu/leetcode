@@ -1,6 +1,6 @@
 package p08xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -50,10 +50,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().robotSim(
             intArrayOf(4, -1, 3), arrayOf()
-        ).also { println(it) }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

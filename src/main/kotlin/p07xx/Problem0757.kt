@@ -1,7 +1,7 @@
 package p07xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -42,13 +42,13 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().intersectionSizeTwo(
             arrayOf(
                 intArrayOf(1, 3),
                 intArrayOf(3, 7),
                 intArrayOf(8, 9),
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

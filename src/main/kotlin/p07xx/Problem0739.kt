@@ -1,7 +1,7 @@
 package p07xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -24,9 +24,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().dailyTemperatures(
             intArrayOf(73, 74, 75, 71, 69, 72, 76, 73)
-        ).toList().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

@@ -2,7 +2,7 @@ package p03xx
 
 import util.ListNode
 import kotlin.random.Random
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution(head: ListNode?) {
@@ -21,14 +21,14 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val r = Solution(null)
 
-        r.getRandom().also { println(it) }
-        r.getRandom().also { println(it) }
-        r.getRandom().also { println(it) }
-        r.getRandom().also { println(it) }
-        r.getRandom().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        r.getRandom()
+        r.getRandom()
+        r.getRandom()
+        r.getRandom()
+        r.getRandom()
+    }
 }
 

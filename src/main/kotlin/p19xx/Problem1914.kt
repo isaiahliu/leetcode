@@ -1,6 +1,6 @@
 package p19xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -44,7 +44,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().rotateGrid(
             arrayOf(
                 intArrayOf(4, 5, 8, 9, 4, 2, 4, 7, 2, 4),
@@ -54,6 +54,6 @@ fun main() {
                 intArrayOf(1, 2, 3, 8, 4, 7, 6, 9, 6, 2),
                 intArrayOf(5, 10, 3, 4, 7, 2, 7, 5, 3, 10),
             ), 4
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

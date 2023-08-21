@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -49,10 +49,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().lengthLongestPath(
             "dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

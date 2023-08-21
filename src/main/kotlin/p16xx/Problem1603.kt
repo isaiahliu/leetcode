@@ -1,6 +1,6 @@
 package p16xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class ParkingSystem(big: Int, medium: Int, small: Int) {
@@ -16,10 +16,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         ParkingSystem(1, 1, 1).addCar(
             5
-        ).also { println("${it} should be ${it}") }
+        )
     }
 }
 

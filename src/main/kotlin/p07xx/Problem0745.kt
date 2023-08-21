@@ -1,6 +1,6 @@
 package p07xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class WordFilter(words: Array<String>) {
@@ -23,9 +23,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         WordFilter(arrayOf("apple")).f(
             "a", "e"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

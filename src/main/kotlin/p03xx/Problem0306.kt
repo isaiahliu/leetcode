@@ -1,7 +1,7 @@
 package p03xx
 
 import java.math.BigInteger
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -34,8 +34,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().isAdditiveNumber("1023").also { println(it) }
+    expect {
+        Solution().isAdditiveNumber("1023")
     }
 }
 

@@ -42,5 +42,5 @@ fun main() {
         }
     }
 
-    println(Solution().dieSimulator(20, intArrayOf(8, 5, 10, 8, 7, 2)))
+    Solution().dieSimulator(20, intArrayOf(8, 5, 10, 8, 7, 2))
 }

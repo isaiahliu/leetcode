@@ -1,7 +1,7 @@
 package p01xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Node(var `val`: Int, var left: Node? = null, var right: Node? = null) {
@@ -42,7 +42,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().connect(
             Node(
                 0,
@@ -53,7 +53,7 @@ fun main() {
                     4, Node(3, null, Node(6)), Node(-1, null, Node(8))
                 ),
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

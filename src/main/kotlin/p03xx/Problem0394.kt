@@ -1,7 +1,7 @@
 package p03xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -65,10 +65,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().decodeString(
             "3[a2[c]]"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

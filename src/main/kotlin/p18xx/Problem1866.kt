@@ -1,6 +1,6 @@
 package p18xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -53,19 +53,19 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().rearrangeSticks(
             4, 2
-        ).also { println("${it} should be $it") }
+        )
         Solution().rearrangeSticks(
             3, 2
-        ).also { println("${it} should be 3") }
+        )
 
         Solution().rearrangeSticks(
             5, 5
-        ).also { println("${it} should be 1") }
+        )
         Solution().rearrangeSticks(
             20, 11
-        ).also { println("${it} should be 647427950") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

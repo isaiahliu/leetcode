@@ -1,5 +1,6 @@
 package p03xx
 
+import util.expect
 import java.util.*
 
 fun main() {
@@ -205,9 +206,7 @@ fun main() {
                     }
 
                     if (t == 0) {
-                        result.add(counts.serialize().also {
-                            println(it)
-                        })
+                        result.add(counts.serialize())
                     }
                 }
             }
@@ -279,8 +278,8 @@ fun main() {
         }
     }
 
-//    println(Solution().removeInvalidParentheses("((a)((b)((c)"))
-    println(Solution().removeInvalidParentheses("(k()(((()"))
-//    println(Solution().removeInvalidParentheses("())()))())))"))
+    expect {
+        Solution().removeInvalidParentheses("(k()(((()")
+    }
 }
 

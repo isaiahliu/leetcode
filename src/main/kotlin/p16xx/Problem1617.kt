@@ -1,6 +1,6 @@
 package p16xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -91,13 +91,13 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().countSubgraphsForEachDiameter(
             4, arrayOf(
                 intArrayOf(1, 3),
                 intArrayOf(1, 4),
                 intArrayOf(2, 3),
             )
-        ).toList().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

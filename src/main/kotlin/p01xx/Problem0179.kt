@@ -1,5 +1,7 @@
 package p01xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun largestNumber(nums: IntArray): String {
@@ -9,10 +11,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().largestNumber(
             intArrayOf(3, 30, 34, 5, 9)
         )
-    )
+    }
 }
 

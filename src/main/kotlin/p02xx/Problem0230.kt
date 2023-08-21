@@ -1,7 +1,7 @@
 package p02xx
 
 import util.TreeNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -39,14 +39,14 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().kthSmallest(
             TreeNode(
                 1,
                 null,
                 TreeNode(2)
             ), 2
-        ).also { println(it) }
+        )
     }
 }
 

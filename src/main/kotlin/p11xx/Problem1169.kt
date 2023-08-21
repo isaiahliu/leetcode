@@ -1,7 +1,7 @@
 package p11xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -41,7 +41,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().invalidTransactions(
             arrayOf(
                 "bob,175,221,amsterdam",
@@ -49,6 +49,6 @@ fun main() {
                 "bob,820,596,bangkok",
                 "bob,832,1726,barcelona",
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

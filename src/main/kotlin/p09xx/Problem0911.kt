@@ -1,7 +1,7 @@
 package p09xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class TopVotedCandidate(persons: IntArray, times: IntArray) {
@@ -38,9 +38,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         TopVotedCandidate(intArrayOf(), intArrayOf()).q(
             1
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

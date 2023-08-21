@@ -1,6 +1,6 @@
 package p13xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Cashier(
@@ -28,10 +28,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Cashier(5, 1, intArrayOf(), intArrayOf()).getBill(
             intArrayOf(1, 1000000000), intArrayOf()
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

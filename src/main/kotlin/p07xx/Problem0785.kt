@@ -1,6 +1,6 @@
 package p07xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -35,7 +35,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().isBipartite(
             arrayOf(
                 intArrayOf(1, 2, 3),
@@ -43,6 +43,6 @@ fun main() {
                 intArrayOf(0, 1, 3),
                 intArrayOf(0, 2),
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

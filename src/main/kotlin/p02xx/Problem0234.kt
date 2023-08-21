@@ -1,7 +1,7 @@
 package p02xx
 
 import util.ListNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -45,8 +45,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().isPalindrome(null).also { println(it) }
+    expect {
+        Solution().isPalindrome(null)
     }
 }
 

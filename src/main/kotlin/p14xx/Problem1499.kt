@@ -1,7 +1,7 @@
 package p14xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -33,7 +33,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findMaxValueOfEquation(
             arrayOf(
                 intArrayOf(-19, -12),
@@ -52,7 +52,7 @@ fun main() {
                 intArrayOf(19, -9),
                 intArrayOf(20, 19)
             ), 6
-        ).also { println(it) }
+        )
     }
 }
 

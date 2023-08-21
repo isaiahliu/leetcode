@@ -1,7 +1,7 @@
 package p04xx
 
+import util.expect
 import kotlin.random.Random
-import kotlin.system.measureTimeMillis
 
 fun main() {
     open class SolBase {
@@ -25,16 +25,6 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        val s = Solution()
-
-        val counts = IntArray(10)
-
-        repeat(100000) {
-            s.rand10().also {
-                counts[it - 1]++
-            }
-        }
-        val a = 1
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+    }
 }

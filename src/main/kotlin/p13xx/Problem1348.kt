@@ -1,7 +1,7 @@
 package p13xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class TweetCounts {
@@ -37,10 +37,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         TweetCounts().recordTweet(
             "", 1
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

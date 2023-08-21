@@ -1,6 +1,6 @@
 package p11xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -90,14 +90,14 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findNumOfValidWords(
             arrayOf("az"), arrayOf("a")
-        ).also { println(it) }
+        )
 
         Solution().findNumOfValidWords(
             arrayOf("aaaa", "asas", "able", "ability", "actt", "actor", "access"),
             arrayOf("aboveyz", "abrodyz", "abslute", "absoryz", "actresz", "gaswxyz")
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

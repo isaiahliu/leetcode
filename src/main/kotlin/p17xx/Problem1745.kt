@@ -1,6 +1,6 @@
 package p17xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -107,21 +107,21 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().checkPartitioning(
             "aabc"
-        ).also { println("${it} should be true") }
+        )
 
         Solution().checkPartitioning(
             "acab"
-        ).also { println("${it} should be false") }
+        )
 
         Solution().checkPartitioning(
             "abcbdd"
-        ).also { println("${it} should be true") }
+        )
 
 //        Solution().checkPartitioning(
 //            "abacdcee"
-//        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+//        )
+    }
 }

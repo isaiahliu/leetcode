@@ -1,6 +1,6 @@
 package p09xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -29,14 +29,14 @@ fun main() {
                     result = exclude
                 }
 
-                println("$exclude - ${infected.size}")
+                "$exclude - ${infected.size}"
             }
 
             return result
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minMalwareSpread(
             arrayOf(
                 intArrayOf(1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1),
@@ -52,6 +52,6 @@ fun main() {
                 intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
             ),
             intArrayOf(7, 8, 6, 2, 3)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

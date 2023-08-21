@@ -1,6 +1,6 @@
 package p09xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -58,12 +58,12 @@ fun main() {
             return result
         }
     }
-    measureTimeMillis {
+    expect {
         Solution().shortestBridge(
             arrayOf(
                 intArrayOf(1, 0),
                 intArrayOf(0, 1)
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

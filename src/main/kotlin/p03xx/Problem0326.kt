@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -9,8 +9,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().isPowerOfThree(3).also { println(it) }
+    expect {
+        Solution().isPowerOfThree(3)
     }
 }
 

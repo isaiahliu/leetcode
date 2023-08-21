@@ -1,5 +1,7 @@
 package p01xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun hammingWeight(n: Int): Int {
@@ -7,10 +9,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().hammingWeight(
             -3
         )
-    )
+    }
 }
 

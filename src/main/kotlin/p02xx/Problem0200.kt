@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun numIslands(grid: Array<CharArray>): Int {
@@ -33,10 +35,11 @@ fun main() {
             return result
         }
     }
-    println(
+
+    expect {
         Solution().numIslands(
             emptyArray()
         )
-    )
+    }
 }
 

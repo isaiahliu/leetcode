@@ -1,7 +1,7 @@
 package p12xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class CombinationIterator(private val characters: String, private val combinationLength: Int) {
@@ -36,15 +36,15 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val itor = CombinationIterator("abc", 2)
-        itor.next().also { println(it) }
-        itor.hasNext().also { println(it) }
-        itor.next().also { println(it) }
-        itor.hasNext().also { println(it) }
-        itor.next().also { println(it) }
-        itor.hasNext().also { println(it) }
-        itor.next().also { println(it) }
-        itor.hasNext().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        itor.next()
+        itor.hasNext()
+        itor.next()
+        itor.hasNext()
+        itor.next()
+        itor.hasNext()
+        itor.next()
+        itor.hasNext()
+    }
 }

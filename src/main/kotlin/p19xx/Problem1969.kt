@@ -1,7 +1,7 @@
 package p19xx
 
 import java.math.BigInteger
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -14,9 +14,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minNonZeroProduct(
             33
-        ).also { println("$it should be 581202553") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

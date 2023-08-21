@@ -1,7 +1,7 @@
 package p18xx
 
 import java.math.BigInteger
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -35,7 +35,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().countDifferentSubsequenceGCDs(
             intArrayOf(
                 5852,
@@ -554,6 +554,6 @@ fun main() {
                 118833,
                 2849
             )
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

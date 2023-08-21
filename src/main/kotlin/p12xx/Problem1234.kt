@@ -93,6 +93,6 @@ fun main() {
         }
     }
 
-    println(Solution().balancedString("QQWE"))
+    Solution().balancedString("QQWE")
 }
 

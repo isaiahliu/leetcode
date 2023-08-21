@@ -1,6 +1,6 @@
 package p16xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -91,17 +91,17 @@ fun main() {
             }
 
             return dfs(0, 0, 0, 0).also {
-                println()
+
             }
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().getMaxGridHappiness(
             5,
             5,
             3,
             6
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

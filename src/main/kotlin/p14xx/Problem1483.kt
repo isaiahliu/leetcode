@@ -1,6 +1,6 @@
 package p14xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Node(value: Int) {
@@ -64,10 +64,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        TreeAncestor(7, intArrayOf(-1, 0, 0, 5, 1, 1, 5))
-            .getKthAncestor(3, 2).also {
-                println(it)
-            }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        TreeAncestor(7, intArrayOf(-1, 0, 0, 5, 1, 1, 5)).getKthAncestor(3, 2)
+    }
 }

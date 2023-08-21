@@ -1,7 +1,7 @@
 package p07xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -168,9 +168,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().basicCalculatorIV(
             "(e + 8)*(e-8)", arrayOf(), intArrayOf()
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

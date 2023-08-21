@@ -2,7 +2,7 @@ package p13xx
 
 import util.TreeNode
 import kotlin.math.absoluteValue
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -35,7 +35,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().maxProduct(
             TreeNode(
                 1,
@@ -49,7 +49,7 @@ fun main() {
                     TreeNode(6),
                 )
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

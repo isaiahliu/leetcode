@@ -1,6 +1,6 @@
 package p08xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -21,9 +21,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().uncommonFromSentences(
             "this apple is sweet", "this apple is sour"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

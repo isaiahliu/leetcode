@@ -1,7 +1,7 @@
 package p11xx
 
+import util.expect
 import java.time.LocalDate
-import kotlin.system.measureTimeMillis
 
 fun main() {
     class Solution {
@@ -12,12 +12,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        println(
-            Solution().dayOfTheWeek(
-                1, 2, 3
-            )
+    expect {
+        Solution().dayOfTheWeek(
+            1, 2, 3
         )
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 

@@ -94,8 +94,8 @@ fun main() {
         }
     }
 
-    println(Solution().romanToInt("IX"))
-    println(Solution().romanToInt("LVIII"))
-    println(Solution().romanToInt("MCMXCIV"))
+    Solution().romanToInt("IX")
+    Solution().romanToInt("LVIII")
+    Solution().romanToInt("MCMXCIV")
 }
 

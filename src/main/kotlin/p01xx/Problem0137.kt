@@ -1,7 +1,7 @@
 package p01xx
 
 import kotlin.math.absoluteValue
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -43,10 +43,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().singleNumber(
             intArrayOf(-2, -2, 1, 1, 4, 1, 4, 4, -4, -2)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

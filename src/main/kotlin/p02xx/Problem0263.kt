@@ -1,7 +1,7 @@
 package p02xx
 
 import java.math.BigInteger
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -27,10 +27,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().isUgly(
             1
-        ).also { println(it) }
+        )
     }
 }
 

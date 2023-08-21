@@ -1,7 +1,7 @@
 package p18xx
 
 import kotlin.math.ceil
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -28,9 +28,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minSpeedOnTime(
             intArrayOf(1, 3, 2), 6.0
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,7 +1,7 @@
 package p08xx
 
 import util.input
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -40,9 +40,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().numBusesToDestination(
             input.map { it.split(",").map { it.toInt() }.toIntArray() }.toTypedArray(), 0, 90000
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,5 +1,7 @@
 package p18xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun minimumXORSum(nums1: IntArray, nums2: IntArray): Int {
@@ -19,11 +21,11 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().minimumXORSum(
             intArrayOf(72, 97, 8, 32, 15),
             intArrayOf(63, 97, 57, 60, 83),
         )
-    )
+    }
 }
 

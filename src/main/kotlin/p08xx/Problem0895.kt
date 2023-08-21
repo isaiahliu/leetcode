@@ -1,7 +1,7 @@
 package p08xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class FreqStack {
@@ -32,17 +32,17 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val fs = FreqStack()
-        fs.push(5).also { println(it) }
-        fs.push(7).also { println(it) }
-        fs.push(5).also { println(it) }
-        fs.push(7).also { println(it) }
-        fs.push(4).also { println(it) }
-        fs.push(5).also { println(it) }
-        fs.pop().also { println(it) }
-        fs.pop().also { println(it) }
-        fs.pop().also { println(it) }
-        fs.pop().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        fs.push(5)
+        fs.push(7)
+        fs.push(5)
+        fs.push(7)
+        fs.push(4)
+        fs.push(5)
+        fs.pop()
+        fs.pop()
+        fs.pop()
+        fs.pop()
+    }
 }

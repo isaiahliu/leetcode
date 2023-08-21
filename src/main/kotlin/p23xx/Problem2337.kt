@@ -1,7 +1,7 @@
 package p23xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -67,26 +67,26 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minSpaceWastedKResizing(
             intArrayOf(39, 41, 11, 35, 47, 16, 11, 30, 25, 18), 1
-        ).also { println("$it should be 112") }
+        )
 
         Solution().minSpaceWastedKResizing(
             intArrayOf(10, 20, 15, 30, 20), 2
-        ).also { println("$it should be 15") }
+        )
 
         Solution().minSpaceWastedKResizing(
             intArrayOf(10, 20), 0
-        ).also { println("$it should be 10") }
+        )
 
         Solution().minSpaceWastedKResizing(
             intArrayOf(10, 20, 30), 1
-        ).also { println("$it should be 10") }
+        )
 
 
         Solution().minSpaceWastedKResizing(
             intArrayOf(13, 46, 42, 47, 35), 4
-        ).also { println("$it should be 0") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

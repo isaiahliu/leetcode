@@ -1,7 +1,7 @@
 package p15xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -66,10 +66,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().maxNumOfSubstrings(
             "ababa"
-        ).also { println(it) }
+        )
     }
 }
 

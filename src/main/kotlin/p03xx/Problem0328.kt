@@ -1,7 +1,7 @@
 package p03xx
 
 import util.ListNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -34,8 +34,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().oddEvenList(null).also { println(it) }
+    expect {
+        Solution().oddEvenList(null)
     }
 }
 

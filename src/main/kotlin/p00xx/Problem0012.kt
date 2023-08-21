@@ -36,10 +36,10 @@ fun main() {
         }
     }
 
-    println(Solution().intToRoman(3))
-    println(Solution().intToRoman(4))
-    println(Solution().intToRoman(9))
-    println(Solution().intToRoman(58))
-    println(Solution().intToRoman(1994))
+    Solution().intToRoman(3)
+    Solution().intToRoman(4)
+    Solution().intToRoman(9)
+    Solution().intToRoman(58)
+    Solution().intToRoman(1994)
 }
 

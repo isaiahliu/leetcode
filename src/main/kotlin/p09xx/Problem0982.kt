@@ -1,6 +1,6 @@
 package p09xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -64,9 +64,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().countTriplets(
             intArrayOf(2, 1, 3)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

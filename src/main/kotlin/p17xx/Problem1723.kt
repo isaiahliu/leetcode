@@ -1,6 +1,6 @@
 package p17xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -85,12 +85,12 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minimumTimeRequired(
             intArrayOf(
                 3, 2, 3
             ), 3
-        ).also { println("${it} should be 3") }
+        )
 
         Solution().minimumTimeRequired(
             intArrayOf(
@@ -107,6 +107,6 @@ fun main() {
                 7207875,
                 7133141
             ), 3
-        ).also { println("${it} should be 17952682") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

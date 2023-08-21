@@ -1,7 +1,7 @@
 package p09xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class TimeMap {
@@ -15,9 +15,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         TimeMap().set(
             "", "", 1
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

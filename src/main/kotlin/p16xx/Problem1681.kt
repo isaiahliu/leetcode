@@ -1,7 +1,7 @@
 package p16xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -109,9 +109,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minimumIncompatibility(
             intArrayOf(4, 10, 4, 7, 9, 10, 4, 6, 9, 10), 5
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

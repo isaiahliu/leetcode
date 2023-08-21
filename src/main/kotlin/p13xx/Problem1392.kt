@@ -67,6 +67,6 @@ fun main() {
         }
     }
 
-    println(Solution().longestPrefix("aaaaaaaaaaaaaaaaaaaaaabcaaaaa"))
+    Solution().longestPrefix("aaaaaaaaaaaaaaaaaaaaaabcaaaaa")
 }
 

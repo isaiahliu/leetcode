@@ -1,6 +1,6 @@
 package p19xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -43,7 +43,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().checkMove(
             arrayOf(
                 charArrayOf('B', 'B', '.', '.', 'B', 'W', 'W', '.'),
@@ -55,7 +55,7 @@ fun main() {
                 charArrayOf('B', 'B', 'W', 'B', 'B', 'W', 'W', 'B'),
                 charArrayOf('W', '.', 'W', 'W', '.', 'B', '.', 'W')
             ), 2, 5, 'W'
-        ).also { println("$it should be false") }
+        )
 
         Solution().checkMove(
             arrayOf(
@@ -68,6 +68,6 @@ fun main() {
                 charArrayOf('.', 'B', 'B', 'W', 'B', 'B', '.', '.'),
                 charArrayOf('B', 'B', 'W', '.', '.', 'B', '.', '.')
             ), 7, 4, 'B'
-        ).also { println("$it should be true") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

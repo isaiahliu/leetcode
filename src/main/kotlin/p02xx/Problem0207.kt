@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun canFinish(numCourses: Int, prerequisites: Array<IntArray>): Boolean {
@@ -23,10 +25,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().canFinish(
             1, emptyArray()
         )
-    )
+    }
 }
 

@@ -1,6 +1,6 @@
 package p12xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -55,13 +55,13 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().getMaximumGold(
             arrayOf(
                 intArrayOf(0, 6, 0),
                 intArrayOf(5, 8, 7),
                 intArrayOf(0, 9, 0)
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,6 +1,6 @@
 package p00xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -16,22 +16,19 @@ fun main() {
                     matrix[column][size - row - 1] = t
                 }
             }
-            val a = 1
         }
     }
 
-    measureTimeMillis {
-        println(
-            Solution().rotate(
-                arrayOf(
-                    intArrayOf(5, 1, 9, 11),
-                    intArrayOf(2, 4, 8, 10),
-                    intArrayOf(13, 3, 6, 7),
-                    intArrayOf(15, 14, 12, 16),
-                )
+    expect {
+        Solution().rotate(
+            arrayOf(
+                intArrayOf(5, 1, 9, 11),
+                intArrayOf(2, 4, 8, 10),
+                intArrayOf(13, 3, 6, 7),
+                intArrayOf(15, 14, 12, 16),
             )
         )
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 
 

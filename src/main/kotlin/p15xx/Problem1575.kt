@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -45,10 +45,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().countRoutes(
             intArrayOf(2, 3, 6, 8, 4), 1, 3, 5
-        ).also { println(it) }
+        )
     }
 }
 

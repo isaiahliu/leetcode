@@ -1,7 +1,7 @@
 package p03xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -34,10 +34,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().isValidSerialization(
             "9,3,4,#,#,1,#,#,#,2,#,6,#,#"
-        ).also { println(it) }
+        )
     }
 }
 

@@ -1,7 +1,7 @@
 package p10xx
 
 import util.TreeNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -31,9 +31,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().bstFromPreorder(
             intArrayOf(8, 5, 1, 7, 10, 12)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,7 +1,7 @@
 package p08xx
 
 import kotlin.math.absoluteValue
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -29,7 +29,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().largestTriangleArea(
             arrayOf(
                 intArrayOf(0, 0),
@@ -38,6 +38,6 @@ fun main() {
                 intArrayOf(0, 2),
                 intArrayOf(2, 0),
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

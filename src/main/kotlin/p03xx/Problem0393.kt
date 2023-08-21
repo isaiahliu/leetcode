@@ -1,12 +1,12 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
         fun validUtf8(data: IntArray): Boolean {
             data.forEach {
-                println(it.toString(2).padStart(8, '0'))
+                it.toString(2).padStart(8, '0')
             }
 
             val b1 = 0b0
@@ -51,10 +51,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().validUtf8(
             intArrayOf(235, 140, 4)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

@@ -1,7 +1,7 @@
 package p18xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class MKAverage(val m: Int, val k: Int) {
@@ -133,7 +133,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val mk = MKAverage(6, 1)
         mk.addElement(3)
         mk.addElement(1)
@@ -141,7 +141,7 @@ fun main() {
         mk.addElement(5)
         mk.addElement(3)
         mk.addElement(4)
-        mk.calculateMKAverage().also { println("${it} should be $it") }
+        mk.calculateMKAverage()
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

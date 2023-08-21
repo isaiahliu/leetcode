@@ -1,6 +1,6 @@
 package p10xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class DicNode {
@@ -35,11 +35,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val sol = StreamChecker(arrayOf("abc", "xyz"))
-        sol.query('a').also { println(it) }
-        sol.query('x').also { println(it) }
-        sol.query('y').also { println(it) }
-        sol.query('z').also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        sol.query('a')
+        sol.query('x')
+        sol.query('y')
+        sol.query('z')
+    }
 }

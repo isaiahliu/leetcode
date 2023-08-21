@@ -1,5 +1,7 @@
 package p00xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun findMedianSortedArrays(nums1: IntArray, nums2: IntArray): Double {
@@ -38,6 +40,8 @@ fun main() {
         }
     }
 
-    println(Solution().findMedianSortedArrays(intArrayOf(1, 3), intArrayOf(2)))
+    expect {
+        Solution().findMedianSortedArrays(intArrayOf(1, 3), intArrayOf(2))
+    }
 }
 

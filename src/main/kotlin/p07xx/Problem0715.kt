@@ -1,7 +1,7 @@
 package p07xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class RangeModule {
@@ -51,17 +51,17 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val sol = RangeModule()
-        sol.addRange(6, 8).also { println(sol.map) }
-        sol.removeRange(7, 8).also { println(sol.map) }
-        sol.removeRange(8, 9).also { println(sol.map) }
-        sol.addRange(8, 9).also { println(sol.map) }
-        sol.removeRange(1, 3).also { println(sol.map) }
-        sol.addRange(1, 8).also { println(sol.map) }
+        sol.addRange(6, 8)
+        sol.removeRange(7, 8)
+        sol.removeRange(8, 9)
+        sol.addRange(8, 9)
+        sol.removeRange(1, 3)
+        sol.addRange(1, 8)
 
-        sol.queryRange(2, 4).also { println(it) }
-        sol.queryRange(2, 9).also { println(it) }
-        sol.queryRange(4, 6).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        sol.queryRange(2, 4)
+        sol.queryRange(2, 9)
+        sol.queryRange(4, 6)
+    }
 }

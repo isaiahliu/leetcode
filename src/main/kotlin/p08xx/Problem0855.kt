@@ -1,7 +1,7 @@
 package p08xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class ExamRoom(val n: Int) {
@@ -106,17 +106,17 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val room = ExamRoom(4)
-        room.seat().also { println(it) }
-        room.seat().also { println(it) }
-        room.seat().also { println(it) }
-        room.seat().also { println(it) }
+        room.seat()
+        room.seat()
+        room.seat()
+        room.seat()
 
         room.leave(1)
         room.leave(3)
 
-        room.seat().also { println(it) }
+        room.seat()
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

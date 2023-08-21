@@ -1,6 +1,6 @@
 package p00xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -28,8 +28,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        println(Solution().removeDuplicates(intArrayOf()))
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().removeDuplicates(intArrayOf())
+    }
 }
 

@@ -1,6 +1,7 @@
 package p00xx
 
 import util.ListNode
+import util.expect
 
 fun main() {
     class Solution {
@@ -28,7 +29,8 @@ fun main() {
         }
     }
 
-    val a = Solution().removeNthFromEnd(ListNode(1).also { it.next = ListNode(2) }, 1)
-    println(a)
+    expect {
+        Solution().removeNthFromEnd(ListNode(1).also { it.next = ListNode(2) }, 1)
+    }
 }
 

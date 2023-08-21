@@ -1,6 +1,6 @@
 package p13xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -44,12 +44,12 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().validateBinaryTreeNodes(
             4,
             intArrayOf(1, 0, 3, -1),
             intArrayOf(-1, -1, -1, -1),
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

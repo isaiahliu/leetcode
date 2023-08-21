@@ -1,7 +1,7 @@
 package p04xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -66,9 +66,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().medianSlidingWindow(
             intArrayOf(Int.MAX_VALUE, Int.MAX_VALUE), 2
-        ).toList().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

@@ -1,7 +1,7 @@
 package p09xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -80,11 +80,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().catMouseGame(
             arrayOf(
                 intArrayOf(2, 3), intArrayOf(2), intArrayOf(0, 1), intArrayOf(0, 4), intArrayOf(3)
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

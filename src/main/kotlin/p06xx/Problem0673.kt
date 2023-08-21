@@ -1,7 +1,7 @@
 package p06xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -64,11 +64,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findNumberOfLIS(
             intArrayOf(
                 1, 5, 5, 10, 2, 2, 3, 20
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

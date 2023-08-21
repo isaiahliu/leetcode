@@ -1,6 +1,6 @@
 package p11xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -50,10 +50,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().smallestSufficientTeam(
             arrayOf("a", "b", "c"), listOf(listOf("a"), listOf("b"), listOf("b", "c"))
-        ).toList().also { println(it) }
+        ).toList()
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun combinationSum3(k: Int, n: Int): List<List<Int>> {
@@ -28,10 +30,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().combinationSum3(
             3, 9
         )
-    )
+    }
 }
 

@@ -1,6 +1,6 @@
 package p16xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -22,9 +22,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().slowestKey(
             intArrayOf(9, 29, 49, 50), "cbcd"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

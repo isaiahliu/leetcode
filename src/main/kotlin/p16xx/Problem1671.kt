@@ -1,7 +1,7 @@
 package p16xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -34,10 +34,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minimumMountainRemovals(
             intArrayOf(100, 92, 89, 77, 74, 66, 64, 66, 64)
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

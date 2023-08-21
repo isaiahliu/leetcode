@@ -37,6 +37,6 @@ fun main() {
         }
     }
 
-    println(Solution().countDigitOne(13))
+    Solution().countDigitOne(13)
 }
 

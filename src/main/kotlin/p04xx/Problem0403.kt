@@ -1,6 +1,6 @@
 package p04xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -55,11 +55,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().canCross(
             intArrayOf(0, 1, 3, 5, 6, 8, 12, 17)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 
 

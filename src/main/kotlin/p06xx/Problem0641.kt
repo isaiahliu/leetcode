@@ -1,6 +1,6 @@
 package p06xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class MyCircularDeque(val k: Int) {
@@ -86,17 +86,17 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val q = MyCircularDeque(3)
 
-        q.insertLast(1).also { println(it) }
-        q.insertLast(2).also { println(it) }
-        q.insertFront(3).also { println(it) }
-        q.insertFront(4).also { println(it) }
-        q.getRear().also { println(it) }
-        q.isFull().also { println(it) }
-        q.deleteLast().also { println(it) }
-        q.insertFront(4).also { println(it) }
-        q.getFront().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        q.insertLast(1)
+        q.insertLast(2)
+        q.insertFront(3)
+        q.insertFront(4)
+        q.getRear()
+        q.isFull()
+        q.deleteLast()
+        q.insertFront(4)
+        q.getFront()
+    }
 }

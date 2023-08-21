@@ -1,6 +1,6 @@
 package p14xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -101,7 +101,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findCriticalAndPseudoCriticalEdges(
             5, arrayOf(
                 intArrayOf(0, 1, 1),
@@ -112,8 +112,8 @@ fun main() {
                 intArrayOf(3, 4, 3),
                 intArrayOf(1, 4, 6),
             )
-        ).toList().also { println("${it} should be ${it}") }
+        ).toList()
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 

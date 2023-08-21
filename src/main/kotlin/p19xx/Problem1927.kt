@@ -1,6 +1,6 @@
 package p19xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -28,9 +28,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().sumGame(
             "97810420??849??74?3?3261?7?283883293141?91"
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

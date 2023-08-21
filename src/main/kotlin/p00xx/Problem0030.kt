@@ -53,6 +53,6 @@ fun main() {
         }
     }
 
-    println(Solution().findSubstring("barfoothefoobarman", arrayOf("foo", "bar")))
+    Solution().findSubstring("barfoothefoobarman", arrayOf("foo", "bar"))
 }
 

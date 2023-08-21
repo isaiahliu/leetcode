@@ -1,6 +1,6 @@
 package p05xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -32,10 +32,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findPaths(
             2, 2, 2, 0, 0
-        ).also { println(it) }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

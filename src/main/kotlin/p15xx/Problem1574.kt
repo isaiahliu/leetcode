@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -40,10 +40,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findLengthOfShortestSubarray(
             intArrayOf(10, 13, 17, 21, 15, 15, 9, 17, 22, 22, 13)
-        ).also { println(it) }
+        )
     }
 }
 

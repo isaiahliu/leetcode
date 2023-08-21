@@ -1,6 +1,6 @@
 package p05xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Node(var `val`: Boolean, var isLeaf: Boolean) {
@@ -64,9 +64,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().intersect(
             null, null
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

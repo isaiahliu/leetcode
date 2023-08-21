@@ -1,7 +1,7 @@
 package p03xx
 
 import kotlin.random.Random
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class RandomizedSet {
@@ -42,7 +42,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val r = RandomizedSet()
         r.insert(0)
         r.remove(0)
@@ -50,11 +50,11 @@ fun main() {
         r.insert(-1)
         r.remove(0)
 
-        r.getRandom().also { println(it) }
-        r.getRandom().also { println(it) }
-        r.getRandom().also { println(it) }
-        r.getRandom().also { println(it) }
-        r.getRandom().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        r.getRandom()
+        r.getRandom()
+        r.getRandom()
+        r.getRandom()
+        r.getRandom()
+    }
 }
 

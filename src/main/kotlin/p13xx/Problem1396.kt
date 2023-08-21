@@ -1,6 +1,6 @@
 package p13xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class UndergroundSystem {
@@ -26,10 +26,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         UndergroundSystem().checkIn(
             1, "", 1
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

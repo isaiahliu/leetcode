@@ -1,7 +1,7 @@
 package p08xx
 
 import kotlin.math.sign
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -27,10 +27,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minEatingSpeed(
             intArrayOf(805306368, 805306368, 805306368), 1000000000
-        ).also { println(it) }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

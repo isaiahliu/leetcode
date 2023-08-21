@@ -1,7 +1,7 @@
 package p19xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -33,9 +33,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().canSeePersonsCount(
             intArrayOf(10, 6, 8, 5, 11, 9)
-        ).toList().also { println("${it} should be 3,1,2,1,1,0") }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

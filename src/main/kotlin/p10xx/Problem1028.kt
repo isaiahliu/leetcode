@@ -1,8 +1,8 @@
 package p10xx
 
 import util.TreeNode
+import util.expect
 import java.util.*
-import kotlin.system.measureTimeMillis
 
 fun main() {
     class Solution {
@@ -51,9 +51,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().recoverFromPreorder(
             "1-2--3-5--6"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

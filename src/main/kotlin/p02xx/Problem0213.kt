@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun rob(nums: IntArray): Int {
@@ -27,10 +29,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().rob(
             intArrayOf(4, 1, 2, 7, 5, 3, 1)
         )
-    )
+    }
 }
 

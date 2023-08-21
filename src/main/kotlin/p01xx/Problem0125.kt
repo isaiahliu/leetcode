@@ -1,7 +1,7 @@
 package p01xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -12,8 +12,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().isPalindrome("").also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().isPalindrome("")
+    }
 }
 

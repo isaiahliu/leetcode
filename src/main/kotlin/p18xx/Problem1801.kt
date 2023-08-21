@@ -1,7 +1,7 @@
 package p18xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -58,9 +58,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().getNumberOfBacklogOrders(
             arrayOf()
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

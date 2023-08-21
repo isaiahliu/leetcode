@@ -1,5 +1,7 @@
 package p00xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun longestPalindrome(s: String): String {
@@ -56,6 +58,8 @@ fun main() {
         }
     }
 
-    println(Solution().longestPalindrome("cbbd"))
+    expect {
+        Solution().longestPalindrome("cbbd")
+    }
 }
 

@@ -1,6 +1,6 @@
 package p04xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -52,9 +52,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findMaxForm(
             arrayOf("10", "0001", "111001", "1", "0"), 5, 3
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

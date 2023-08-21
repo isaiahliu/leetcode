@@ -1,7 +1,7 @@
 package p06xx
 
 import util.TreeNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -26,11 +26,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().widthOfBinaryTree(
             TreeNode(
                 1, null, TreeNode(2, null, TreeNode(9))
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

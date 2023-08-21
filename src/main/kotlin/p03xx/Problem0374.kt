@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     abstract class GuessGame {
@@ -41,8 +41,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().guessNumber(2126753390).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().guessNumber(2126753390)
+    }
 }
 

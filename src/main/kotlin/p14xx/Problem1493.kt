@@ -1,6 +1,6 @@
 package p14xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -32,11 +32,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().longestSubarray(
             intArrayOf(0, 1, 1, 1, 0, 1, 1, 0, 1)
-        ).also { println("${it} should be ${it}") }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 

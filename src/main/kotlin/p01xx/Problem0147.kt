@@ -1,7 +1,7 @@
 package p01xx
 
 import util.ListNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -34,10 +34,10 @@ fun main() {
             return root.next
         }
     }
-    measureTimeMillis {
+    expect {
         Solution().insertionSortList(
             null
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

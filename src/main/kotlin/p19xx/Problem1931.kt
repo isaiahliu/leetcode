@@ -1,6 +1,6 @@
 package p19xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -70,15 +70,13 @@ fun main() {
                 return result.toInt()
             }
 
-            return dfs(0, 0, 0).also {
-                println()
-            }
+            return dfs(0, 0, 0)
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().colorTheGrid(
             5, 1000
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

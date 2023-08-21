@@ -1,6 +1,7 @@
 package p01xx
 
 import util.TreeNode
+import util.expect
 
 fun main() {
     class Solution {
@@ -21,10 +22,11 @@ fun main() {
             return map.entries.sortedBy { it.key }.map { it.value }
         }
     }
-    println(
+
+    expect {
         Solution().rightSideView(
             null
         )
-    )
+    }
 }
 

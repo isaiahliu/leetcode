@@ -1,6 +1,6 @@
 package p11xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -15,12 +15,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        println(
-            Solution().distanceBetweenBusStops(
-                intArrayOf(1, -2, 0, 3), 1, 2
-            )
+    expect {
+        Solution().distanceBetweenBusStops(
+            intArrayOf(1, -2, 0, 3), 1, 2
         )
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 

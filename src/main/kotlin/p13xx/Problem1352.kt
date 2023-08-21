@@ -1,7 +1,7 @@
 package p13xx
 
 import java.math.BigInteger
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class ProductOfNumbers {
@@ -27,10 +27,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         ProductOfNumbers().add(
             5
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

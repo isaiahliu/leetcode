@@ -1,6 +1,6 @@
 package poffer
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -29,8 +29,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().maxValue(emptyArray()).also { println(it) }
+    expect {
+        Solution().maxValue(emptyArray())
     }
 }
 

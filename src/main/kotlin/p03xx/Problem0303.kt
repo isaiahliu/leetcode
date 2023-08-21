@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class NumArray(private val nums: IntArray) {
@@ -30,8 +30,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        NumArray(intArrayOf()).also { println(it) }
+    expect {
+        NumArray(intArrayOf())
     }
 }
 

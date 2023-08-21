@@ -1,7 +1,7 @@
 package p09xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -46,9 +46,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().sumSubarrayMins(
             intArrayOf(71, 55, 82, 55)
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

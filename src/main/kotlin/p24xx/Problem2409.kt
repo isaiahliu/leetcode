@@ -1,6 +1,6 @@
 package p24xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -35,9 +35,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().countDaysTogether(
             "08-15", "08-18", "08-16", "08-19"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

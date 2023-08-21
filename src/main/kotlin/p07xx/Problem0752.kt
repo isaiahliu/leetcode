@@ -1,6 +1,6 @@
 package p07xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -56,11 +56,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().openLock(
             arrayOf(
                 "0201", "0101", "0102", "1212", "2002"
             ), "0202"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

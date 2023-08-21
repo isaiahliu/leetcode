@@ -2,7 +2,7 @@ package p16xx
 
 import kotlin.math.PI
 import kotlin.math.atan
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -80,10 +80,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().visiblePoints(
             listOf(listOf(1, 0), listOf(2, 1)), 13, listOf(1, 1)
-        ).also { println("${it} should be ${it}") }
+        )
     }
 }
 

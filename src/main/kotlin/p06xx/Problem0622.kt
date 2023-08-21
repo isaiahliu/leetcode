@@ -1,6 +1,6 @@
 package p06xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class MyCircularQueue(val k: Int) {
@@ -53,8 +53,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        MyCircularQueue(1).also { println(it) }
+    expect {
+        MyCircularQueue(1)
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

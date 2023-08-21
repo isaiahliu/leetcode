@@ -1,6 +1,6 @@
 package p04xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -41,14 +41,14 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findRightInterval(
             arrayOf(
                 intArrayOf(1, 1),
                 intArrayOf(3, 4),
             )
-        ).toList().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }
 
 

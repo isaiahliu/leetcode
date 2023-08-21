@@ -1,7 +1,7 @@
 package p13xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -14,10 +14,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findTheDistanceValue(
             intArrayOf(4, 5, 8), intArrayOf(10, 9, 1, 8), 2
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

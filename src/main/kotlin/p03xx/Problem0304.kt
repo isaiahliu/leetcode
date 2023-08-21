@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class NumMatrix(private val matrix: Array<IntArray>) {
@@ -42,7 +42,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val m = NumMatrix(
             arrayOf(
                 intArrayOf(3, 0, 1, 4, 2),
@@ -53,7 +53,7 @@ fun main() {
             )
         )
 
-        m.sumRegion(1, 1, 2, 2).also { println(it) }
+        m.sumRegion(1, 1, 2, 2)
     }
 }
 

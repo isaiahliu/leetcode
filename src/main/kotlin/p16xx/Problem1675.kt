@@ -1,7 +1,7 @@
 package p16xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -28,14 +28,14 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minimumDeviation(
             intArrayOf(4, 9, 4, 5)
-        ).also { println("${it} should be 5") }
+        )
 
         Solution().minimumDeviation(
             intArrayOf(1, 2, 3, 4)
-        ).also { println("${it} should be 1") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

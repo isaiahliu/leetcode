@@ -1,7 +1,7 @@
 package p06xx
 
 import kotlin.math.sign
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -28,9 +28,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().repeatedStringMatch(
             "", ""
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

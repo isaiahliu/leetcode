@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -65,10 +65,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().numOfWays(
             intArrayOf(3, 1, 2, 5, 4, 6)
-        ).also { println(it) }
+        )
     }
 }
 

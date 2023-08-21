@@ -1,7 +1,7 @@
 package p19xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -102,7 +102,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().deleteDuplicateFolder(
             listOf(
                 listOf("a"),
@@ -112,6 +112,6 @@ fun main() {
                 listOf("d"),
                 listOf("d", "a"),
             )
-        ).also { println("$it should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

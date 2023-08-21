@@ -1,6 +1,6 @@
 package p07xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class MyHashMap {
@@ -19,7 +19,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        MyHashMap().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        MyHashMap()
+    }
 }

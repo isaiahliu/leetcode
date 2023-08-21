@@ -1,6 +1,6 @@
 package p08xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -27,12 +27,12 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().surfaceArea(
             arrayOf(
                 intArrayOf(1, 2),
                 intArrayOf(3, 4)
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

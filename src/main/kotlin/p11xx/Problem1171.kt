@@ -2,7 +2,7 @@ package p11xx
 
 import util.ListNode
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -62,9 +62,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().removeZeroSumSublists(
             ListNode(1, ListNode(2, ListNode(3, ListNode(-3, ListNode(-2)))))
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

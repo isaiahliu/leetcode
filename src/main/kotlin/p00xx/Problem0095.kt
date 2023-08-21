@@ -1,7 +1,7 @@
 package p00xx
 
 import util.TreeNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -38,10 +38,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().generateTrees(
             3
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

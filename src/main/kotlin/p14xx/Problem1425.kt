@@ -2,7 +2,7 @@ package p14xx
 
 import util.input
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -37,7 +37,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().constrainedSubsetSum(
             intArrayOf(
                 20,
@@ -389,12 +389,12 @@ fun main() {
                 -1,
                 10
             ), 19
-        ).also { println(it) }
+        )
 
         val (p1, p2) = input
         Solution().constrainedSubsetSum(
             p1.split(",").map { it.toInt() }.toIntArray(), p2.toInt()
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

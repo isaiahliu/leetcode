@@ -1,7 +1,7 @@
 package p15xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -30,26 +30,26 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().isTransformable(
             "4941",
             "1494"
-        ).also { println("${it} should be true") }
+        )
 
         Solution().isTransformable(
             "34521",
             "23415"
-        ).also { println("${it} should be true") }
+        )
 
         Solution().isTransformable(
             "891",
             "198"
-        ).also { println("${it} should be false") }
+        )
 
         Solution().isTransformable(
             "84532",
             "34852"
-        ).also { println("${it} should be true") }
+        )
     }
 }
 

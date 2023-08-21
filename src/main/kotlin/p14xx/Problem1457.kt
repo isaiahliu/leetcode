@@ -1,7 +1,7 @@
 package p14xx
 
 import util.TreeNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -30,7 +30,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().pseudoPalindromicPaths(
             TreeNode(
                 2,
@@ -40,8 +40,8 @@ fun main() {
                 ),
                 TreeNode(1, null, TreeNode(1))
             )
-        ).also { println("${it} should be ${it}") }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 

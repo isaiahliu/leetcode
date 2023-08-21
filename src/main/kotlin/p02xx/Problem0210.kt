@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun findOrder(numCourses: Int, prerequisites: Array<IntArray>): IntArray {
@@ -32,10 +34,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().findOrder(
             7, emptyArray()
         )
-    )
+    }
 }
 

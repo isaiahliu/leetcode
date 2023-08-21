@@ -1,6 +1,6 @@
 package p07xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -47,11 +47,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().smallestDistancePair(
             intArrayOf(
                 1, 4, 5, 6, 7, 8, 9, 9, 10, 10,
             ), 18
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,6 +1,6 @@
 package p13xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -53,10 +53,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().pathsWithMaxScore(
             listOf("E12", "1X1", "21S")
-        ).toList().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }
 

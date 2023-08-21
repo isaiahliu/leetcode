@@ -1,7 +1,7 @@
 package p03xx
 
 import kotlin.random.Random
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution(nums: IntArray) {
@@ -20,11 +20,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution(intArrayOf()).pick(
             7
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 
 

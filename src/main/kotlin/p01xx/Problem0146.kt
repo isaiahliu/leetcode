@@ -1,6 +1,6 @@
 package p01xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class LRUCache(private val capacity: Int) {
@@ -24,10 +24,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         LRUCache(1).get(
             1
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -24,7 +24,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().nthSuperUglyNumber(
             5911, intArrayOf(
                 2,
@@ -32,7 +32,7 @@ fun main() {
                 5,
                 7
             )
-        ).also { println(it) }
+        )
     }
 }
 

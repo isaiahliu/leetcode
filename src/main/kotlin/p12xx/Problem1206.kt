@@ -1,6 +1,6 @@
 package p12xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Skiplist {
@@ -21,9 +21,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Skiplist().search(
             1
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

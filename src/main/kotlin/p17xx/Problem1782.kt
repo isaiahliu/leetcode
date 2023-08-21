@@ -1,6 +1,6 @@
 package p17xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -51,7 +51,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().countPairs(
             5,
             arrayOf(
@@ -60,6 +60,6 @@ fun main() {
                 intArrayOf(1, 4),
             ),
             intArrayOf(0, 1, 2)
-        ).toList().also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

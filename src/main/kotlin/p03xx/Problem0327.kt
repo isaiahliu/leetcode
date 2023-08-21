@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -84,8 +84,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().countRangeSum(intArrayOf(-2, 5, -1), -2, 2).also { println(it) }
+    expect {
+        Solution().countRangeSum(intArrayOf(-2, 5, -1), -2, 2)
     }
 }
 

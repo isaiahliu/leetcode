@@ -1,6 +1,6 @@
 package p14xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -49,7 +49,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().checkOverlap(
             1,
             0,
@@ -58,6 +58,6 @@ fun main() {
             -1,
             3,
             1,
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,7 +1,7 @@
 package p09xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class StockSpanner {
@@ -20,14 +20,14 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val ss = StockSpanner()
-        ss.next(100).also { println(it) }
-        ss.next(80).also { println(it) }
-        ss.next(60).also { println(it) }
-        ss.next(70).also { println(it) }
-        ss.next(60).also { println(it) }
-        ss.next(75).also { println(it) }
-        ss.next(85).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ss.next(100)
+        ss.next(80)
+        ss.next(60)
+        ss.next(70)
+        ss.next(60)
+        ss.next(75)
+        ss.next(85)
+    }
 }

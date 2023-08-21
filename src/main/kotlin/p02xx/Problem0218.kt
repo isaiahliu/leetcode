@@ -1,5 +1,6 @@
 package p02xx
 
+import util.expect
 import java.util.*
 
 fun main() {
@@ -42,13 +43,13 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().getSkyline(
             arrayOf(
                 intArrayOf(0, 2, 3),
                 intArrayOf(2, 5, 3),
             )
         )
-    )
+    }
 }
 

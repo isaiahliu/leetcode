@@ -2,7 +2,7 @@ package p16xx
 
 import util.TreeNode
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -54,14 +54,14 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().isEvenOddTree(
             TreeNode(
                 1,
                 TreeNode(10),
                 TreeNode(4)
             )
-        ).also { println("${it} should be ${it}") }
+        )
     }
 }
 

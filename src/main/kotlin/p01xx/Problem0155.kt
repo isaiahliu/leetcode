@@ -1,7 +1,7 @@
 package p01xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class MinStack {
@@ -47,7 +47,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val stack = MinStack()
 
         stack.push(Int.MAX_VALUE - 1)
@@ -60,6 +60,6 @@ fun main() {
         stack.getMin()
         stack.pop()
         stack.push(Int.MAX_VALUE)
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 

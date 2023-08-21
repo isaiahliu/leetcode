@@ -1,6 +1,6 @@
 package p01xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -55,7 +55,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findLadders(
             "aaaaa", "ggggg", listOf(
                 "aaaaa",
@@ -548,7 +548,7 @@ fun main() {
                 "aaawz",
                 "aaaaz"
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

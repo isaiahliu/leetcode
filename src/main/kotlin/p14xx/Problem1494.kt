@@ -1,7 +1,7 @@
 package p14xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -93,7 +93,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minNumberOfSemesters(
             9, arrayOf(
                 intArrayOf(1, 5),
@@ -104,7 +104,7 @@ fun main() {
                 intArrayOf(4, 8),
                 intArrayOf(4, 9),
             ), 3
-        ).also { println(it) }
+        )
     }
 }
 

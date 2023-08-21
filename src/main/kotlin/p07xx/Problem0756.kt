@@ -1,6 +1,6 @@
 package p07xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -40,9 +40,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().pyramidTransition(
             "BCD", listOf("BCC", "CDE", "CEA", "FFF")
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,6 +1,6 @@
 package p17xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -27,7 +27,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minTrioDegree(
             6, arrayOf(
                 intArrayOf(6, 5),
@@ -39,6 +39,6 @@ fun main() {
                 intArrayOf(2, 6),
                 intArrayOf(1, 3)
             )
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

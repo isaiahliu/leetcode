@@ -1,7 +1,7 @@
 package p17xx
 
 import kotlin.math.absoluteValue
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -12,9 +12,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().nearestValidPoint(
             1, 2, arrayOf()
-        ).also { println("${it} should be $it") }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

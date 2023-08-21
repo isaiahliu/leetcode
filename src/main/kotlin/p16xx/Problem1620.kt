@@ -1,7 +1,7 @@
 package p16xx
 
 import kotlin.math.sqrt
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -40,13 +40,13 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().bestCoordinate(
             arrayOf(
                 intArrayOf(1, 2, 5),
                 intArrayOf(2, 1, 7),
                 intArrayOf(3, 1, 9),
             ), 2
-        ).toList().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

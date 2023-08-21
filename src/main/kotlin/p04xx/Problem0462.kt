@@ -1,7 +1,7 @@
 package p04xx
 
 import kotlin.math.absoluteValue
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -13,7 +13,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().minMoves2(intArrayOf(1, 0, 0, 8, 6)).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().minMoves2(intArrayOf(1, 0, 0, 8, 6))
+    }
 }

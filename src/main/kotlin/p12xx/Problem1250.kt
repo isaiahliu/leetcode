@@ -1,7 +1,7 @@
 package p12xx
 
 import java.math.BigInteger
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -20,8 +20,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        println(Solution().isGoodArray(intArrayOf(1, 2, 3)))
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().isGoodArray(intArrayOf(1, 2, 3))
+    }
 }
 

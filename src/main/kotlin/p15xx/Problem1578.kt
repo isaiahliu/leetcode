@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -18,10 +18,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minCost(
             "abaac", intArrayOf(1, 2, 3, 4, 5)
-        ).also { println(it) }
+        )
     }
 }
 

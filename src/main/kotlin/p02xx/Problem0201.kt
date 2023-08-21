@@ -1,5 +1,7 @@
 package p02xx
 
+import util.expect
+
 fun main() {
     class Solution {
         fun rangeBitwiseAnd(left: Int, right: Int): Int {
@@ -28,10 +30,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().rangeBitwiseAnd(
             1, 2
         )
-    )
+    }
 }
 

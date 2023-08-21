@@ -1,6 +1,6 @@
 package p08xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -70,9 +70,9 @@ fun main() {
             return -1
         }
     }
-    measureTimeMillis {
+    expect {
         Solution().kSimilarity(
             "abc", "bca"
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

@@ -1,6 +1,6 @@
 package p13xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -114,32 +114,32 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findGoodStrings(
             2,
             "aa",
             "da",
             "b"
-        ).also { println("${it} should be 51") }
+        )
 
         Solution().findGoodStrings(
             4,
             "aaac",
             "aaad",
             "aac"
-        ).also { println("${it} should be 1") }
+        )
 
         Solution().findGoodStrings(
             93,
             "kazxkmmctdgtrplfggliycskmbfzjkrsthahcrxaaylpdykqfyejwteexytvxgjrbviconioomfpznawsseisfcpfkuvx",
             "lajtokckoizywvirjhccouuhjkkshdtzchzmiccujzpeqzcvfekdqjgrbkzrwfnfwhyvzrrrakiausbleeimmthaqqouh",
             "kpvphwnkrtxuiuhb"
-        ).also { println("${it} should be 982374807") }
+        )
 
         Solution().findGoodStrings(
             8, "pzdanyao", "wgpmtywi", "sdka"
-        ).also { println("${it} should be 500543753") }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 

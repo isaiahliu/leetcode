@@ -1,7 +1,7 @@
 package p07xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class KthLargest(val k: Int, nums: IntArray) {
@@ -22,9 +22,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         KthLargest(1, intArrayOf(1, 2, 3, 4, 5)).add(
             1
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

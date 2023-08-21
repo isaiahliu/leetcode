@@ -2,7 +2,7 @@ package p04xx
 
 import kotlin.random.Random
 import kotlin.random.nextLong
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution(val rects: Array<IntArray>) {
@@ -36,7 +36,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val s = Solution(
             arrayOf(
                 intArrayOf(1, 1, 2, 2),
@@ -52,6 +52,6 @@ fun main() {
             }
         }
 
-        println(map)
-    }.also { println("Time cost: ${it}ms") }
+        map
+    }
 }

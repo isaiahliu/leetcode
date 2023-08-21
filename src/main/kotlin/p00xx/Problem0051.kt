@@ -37,6 +37,6 @@ fun main() {
         }
     }
 
-    println(Solution().solveNQueens(1).size)
+    Solution().solveNQueens(1).size
 }
 

@@ -1,7 +1,7 @@
 package p03xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class NestedInteger {
@@ -74,8 +74,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        NestedIterator(emptyList()).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        NestedIterator(emptyList())
+    }
 }
 

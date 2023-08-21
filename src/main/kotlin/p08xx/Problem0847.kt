@@ -1,6 +1,6 @@
 package p08xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -52,7 +52,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().shortestPathLength(
 //            arrayOf(
 //                intArrayOf(1, 2),
@@ -70,6 +70,6 @@ fun main() {
                 intArrayOf(1, 5, 7),
                 intArrayOf(6),
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

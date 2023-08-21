@@ -1,7 +1,7 @@
 package p03xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     open class NestedInteger {
@@ -80,8 +80,8 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().deserialize("[123,456,[788,799,833],[[]],10,[]]").also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().deserialize("[123,456,[788,799,833],[[]],10,[]]")
+    }
 }
 

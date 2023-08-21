@@ -1,6 +1,6 @@
 package p14xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class BrowserHistory(homepage: String) {
@@ -34,11 +34,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         BrowserHistory("").visit(
             ""
-        ).also { println("${it} should be ${it}") }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }
 

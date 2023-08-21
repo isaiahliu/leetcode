@@ -1,5 +1,6 @@
 package p02xx
 
+import util.expect
 import java.util.*
 
 fun main() {
@@ -144,10 +145,10 @@ fun main() {
         }
     }
 
-    println(
+    expect {
         Solution().calculate(
             "3+2*2"
         )
-    )
+    }
 }
 

@@ -1,6 +1,6 @@
 package p13xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -43,14 +43,14 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().matrixBlockSum(
             arrayOf(
                 intArrayOf(1, 2, 3),
                 intArrayOf(4, 5, 6),
                 intArrayOf(7, 8, 9),
             ), 1
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }
 

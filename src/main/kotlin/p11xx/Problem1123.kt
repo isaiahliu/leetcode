@@ -1,7 +1,7 @@
 package p11xx
 
 import util.TreeNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -49,10 +49,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().lcaDeepestLeaves(
             null
-        ).also { println(it) }
+        )
 
-    }.also { println("Time cost: ${it}ms") }
+    }
 }

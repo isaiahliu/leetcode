@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -25,10 +25,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().findKthPositive(
             intArrayOf(1, 2, 3, 4), 2
-        ).also { println(it) }
+        )
     }
 }
 

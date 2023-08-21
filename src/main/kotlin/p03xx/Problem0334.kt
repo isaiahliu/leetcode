@@ -1,6 +1,6 @@
 package p03xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -36,10 +36,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().increasingTriplet(
             intArrayOf(1, 5, 0, 4, 1, 3)
-        ).also { println(it) }
+        )
     }
 }
 

@@ -1,6 +1,6 @@
 package p02xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -77,10 +77,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().addOperators(
             "000", 0
-        ).also { println(it) }
+        )
     }
 }
 

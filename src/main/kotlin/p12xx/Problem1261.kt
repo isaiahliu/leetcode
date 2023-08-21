@@ -1,7 +1,7 @@
 package p12xx
 
 import util.TreeNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class FindElements(root: TreeNode?) {
@@ -34,9 +34,9 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         FindElements(null).find(
             1
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

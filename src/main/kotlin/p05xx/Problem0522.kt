@@ -1,6 +1,6 @@
 package p05xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -55,7 +55,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().findLUSlength(arrayOf("aaa", "aaa", "ab")).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().findLUSlength(arrayOf("aaa", "aaa", "ab"))
+    }
 }

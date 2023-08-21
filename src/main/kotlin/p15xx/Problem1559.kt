@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -62,7 +62,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().containsCycle(
             arrayOf(
                 charArrayOf('a', 'a', 'a', 'a'),
@@ -70,7 +70,7 @@ fun main() {
                 charArrayOf('a', 'b', 'b', 'a'),
                 charArrayOf('a', 'a', 'a', 'a'),
             )
-        ).also { println(it) }
+        )
     }
 }
 

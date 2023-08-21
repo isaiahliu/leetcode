@@ -1,6 +1,6 @@
 package p09xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class RLEIterator(val encoding: IntArray) {
@@ -18,11 +18,11 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         val rle = RLEIterator(intArrayOf(3, 8, 0, 9, 2, 5))
-        rle.next(2).also { println(it) }
-        rle.next(1).also { println(it) }
-        rle.next(1).also { println(it) }
-        rle.next(2).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        rle.next(2)
+        rle.next(1)
+        rle.next(1)
+        rle.next(2)
+    }
 }

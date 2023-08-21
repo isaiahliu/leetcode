@@ -1,6 +1,6 @@
 package p15xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -25,10 +25,10 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().reformatDate(
             "20th Oct 2052",
-        ).also { println(it) }
+        )
     }
 }
 

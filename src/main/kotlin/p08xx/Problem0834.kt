@@ -1,7 +1,7 @@
 package p08xx
 
 import java.util.*
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -59,7 +59,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().sumOfDistancesInTree(
             5, arrayOf(
                 intArrayOf(0, 1),
@@ -67,6 +67,6 @@ fun main() {
                 intArrayOf(2, 3),
                 intArrayOf(3, 4),
             )
-        ).toList().also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        ).toList()
+    }
 }

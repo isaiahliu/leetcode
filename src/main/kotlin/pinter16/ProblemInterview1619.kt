@@ -1,6 +1,6 @@
 package pinter16
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -53,12 +53,12 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().pondSizes(
             arrayOf(
 
             )
-        ).also { println(it) }
+        )
     }
 }
 

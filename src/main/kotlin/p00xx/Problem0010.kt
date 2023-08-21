@@ -1,5 +1,7 @@
 package p00xx
 
+import util.expect
+
 fun main() {
     class Solution {
         inner class Node(val char: Char) {
@@ -82,6 +84,9 @@ fun main() {
         }
     }
 
-    println(Solution().isMatch("ab", ".*c"))
+    expect {
+        Solution().isMatch("ab", ".*c")
+    }
 }
+
 

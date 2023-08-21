@@ -15,10 +15,10 @@ fun main() {
             var tempK = k - 1
             val result = StringBuilder()
             repeat(n - 1) {
-                val n = tempK / mul[it]
+                val tn = tempK / mul[it]
 
-                result.append(nums[n].toString())
-                nums.removeAt(n)
+                result.append(nums[tn].toString())
+                nums.removeAt(tn)
 
                 tempK %= mul[it]
             }
@@ -29,6 +29,6 @@ fun main() {
         }
     }
 
-    println(Solution().getPermutation(3, 3))
+    Solution().getPermutation(3, 3)
 }
 

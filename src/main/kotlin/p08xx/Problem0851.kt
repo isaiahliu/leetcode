@@ -1,6 +1,6 @@
 package p08xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -35,7 +35,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().loudAndRich(
             arrayOf(
                 intArrayOf(2, 58, 59, 89),
@@ -43,6 +43,6 @@ fun main() {
                 intArrayOf(21, 3, 92, 62),
                 intArrayOf(51, 75, 72, 91)
             ), intArrayOf()
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

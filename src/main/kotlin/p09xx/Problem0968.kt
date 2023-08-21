@@ -1,7 +1,7 @@
 package p09xx
 
 import util.TreeNode
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -43,7 +43,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
+    expect {
         Solution().minCameraCover(
             TreeNode(
                 0,
@@ -52,6 +52,6 @@ fun main() {
                     TreeNode(2, TreeNode(3))
                 )
             )
-        ).also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+        )
+    }
 }

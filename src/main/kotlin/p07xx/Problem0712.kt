@@ -1,6 +1,6 @@
 package p07xx
 
-import kotlin.system.measureTimeMillis
+import util.expect
 
 fun main() {
     class Solution {
@@ -44,7 +44,7 @@ fun main() {
         }
     }
 
-    measureTimeMillis {
-        Solution().minimumDeleteSum("sea", "eat").also { println(it) }
-    }.also { println("Time cost: ${it}ms") }
+    expect {
+        Solution().minimumDeleteSum("sea", "eat")
+    }
 }

@@ -8,15 +8,13 @@ val input by lazy {
 
 }
 
-object NoExpectResult
-
 fun expect(result: Any? = null, dsl: () -> Any?) {
     measureTimeMillis {
         dsl().also {
-            if (result == NoExpectResult) {
+            if (result == null) {
                 println("$it")
             } else {
-                println("$it should be ${result ?: it}")
+                println("$it should be $result")
             }
         }
     }.also { println("Time cost: ${it}ms") }

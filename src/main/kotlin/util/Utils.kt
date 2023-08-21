@@ -8,7 +8,10 @@ val input by lazy {
 
 }
 
+private var testcase: Int = 1
+
 fun expect(result: Any? = null, dsl: () -> Any?) {
+    println("Testcase ${testcase++}: ")
     measureTimeMillis {
         dsl().also {
             if (result == null) {

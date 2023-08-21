@@ -1,5 +1,6 @@
 package pother
 
+import util.expect
 import java.util.*
 
 fun main() {
@@ -334,9 +335,8 @@ fun main() {
                         return@run null
                     }
 
-                    val guessCell =
-                        gameBoard.map { it.filter { it.inValidNumbers.size < 9 } }.flatten()
-                            .maxBy { it.inValidNumbers.size }
+                    val guessCell = gameBoard.map { it.filter { it.inValidNumbers.size < 9 } }.flatten()
+                        .maxBy { it.inValidNumbers.size }
 
                     var guessResult: Pair<Pair<Int, Int>, Int>? = null
                     for (num in allNumbers - guessCell.inValidNumbers) {
@@ -369,9 +369,11 @@ fun main() {
         }
     }
 
-    val game = Sudoku(game3, false)
-    game.process()
-    game.log
+    expect {
+        val game = Sudoku(game3, false)
+        game.process()
+        game.log
+    }
 }
 
 private val game1 = arrayOf(

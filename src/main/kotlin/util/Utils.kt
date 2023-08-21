@@ -17,6 +17,9 @@ fun expect(result: Any? = null, dsl: () -> Any?) {
                 println("$it should be $result")
             }
         }
-    }.also { println("Time cost: ${it}ms") }
+    }.also {
+        println("Time cost: ${it}ms")
+        println()
+    }
 }
 

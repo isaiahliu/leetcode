@@ -10,7 +10,7 @@ val input by lazy {
 
 fun expect(result: Any? = null, dsl: () -> Any?) {
     measureTimeMillis {
-        dsl.also { println("$it should be ${result ?: it}") }
+        dsl().also { println("$it should be ${result ?: it}") }
     }.also { println("Time cost: ${it}ms") }
 }
 

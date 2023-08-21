@@ -35,11 +35,8 @@ fun main() {
 
                         val delta = max - second
 
-                        val flag1 = delta in map
-                        val flag2 = -delta in map
-
-                        val newMap1 = TreeMap<Int, Int>()
-                        val newMap2 = TreeMap<Int, Int>()
+                        val newMap1 = if (delta in map) TreeMap<Int, Int>() else null
+                        val newMap2 = if (-delta in map) TreeMap<Int, Int>() else null
 
                         while (map.isNotEmpty()) {
                             val (num, count) = map.pollLastEntry()
@@ -51,14 +48,14 @@ fun main() {
                                     map[num - delta] = it - count
                                 }
                             }
-                            newMap1[num - delta] = count
-                            newMap2[num] = count
+                            newMap1?.put(num - delta, count)
+                            newMap2?.put(num, count)
                         }
 
-                        flag1.takeIf { it }?.let {
-                            dfs(size - 1, newMap1, route + delta)
-                        } ?: flag2.takeIf { it }?.let {
-                            dfs(size - 1, newMap2, route + (-delta))
+                        newMap1?.let {
+                            dfs(size - 1, it, route + delta)
+                        } ?: newMap2?.let {
+                            dfs(size - 1, it, route + (-delta))
                         }
                     }
                 }

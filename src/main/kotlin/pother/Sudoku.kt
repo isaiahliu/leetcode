@@ -1,5 +1,6 @@
 package pother
 
+import util.NoExpectResult
 import util.expect
 import java.util.*
 
@@ -369,7 +370,7 @@ fun main() {
         }
     }
 
-    expect {
+    expect(NoExpectResult) {
         val game = Sudoku(game3, false)
         game.process()
         game.log

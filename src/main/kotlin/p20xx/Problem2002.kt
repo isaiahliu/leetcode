@@ -9,8 +9,11 @@ fun main() {
                 1 shl it
             }
 
-            var cache = emptyArray<IntArray>()
-            fun List<Int>.dfs(left: Int = 0, right: Int = lastIndex): Int {
+            fun List<Int>.dfs(
+                left: Int = 0,
+                right: Int = lastIndex,
+                cache: Array<IntArray> = Array(size) { IntArray(size) { -1 } }
+            ): Int {
                 return when {
                     indices.isEmpty() -> {
                         0
@@ -30,9 +33,9 @@ fun main() {
 
                     else -> {
                         val result = if (s[this[left]] == s[this[right]]) {
-                            2 + dfs(left + 1, right - 1)
+                            2 + dfs(left + 1, right - 1, cache)
                         } else {
-                            dfs(left + 1, right).coerceAtLeast(dfs(left, right - 1))
+                            dfs(left + 1, right, cache).coerceAtLeast(dfs(left, right - 1, cache))
                         }
 
                         cache[left][right] = result
@@ -53,17 +56,8 @@ fun main() {
                     }.add(index)
                 }
 
-                cache = Array(left.size) {
-                    IntArray(left.size) { -1 }
-                }
-                val leftSize = left.dfs()
-
-                cache = Array(right.size) {
-                    IntArray(right.size) { -1 }
-                }
-                val rightSize = right.dfs()
                 result = result.coerceAtLeast(
-                    leftSize * rightSize
+                    left.dfs() * right.dfs()
                 )
             }
 

@@ -18,7 +18,7 @@ fun main() {
             queue.add((0 to 0) to (setOf(0) to values[0]))
 
             val bestRoutes = Array(values.size) {
-                TreeMap<Int, Int>()
+                LinkedList<Pair<Int, Int>>()
             }
 
             while (queue.isNotEmpty()) {
@@ -28,17 +28,11 @@ fun main() {
 
                 val bestRoute = bestRoutes[node]
 
-                if (bestRoute.floorEntry(time)?.takeIf { it.value >= value } != null) {
+                if (bestRoute.isNotEmpty() && bestRoute.peekLast().second >= value) {
                     continue
                 }
 
-                while (true) {
-                    bestRoute.ceilingEntry(time)?.takeIf { it.value <= value }?.also {
-                        bestRoute.remove(it.key)
-                    } ?: break
-                }
-
-                bestRoute[time] = value
+                bestRoute.add(time to value)
 
                 adjacent[node].forEach { (to, cost) ->
                     (time + cost).takeIf { it <= maxTime }?.also {
@@ -51,7 +45,7 @@ fun main() {
                 }
             }
 
-            return bestRoutes[0].lastEntry().value
+            return bestRoutes[0].peekLast().second
         }
     }
 

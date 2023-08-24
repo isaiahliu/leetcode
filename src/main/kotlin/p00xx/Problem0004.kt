@@ -5,39 +5,93 @@ import util.expect
 fun main() {
     class Solution {
         fun findMedianSortedArrays(nums1: IntArray, nums2: IntArray): Double {
-            val totalCount = nums1.size + nums2.size
-
-            var index1 = 0
-            var index2 = 0
-
-            fun readNext(): Int {
-                val left = nums1.getOrNull(index1)
-                val right = nums2.getOrNull(index2)
-
-                val leftMin = when {
-                    left == null -> false
-                    right == null -> true
-                    left < right -> true
-                    else -> false
+            fun IntArray.binSearch(minIndex: Int, maxIndex: Int, target: Int): Int? {
+                if (minIndex > maxIndex) {
+                    return null
                 }
 
-                return if (leftMin) {
-                    nums1[index1].also { index1++ }
+                val midIndex = (minIndex + maxIndex) / 2
+
+                return if (this[midIndex] < target) {
+                    binSearch(midIndex + 1, maxIndex, target) ?: midIndex
                 } else {
-                    nums2[index2].also { index2++ }
+                    binSearch(minIndex, midIndex - 1, target)
                 }
             }
 
-            repeat((totalCount + 1) / 2 - 1) {
-                readNext()
+            fun find(minIndex1: Int, maxIndex1: Int, minIndex2: Int, maxIndex2: Int): Int {
+                var result = 0
+                val target = (maxIndex1 - minIndex1 + 1 + maxIndex2 - minIndex2) / 2
+
+                var left = nums1.getOrElse(minIndex1) { Int.MAX_VALUE }
+                    .coerceAtMost(nums2.getOrElse(minIndex2) { Int.MAX_VALUE })
+                var right = nums1.getOrElse(maxIndex1) { Int.MIN_VALUE }
+                    .coerceAtLeast(nums2.getOrElse(maxIndex2) { Int.MIN_VALUE })
+
+                while (left <= right) {
+                    val mid = (left + right) / 2
+
+                    val lessCount = (nums1.binSearch(minIndex1, maxIndex1, mid)?.let { it - minIndex1 + 1 }
+                        ?: 0) + (nums2.binSearch(minIndex2, maxIndex2, mid)?.let { it - minIndex2 + 1 } ?: 0)
+
+                    if (lessCount <= target) {
+                        result = mid
+
+                        left = mid + 1
+                    } else {
+                        right = mid - 1
+                    }
+                }
+                return result
             }
 
-            return if (totalCount % 2 == 0) {
-                (readNext() + readNext()) / 2.0
+            return if ((nums1.size + nums2.size) % 2 == 1) {
+                find(0, nums1.lastIndex, 0, nums2.lastIndex).toDouble()
             } else {
-                readNext().toDouble()
+                var sum = 0.0
+                sum += when {
+                    nums1.isEmpty() -> {
+                        find(0, nums1.lastIndex, 1, nums2.lastIndex)
+                    }
+
+                    nums2.isEmpty() -> {
+                        find(1, nums1.lastIndex, 0, nums2.lastIndex)
+                    }
+
+                    nums1[0] > nums2[0] -> {
+                        find(0, nums1.lastIndex, 1, nums2.lastIndex)
+                    }
+
+                    else -> {
+                        find(1, nums1.lastIndex, 0, nums2.lastIndex)
+                    }
+                }
+
+                sum += when {
+                    nums1.isEmpty() -> {
+                        find(0, nums1.lastIndex, 0, nums2.lastIndex - 1)
+                    }
+
+                    nums2.isEmpty() -> {
+                        find(0, nums1.lastIndex - 1, 0, nums2.lastIndex)
+                    }
+
+                    nums1[nums1.lastIndex] < nums2[nums2.lastIndex] -> {
+                        find(0, nums1.lastIndex, 0, nums2.lastIndex - 1)
+                    }
+
+                    else -> {
+                        find(0, nums1.lastIndex - 1, 0, nums2.lastIndex)
+                    }
+                }
+
+                return sum / 2
             }
         }
+    }
+
+    expect(0.0) {
+        Solution().findMedianSortedArrays(intArrayOf(0), intArrayOf(-1, 0, 1))
     }
 
     expect {

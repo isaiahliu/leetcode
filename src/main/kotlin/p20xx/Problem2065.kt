@@ -17,22 +17,18 @@ fun main() {
             val queue = PriorityQueue<Pair<Pair<Int, Int>, Pair<Set<Int>, Int>>>(compareBy { it.first.second })
             queue.add((0 to 0) to (setOf(0) to values[0]))
 
-            val bestRoutes = Array(values.size) {
-                LinkedList<Pair<Int, Int>>()
-            }
+            val bestRoutes = IntArray(values.size) { -1 }
 
             while (queue.isNotEmpty()) {
                 val (p1, p2) = queue.poll()
                 val (node, time) = p1
                 val (route, value) = p2
 
-                val bestRoute = bestRoutes[node]
-
-                if (bestRoute.isNotEmpty() && bestRoute.peekLast().second >= value) {
+                if (bestRoutes[node] >= value) {
                     continue
                 }
 
-                bestRoute.add(time to value)
+                bestRoutes[node] = value
 
                 adjacent[node].forEach { (to, cost) ->
                     (time + cost).takeIf { it <= maxTime }?.also {
@@ -45,7 +41,7 @@ fun main() {
                 }
             }
 
-            return bestRoutes[0].peekLast().second
+            return bestRoutes[0]
         }
     }
 

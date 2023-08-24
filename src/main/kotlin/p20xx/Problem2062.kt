@@ -49,7 +49,7 @@ fun main() {
 
     expect {
         Solution().countVowelSubstrings(
-            "ughspuuoaaaoieiuiaoiuee"
+            "aeiou".repeat(10000)
         )
     }
 }

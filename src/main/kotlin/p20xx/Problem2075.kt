@@ -5,19 +5,15 @@ import util.expect
 fun main() {
     class Solution {
         fun decodeCiphertext(encodedText: String, rows: Int): String {
-            if (encodedText.isEmpty()) {
-                return ""
-            }
-
             val size = encodedText.length / rows
 
-            return String(CharArray(encodedText.length - (rows - 1) * (rows - 1)) {
+            return String(CharArray((encodedText.length - (rows - 1) * (rows - 1)).coerceAtLeast(0)) {
                 encodedText[it % rows * (size + 1) + it / rows]
             }).trimEnd()
         }
     }
 
-    expect(1) {
+    expect {
         Solution().decodeCiphertext(
             "", 5
         )

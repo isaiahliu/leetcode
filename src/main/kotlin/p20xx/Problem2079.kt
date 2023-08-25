@@ -12,12 +12,10 @@ fun main() {
             var result = 0
             while (index < plants.size) {
                 if (current < plants[index]) {
-                    current = capacity - plants[index]
+                    current = capacity
                     result += index * 2
-                } else {
-                    current -= plants[index]
                 }
-
+                current -= plants[index]
                 result++
                 index++
             }

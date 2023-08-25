@@ -49,11 +49,7 @@ fun main() {
                     group1 == group2 -> true
                     group1.id in group2.restrictionGroups -> false
                     else -> {
-                        val res = hashSetOf<Int>()
-                        res.addAll(group1.restrictionIds)
-                        res.addAll(group2.restrictionIds)
-
-                        if (res.size == group1.restrictionIds.size + group2.restrictionIds.size) {
+                        if (restrictions.indices.none { it in group1.restrictionIds && it in group2.restrictionIds }) {
                             group1.join(group2)
                             true
                         } else {

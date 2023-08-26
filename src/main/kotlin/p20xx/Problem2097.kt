@@ -6,39 +6,34 @@ import java.util.*
 fun main() {
     class Solution {
         fun validArrangement(pairs: Array<IntArray>): Array<IntArray> {
-            val edges = hashMapOf<Int, LinkedList<Int>>()
+            val edges = hashMapOf<Int, LinkedList<IntArray>>()
 
             val degrees = hashMapOf<Int, Int>()
-            pairs.forEach { (from, to) ->
-                edges.computeIfAbsent(from) { LinkedList() }.add(to)
-                degrees[from] = (degrees[from] ?: 0) + 1
-                degrees[to] = (degrees[to] ?: 0) - 1
+            pairs.forEach { pair ->
+                edges.computeIfAbsent(pair[0]) { LinkedList() }.add(pair)
+                degrees[pair[0]] = (degrees[pair[0]] ?: 0) + 1
+                degrees[pair[1]] = (degrees[pair[1]] ?: 0) - 1
             }
 
-            val result = LinkedList<Int>()
+            val result = LinkedList<IntArray>()
 
             var start = edges.keys.first()
             degrees.entries.firstOrNull { it.value == 1 }?.also {
                 start = it.key
             }
 
-            fun dfs(node: Int) {
+            fun dfs(pair: IntArray? = null, node: Int = pair?.get(1) ?: start) {
                 edges[node]?.also {
                     while (it.isNotEmpty()) {
                         dfs(it.poll())
                     }
                 }
-                result.push(node)
+                pair?.also { result.push(it) }
             }
 
-            dfs(start)
+            dfs()
 
-            result.poll()
-            return Array(pairs.size) {
-                intArrayOf(start, result.poll().also {
-                    start = it
-                })
-            }
+            return result.toTypedArray()
         }
     }
 

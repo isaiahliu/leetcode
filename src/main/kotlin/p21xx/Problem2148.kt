@@ -5,26 +5,13 @@ import util.expect
 fun main() {
     class Solution {
         fun countElements(nums: IntArray): Int {
-            nums.sort()
-
-            val min = nums[0]
-            val max = nums.last()
+            val min = nums.min()
+            val max = nums.max()
 
             return if (min == max) {
                 0
             } else {
-                var left = 0
-                var right = nums.lastIndex
-
-                while (nums[left] == min) {
-                    left++
-                }
-
-                while (nums[right] == max) {
-                    right--
-                }
-
-                right - left + 1
+                nums.size - nums.count { it == min } - nums.count { it == max }
             }
         }
     }

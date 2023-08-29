@@ -23,10 +23,9 @@ fun main() {
 
             val rightList = LinkedList<Long>()
             rightList.push(rightSum)
-            repeat(size) {
-                rightSum += nums[nums.lastIndex - size - it]
+            repeat(size * 2) {
                 rightQueue.add(nums[nums.lastIndex - size - it])
-                rightSum -= rightQueue.poll()
+                rightSum += nums[nums.lastIndex - size - it] - rightQueue.poll()
 
                 rightList.push(rightSum)
             }
@@ -34,10 +33,8 @@ fun main() {
             var result = leftSum - rightList.poll()
 
             repeat(size) {
-                leftSum += nums[size + it]
                 leftQueue.add(nums[size + it])
-                leftSum -= leftQueue.poll()
-
+                leftSum += nums[size + it] - leftQueue.poll()
 
                 result = result.coerceAtMost(leftSum - rightList.poll())
             }

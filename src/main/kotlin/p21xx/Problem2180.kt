@@ -32,12 +32,4 @@ fun main() {
             4
         )
     }
-//    val params = input.map {
-//        it.split(",").map { it.toInt() }.toIntArray()
-//    }
-//    expect {
-//        Solution().goodTriplets(
-//            params[0], params[1]
-//        )
-//    }
 }

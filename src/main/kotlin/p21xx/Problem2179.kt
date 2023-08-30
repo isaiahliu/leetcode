@@ -29,10 +29,9 @@ fun main() {
                         }
 
                         else -> {
+                            size++
                             children.sumOf {
                                 it?.query(num) ?: 0
-                            }.also {
-                                size++
                             }
                         }
                     }

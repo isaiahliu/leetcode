@@ -8,7 +8,7 @@ fun main() {
             val degree = IntArray(artifacts.size)
 
             val grids = Array(n) {
-                IntArray(n)
+                IntArray(n) { -1 }
             }
 
             artifacts.forEachIndexed { index, (r1, c1, r2, c2) ->
@@ -23,8 +23,10 @@ fun main() {
             var result = 0
 
             dig.forEach { (r, c) ->
-                if (--degree[grids[r][c]] == 0) {
-                    result++
+                grids[r][c].takeIf { it >= 0 }?.also {
+                    if (--degree[grids[r][c]] == 0) {
+                        result++
+                    }
                 }
             }
             return result

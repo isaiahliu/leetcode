@@ -6,9 +6,9 @@ fun main() {
     class Solution {
         fun numberOfWays(s: String): Long {
             var count = 0
-            val leftZeros = IntArray(s.length) {
+            val leftZeros = IntArray(s.length) { index ->
                 count.also {
-                    if (s[it] == '0') {
+                    if (s[index] == '0') {
                         count++
                     }
                 }
@@ -35,7 +35,7 @@ fun main() {
 
     expect {
         Solution().numberOfWays(
-            "001101"
+            "0001100100"
         )
     }
 }

@@ -20,7 +20,7 @@ fun main() {
                 }
             }
 
-            return nums.size - size / 2 * 2
+            return nums.size - size + (size and 1)
         }
     }
 

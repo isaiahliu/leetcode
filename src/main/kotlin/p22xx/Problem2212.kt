@@ -47,7 +47,7 @@ fun main() {
                 }
             }
 
-            bobScoreArrows[0] += numArrows - used
+            result[0] += numArrows - used
 
             return result
         }
@@ -55,7 +55,7 @@ fun main() {
 
     expect {
         Solution().maximumBobPoints(
-            9, intArrayOf(1, 1, 0, 1, 0, 0, 2, 1, 0, 1, 2, 0)
+            89, intArrayOf(3, 2, 28, 1, 7, 1, 16, 7, 3, 13, 3, 5)
         )
     }
 }

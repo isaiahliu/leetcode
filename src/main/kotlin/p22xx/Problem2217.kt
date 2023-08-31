@@ -7,9 +7,9 @@ fun main() {
         fun kthPalindrome(queries: IntArray, intLength: Int): LongArray {
             val addition = intLength % 2
 
-            val half = intLength / 2
-            val leftMin = "1${"0".repeat(half - 1 + addition)}".toInt()
-            val leftMax = "9".repeat(half + addition).toInt()
+            val half = intLength - intLength / 2
+            val leftMin = "1${"0".repeat(half - 1)}".toInt()
+            val leftMax = "9".repeat(half).toInt()
 
             return queries.map {
                 val left = leftMin + it - 1

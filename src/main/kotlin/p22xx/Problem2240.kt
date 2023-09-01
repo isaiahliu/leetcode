@@ -5,12 +5,9 @@ import util.expect
 fun main() {
     class Solution {
         fun waysToBuyPensPencils(total: Int, cost1: Int, cost2: Int): Long {
-            var sum1 = 0
-
             var result = 0L
-            while (sum1 <= total) {
+            for (sum1 in 0..total step cost1) {
                 result += (total - sum1) / cost2 + 1
-                sum1 += cost1
             }
             return result
         }

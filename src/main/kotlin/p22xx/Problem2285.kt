@@ -5,7 +5,7 @@ import util.expect
 fun main() {
     class Solution {
         fun maximumImportance(n: Int, roads: Array<IntArray>): Long {
-            val degrees = IntArray(n)
+            val degrees = LongArray(n)
 
             roads.forEach { (from, to) ->
                 degrees[from]++

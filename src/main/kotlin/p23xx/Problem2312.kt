@@ -1,17 +1,19 @@
 package p23xx
 
 import util.expect
-import java.util.*
 
 fun main() {
     class Solution {
         fun sellingWood(m: Int, n: Int, prices: Array<IntArray>): Long {
-            val rowColumns = TreeMap<Int, TreeMap<Int, Long>>()
-            val columnRows = TreeMap<Int, TreeMap<Int, Long>>()
+            val priceMap = Array(m + 1) { LongArray(n + 1) }
 
+            var minRow = m
+            var minColumn = n
             prices.forEach { (row, column, price) ->
-                rowColumns.computeIfAbsent(row) { TreeMap() }[column] = price.toLong()
-                columnRows.computeIfAbsent(column) { TreeMap() }[row] = price.toLong()
+                priceMap[row][column] = price.toLong()
+
+                minRow = minRow.coerceAtMost(row)
+                minColumn = minColumn.coerceAtMost(column)
             }
 
             val cache = Array(m + 1) { LongArray(n + 1) { -1 } }
@@ -20,22 +22,14 @@ fun main() {
                     row == 0 || column == 0 -> 0
                     cache[row][column] >= 0 -> cache[row][column]
                     else -> {
-                        var result = rowColumns[row]?.get(column) ?: 0L
+                        var result = priceMap[row][column]
 
-                        for (r in rowColumns.keys) {
-                            if (r < row) {
-                                result = result.coerceAtLeast(dfs(r, column) + dfs(row - r, column))
-                            } else {
-                                break
-                            }
+                        for (r in minRow until row - minRow) {
+                            result = result.coerceAtLeast(dfs(r, column) + dfs(row - r, column))
                         }
 
-                        for (c in columnRows.keys) {
-                            if (c < column) {
-                                result = result.coerceAtLeast(dfs(row, c) + dfs(row, column - c))
-                            } else {
-                                break
-                            }
+                        for (c in minColumn until column - minColumn) {
+                            result = result.coerceAtLeast(dfs(row, c) + dfs(row, column - c))
                         }
 
                         cache[row][column] = result

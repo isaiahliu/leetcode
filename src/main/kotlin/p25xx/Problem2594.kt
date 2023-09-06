@@ -15,7 +15,7 @@ fun main() {
 
                 var repairCars = 0L
                 ranks.forEach {
-                    repairCars += sqrt(mid.toDouble() / it).toInt()
+                    repairCars += sqrt(mid.toDouble() / it).toLong()
                 }
 
                 if (repairCars >= cars) {

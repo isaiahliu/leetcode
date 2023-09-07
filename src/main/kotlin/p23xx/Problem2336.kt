@@ -5,18 +5,18 @@ import java.util.*
 
 fun main() {
     class SmallestInfiniteSet {
+        var next = 1
+
         val set = TreeSet<Int>()
 
-        init {
-            (1..1000).forEach { set.add(it) }
-        }
-
         fun popSmallest(): Int {
-            return set.pollFirst() ?: 0
+            return set.pollFirst() ?: next++
         }
 
         fun addBack(num: Int) {
-            set.add(num)
+            if (num < next) {
+                set.add(num)
+            }
         }
     }
 

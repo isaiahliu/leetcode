@@ -1,87 +1,80 @@
 package p23xx
 
 import util.expect
-import kotlin.math.sign
 
 fun main() {
     class Solution {
         fun minimumScore(nums: IntArray, edges: Array<IntArray>): Int {
             val adjacent = Array(nums.size) { hashSetOf<Int>() }
-            val parents = IntArray(nums.size) { -2 + it.sign }
-            val result = Array(nums.size) { IntArray(nums.size) { Int.MAX_VALUE } }
+            val times = Array(nums.size) { intArrayOf(Int.MAX_VALUE, Int.MIN_VALUE) }
             val sums = IntArray(nums.size) { -1 }
-            val rootSum = nums.fold(0) { a, b -> a xor b }
 
             edges.forEach { (from, to) ->
                 adjacent[from].add(to)
                 adjacent[to].add(from)
             }
 
-            fun dfs(index: Int): Pair<Int, Set<Int>> {
+            var timestamp = 0
+            fun dfs(index: Int) {
                 var sum = nums[index]
 
-                val children = hashSetOf<Int>()
+                times[index][0] = timestamp++
+
                 adjacent[index].forEach { child ->
-                    if (parents[child] == -1) {
-                        parents[child] = index
+                    if (times[child][0] > timestamp) {
+                        dfs(child)
 
-                        dfs(child).also { (childSum, nodes) ->
-                            sum = sum xor childSum
-                            children.addAll(nodes)
-                        }
+                        sum = sum xor sums[child]
                     }
                 }
 
+                times[index][1] = timestamp++
                 sums[index] = sum
-
-                if (parents[index] >= 0) {
-                    children.forEach { child ->
-                        val rootRemain = rootSum xor sum
-                        val parentRemain = sum xor sums[child]
-                        val childRemain = sums[child]
-
-                        (maxOf(rootRemain, parentRemain, childRemain) - minOf(
-                            rootRemain,
-                            parentRemain,
-                            childRemain
-                        )).also {
-                            result[index][child] = it
-                            result[child][index] = it
-                        }
-                    }
-                }
-
-                return sum to children + index
             }
 
             dfs(0)
 
+            var result = Int.MAX_VALUE
+            val rootSum = nums.fold(0) { a, b -> a xor b }
             for (edgeIndex1 in edges.indices) {
-                val (from1, to1) = edges[edgeIndex1]
-                val subRoot1 = if (parents[from1] == to1) from1 else to1
+                val (f1, t1) = edges[edgeIndex1]
+                val subRoot1 = if (times[f1][0] > times[t1][0]) f1 else t1
+                val (from1, to1) = times[subRoot1]
 
                 for (edgeIndex2 in edgeIndex1 + 1 until edges.size) {
-                    val (from2, to2) = edges[edgeIndex2]
-                    val subRoot2 = if (parents[from2] == to2) from2 else to2
+                    val (f2, t2) = edges[edgeIndex2]
+                    val subRoot2 = if (times[f2][0] > times[t2][0]) f2 else t2
+                    val (from2, to2) = times[subRoot2]
 
-                    if (result[subRoot1][subRoot2] == Int.MAX_VALUE) {
-                        val child1 = sums[subRoot1]
-                        val child2 = sums[subRoot2]
-                        val rootRemain = rootSum xor child1 xor child2
+                    when {
+                        from1 > to2 || from2 > to1 -> {
+                            val s1 = sums[subRoot1]
+                            val s2 = sums[subRoot2]
+                            val r = rootSum xor s1 xor s2
 
-                        (maxOf(rootRemain, child1, child2) - minOf(
-                            rootRemain,
-                            child1,
-                            child2
-                        )).also {
-                            result[subRoot1][subRoot2] = it
-                            result[subRoot2][subRoot1] = it
+                            result = result.coerceAtMost(maxOf(s1, s2, r) - minOf(s1, s2, r))
+                        }
+
+                        from1 > from2 -> {
+                            val s1 = sums[subRoot1]
+                            val s2 = sums[subRoot2] xor s1
+                            val r = rootSum xor sums[subRoot2]
+
+                            result = result.coerceAtMost(maxOf(s1, s2, r) - minOf(s1, s2, r))
+                        }
+
+                        else -> {
+                            val s2 = sums[subRoot2]
+                            val s1 = sums[subRoot1] xor s2
+                            val r = rootSum xor sums[subRoot1]
+
+                            result = result.coerceAtMost(maxOf(s1, s2, r) - minOf(s1, s2, r))
                         }
                     }
                 }
             }
 
-            return result.minOf { it.min() }
+            return result
         }
     }
 

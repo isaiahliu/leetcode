@@ -14,11 +14,45 @@ fun expect(result: Any? = null, dsl: () -> Any?) {
     println("Testcase ${testcase++}: ")
     measureTimeMillis {
         dsl().also {
-            if (result == null) {
-                println("$it")
-            } else {
-                println("$it should be $result")
+            val output = StringBuilder()
+
+            output.append(
+                when (it) {
+                    is IntArray -> {
+                        "${it.toList()}"
+                    }
+
+                    is LongArray -> {
+                        "${it.toList()}"
+                    }
+
+                    is CharArray -> {
+                        "${it.toList()}"
+                    }
+
+                    is DoubleArray -> {
+                        "${it.toList()}"
+                    }
+
+                    is BooleanArray -> {
+                        "${it.toList()}"
+                    }
+
+                    is Array<*> -> {
+                        "${it.toList()}"
+                    }
+
+                    else -> {
+                        "$it"
+                    }
+                }
+            )
+
+            if (result != null) {
+                output.append(" should be $result")
             }
+
+            println(output.toString())
         }
     }.also {
         println("Time cost: ${it}ms")

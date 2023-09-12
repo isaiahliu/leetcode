@@ -17,16 +17,7 @@ fun main() {
                 return result
             }
 
-            var n = 0
-            while (true) {
-                val reverseN = n.reverse()
-
-                when {
-                    n + reverseN == num -> return true
-                    n > num -> return false
-                    else -> n++
-                }
-            }
+            return (0..num).any { it + it.reverse() == num }
         }
     }
 

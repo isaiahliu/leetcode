@@ -5,17 +5,16 @@ import util.expect
 fun main() {
     class Solution {
         fun splitNum(num: Int): Int {
-            val result = intArrayOf(0, 0)
-            var index = 0
+            var result = 0
+            var base = 1
 
-            num.toString().toCharArray().sorted().forEach {
-                result[index] *= 10
-                result[index] += it - '0'
+            num.toString().toCharArray().sortedDescending().forEachIndexed { index, c ->
+                result += (c - '0') * base
 
-                index = 1 - index
+                base *= (index % 2) * 9 + 1
             }
 
-            return result.sum()
+            return result
         }
     }
 

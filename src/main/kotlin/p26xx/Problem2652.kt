@@ -5,9 +5,9 @@ import util.expect
 fun main() {
     class Solution {
         fun sumOfMultiples(n: Int): Int {
-            return (1..n).filter {
-                it % 3 == 0 || it % 5 == 0 || it % 7 == 0
-            }.sum()
+            return (1..n).fold(0) { sum, num ->
+                sum + if (num % 3 == 0 || num % 5 == 0 || num % 7 == 0) num else 0
+            }
         }
     }
 

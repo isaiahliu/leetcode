@@ -7,15 +7,11 @@ fun main() {
         fun punishmentNumber(n: Int): Int {
             val cache = hashMapOf<Int, Set<Int>>()
 
-            (0..9).forEach {
-                cache[it] = setOf(it)
-            }
-
             fun p(pow: Int): Set<Int> {
                 if (pow !in cache) {
                     val powStr = pow.toString()
 
-                    val result = hashSetOf<Int>(pow)
+                    val result = hashSetOf(pow)
                     for (leftSize in 1 until powStr.length) {
                         val left = p(powStr.take(leftSize).toInt())
                         val right = p(powStr.drop(leftSize).toInt())

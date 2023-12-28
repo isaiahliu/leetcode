@@ -12,11 +12,12 @@ fun main() {
             repeat(nums.size) {
                 baseCost += x
 
+                var sum = baseCost
                 temp = IntArray(temp.size) {
-                    minOf(temp[it], temp[(it + 1).mod(temp.size)])
+                    minOf(temp[it], temp[(it + 1).mod(temp.size)]).also { sum += it }
                 }
 
-                result = minOf(result, temp.fold(0L) { a, b -> a + b } + baseCost)
+                result = minOf(result, sum)
             }
 
             return result

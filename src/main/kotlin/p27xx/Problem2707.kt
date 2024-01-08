@@ -15,15 +15,16 @@ fun main() {
                 } else if (cache[index] >= 0) {
                     cache[index]
                 } else {
-                    var result = dfs(index + 1)
+                    var result = 1 + dfs(index + 1)
 
-                    val str = StringBuilder()
+                    buildString {
 
-                    for (i in index until s.length) {
-                        str.append(s[i])
+                        for (i in index until s.length) {
+                            append(s[i])
 
-                        if (str.toString() in set) {
-                            result = maxOf(result, i - index + 1 + dfs(i + 1))
+                            if (toString() in set) {
+                                result = minOf(result, dfs(i + 1))
+                            }
                         }
                     }
 
@@ -33,7 +34,7 @@ fun main() {
                 }
             }
 
-            return s.length - dfs(0)
+            return dfs(0)
         }
     }
 

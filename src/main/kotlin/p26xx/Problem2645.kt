@@ -5,13 +5,9 @@ import util.expect
 fun main() {
     class Solution {
         fun addMinimum(word: String): Int {
-            var result = 0
-            "c${word}d".reduce { acc, c ->
-                result += (c - acc - 1).mod(3)
-                c
-            }
-
-            return result
+            return "${word}a".fold('c' to 0) { (prev, result), c ->
+                c to result + (c - prev - 1).mod(3)
+            }.second
         }
     }
 

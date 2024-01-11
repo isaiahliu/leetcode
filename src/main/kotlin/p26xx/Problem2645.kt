@@ -5,15 +5,11 @@ import util.expect
 fun main() {
     class Solution {
         fun addMinimum(word: String): Int {
-            var prev = 'c'
             var result = 0
-            word.forEach {
-                result += (it - prev - 1).mod(3)
-
-                prev = it
+            "c${word}d".reduce { acc, c ->
+                result += (c - acc - 1).mod(3)
+                c
             }
-
-            result += 'c' - prev
 
             return result
         }
@@ -21,7 +17,7 @@ fun main() {
 
     expect {
         Solution().addMinimum(
-            "aaa"
+            "c"
         )
     }
 }

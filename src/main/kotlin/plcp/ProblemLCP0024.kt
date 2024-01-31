@@ -9,16 +9,25 @@ fun main() {
             val m = 1000000007
 
             val queues = arrayOf(PriorityQueue<Int>(compareByDescending { it }), PriorityQueue<Int>())
-            val sums = longArrayOf(0, 0)
+            var sum = 0L
 
             fun push(index: Int, num: Int) {
                 queues[index].add(num)
-                sums[index] += num.toLong()
+
+                if (index == 0) {
+                    sum -= num
+                } else {
+                    sum += num
+                }
             }
 
             fun poll(index: Int): Int {
                 return queues[index].poll().also {
-                    sums[index] -= it.toLong()
+                    if (index == 0) {
+                        sum += it
+                    } else {
+                        sum -= it
+                    }
                 }
             }
 
@@ -43,14 +52,14 @@ fun main() {
 
                 val midNum = queues[1].peek().toLong()
 
-                ((sums[1] - sums[0] + midNum * (queues[0].size - queues[1].size)) % m).toInt()
+                ((sum + midNum * (queues[0].size - queues[1].size)) % m).toInt()
             }
         }
     }
 
     expect {
         Solution().numsGame(
-            intArrayOf(4, 5),
+            intArrayOf(3, 4, 5, 1, 6, 7),
         )
     }
 }

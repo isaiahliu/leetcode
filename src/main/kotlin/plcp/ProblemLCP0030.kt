@@ -8,14 +8,15 @@ fun main() {
         fun magicTower(nums: IntArray): Int {
             var result = 0
 
-            val negs = PriorityQueue<Long>(compareBy { it })
+            val negs = PriorityQueue<Int>(compareBy { it })
+            var negSum = 0L
 
             var sum = 0L
-            var negSum = 0L
             nums.forEach {
                 sum += it
+
                 if (it < 0) {
-                    negs.add(it.toLong())
+                    negs.add(it)
 
                     if (sum < 0) {
                         negs.poll().also {

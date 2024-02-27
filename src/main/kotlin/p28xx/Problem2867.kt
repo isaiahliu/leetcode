@@ -81,10 +81,9 @@ fun main() {
 
             var result = 0L
             adjacent.forEach {
-                var sum = 0L
+                var sum = 1L
                 for (groupIndex in it) {
                     val size = groups[groupIndex].parent.size
-                    result += size
                     result += size * sum
                     sum += size
                 }

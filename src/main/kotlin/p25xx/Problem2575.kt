@@ -1,23 +1,30 @@
 package p25xx
 
 import util.expect
-import kotlin.math.sign
 
 fun main() {
     class Solution {
-        fun divisibilityArray(word: String, m: Int): IntArray {
-            var rem = 0L
-            return IntArray(word.length) {
-                rem = (rem * 10 + (word[it] - '0')) % m
+        fun minimumPossibleSum(n: Int, target: Int): Int {
+            val m = 1000000007
 
-                rem.sign xor 1
-            }
+            var result = 0L
+
+            val firstPartSize = minOf(target / 2, n).toLong()
+
+            result += firstPartSize * (firstPartSize + 1) / 2
+            result %= m
+
+            val remainingPart = n - firstPartSize
+            result += (target + target + remainingPart - 1) * remainingPart / 2
+            result %= m
+
+            return result.toInt()
         }
     }
 
     expect {
-        Solution().divisibilityArray(
-            "", 1
+        Solution().minimumPossibleSum(
+            3, 3
         )
     }
 }

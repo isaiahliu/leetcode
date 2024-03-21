@@ -7,7 +7,7 @@ fun main() {
         val nums = hashMapOf<Int, Int>()
         val frequencies = hashMapOf<Int, Int>()
 
-        private fun MutableMap<Int, Int>.add(n: Int): Int {
+        private fun MutableMap<Int, Int>.inc(n: Int): Int {
             val count = (this[n] ?: 0) + 1
 
             this[n] = count
@@ -15,7 +15,7 @@ fun main() {
             return count
         }
 
-        private fun MutableMap<Int, Int>.delete(n: Int): Int {
+        private fun MutableMap<Int, Int>.dec(n: Int): Int {
             return this[n]?.let {
                 if (it > 1) {
                     this[n] = it - 1
@@ -28,18 +28,18 @@ fun main() {
         }
 
         fun add(number: Int) {
-            val freq = nums.add(number)
+            val freq = nums.inc(number)
 
-            frequencies.delete(freq - 1)
-            frequencies.add(freq)
+            frequencies.dec(freq - 1)
+            frequencies.inc(freq)
         }
 
         fun deleteOne(number: Int) {
             nums[number]?.also {
-                nums.delete(number)
+                nums.dec(number)
 
-                frequencies.delete(it)
-                frequencies.add(it - 1)
+                frequencies.dec(it)
+                frequencies.inc(it - 1)
             }
         }
 

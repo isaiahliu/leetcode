@@ -11,10 +11,8 @@ fun main() {
             while (remain.isNotEmpty()) {
                 remain.toSet().also { remain.clear() }.forEach {
                     for (f in 2 until it) {
-                        if (it % f == 1) {
-                            if (result.add(f)) {
-                                remain.add(f)
-                            }
+                        if (it % f == 1 && result.add(f)) {
+                            remain.add(f)
                         }
                     }
                 }

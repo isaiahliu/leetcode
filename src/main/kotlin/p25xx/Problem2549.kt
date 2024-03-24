@@ -8,16 +8,13 @@ fun main() {
             val remain = hashSetOf(n)
             val result = hashSetOf(n)
 
-            fun addFactor(num: Int) {
-                if (result.add(num)) {
-                    remain.add(num)
-                }
-            }
             while (remain.isNotEmpty()) {
                 remain.toSet().also { remain.clear() }.forEach {
                     for (f in 2 until it) {
                         if (it % f == 1) {
-                            addFactor(f)
+                            if (result.add(f)) {
+                                remain.add(f)
+                            }
                         }
                     }
                 }

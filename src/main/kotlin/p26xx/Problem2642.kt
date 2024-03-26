@@ -35,7 +35,7 @@ fun main() {
 
                     visited.add(next) -> {
                         adjacent[next].forEach { (to, cost) ->
-                            nodes.add(to to sum + cost)
+                            nodes += to to sum + cost
                         }
                     }
                 }

@@ -4,7 +4,7 @@ import util.expect
 import java.util.*
 
 fun main() {
-    class Graph(val n: Int, edges: Array<IntArray>) {
+    class Graph(n: Int, edges: Array<IntArray>) {
         val adjacent = Array(n) { hashMapOf<Int, Int>() }
 
         init {

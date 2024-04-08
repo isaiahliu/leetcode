@@ -8,7 +8,7 @@ fun main() {
             var negRight = -1
             var posLeft = nums.size
 
-            fun findPos(left: Int, right: Int) {
+            tailrec fun findPos(left: Int, right: Int) {
                 if (left > right) {
                     return
                 }
@@ -24,7 +24,7 @@ fun main() {
                 }
             }
 
-            fun findNeg(left: Int, right: Int) {
+            tailrec fun findNeg(left: Int, right: Int) {
                 if (left > right) {
                     return
                 }
@@ -40,7 +40,7 @@ fun main() {
                 }
             }
 
-            fun findBoth(left: Int, right: Int) {
+            tailrec fun findBoth(left: Int, right: Int) {
                 if (left > right) {
                     return
                 }

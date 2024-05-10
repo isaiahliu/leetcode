@@ -11,7 +11,6 @@ fun main() {
         }
     }
 
-    println(true.compareTo(false))
     expect {
         Solution().countTestedDevices(
             intArrayOf(7, 12, 9, 8, 9, 15)

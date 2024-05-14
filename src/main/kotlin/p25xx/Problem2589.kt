@@ -1,6 +1,7 @@
 package p25xx
 
 import util.expect
+import kotlin.math.max
 
 fun main() {
     class Solution {
@@ -9,7 +10,7 @@ fun main() {
                 val left: SegNode by lazy { SegNode(range.first..(range.last + range.first) / 2) }
                 val right: SegNode by lazy { SegNode((range.last + range.first) / 2 + 1..range.last) }
 
-                var count = 0
+                var size = 0
 
                 fun count(l: Int, r: Int): Int {
                     return when {
@@ -17,11 +18,11 @@ fun main() {
                             0
                         }
 
-                        count == 0 -> {
+                        size == 0 -> {
                             0
                         }
 
-                        count == range.last - range.first + 1 -> {
+                        size == range.last - range.first + 1 -> {
                             minOf(range.last, r) - maxOf(range.first, l) + 1
                         }
 
@@ -29,27 +30,22 @@ fun main() {
                     }
                 }
 
-                fun mark(pos: Int): Boolean {
+                fun mark(rightLimit: Int, markCount: Int): Int {
                     return when {
-                        pos !in range -> false
-                        count == range.last - range.first + 1 -> false
+                        rightLimit < range.first -> 0
+                        markCount == 0 -> 0
+                        size == range.last - range.first + 1 -> 0
 
-                        range.first == range.last -> {
-                            count++
-                            true
+                        rightLimit >= range.last && size == 0 && (range.last - range.first + 1) <= markCount -> {
+                            (range.last - range.first + 1).also { size += it }
                         }
 
-                        right.mark(pos) -> {
-                            count++
-                            true
-                        }
+                        else -> {
+                            val rightCount = right.mark(rightLimit, markCount)
+                            val leftCount = left.mark(rightLimit, markCount - rightCount)
 
-                        left.mark(pos) -> {
-                            count++
-                            true
+                            (leftCount + rightCount).also { size += it }
                         }
-
-                        else -> false
                     }
                 }
             }
@@ -60,13 +56,9 @@ fun main() {
 
             var result = 0
             tasks.forEach { (from, to, duration) ->
-                var match = root.count(from, to)
-                var current = to
-                while (match < duration) {
-                    if (root.mark(current--)) {
-                        match++
-                        result++
-                    }
+                max(duration - root.count(from, to), 0).also {
+                    result += it
+                    root.mark(to, it)
                 }
             }
 
@@ -77,19 +69,9 @@ fun main() {
     expect {
         Solution().findMinimumTime(
             arrayOf(
-                intArrayOf(1, 9, 5),
-                intArrayOf(7, 15, 4),
+                intArrayOf(8, 19, 1),
+                intArrayOf(6, 13, 3)
             )
         )
     }
-    expect {
-        Solution().findMinimumTime(
-            arrayOf(
-                intArrayOf(2, 13, 2),
-                intArrayOf(6, 18, 5),
-                intArrayOf(2, 13, 3),
-            )
-        )
-    }
-
 }

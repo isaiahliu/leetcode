@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.7.20"
+    kotlin("jvm") version "2.0.0"
     id("java")
 }
 
@@ -25,3 +25,4 @@ tasks {
         }
     }
 }
+

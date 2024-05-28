@@ -27,20 +27,24 @@ fun main() {
                 prev = it
             }
 
-            return lengths.mapIndexedNotNull { index, array ->
+            var result = -1
+
+            lengths.forEachIndexed { index, array ->
                 var sum = 0
                 var count = 0
 
-                for (size in maxLengths[index] downTo 1) {
+                for (size in maxLengths[index] downTo maxOf(result, 1)) {
                     count += array[size]
                     sum += count
 
                     if (sum >= 3) {
-                        return@mapIndexedNotNull size
+                        result = maxOf(result, size)
+                        return@forEachIndexed
                     }
                 }
-                null
-            }.maxOrNull() ?: -1
+            }
+
+            return result
         }
     }
 

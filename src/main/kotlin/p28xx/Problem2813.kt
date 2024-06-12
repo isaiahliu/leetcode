@@ -40,14 +40,13 @@ fun main() {
                             val count = categoryCounts[lastC] ?: 0
                             if (count > 1) {
                                 categoryCounts[lastC] = count - 1
-                                categoryCounts[category] = 1
 
                                 profitSum -= lastP
                                 profitSum += profit
 
                                 result = maxOf(
                                     result,
-                                    profitSum + 1L * categoryCounts.size * categoryCounts.size
+                                    profitSum + 1L * visitedCategories.size * visitedCategories.size
                                 )
                                 break
                             }

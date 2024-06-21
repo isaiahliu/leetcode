@@ -13,7 +13,7 @@ fun main() {
                 }
                 val start = if (sameBefore) s[index] else 'a'
 
-                for (c in start..<'a' + k) {
+                for (c in start until 'a' + k) {
                     if (c != result.getOrNull(index - 1) && c != result.getOrNull(index - 2)) {
                         result[index] = c
 

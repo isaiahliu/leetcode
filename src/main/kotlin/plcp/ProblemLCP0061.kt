@@ -9,10 +9,7 @@ fun main() {
 
             var day = 0
             (0 until temperatureA.lastIndex).forEach {
-                val diffA = temperatureA[it + 1].compareTo(temperatureA[it])
-                val diffB = temperatureB[it + 1].compareTo(temperatureB[it])
-
-                if (diffA == diffB) {
+                if (temperatureA[it + 1].compareTo(temperatureA[it]) == temperatureB[it + 1].compareTo(temperatureB[it])) {
                     day++
                     result = maxOf(result, day)
                 } else {

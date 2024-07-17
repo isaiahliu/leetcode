@@ -12,10 +12,7 @@ fun main() {
                     mask and (1 shl it)
                 }
                 val d = Array(n) { IntArray(n) { 1000000 } }
-                for (road in roads) {
-                    val i = road[0]
-                    val j = road[1]
-                    val r = road[2]
+                for ((i, j, r) in roads) {
                     if (opened[i] > 0 && opened[j] > 0) {
                         d[j][i] = minOf(d[i][j], r)
                         d[i][j] = d[j][i]

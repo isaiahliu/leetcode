@@ -7,14 +7,12 @@ fun main() {
         fun countWays(nums: List<Int>): Int {
             var result = 0
 
-            var pre = -1
-            var count = 0
-            (nums + Int.MAX_VALUE).sortedBy { it }.forEach { num ->
-                if (num > pre && count in (pre + 1) until num) {
+            var previousMatch = true
+            (nums + Int.MAX_VALUE).sortedBy { it }.forEachIndexed { index, num ->
+                if (previousMatch && num > index) {
                     result++
                 }
-                count++
-                pre = num
+                previousMatch = index >= num
             }
 
             return result

@@ -8,7 +8,7 @@ fun main() {
             var result = 0
 
             var previousMatch = true
-            (nums + Int.MAX_VALUE).sortedBy { it }.forEachIndexed { index, num ->
+            (nums.sortedBy { it } + Int.MAX_VALUE).forEachIndexed { index, num ->
                 if (previousMatch && num > index) {
                     result++
                 }

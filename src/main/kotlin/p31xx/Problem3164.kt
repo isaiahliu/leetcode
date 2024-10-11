@@ -24,9 +24,9 @@ fun main() {
                         result += it
                     }
 
-                    val next = map1.higherKey(t) ?: break
-
-                    t = (next / num2 + (next % num2).sign) * num2
+                    map1.higherKey(t)?.also {
+                        t = (it / num2 + (it % num2).sign) * num2
+                    } ?: break
                 }
 
                 result

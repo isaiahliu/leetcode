@@ -5,15 +5,23 @@ import util.expect
 fun main() {
     class Solution {
         fun maxHeightOfTriangle(red: Int, blue: Int): Int {
-            fun find(top: Int, color1: Int, color2: Int): Int {
-                return if (top > color1) {
-                    0
+            val array = intArrayOf(0, 0)
+            var index = 0
+            var count = 1
+            var result = 0
+
+            while (true) {
+                array[index] += count++
+                index = index xor 1
+
+                if (red >= array[0] && blue >= array[1] || red >= array[1] && blue >= array[0]) {
+                    result++
                 } else {
-                    find(top + 1, color2, color1 - top) + 1
+                    break
                 }
             }
 
-            return maxOf(find(1, red, blue), find(1, blue, red))
+            return result
         }
     }
 

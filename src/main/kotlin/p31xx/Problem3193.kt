@@ -60,9 +60,10 @@ fun main() {
                     for (newCount in maxOf(i - less, 0)..minOf(maxCount, greater)) {
                         val prevCountEnd = maxCount - newCount
                         val prevCountStart = if (forced) prevCountEnd else 0
+                        val count = 1L * c(greater, newCount) * c(less, i - newCount)
 
                         for (prevCount in prevCountStart..prevCountEnd) {
-                            current[newCount + prevCount] += 1L * dp[i - 1][prevCount] * c(greater, newCount) * c(less, i - newCount)
+                            current[newCount + prevCount] += dp[i - 1][prevCount] * count
                             current[newCount + prevCount] %= m
                         }
                     }

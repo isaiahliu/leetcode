@@ -5,8 +5,6 @@ import util.expect
 fun main() {
     class Solution {
         fun maximumSumSubsequence(nums: IntArray, queries: Array<IntArray>): Int {
-            val m = 1000000007
-
             nums.forEachIndexed { index, num ->
                 if (num < 0) {
                     nums[index] = 0
@@ -39,8 +37,8 @@ fun main() {
                         sums.indices.forEach { mark ->
                             sums[mark] = maxOf(
                                 children[0].sums[mark and 0b10] + children[1].sums[mark and 0b01],
-                                children[0].sums[(mark and 0b10) + 0b01] + children[1].sums[mark and 0b01],
-                                children[0].sums[mark and 0b10] + children[1].sums[(mark and 0b01) + 0b10],
+                                children[0].sums[mark and 0b10 or 0b01] + children[1].sums[mark and 0b01],
+                                children[0].sums[mark and 0b10] + children[1].sums[mark and 0b01 or 0b10],
                             )
                         }
                     }
@@ -59,7 +57,7 @@ fun main() {
                 }
 
                 root.sums.max()
-            } % m).toInt()
+            } % 1000000007).toInt()
         }
     }
 

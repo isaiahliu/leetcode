@@ -49,9 +49,8 @@ fun main() {
 
             val root = SegNode(0, nums.lastIndex)
             root.recalculate(null)
-            var result = 0L
 
-            queries.forEach { (pos, num) ->
+            return (queries.sumOf { (pos, num) ->
                 maxOf(num, 0).also {
                     if (nums[pos] != it) {
                         nums[pos] = it
@@ -59,11 +58,8 @@ fun main() {
                     }
                 }
 
-                result += root.sums.max()
-                result %= m
-            }
-
-            return result.toInt()
+                root.sums.max()
+            } % m).toInt()
         }
     }
 

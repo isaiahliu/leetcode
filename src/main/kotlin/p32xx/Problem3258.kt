@@ -5,20 +5,21 @@ import util.expect
 fun main() {
     class Solution {
         fun countKConstraintSubstrings(s: String, k: Int): Int {
+            val counts = intArrayOf(0, 0)
+
+            var from = 0
+            var to = -1
+
             var result = 0
+            while (to < s.lastIndex) {
+                to++
+                counts[s[to] - '0']++
 
-            for (l in s.indices) {
-                val counts = intArrayOf(0, 0)
-
-                for (r in l until s.length) {
-                    counts[s[r] - '0']++
-
-                    if (counts.min() > k) {
-                        break
-                    }
-
-                    result++
+                while (counts.min() > k) {
+                    counts[s[from++] - '0']--
                 }
+
+                result += to - from + 1
             }
 
             return result

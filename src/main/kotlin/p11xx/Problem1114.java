@@ -11,7 +11,7 @@ class Problem1114 {
         new Foo();
     }
 
-    class Foo {
+    static class Foo {
         private final Semaphore first = new Semaphore(0);
 
         private final Semaphore second = new Semaphore(0);

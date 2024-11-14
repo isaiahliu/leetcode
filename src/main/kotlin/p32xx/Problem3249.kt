@@ -15,11 +15,10 @@ fun main() {
             }
 
             var result = 0
-            val visited = hashSetOf<Int>()
-            fun dfs(node: Int): Int {
-                visited += node
+            val visited = hashSetOf(0)
 
-                val children = adjacent[node].filter { it !in visited }.map {
+            fun dfs(node: Int): Int {
+                val children = adjacent[node].filter { visited.add(it) }.map {
                     dfs(it)
                 }
 

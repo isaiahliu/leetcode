@@ -1,50 +1,45 @@
 package p32xx
 
 import util.expect
-import java.util.*
 
 fun main() {
     class Solution {
         fun shortestDistanceAfterQueries(n: Int, queries: Array<IntArray>): IntArray {
-            val roads = TreeMap<Int, Int>()
-            roads += 0 to n - 1
+            class SegNode(val from: Int, val to: Int) {
+                var size = to - from + 1
 
-            var result = n - 1
-            return queries.map { (from, to) ->
-                val (lf, lt) = roads.floorEntry(from)
+                val children by lazy {
+                    arrayOf(
+                        SegNode(from, (from + to) / 2),
+                        SegNode((from + to) / 2 + 1, to)
+                    )
+                }
 
-                when {
-                    to <= lt -> {
-                        roads[lf] = from
-                        roads[to] = lt
+                fun mark(l: Int, r: Int): Int {
+                    when {
+                        size == 0 -> {
+                        }
 
-                        result -= to - from - 1
-                    }
+                        l > to || r < from -> {
+                        }
 
-                    from <= lt -> {
-                        roads[lf] = from
-                        result -= lt - from
+                        l <= from && r >= to -> {
+                            size = 0
+                        }
 
-                        while (true) {
-                            val (rf, rt) = roads.higherEntry(lf)
-
-                            if (rf > to) {
-                                break
-                            }
-
-                            result -= rt - rf + 1
-                            roads -= rf
-
-                            if (rt >= to) {
-                                roads[to] = rt
-                                result += rt - to + 1
-
-                                break
-                            }
+                        else -> {
+                            size = children.sumOf { it.mark(l, r) }
                         }
                     }
+
+                    return size
                 }
-                result
+            }
+
+            val root = SegNode(0, n - 1)
+
+            return queries.map { (from, to) ->
+                root.mark(from + 1, to - 1) - 1
             }.toIntArray()
         }
     }

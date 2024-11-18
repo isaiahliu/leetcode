@@ -6,9 +6,9 @@ fun main() {
     class Solution {
         fun shortestDistanceAfterQueries(n: Int, queries: Array<IntArray>): IntArray {
             class SegNode(val from: Int, val to: Int) {
-                var size = to - from + 1
+                private var size = to - from + 1
 
-                val children by lazy {
+                private val children by lazy {
                     arrayOf(
                         SegNode(from, (from + to) / 2),
                         SegNode((from + to) / 2 + 1, to)

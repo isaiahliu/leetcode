@@ -1,30 +1,52 @@
 package p06xx
 
 import util.expect
+import java.util.*
 
 fun main() {
     class Solution {
         fun smallestRange(nums: List<List<Int>>): IntArray {
-            val indices = Array(nums.size) { 0 }
-            val lastNums = Array(nums.size) { -9999999 }
+            val queue = PriorityQueue<Pair<Int, Int>>(compareBy { it.first })
 
-            val range = nums.indices
-            var minSize = 1000000
-            val result = intArrayOf(0, 0)
-            while (range.any { indices[it] < nums[it].size }) {
-                val min = range.mapNotNull { nums[it].getOrNull(indices[it]) }.min()
+            val indices = IntArray(nums.size)
 
-                range.forEach {
-                    if (nums[it].getOrNull(indices[it]) == min) {
-                        lastNums[it] = min
-                        indices[it]++
+            nums.indices.forEach { index ->
+                queue.add(nums[index][0] to index)
+            }
 
-                        val l = lastNums.min()
+            val numList = LinkedList<Pair<Int, Int>>()
 
-                        if (min - l < minSize) {
-                            minSize = min - l
-                            result[0] = l
-                            result[1] = min
+            val counts = hashMapOf<Int, Int>()
+
+            val result = intArrayOf(0, Int.MAX_VALUE)
+
+            while (queue.isNotEmpty()) {
+                val (num, index) = queue.poll()
+
+                nums[index].getOrNull(++indices[index])?.also {
+                    queue.add(it to index)
+                }
+
+                counts[index] = (counts[index] ?: 0) + 1
+
+                numList.add(num to index)
+
+                while (counts.size == nums.size && numList.isNotEmpty()) {
+                    val min = numList.peekFirst().first
+                    val max = numList.peekLast().first
+
+                    if (max - min < result[1] - result[0]) {
+                        result[0] = min
+                        result[1] = max
+                    }
+
+                    numList.poll().second.also {
+                        counts[it]?.also { count ->
+                            if (count == 1) {
+                                counts -= it
+                            } else {
+                                counts[it] = count - 1
+                            }
                         }
                     }
                 }

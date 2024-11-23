@@ -16,7 +16,8 @@ fun main() {
 
             val numList = LinkedList<Pair<Int, Int>>()
 
-            val counts = hashMapOf<Int, Int>()
+            val counts = IntArray(nums.size)
+            var size = 0
 
             val result = intArrayOf(0, Int.MAX_VALUE)
 
@@ -27,11 +28,14 @@ fun main() {
                     queue.add(it to index)
                 }
 
-                counts[index] = (counts[index] ?: 0) + 1
+                counts[index]++
+                if (counts[index] == 1) {
+                    size++
+                }
 
                 numList.add(num to index)
 
-                while (counts.size == nums.size && numList.isNotEmpty()) {
+                while (size == nums.size && numList.isNotEmpty()) {
                     val min = numList.peekFirst().first
                     val max = numList.peekLast().first
 
@@ -41,12 +45,9 @@ fun main() {
                     }
 
                     numList.poll().second.also {
-                        counts[it]?.also { count ->
-                            if (count == 1) {
-                                counts -= it
-                            } else {
-                                counts[it] = count - 1
-                            }
+                        counts[it]--
+                        if (counts[it] == 0) {
+                            size--
                         }
                     }
                 }

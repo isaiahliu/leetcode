@@ -5,27 +5,17 @@ import util.expect
 fun main() {
     class Solution {
         fun countOfPairs(nums: IntArray): Int {
-            val m = 1000000007
+            val m = 1000000007L
 
-            var dp = IntArray(51) { if (it <= nums[0]) 1 else 0 }
+            var dp = LongArray(nums[0] + 1) { 1 }
 
             for (index in 1 until nums.size) {
-                val newDp = IntArray(51)
-
-                for (cur in 0..nums[index]) {
-                    for (prev in 0..cur) {
-                        if (nums[index - 1] - prev >= nums[index] - cur) {
-                            newDp[cur] = (newDp[cur] + dp[prev]) % m
-                        }
-                    }
+                dp = LongArray(nums[index] + 1) { cur ->
+                    (0..cur).filter { nums[index - 1] - it >= nums[index] - cur }.sumOf { dp.getOrElse(it) { 0L } } % m
                 }
-
-                dp = newDp
             }
 
-            return dp.fold(0) { sum, c ->
-                (sum + c) % m
-            }
+            return (dp.sum() % m).toInt()
         }
     }
 

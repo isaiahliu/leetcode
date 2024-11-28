@@ -27,7 +27,7 @@ fun main() {
 
     expect {
         Solution().countOfPairs(
-            intArrayOf(2, 3, 2)
+            intArrayOf()
         )
     }
 }

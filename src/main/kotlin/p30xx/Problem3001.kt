@@ -54,7 +54,7 @@ fun main() {
         }
     }
 
-    expect(0) {
+    expect {
         Solution().minMovesToCaptureTheQueen(
             9, 1, 1, 1, 1, 1
         )

@@ -89,7 +89,7 @@ fun main() {
                     }
                 }
 
-                return arrayOf(0, 1).mapNotNull { dupBoard.moveRow(it) }.map { it + result }.minOrNull()
+                return arrayOf(0, 1).mapNotNull { dupBoard.moveRow(it) }.minOfOrNull { it + result }
             }
 
             return arrayOf(moveColumn(0), moveColumn(1)).filterNotNull().minOrNull() ?: -1

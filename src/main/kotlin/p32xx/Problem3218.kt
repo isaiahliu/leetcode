@@ -5,39 +5,43 @@ import util.expect
 fun main() {
     class Solution {
         fun minimumCost(m: Int, n: Int, horizontalCut: IntArray, verticalCut: IntArray): Int {
-            val cache = hashMapOf<Pair<Pair<Int, Int>, Pair<Int, Int>>, Int>()
-
-            fun dfs(hStart: Int, hEnd: Int, vStart: Int, vEnd: Int): Int {
-                val cacheKey = (hStart to hEnd) to (vStart to vEnd)
-
-                return when {
-                    hStart > hEnd && vStart > vEnd -> 0
-                    cacheKey in cache -> cache[cacheKey] ?: 0
-                    else -> {
-                        var min = Int.MAX_VALUE
-
-                        (hStart..hEnd).forEach {
-                            min = minOf(min, horizontalCut[it] + dfs(hStart, it - 1, vStart, vEnd) + dfs(it + 1, hEnd, vStart, vEnd))
+            val cache = Array(m) {
+                Array(m) { mSize ->
+                    Array(n) {
+                        IntArray(n) { nSize ->
+                            0 - (mSize + nSize)
                         }
-                        (vStart..vEnd).forEach {
-                            min = minOf(min, verticalCut[it] + dfs(hStart, hEnd, vStart, it - 1) + dfs(hStart, hEnd, it + 1, vEnd))
-                        }
-
-                        cache[cacheKey] = min
-                        min
                     }
                 }
             }
 
-            return dfs(0, horizontalCut.lastIndex, 0, verticalCut.lastIndex)
+            fun dfs(hRange: IntRange, vRange: IntRange): Int {
+                if (cache[hRange.first][hRange.last - hRange.first + 1][vRange.first][vRange.last - vRange.first + 1] < 0) {
+                    var min = Int.MAX_VALUE
+
+                    hRange.forEach {
+                        min = minOf(min, horizontalCut[it] + dfs(hRange.first until it, vRange) + dfs(it + 1..hRange.last, vRange))
+                    }
+
+                    vRange.forEach {
+                        min = minOf(min, verticalCut[it] + dfs(hRange, vRange.first until it) + dfs(hRange, it + 1..vRange.last))
+                    }
+
+                    cache[hRange.first][hRange.last - hRange.first + 1][vRange.first][vRange.last - vRange.first + 1] = min
+                }
+
+                return cache[hRange.first][hRange.last - hRange.first + 1][vRange.first][vRange.last - vRange.first + 1]
+            }
+
+            return dfs(horizontalCut.indices, verticalCut.indices)
         }
     }
 
     expect {
         Solution().minimumCost(
-            4, 5,
-            intArrayOf(0, 3),
-            intArrayOf(0, 2),
+            3, 2,
+            intArrayOf(1, 3),
+            intArrayOf(5),
         )
     }
 //    expect {

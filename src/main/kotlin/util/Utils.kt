@@ -58,5 +58,7 @@ fun expect(result: Any? = null, dsl: () -> Any?) {
         println("Time cost: ${it}ms")
         println()
     }
+
+    Thread.sleep(500L)
 }
 

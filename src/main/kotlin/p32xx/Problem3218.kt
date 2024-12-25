@@ -16,7 +16,10 @@ fun main() {
             }
 
             fun dfs(hRange: IntRange, vRange: IntRange): Int {
-                if (cache[hRange.first][hRange.last - hRange.first + 1][vRange.first][vRange.last - vRange.first + 1] < 0) {
+                val hSize = hRange.last - hRange.first + 1
+                val vSize = vRange.last - vRange.first + 1
+
+                if (cache[hRange.first][hSize][vRange.first][vSize] < 0) {
                     var min = Int.MAX_VALUE
 
                     hRange.forEach {
@@ -27,10 +30,10 @@ fun main() {
                         min = minOf(min, verticalCut[it] + dfs(hRange, vRange.first until it) + dfs(hRange, it + 1..vRange.last))
                     }
 
-                    cache[hRange.first][hRange.last - hRange.first + 1][vRange.first][vRange.last - vRange.first + 1] = min
+                    cache[hRange.first][hSize][vRange.first][vSize] = min
                 }
 
-                return cache[hRange.first][hRange.last - hRange.first + 1][vRange.first][vRange.last - vRange.first + 1]
+                return cache[hRange.first][hSize][vRange.first][vSize]
             }
 
             return dfs(horizontalCut.indices, verticalCut.indices)

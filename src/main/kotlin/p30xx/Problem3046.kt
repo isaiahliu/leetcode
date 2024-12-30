@@ -14,7 +14,7 @@ fun main() {
 
     expect {
         Solution().isPossibleToSplit(
-            intArrayOf(1, 1, 0, 0, 0, 1, 1, 0, 0, 1), 3
+            intArrayOf(1, 1, 0, 0, 0, 1, 1, 0, 0, 1)
         )
     }
 }

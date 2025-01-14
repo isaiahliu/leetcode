@@ -1,20 +1,29 @@
 package p32xx
 
 import util.expect
+import java.util.*
 
 fun main() {
     class Solution {
         fun generateKey(num1: Int, num2: Int, num3: Int): Int {
-            var nums = intArrayOf(num1, num2, num3)
-            var b = 1
-            var result = 0
+            val nums = LinkedList<Int>()
+            nums += num1
+            nums += num2
+            nums += num3
 
+            var result = 0
+            var b = 1
             repeat(4) {
-                result += b * nums.minOf {
-                    (it % 10).also {
-                        it / 10
-                    }
+                var min = 10
+                repeat(3) {
+                    val num = nums.poll()
+
+                    min = minOf(min, num % 10)
+
+                    nums += num / 10
                 }
+
+                result += min * b
                 b *= 10
             }
 

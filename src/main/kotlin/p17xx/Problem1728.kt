@@ -1,7 +1,7 @@
 package p17xx
 
-import java.util.*
 import util.expect
+import java.util.*
 
 fun main() {
     class Solution {
@@ -76,7 +76,7 @@ fun main() {
             val results = Array(total) {
                 Array(total) { Array(2) { IntArray(2) } }
             }
-            val queue: Queue<IntArray> = ArrayDeque()
+            val queue: LinkedList<IntArray> = LinkedList()
             for (mouse in 0 until total) {
                 val mouseRow = mouse / cols
                 val mouseCol = mouse % cols

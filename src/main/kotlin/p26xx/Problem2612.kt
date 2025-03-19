@@ -27,8 +27,7 @@ fun main() {
                     result[pos] = step
 
                     val (left, right) = intArrayOf(maxOf(pos - k + 1, 0), minOf(n - k, pos)).map {
-                        val switchEnd = it + k - 1
-                        it + switchEnd - pos
+                        it * 2 + k - pos - 1
                     }
                     while (true) {
                         queue += maps[left % 2].ceiling(left)?.takeIf { it <= right }?.also {

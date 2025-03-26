@@ -5,28 +5,26 @@ import util.expect
 fun main() {
     class Solution {
         fun minimumCost(s: String): Long {
-            var left = 0
-            var right = s.lastIndex
+            var left = 1
+            var right = 1
 
             var result = 0L
-            while (left < right) {
+            while (left + right <= s.length) {
                 when {
-                    s[left + 1] == s[left] -> {
+                    s[left] == s[left - 1] -> {
                         left++
                     }
 
-                    s[right - 1] == s[right] -> {
-                        right--
+                    s[s.length - right] == s[s.lastIndex - right] -> {
+                        right++
                     }
 
-                    left < s.lastIndex - right -> {
-                        left++
-                        result += left
+                    left < right -> {
+                        result += left++
                     }
 
                     else -> {
-                        right--
-                        result += s.lastIndex - right
+                        result += right++
                     }
                 }
             }

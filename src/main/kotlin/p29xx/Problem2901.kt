@@ -2,27 +2,24 @@ package p29xx
 
 import util.expect
 import kotlin.math.absoluteValue
-import kotlin.math.sign
 
 fun main() {
     class Solution {
         fun getWordsInLongestSubsequence(words: Array<String>, groups: IntArray): List<String> {
             val lengthGroups = hashMapOf<Int, MutableList<Int>>()
 
-            val prevs = arrayOfNulls<Int>(words.size)
+            val prevIndices = arrayOfNulls<Int>(words.size)
             val prevLengths = IntArray(words.size)
 
             words.forEachIndexed { index, word ->
-                lengthGroups[word.length]?.forEach {
-                    val target = words[it]
-
-                    if (groups[index] != groups[it] && word.indices.sumOf {
-                            (word[it] - target[it]).sign.absoluteValue
+                lengthGroups[word.length]?.forEach { prevIndex ->
+                    if (groups[index] != groups[prevIndex] && word.indices.sumOf {
+                            word[it].compareTo(words[prevIndex][it]).absoluteValue
                         } == 1) {
-                        val length = prevLengths[it] + 1
+                        val length = prevLengths[prevIndex] + 1
                         if (prevLengths[index] < length) {
                             prevLengths[index] = length
-                            prevs[index] = it
+                            prevIndices[index] = prevIndex
                         }
                     }
                 }
@@ -35,7 +32,7 @@ fun main() {
                     var t: Int? = it
                     while (t != null) {
                         add(0, words[t])
-                        t = prevs[t]
+                        t = prevIndices[t]
                     }
                 }
             }

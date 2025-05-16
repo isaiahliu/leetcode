@@ -2,7 +2,6 @@ package p29xx
 
 import util.expect
 import java.util.*
-import kotlin.math.absoluteValue
 
 fun main() {
     class Solution {
@@ -19,8 +18,8 @@ fun main() {
 
                 for ((length, indices) in prevLengths) {
                     indices.forEach { prevIndex ->
-                        if (groups[index] != groups[prevIndex] && word.indices.sumOf {
-                                word[it].compareTo(words[prevIndex][it]).absoluteValue
+                        if (groups[index] != groups[prevIndex] && word.indices.count {
+                                word[it] != words[prevIndex][it]
                             } == 1) {
                             if (length + 1 > maxLength) {
                                 maxLength = length + 1

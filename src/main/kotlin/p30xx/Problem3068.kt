@@ -7,8 +7,9 @@ fun main() {
     class Solution {
         fun maximumValueSum(nums: IntArray, k: Int, edges: Array<IntArray>): Long {
             var result = 0L
-            var diffMin = Int.MAX_VALUE
-            var adjCount = 0
+
+            var minInc = Int.MAX_VALUE
+            var incLeft = false
 
             nums.forEach {
                 val adj = it xor k
@@ -17,14 +18,14 @@ fun main() {
                     result += it
                 } else {
                     result += adj
-                    adjCount = adjCount xor 1
+                    incLeft = !incLeft
                 }
 
-                diffMin = minOf(diffMin, (adj - it).absoluteValue)
+                minInc = minOf(minInc, (adj - it).absoluteValue)
             }
 
-            if (adjCount == 1) {
-                result -= diffMin
+            if (incLeft) {
+                result -= minInc
             }
 
             return result

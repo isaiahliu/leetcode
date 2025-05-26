@@ -9,7 +9,7 @@ fun main() {
             var result = 0L
 
             var minInc = Int.MAX_VALUE
-            var incLeft = false
+            var incLeft = 0
 
             nums.forEach {
                 val adj = it xor k
@@ -18,15 +18,13 @@ fun main() {
                     result += it
                 } else {
                     result += adj
-                    incLeft = !incLeft
+                    incLeft = incLeft xor 1
                 }
 
                 minInc = minOf(minInc, (adj - it).absoluteValue)
             }
 
-            if (incLeft) {
-                result -= minInc
-            }
+            result -= minInc * incLeft
 
             return result
         }

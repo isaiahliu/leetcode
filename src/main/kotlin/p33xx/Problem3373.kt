@@ -37,8 +37,7 @@ fun main() {
             return IntArray(edges1.size + 1) {
                 when (it) {
                     in odd -> odd.size
-                    in even -> even.size
-                    else -> 0
+                    else -> even.size
                 } + max2
             }
         }

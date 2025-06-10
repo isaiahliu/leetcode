@@ -25,15 +25,15 @@ fun main() {
 
                     val buff = LinkedList<Int>()
 
-                    if (k > 1) {
-                        buff += 0
-                    } else {
-                        map[0] = hashSetOf(0)
-                    }
+                    buff += 0
 
                     val sums = Array(2) { IntArray(s.length) }
 
                     s.forEachIndexed { index, ch ->
+                        if (buff.size >= k) {
+                            map.computeIfAbsent(buff.pollFirst()) { hashSetOf() } += index - k + 1
+                        }
+
                         sums.forEach {
                             it[index] = it.getOrElse(index - 1) { 0 }
                         }
@@ -70,12 +70,7 @@ fun main() {
                         }
 
                         buff += diff
-
-                        if (buff.size >= k) {
-                            map.computeIfAbsent(buff.pollFirst()) { hashSetOf() } += index - k + 2
-                        }
                     }
-
                 }
             }
 

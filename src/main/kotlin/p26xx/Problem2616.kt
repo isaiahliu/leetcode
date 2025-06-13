@@ -13,7 +13,7 @@ fun main() {
             var right = Int.MAX_VALUE
 
             while (left <= right) {
-                var mid = left + (right - left) / 2
+                val mid = left + (right - left) / 2
 
                 var index = 0
                 var count = 0

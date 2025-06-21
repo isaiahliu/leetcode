@@ -17,9 +17,7 @@ fun main() {
                 val (leftCount, leftSize) = counts[left]
 
                 while (right < counts.size) {
-                    val (rightCount, rightSize) = counts[right]
-
-                    if (rightCount - leftCount > k) {
+                    if (counts[right].key - leftCount > k) {
                         break
                     }
 

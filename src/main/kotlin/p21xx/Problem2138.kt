@@ -1,13 +1,12 @@
 package p21xx
 
 import util.expect
+import kotlin.math.sign
 
 fun main() {
     class Solution {
         fun divideString(s: String, k: Int, fill: Char): Array<String> {
-            return "\\w{1,${k}}".toRegex().findAll(s).map {
-                it.value.padEnd(k, fill)
-            }.toList().toTypedArray()
+            return s.padEnd((s.length / k + (s.length % k).sign) * k, fill).chunked(k).toTypedArray()
         }
     }
 

@@ -5,7 +5,7 @@ import util.expect
 fun main() {
     class Solution {
         fun kthCharacter(k: Int): Char {
-            return 'a' + (k - 1).countOneBits()
+            return 'a' + (k - 1).countOneBits() % 26
         }
     }
 

@@ -31,13 +31,12 @@ fun main() {
             }
 
             startTime.forEachIndexed { index, start ->
-                var size = endTime[index] - start
+                val size = (endTime[index] - start).takeIf {
+                    max.any { (pos, l) ->
+                        l >= it && pos != index && pos != index + 1
+                    }
+                } ?: 0
 
-                if (max.none { (pos, l) ->
-                        l >= size && pos != index && pos != index + 1
-                    }) {
-                    size = 0
-                }
                 result = maxOf(result, distances[index] + distances[index + 1] + size)
             }
 

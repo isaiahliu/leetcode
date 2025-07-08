@@ -7,8 +7,6 @@ fun main() {
         fun maxFreeTime(eventTime: Int, startTime: IntArray, endTime: IntArray): Int {
             var lastEndTime = 0
 
-            var result = 0
-
             val max = arrayOf(0 to 0, 0 to 0, 0 to 0)
 
             val distances = IntArray(startTime.size + 1) { index ->
@@ -30,17 +28,15 @@ fun main() {
                 }
             }
 
-            startTime.forEachIndexed { index, start ->
-                val size = (endTime[index] - start).takeIf {
+            return startTime.indices.maxOf { index ->
+                val size = (endTime[index] - startTime[index]).takeIf {
                     max.any { (pos, l) ->
                         l >= it && pos != index && pos != index + 1
                     }
                 } ?: 0
 
-                result = maxOf(result, distances[index] + distances[index + 1] + size)
+                distances[index] + distances[index + 1] + size
             }
-
-            return result
         }
     }
 

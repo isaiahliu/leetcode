@@ -17,8 +17,7 @@ fun main() {
 
                 fun mark(min: Int, max: Int): Int {
                     return when {
-                        min > end || max < start -> 0
-                        free == 0 -> 0
+                        min > end || max < start || free == 0 -> 0
                         min <= start && max >= end -> {
                             free.also {
                                 free = 0
@@ -26,11 +25,9 @@ fun main() {
                         }
 
                         else -> {
-                            val size = children.sumOf { it.mark(min, max) }
-
-                            free -= size
-
-                            size
+                            children.sumOf { it.mark(min, max) }.also {
+                                free -= it
+                            }
                         }
                     }
                 }

@@ -5,19 +5,44 @@ import util.expect
 fun main() {
     class Solution {
         fun countDays(days: Int, meetings: Array<IntArray>): Int {
-            meetings.sortBy { it[0] }
+            class SegNode(val start: Int, val end: Int) {
+                val children by lazy {
+                    arrayOf(
+                        SegNode(start, (start + end) / 2),
+                        SegNode((start + end) / 2 + 1, end)
+                    )
+                }
 
-            var result = 0
+                var free = end - start + 1
 
-            var last = 0
-            meetings.forEach { (start, end) ->
-                result += maxOf(start - last - 1, 0)
+                fun mark(min: Int, max: Int): Int {
+                    return when {
+                        min > end || max < start -> 0
+                        free == 0 -> 0
+                        min <= start && max >= end -> {
+                            free.also {
+                                free = 0
+                            }
+                        }
 
-                last = maxOf(last, end)
+                        else -> {
+                            val size = children.sumOf { it.mark(min, max) }
+
+                            free -= size
+
+                            size
+                        }
+                    }
+                }
             }
 
-            result += maxOf(days - last, 0)
-            return result
+            val root = SegNode(1, days)
+
+            meetings.forEach { (start, end) ->
+                root.mark(start, end)
+            }
+
+            return root.free
         }
     }
 

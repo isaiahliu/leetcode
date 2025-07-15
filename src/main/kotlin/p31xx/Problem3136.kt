@@ -13,11 +13,14 @@ fun main() {
             var hasConsonant = false
 
             val vowels = setOf('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
+            val lowercases = 'a'..'z'
+            val uppercases = 'A'..'Z'
+            val digits = '0'..'9'
             word.forEach {
                 when (it) {
                     in vowels -> hasVowel = true
-                    in 'a'..'z', in 'A'..'Z' -> hasConsonant = true
-                    !in '0'..'9' -> return false
+                    in lowercases, in uppercases -> hasConsonant = true
+                    !in digits -> return false
                 }
             }
 

@@ -16,8 +16,7 @@ fun main() {
             word.forEach {
                 when (it) {
                     in vowels -> hasVowel = true
-                    in 'a'..'z' -> hasConsonant = true
-                    in 'A'..'Z' -> hasConsonant = true
+                    in 'a'..'z', in 'A'..'Z' -> hasConsonant = true
                     !in '0'..'9' -> return false
                 }
             }

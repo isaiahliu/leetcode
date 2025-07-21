@@ -5,8 +5,7 @@ import util.expect
 fun main() {
     class Solution {
         fun maxCount(banned: IntArray, n: Int, maxSum: Int): Int {
-            banned.sort()
-            var banIndex = 0
+            val bannedSet = banned.toMutableSet()
 
             var sum = 0L
             var result = 0
@@ -16,15 +15,9 @@ fun main() {
                         break
                     }
 
-                    banIndex == banned.size || num < banned[banIndex] -> {
+                    !bannedSet.remove(num) -> {
                         sum += num
                         result++
-                    }
-
-                    else -> {
-                        while (banIndex < banned.size && num == banned[banIndex]) {
-                            banIndex++
-                        }
                     }
                 }
             }

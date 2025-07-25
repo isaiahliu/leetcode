@@ -23,15 +23,20 @@ fun main() {
             var result = 0L
 
             val save = hashMapOf<Int, Long>()
-            for (start in 1..n) {
+
+            var start = 1
+            while (index < conflictingPairs.size) {
+                val nextStart = conflictingPairs[index][0]
+
                 val end = ends.firstEntry()?.key ?: (n + 1)
-                result += end - start
+
+                result += (end * 2L - start - nextStart) * (nextStart - start + 1) / 2
 
                 if (ends[end] == 1) {
-                    save[end] = (save[end] ?: 0) + (ends.higherKey(end) ?: (n + 1)) - end
+                    save[end] = (save[end] ?: 0) + 1L * ((ends.higherKey(end) ?: (n + 1)) - end) * (nextStart - start + 1)
                 }
 
-                while (index < conflictingPairs.size && conflictingPairs[index][0] == start) {
+                while (index < conflictingPairs.size && conflictingPairs[index][0] == nextStart) {
                     conflictingPairs[index++][1].also {
                         ends[it]?.also { c ->
                             if (c == 1) {
@@ -42,7 +47,11 @@ fun main() {
                         }
                     }
                 }
+
+                start = nextStart + 1
             }
+
+            result += (n - start + 2L) * (n - start + 1) / 2
 
             return result + save.values.max()
         }
@@ -50,9 +59,9 @@ fun main() {
 
     expect {
         Solution().maxSubarrays(
-            4, arrayOf(
-                intArrayOf(2, 3),
-                intArrayOf(1, 4),
+            100000, arrayOf(
+                intArrayOf(50000, 50001),
+                intArrayOf(99999, 100000),
             )
         )
     }

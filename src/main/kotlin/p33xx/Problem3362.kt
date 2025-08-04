@@ -26,7 +26,7 @@ fun main() {
                 }
 
                 repeat(num - sums[index]) {
-                    if (rightQueue.isEmpty || rightQueue.peek() < index) {
+                    if (rightQueue.isEmpty() || rightQueue.peek() < index) {
                         return -1
                     }
 

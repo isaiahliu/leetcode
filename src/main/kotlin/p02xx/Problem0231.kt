@@ -5,10 +5,7 @@ import util.expect
 fun main() {
     class Solution {
         fun isPowerOfTwo(n: Int): Boolean {
-            if (n < 0) {
-                return false
-            }
-            return Integer.bitCount(n) == 1
+            return n.takeIf { it > 0 }?.countOneBits() == 1
         }
     }
 

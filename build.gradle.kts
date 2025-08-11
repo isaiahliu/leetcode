@@ -5,7 +5,6 @@ plugins {
 
 group = "org.isaiahliu"
 version = "1.0.0"
-
 val REPOSITORY_MIRRORS = arrayOf(
     "https://maven.aliyun.com/repository/central",
     "https://maven.aliyun.com/repository/jcenter",

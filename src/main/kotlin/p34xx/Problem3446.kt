@@ -7,20 +7,16 @@ fun main() {
         fun sortMatrix(grid: Array<IntArray>): Array<IntArray> {
             return grid.indices.flatMap { r ->
                 grid[r].indices.map { r to it }
-            }.groupBy { it.first - it.second }.flatMap { (diff, positions) ->
-                val d = diff * 2 + 1
-
-                val sorted = positions.sortedWith { (r1, c1), (r2, c2) ->
-                    (grid[r2][c2] - grid[r1][c1]) * d
+            }.groupBy { (it.first - it.second) * 2 + 1 }.flatMap { (diff, positions) ->
+                positions.sortedWith { (r1, c1), (r2, c2) ->
+                    (grid[r2][c2] - grid[r1][c1]) * diff
+                }.let { sorted ->
+                    positions.indices.map { positions[it] to grid[sorted[it].first][sorted[it].second] }
                 }
-
-                positions.indices.map { positions[it] to sorted[it] }
             }.toMap().let {
                 Array(grid.size) { r ->
                     IntArray(grid[r].size) { c ->
-                        it[r to c]?.let { (tr, tc) ->
-                            grid[tr][tc]
-                        } ?: 0
+                        it[r to c] ?: 0
                     }
                 }
             }

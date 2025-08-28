@@ -8,8 +8,8 @@ fun main() {
             return grid.indices.flatMap { r ->
                 grid[r].indices.map { r to it }
             }.groupBy { (it.first - it.second) * 2 + 1 }.flatMap { (diff, positions) ->
-                positions.sortedWith { (r1, c1), (r2, c2) ->
-                    (grid[r2][c2] - grid[r1][c1]) * diff
+                positions.sortedBy { (r, c) ->
+                    grid[r][c] * -diff
                 }.let { sorted ->
                     positions.indices.map { positions[it] to grid[sorted[it].first][sorted[it].second] }
                 }

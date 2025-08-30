@@ -4,7 +4,7 @@ import java.util.*
 
 fun main() {
     class Solution {
-        fun solveSudoku(board: Array<CharArray>): Unit {
+        fun solveSudoku(board: Array<CharArray>) {
             class Possible(var num: Int? = null) {
                 val nums = hashSetOf<Int>()
 
@@ -143,8 +143,6 @@ fun main() {
 
                 fillInsured()
             }
-
-            val a = 1
         }
     }
 

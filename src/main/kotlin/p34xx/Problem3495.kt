@@ -5,29 +5,28 @@ import util.expect
 fun main() {
     class Solution {
         fun minOperations(queries: Array<IntArray>): Long {
-            class SegNode(val l4: Int, val r4: Int) {
-                private val l = 1L shl (l4 * 2)
-                private val r = (1L shl ((r4 + 1) * 2)) - 1
+            return queries.sumOf {
+                var result = 0L
+                var left = it[0]
+                val right = it[1] + 1
 
-                val children by lazy {
-                    arrayOf(SegNode(l4, (l4 + r4) / 2), SegNode((l4 + r4) / 2 + 1, r4))
-                }
+                for (op in 1..15) {
+                    val l = 1 shl ((op - 1) * 2)
+                    val r = 1 shl (op * 2)
 
-                fun query(num1: Int, num2: Int): Long {
-                    return if (num1 > r || num2 < l) {
-                        0L
-                    } else if (l4 < r4) {
-                        children.sumOf { it.query(num1, num2) }
-                    } else {
-                        (minOf(num2.toLong(), r) - maxOf(num1.toLong(), l) + 1L) * (l4 + 1)
+                    when {
+                        l > right -> {
+                            break
+                        }
+
+                        left < r -> {
+                            result += (minOf(r, right) - left) * op.toLong()
+                            left = r
+                        }
                     }
                 }
-            }
 
-            val root = SegNode(0, 15)
-
-            return queries.sumOf {
-                (root.query(it[0], it[1]) + 1) / 2
+                (result + 1) / 2
             }
         }
     }

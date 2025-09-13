@@ -5,65 +5,86 @@ import util.expect
 fun main() {
     class Solution {
         fun spellchecker(wordlist: Array<String>, queries: Array<String>): Array<String> {
-            val words = hashMapOf<Int, MutableList<String>>()
-            val visited = hashSetOf<String>()
-            wordlist.forEach {
-                if (visited.add(it)) {
-                    words.computeIfAbsent(it.length) { arrayListOf() }.add(it)
-                }
-            }
             val vowels = setOf('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
-            val EXACT = 0
-            val CASE = 1
-            val VOWEL = 2
-            val MISMATCH = 3
 
-            fun String.match(query: String): Int {
-                return when {
-                    this == query -> EXACT
-                    this.lowercase() == query.lowercase() -> CASE
-                    length != query.length -> MISMATCH
-                    else -> {
-                        var problem = VOWEL
+            val STRICT = 0
+            val IGNORE_CASE = 1
+            val IGNORE_VOWELS = 2
 
-                        loop@ for (i in indices) {
-                            when {
-                                this[i].lowercaseChar() == query[i].lowercaseChar() -> {}
-                                this[i] in vowels && query[i] in vowels -> {}
-                                else -> {
-                                    problem = MISMATCH
-                                    break@loop
+            class Trie {
+                val children by lazy { hashMapOf<Char, Trie>() }
+
+                var wordIndex: Int? = null
+
+                fun mark(wordIndex: Int, index: Int) {
+                    wordlist[wordIndex].getOrNull(index)?.also {
+                        children.computeIfAbsent(it) { Trie() }.mark(wordIndex, index + 1)
+                    } ?: run {
+                        this.wordIndex = this.wordIndex ?: wordIndex
+                    }
+                }
+
+                fun query(word: String, index: Int, type: Int): Pair<Int, Int>? {
+                    if (word.length == index) {
+                        return wordIndex?.let { type to it }
+                    }
+
+                    var result: Pair<Int, Int>? = null
+                    (0..IGNORE_VOWELS).forEach {
+                        when (it) {
+                            STRICT -> {
+                                result = children[word[index]]?.query(word, index + 1, maxOf(type, STRICT))
+                            }
+
+                            IGNORE_CASE -> {
+                                if ((result?.first ?: it) < it) {
+                                    return@forEach
+                                }
+                                arrayOf(word[index].uppercaseChar(), word[index].lowercaseChar()).mapNotNull {
+                                    children[it]?.query(word, index + 1, maxOf(type, IGNORE_CASE))
+                                }.minWithOrNull(compareBy<Pair<Int, Int>> { it.first }.thenBy { it.second })?.also {
+                                    if (it.first < (result?.first ?: Int.MAX_VALUE)) {
+                                        result = it
+                                    } else if (it.first == result?.first && it.second < (result?.second ?: Int.MAX_VALUE)) {
+                                        result = it
+                                    }
+                                }
+                            }
+
+                            IGNORE_VOWELS -> {
+                                if (word[index] in vowels) {
+                                    vowels.mapNotNull {
+                                        children[it]?.query(word, index + 1, maxOf(type, IGNORE_VOWELS))
+                                    }.minWithOrNull(compareBy<Pair<Int, Int>> { it.first }.thenBy { it.second })?.also {
+                                        if (it.first < (result?.first ?: Int.MAX_VALUE)) {
+                                            result = it
+                                        } else if (it.first == result?.first && it.second < (result?.second ?: Int.MAX_VALUE)) {
+                                            result = it
+                                        }
+                                    }
                                 }
                             }
                         }
-
-                        problem
                     }
+
+                    return result
                 }
             }
 
-            return queries.map {
-                var problem = MISMATCH
-                var match = ""
-                for (word in words[it.length].orEmpty()) {
-                    val m = word.match(it)
-                    if (m < problem) {
-                        problem = m
-                        match = word
-                    }
+            val root = Trie()
+            wordlist.indices.forEach {
+                root.mark(it, 0)
+            }
 
-                    if (m == EXACT) {
-                        break
-                    }
-                }
-                match
-            }.toTypedArray()
+            return Array(queries.size) {
+                root.query(queries[it], 0, STRICT)?.second?.let { wordlist[it] }.orEmpty()
+            }
         }
     }
 
     expect {
         Solution().spellchecker(
-            arrayOf("KiTe", "kite", "hare", "Hare"), arrayOf("keti")
+            arrayOf("iiy", "aay"), arrayOf("uay")
         ).toList()
     }
 }

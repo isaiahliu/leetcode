@@ -30,21 +30,9 @@ fun main() {
             }
 
             return Array(queries.size) {
-                val query = queries[it]
-
-                if (query in stricts) {
-                    return@Array query
-                }
-
-                ignoreCases[query.lowercase()]?.also {
-                    return@Array wordlist[it]
-                }
-
-                ignoreVowels[query.toWildCardVowel()]?.also {
-                    return@Array wordlist[it]
-                }
-
-                return@Array ""
+                queries[it].let {
+                    it.takeIf { it in stricts } ?: ignoreCases[it.lowercase()]?.let { wordlist[it] } ?: ignoreVowels[it.toWildCardVowel()]?.let { wordlist[it] }
+                }.orEmpty()
             }
         }
     }

@@ -1,7 +1,7 @@
 package p01xx
 
-import kotlin.math.absoluteValue
 import util.expect
+import kotlin.math.absoluteValue
 
 fun main() {
     class Solution {

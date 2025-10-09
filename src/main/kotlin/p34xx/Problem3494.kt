@@ -6,20 +6,21 @@ fun main() {
     class Solution {
         fun minTime(skill: IntArray, mana: IntArray): Long {
             var offset = 0L
-
             var sum = 0L
-            mana.forEachIndexed { manaIndex, m ->
+
+            val sums = LongArray(skill.size) {
+                sum += skill[it] * mana[0]
+                sum
+            }
+
+            for (manaIndex in 1 until mana.size) {
                 sum = 0L
                 var newOffset = 0L
-                var lastSum = 0L
 
-                skill.forEach { s ->
-                    mana.getOrNull(manaIndex - 1)?.also { lastM ->
-                        lastSum += lastM * s
-                        newOffset = maxOf(newOffset, lastSum + offset - sum)
-                    }
-
-                    sum += s * m
+                skill.forEachIndexed { skillIndex, s ->
+                    newOffset = maxOf(newOffset, sums[skillIndex] + offset - sum)
+                    sum += s * mana[manaIndex]
+                    sums[skillIndex] = sum
                 }
 
                 offset = newOffset

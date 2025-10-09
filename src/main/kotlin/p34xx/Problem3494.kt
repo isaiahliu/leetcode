@@ -7,9 +7,9 @@ fun main() {
         fun minTime(skill: IntArray, mana: IntArray): Long {
             val sums = LongArray(skill.size + 1)
 
-            return mana.indices.fold(0L) { lastOffset, manaIndex ->
+            return mana.indices.fold(0L) { offset, manaIndex ->
                 skill.indices.maxOf { skillIndex ->
-                    (sums[skillIndex + 1] + lastOffset - sums[skillIndex]).also {
+                    (sums[skillIndex + 1] + offset - sums[skillIndex]).also {
                         sums[skillIndex + 1] = sums[skillIndex] + skill[skillIndex] * mana[manaIndex]
                     }
                 }

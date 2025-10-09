@@ -5,31 +5,27 @@ import util.expect
 fun main() {
     class Solution {
         fun minTime(skill: IntArray, mana: IntArray): Long {
+            var offset = 0L
+
             var sum = 0L
-            var dp = LongArray(skill.size) {
-                sum += skill[it] * mana[0]
-                sum
-            }
-
-            for (i in 1 until mana.size) {
-
+            mana.forEachIndexed { manaIndex, m ->
                 sum = 0L
-                var offset = 0L
-                val newDp = LongArray(skill.size) {
-                    offset = maxOf(offset, dp[it] - sum)
+                var newOffset = 0L
+                var lastSum = 0L
 
-                    sum += skill[it] * mana[i]
-                    sum
+                skill.forEach { s ->
+                    mana.getOrNull(manaIndex - 1)?.also { lastM ->
+                        lastSum += lastM * s
+                        newOffset = maxOf(newOffset, lastSum + offset - sum)
+                    }
+
+                    sum += s * m
                 }
 
-                newDp.forEachIndexed { index, v ->
-                    newDp[index] = v + offset
-                }
-
-                dp = newDp
+                offset = newOffset
             }
 
-            return dp.last()
+            return sum + offset
         }
     }
 

@@ -6,24 +6,14 @@ import java.util.*
 fun main() {
     class Solution {
         fun maximumTotalDamage(power: IntArray): Long {
-            val dp = LinkedList<Pair<Int, Long>>()
+            val dp = LinkedList<Pair<Long, Long>>()
             var preMax = 0L
-            power.sorted().forEach { damage ->
-                when {
-                    dp.lastOrNull()?.first == damage -> {
-                        dp.pollLast().also {
-                            dp.add(it.first to it.second + it.first)
-                        }
-                    }
-
-                    else -> {
-                        while (dp.peekFirst()?.first?.takeIf { it + 2 < damage } != null) {
-                            preMax = maxOf(preMax, dp.poll().second)
-                        }
-
-                        dp.add(damage to damage + preMax)
-                    }
+            power.toList().groupingBy { it.toLong() }.eachCount().entries.sortedBy { it.key }.forEach { (damage, count) ->
+                while (dp.peekFirst()?.first?.takeIf { it + 2 < damage } != null) {
+                    preMax = maxOf(preMax, dp.poll().second)
                 }
+
+                dp.add(damage to damage * count + preMax)
             }
 
             return dp.maxOf { it.second }

@@ -13,13 +13,11 @@ fun main() {
             var count = 1
             var mark = 1 shl (s[0] - 'a')
 
-            val modifiedDp = Array(s.length) {
-                hashSetOf<Int>()
-            }
+            val modifiedMarks = hashSetOf<Int>()
 
             repeat(26) {
                 if (s[0] != 'a' + it) {
-                    modifiedDp[0] += 1 shl it
+                    modifiedMarks += 1 shl it
                 }
             }
 
@@ -27,11 +25,8 @@ fun main() {
             for (i in 1 until s.length) {
                 val ch = s[i]
 
-                val current = modifiedDp[i]
-                val previous = modifiedDp[i - 1]
-
                 val map = TreeMap<Int, MutableSet<Int>>(compareByDescending { it })
-                previous.forEach { prevMark ->
+                modifiedMarks.forEach { prevMark ->
                     if ((prevMark or (1 shl (ch - 'a'))).countOneBits() > k) {
                         map.computeIfAbsent(result + 1) { hashSetOf() } += 1 shl (ch - 'a')
                     } else {
@@ -49,10 +44,11 @@ fun main() {
                     }
                 }
 
+                modifiedMarks.clear()
                 map.pollFirstEntry().also {
                     result = it.key
 
-                    current += it.value
+                    modifiedMarks += it.value
                 }
 
                 if ((mark or (1 shl (ch - 'a'))).countOneBits() > k) {

@@ -13,7 +13,7 @@ fun main() {
                 pointNum[point[1]] = pointNum.getOrDefault(point[1], 0) + 1
             }
             for (pNum in pointNum.values) {
-                val edge = pNum!!.toLong() * (pNum - 1) / 2
+                val edge = pNum.toLong() * (pNum - 1) / 2
                 result = (result + edge * sum) % mod
                 sum = (sum + edge) % mod
             }

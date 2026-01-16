@@ -5,35 +5,58 @@ import util.expect
 fun main() {
     class Solution {
         fun maximizeSquareHoleArea(n: Int, m: Int, hBars: IntArray, vBars: IntArray): Int {
-            fun findMax(num: Int, bars: IntArray): Int {
-                if (bars.isEmpty()) {
-                    return 1
-                }
-
-                bars.sort()
-
-                var max = 1
-                var prev = bars[0]
+            class Group {
                 var size = 1
-                bars.forEach {
-                    if (it - prev != 1) {
-                        size = 1
-                    }
-                    size++
-                    prev = it
-                    max = maxOf(max, size)
-                }
 
-                return max
+                var innerParent: Group? = null
+                    private set
+
+                var parent: Group
+                    set(value) {
+                        innerParent = value
+                        value.size += size
+                    }
+                    get() {
+                        return innerParent?.parent?.also {
+                            innerParent = it
+                        } ?: this
+                    }
+
+                fun join(target: Group) {
+                    val leftParent = parent
+                    val rightParent = target.parent
+
+                    if (leftParent != rightParent) {
+                        leftParent.parent = rightParent
+                    }
+                }
             }
 
-            return minOf(findMax(n, hBars), findMax(m, vBars)).let { it * it }
+            fun findMax(bars: IntArray): Int {
+                var result = 0
+
+                val map = hashMapOf<Int, Group>()
+                bars.forEach {
+                    val group = Group()
+
+                    map[it] = group
+
+                    map[it - 1]?.join(group)
+                    map[it + 1]?.join(group)
+
+                    result = maxOf(result, group.parent.size)
+                }
+
+                return result + 1
+            }
+
+            return minOf(findMax(hBars), findMax(vBars)).let { it * it }
         }
     }
 
     expect {
         Solution().maximizeSquareHoleArea(
-            1, 2, intArrayOf(), intArrayOf()
+            1, 2, intArrayOf(2, 3), intArrayOf()
         )
     }
 }

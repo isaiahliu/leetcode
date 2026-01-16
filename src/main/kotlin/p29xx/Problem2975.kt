@@ -6,20 +6,24 @@ import kotlin.math.absoluteValue
 fun main() {
     class Solution {
         fun maximizeSquareArea(m: Int, n: Int, hFences: IntArray, vFences: IntArray): Int {
-            fun find(fences: List<Int>): Set<Int> {
+            fun find(size: Int, fences: IntArray): Set<Int> {
                 return buildSet {
+                    add(size - 1)
+
                     for (i in fences.indices) {
+                        val num = fences[i]
+
+                        add(num - 1)
+                        add(size - num)
+
                         for (j in i + 1 until fences.size) {
-                            add((fences[j] - fences[i]).absoluteValue)
+                            add((fences[j] - num).absoluteValue)
                         }
                     }
                 }
             }
 
-            val h = find(hFences.toList() + 1 + m)
-            val v = find(vFences.toList() + 1 + n)
-
-            return h.intersect(v).maxOrNull()?.toLong()?.let {
+            return find(m, hFences).intersect(find(n, vFences)).maxOrNull()?.toLong()?.let {
                 it * it % 1000000007
             }?.toInt() ?: -1
         }

@@ -49,47 +49,34 @@ fun main() {
                 result++
 
                 val (sum, indices) = sumMap.firstEntry()
-                val leftIndex = indices.pollFirst() ?: throw Exception()
+                val leftIndex = indices.first()
                 val rightIndex = nexts[leftIndex]
 
                 val leftMoreIndex = prevs[leftIndex]
                 val rightMoreIndex = nexts[rightIndex]
 
-                if (indices.isEmpty()) {
-                    sumMap -= sum
-                }
-
                 remove(leftMoreIndex)
+                remove(leftIndex)
                 remove(rightIndex)
 
                 sums[leftIndex] = sum
                 nexts[leftIndex] = nexts[rightIndex]
-                nexts[leftIndex].takeIf { it < sums.size }?.also {
+                rightMoreIndex.takeIf { it < sums.size }?.also {
                     prevs[it] = leftIndex
                 }
 
                 add(leftMoreIndex)
                 add(leftIndex)
 
+                startIndices -= rightIndex
                 sums.getOrNull(leftMoreIndex)?.takeIf { it <= sum }?.also {
                     startIndices -= leftIndex
                 } ?: run {
                     startIndices += leftIndex
                 }
-                startIndices -= rightIndex
                 sums.getOrNull(rightMoreIndex)?.takeIf { it < sum }?.also {
                     startIndices += rightMoreIndex
                 } ?: run { startIndices -= rightMoreIndex }
-
-//                var i = 0
-//                buildString {
-//                    while (i < sums.size) {
-//                        append(sums[i])
-//                        append("(${i}) ")
-//                        i = nexts[i]
-//                    }
-//                }.also { println(it) }
-//                println(startIndices)
             }
             return result
         }

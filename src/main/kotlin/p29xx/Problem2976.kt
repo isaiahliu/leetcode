@@ -39,13 +39,6 @@ fun main() {
                 froms.computeIfAbsent(to) { hashMapOf() }[from] = c
             }
 
-//            adjacent.forEachIndexed { f, r ->
-//                r.forEachIndexed { t, c ->
-//                    if (c < Int.MAX_VALUE) {
-//                        println("${'a' + f} - ${'a' + t} = ${c}")
-//                    }
-//                }
-//            }
             return source.indices.sumOf {
                 tos[source[it]]?.get(target[it])?.toLong() ?: return -1
             }
